@@ -1,0 +1,27 @@
+{
+    "Magic Item Book 1":{
+        "Data GVAR": [],
+        "Data GVAR 2": ["Spell Name 1", "Spell Name 2"],
+        "Data GVAR 3": ["Spell Name 1", "Spell Name 2"]
+    },
+
+    "Magic Item Book 2":{
+        "Data GVAR": [],
+        "Data GVAR 2": ["Spell Name 1", "Spell Name 2"],
+        "Data GVAR 3": ["Spell Name 1", "Spell Name 2"]
+    },
+
+    "Magic Item Book 3":{
+        "Data GVAR": [],
+        "Data GVAR 2": ["Spell Name 1", "Spell Name 2"],
+        "Data GVAR 3": ["Spell Name 1", "Spell Name 2"]
+    },
+
+    "Magic Item Book 4":{
+        "Data GVAR": [],
+        "Data GVAR 2": ["Spell Name 1", "Spell Name 2"],
+        "Data GVAR 3": ["Spell Name 1", "Spell Name 2"]
+    },
+
+    "GVAR Access List": ["GVAR 1", "GVAR 2", "GVAR 3"]
+}

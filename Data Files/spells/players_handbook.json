@@ -1,0 +1,182 @@
+{
+    "Arcane Gate": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": ["Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Armor of Agathys": {
+        "School": "Abjuration",
+        "Level": 1,
+        "Class": ["Warlock"]
+    },
+
+    "Arms of Hadar": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Warlock"]
+    },
+
+    "Aura of Life": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": ["Paladin"]
+    },
+
+    "Aura of Purity": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": ["Paladin"]
+    },
+
+    "Aura of Vitality": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Paladin"]
+    },
+
+    "Banishing Smite": {
+        "School": "Abjuration",
+        "Level": 3,
+        "Class": ["Paladin"]
+    },
+
+    "Beast Sense": {
+        "School": "Divination",
+        "Level": 3,
+        "Class": ["Druid", "Ranger"]
+    },
+
+    "Bigby's Hand": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": ["Wizard", "Artificer"]
+    },
+
+    "Blade Ward": {
+        "School": "Abjuration",
+        "Level": 0,
+        "Class": ["Bard", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Blinding Smite": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Paladin"]
+    },
+
+    "Chromatic Orb": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Circle of Power": {
+        "School": "Abjuration",
+        "Level": 5,
+        "Class": ["Paladin"]
+    },
+
+    "Cloud of Daggers": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Class": ["Bard", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Compelled Duel": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Paladin"]
+    },
+
+    "Conjure Barrage": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": ["Ranger"]
+    },
+
+    "Conjure Volley": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": ["Ranger"]
+    },
+
+    "Cordon of Arrows": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": ["Ranger"]
+    },
+
+    "Crown of Madness": {
+        "School": "Enchantment",
+        "Level": 2,
+        "Class": ["Bard", "Sorcerer", "Wizard"]
+    },
+
+    "Crusader's Mantle": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Paladin"]
+    },
+
+    "Destructive Wave": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": ["Paladin"]
+    },
+
+    "Dissonant Whispers": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Bard"]
+    },
+
+    "Drawmij's Instant Summons": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": ["Wizard"]
+    },
+
+    "Elemental Weapon": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": ["Paladin", "Artificer"]
+    },
+
+    "Ensnaring Strike": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Ranger"]
+    },
+
+    "Evard's Black Tentacle": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Wizard"]
+    },
+
+    "Feign Death": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Class": ["Bard", "Cleric", "Druid", "Wizard"]
+    },
+
+    "Friends": {
+        "School": "Enchantment",
+        "Level": 0,
+        "Class": ["Bard", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Grasping Vine": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Druid", "Ranger"]
+    },
+
+    "Hail of Thorns": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Ranger"]
+    }
+    // Note for Seth: Stopped at top of page 10
+}
