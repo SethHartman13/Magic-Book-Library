@@ -177,6 +177,110 @@
         "School": "Conjuration",
         "Level": 1,
         "Class": ["Ranger"]
+    },
+
+    "Hex": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Warlock"]
+    },
+
+    "Hunger of Hadar": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": ["Warlock"]
+    },
+
+    "Leomund's Secret Chest": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Leomund's Tiny Hut": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Bard", "Wizard"]
+    },
+
+    "Lightning Arrow": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": ["Ranger"]
+    },
+
+    "Melf's Acid Arrow": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": ["Wizard"]
+    },
+
+    "Mordenkainen's Faithful Hound": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Mordenkainen's Magnificent Mansion": {
+        "School": "Conjuration",
+        "Level": 7,
+        "Class": ["Bard", "Wizard"]
+    },
+
+    "Mordenkainen's Private Sanctum": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Nystul's Magic Aura": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": ["Wizard"]
+    },
+
+    "Otiluke's Resilient Sphere": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": ["Wizard", "Artificer"]
+    },
+
+    "Otiluke's Freezing Sphere": {
+        "School": "Evocation",
+        "Level": 6,
+        "Class": ["Wizard"]
+    },
+
+    "Phantasmal Force": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": ["Bard", "Sorcerer", "Wizard"]
+    },
+
+    "Power Word Heal": {
+        "School": "Evocation",
+        "Level": 9,
+        "Class": ["Bard"]
+    },
+
+    "Rary's Telepathic Bond": {
+        "School": "Divination",
+        "Level": 5,
+        "Class": ["Wizard"]
+    },
+
+    "Ray of Sickness": {
+        "School": "Necromancy",
+        "Level": 1,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Regenerate": {
+        "School": "Transmutation",
+        "Level": 7,
+        "Class": ["Bard", "Cleric", "Druid"]
     }
-    // Note for Seth: Stopped at top of page 10
+
+    // Note for Seth, stopped at the top of list 17
+
 }
