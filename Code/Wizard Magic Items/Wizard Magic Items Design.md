@@ -52,8 +52,3 @@ Base the licensing on the individual magic items/spells
     "Protective Verses": ["Arcane Lock", "Dispel Magic", "Globe of Invulnerability", "Glyph of Warning", "Mordenkainen's Private Sanctum", "Protection from Evil and Good", "Symbol"]
 }
 ```
-
-Subalises:
-
-
-
