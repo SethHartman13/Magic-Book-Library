@@ -1,0 +1,31 @@
+<drac2>
+input_list = &ARGS&
+
+ch = character()
+
+# Search for lorehold primer that holds cvar related to this content library
+# If there is at least one lorehold primer, then use the keys to look at CCs related to the books
+# If there is not at least one lorehold primer, then stop execution (like do it through a return)
+
+# Check values to see every CC that exists (do NOT create cc, that should be created when they add the book to their cvar)
+
+# If there is at least one CC that has a charge, use a charge, apply bonus and add text (something like **Lorehold Primer**\nIf you make an Intelligence (History) or Intelligence (Religion) check while holding the primer, you can expend 1 charge to give yourself 1d4 bonus to the check, immediately after you roll the d20). 
+# If there is not at least one cc that has a charge, then stop execution (like do it through a return)
+
+
+i = 1
+fail_count = 0
+
+while True:
+    
+if "hi" in input_list[0] or "rel" in input_list[0]:
+    bonus_return = "1d4"
+
+else:
+    bonus_return = ""
+
+
+
+
+</drac2>
+{{f"""-b "{bonus_return}" """}}
