@@ -2,4 +2,4 @@ While we can group spells by sourcebook, we need to keep in mind that there are 
 
 Just had idea. Let players have the ability to import their own sources, allowing for those who have the individual spells to add them, but by using the cast alias, we should be able to inhibit those who try to circumnavigate licensing.
 
-So I researched the `!level` alias, turns out that every single subclass is attached individually to the licenses, meaning... it might be good to follow suit with the spells. Risk being... lots of spells and we might accidentally miss some
+So I researched the `!level` alias, turns out that every single subclass is attached individually to the licenses, meaning... it might be good to follow suit with the spells. Risk being... lots of spells and we might accidentally miss some (This is me coming back to this, I have no idea where I was going with this as I don't want to write a subalias for each spell... so... maybe I was like... sub to a sourcebook, but we just attach the licensing for each spell...?)
