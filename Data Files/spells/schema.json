@@ -1,0 +1,43 @@
+{
+    "$id": "root",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "SETTINGS": {
+            "type": "object",
+            "properties": {
+                "Homebrew": {
+                    "type": "boolean",
+                    "default": true,
+                    "examples": [
+                        true,
+                        false
+                    ]
+                }
+            },
+            "required": ["Homebrew"]
+        }
+    },
+    "required": ["SETTINGS"],
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "School": {
+                "type": "string",
+                "enum": ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"]
+            },
+            "Level": {
+                "type": "integer",
+                "enum": [0,1,2,3,4,5,6,7,8,9]
+            },
+            "Class": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
+                },
+                "minItems": 1
+            }
+        }
+    }
+}

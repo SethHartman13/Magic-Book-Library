@@ -8,6 +8,8 @@
     - `phb`: Subscribes to content from the Player's Handbook (requires PHB License)
     - `tcoe`: Subscribes to content from Tasha's Guide to Everything (requires TCoE license)
 
+- `ibookserve`: Adds player cvars to server variable (requires admin permissions)
+
 - `wizbook`: Main Wizard Magic Items Design
     - `add`: Subalias to help adding books
         - `alch`: Adds Alchemical Compendium to player CVAR
@@ -19,8 +21,6 @@
         - `libr`: Adds Libram of Souls and Flesh to player CVAR
         - `plan`: Adds Planecaller's Codex to player CVAR
         - `prot`: Adds Protective Verses to player CVAR
-
-    - `serve`: Adds player cvars to server variable (requires admin permissions)
 
     - `remove`: Subalias to help removing books
         - blah blah blah sub alias blah blah
