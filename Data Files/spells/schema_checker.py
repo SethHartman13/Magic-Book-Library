@@ -18,6 +18,7 @@ for json_file in json_list:
         data_schema = json.load(f)
     try:
         js.validate(data_json, data_schema)
+        print("No Errors found")
 
     except:
         print("Error")

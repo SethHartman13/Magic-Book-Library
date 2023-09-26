@@ -37,6 +37,14 @@
                     "enum": ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
                 },
                 "minItems": 1
+            },
+            "Expanded Class": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
+                },
+                "minItems": 1
             }
         }
     }
