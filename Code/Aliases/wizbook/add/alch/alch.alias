@@ -2,40 +2,67 @@ embed
 <drac2>
 
 
-
 def main() -> str, str, str, str:
+    """
+    Main program function
+    
+    Returns:
+        (str): Title
+        (str): Content
+        (str): Thumbnail URL 
+        (str): Color (hex)
+    """
 
+    # Main character object
     ch = character()
     
-    # DELETE FOR PRIMER BOOKS
+    # If the character has at least 1 level in Wizard
     if ch.levels.get("Wizard", default=None):
         pass
 
+    # If the character does not have at least 1 level in wizard, return error.
     else:
         return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+    # Tries to grab dictionary from cvar
     ibook_test = ch.get_cvar("ibook_dict")
 
+    # If the cvar exists, load dictionary
     if ibook_test:
         ibook_dict = load_json(ibook_test)
 
+        # Checks to see if there is a Wizard Book dictionary
+        try:
+            ibook_dict["Wizard Books"]
+
+        except:
+            ibook_dict["Wizard Books"] = {}
+
+    # If the cvar doesn't exist, create dictionary
     else:
-        ibook_dict = dict()
+        ibook_dict = {"Wizard Books": {}}
 
+    # Process to find an entry that has not already been taken
     i = 1
-    while f"Alchemical Compendium {i}" in ibook_dict.keys():
+    while f"Alchemical Compendium {i}" in ibook_dict["Wizard Books"].keys():
         i += 1
-        
-    ibook_dict[f"Alchemical Compendium {i}"] = ["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"]
+    
+    # Set entry to default spell list
+    ibook_dict["Wizard Books"][f"Alchemical Compendium {i}"] = ["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"]
 
-    join_list = "\n".join(ibook_dict[f"Alchemical Compendium {i}"])
+    # Join list for output
+    join_list = "\n".join(ibook_dict["Wizard Books"][f"Alchemical Compendium {i}"])
 
+    # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(ibook_dict))
   
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(["", 1, 2, 3, 4, 5]))}.png"
+    # Selects random image to display
+    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
 
-    return f"{name} ({ctx.author.display_name}) has added Alchemical Compendium to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#4990E2"
+    return f"{name} ({ctx.author.display_name}) has added an Alchemical Compendium to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#4990E2"
 
+
+# Gets outputs
 title, f, thumb, color = main()
 
 
@@ -45,15 +72,3 @@ title, f, thumb, color = main()
 -thumb "{{thumb}}"
 -color "{{color}}"
 -footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
-
-
-
-
-
-
-
-
-
-
-
-
