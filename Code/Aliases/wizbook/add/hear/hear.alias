@@ -1,0 +1,74 @@
+embed
+<drac2>
+
+
+def main() -> str, str, str, str:
+    """
+    Main program function
+    
+    Returns:
+        (str): Title
+        (str): Content
+        (str): Thumbnail URL 
+        (str): Color (hex)
+    """
+    # Heart Weaver's Primer
+    # Main character object
+    ch = character()
+    
+    # If the character has at least 1 level in Wizard
+    if ch.levels.get("Wizard", default=None):
+        pass
+
+    # If the character does not have at least 1 level in wizard, return error.
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+    # Tries to grab dictionary from cvar
+    ibook_test = ch.get_cvar("ibook_dict")
+
+    # If the cvar exists, load dictionary
+    if ibook_test:
+        ibook_dict = load_json(ibook_test)
+
+        # Checks to see if there is a Wizard Book dictionary
+        try:
+            ibook_dict["Wizard Books"]
+
+        except:
+            ibook_dict["Wizard Books"] = {}
+
+    # If the cvar doesn't exist, create dictionary
+    else:
+        ibook_dict = {"Wizard Books": {}}
+
+    # Process to find an entry that has not already been taken
+    i = 1
+    while f"Heart Weaver's Primer {i}" in ibook_dict["Wizard Books"].keys():
+        i += 1
+    
+    # Set entry to default spell list
+    ibook_dict["Wizard Books"][f"Heart Weaver's Primer {i}"] = ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"]
+
+    # Join list for output
+    join_list = "\n".join(ibook_dict["Wizard Books"][f"Heart Weaver's Primer {i}"])
+
+    # Set cvar with new book
+    ch.set_cvar("ibook_dict", dump_json(ibook_dict))
+  
+    # Selects random image to display
+    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
+
+    return f"{name} ({ctx.author.display_name}) has added a Heart Weaver's Primer to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#F297DB"
+
+
+# Gets outputs
+title, f, thumb, color = main()
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
