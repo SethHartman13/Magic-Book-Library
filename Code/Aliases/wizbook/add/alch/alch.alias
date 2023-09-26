@@ -1,0 +1,59 @@
+embed
+<drac2>
+
+
+
+def main() -> str, str, str, str:
+
+    ch = character()
+    
+    # DELETE FOR PRIMER BOOKS
+    if ch.levels.get("Wizard", default=None):
+        pass
+
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+    ibook_test = ch.get_cvar("ibook_dict")
+
+    if ibook_test:
+        ibook_dict = load_json(ibook_test)
+
+    else:
+        ibook_dict = dict()
+
+    i = 1
+    while f"Alchemical Compendium {i}" in ibook_dict.keys():
+        i += 1
+        
+    ibook_dict[f"Alchemical Compendium {i}"] = ["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"]
+
+    join_list = "\n".join(ibook_dict[f"Alchemical Compendium {i}"])
+
+    ch.set_cvar("ibook_dict", dump_json(ibook_dict))
+  
+    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(["", 1, 2, 3, 4, 5]))}.png"
+
+    return f"{name} ({ctx.author.display_name}) has added Alchemical Compendium to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#4990E2"
+
+title, f, thumb, color = main()
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
+
+
+
+
+
+
+
+
+
+
+
+
