@@ -41,15 +41,17 @@ Base the licensing on the individual magic items/spells
 ## Character Variable (CVAR)
 ```json
 {
-    "Alchemical Compendium":["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"],
-    "Astromancy Archive": ["Augury", "Divination", "Find the Path", "Foresight", "Locate Creature", "Locate Object"],
-    "Atlas of Endless Horizons": ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"],
-    "Duplicious Manuscript": ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"],
-    "Fulminating Treatise": ["Contingency", "Fireball", "Gust of Wind", "Leomund's Tiny Hut", "Magic Missile", "Wall of Force"],
-    "Heart Weaver's Primer": ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"],
-    "Libram of Souls and Flesh": ["Animate Dead", "Circle of Death", "False Life", "Finger of Death", "Speak with Dead", "Summon Undead"],
-    "Planecaller's Codex": ["Banishment", "Find Familiar", "Gate", "Magic Circle", "Planar Binding", "Summon Elemental"],
-    "Protective Verses": ["Arcane Lock", "Dispel Magic", "Globe of Invulnerability", "Glyph of Warning", "Mordenkainen's Private Sanctum", "Protection from Evil and Good", "Symbol"]
+    "Wizard Books": {
+        "Alchemical Compendium":["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"],
+        "Astromancy Archive": ["Augury", "Divination", "Find the Path", "Foresight", "Locate Creature", "Locate Object"],
+        "Atlas of Endless Horizons": ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"],
+        "Duplicious Manuscript": ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"],
+        "Fulminating Treatise": ["Contingency", "Fireball", "Gust of Wind", "Leomund's Tiny Hut", "Magic Missile", "Wall of Force"],
+        "Heart Weaver's Primer": ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"],
+        "Libram of Souls and Flesh": ["Animate Dead", "Circle of Death", "False Life", "Finger of Death", "Speak with Dead", "Summon Undead"],
+        "Planecaller's Codex": ["Banishment", "Find Familiar", "Gate", "Magic Circle", "Planar Binding", "Summon Elemental"],
+        "Protective Verses": ["Arcane Lock", "Dispel Magic", "Globe of Invulnerability", "Glyph of Warning", "Mordenkainen's Private Sanctum", "Protection from Evil and Good", "Symbol"]
+    }
 }
 ```
 
