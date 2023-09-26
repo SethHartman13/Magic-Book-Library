@@ -1,4 +1,8 @@
 {
+    "SETTINGS": {
+        "Homebrew": false
+    },
+
     "Arcane Gate": {
         "School": "Conjuration",
         "Level": 6,
@@ -20,19 +24,23 @@
     "Aura of Life": {
         "School": "Abjuration",
         "Level": 4,
-        "Class": ["Paladin"]
+        "Class": ["Paladin"],
+        "Expanded Class": ["Cleric"]
+
     },
 
     "Aura of Purity": {
         "School": "Abjuration",
         "Level": 4,
-        "Class": ["Paladin"]
+        "Class": ["Paladin"],
+        "Expanded Class": ["Cleric"]
     },
 
     "Aura of Vitality": {
         "School": "Evocation",
         "Level": 3,
-        "Class": ["Paladin"]
+        "Class": ["Paladin"],
+        "Expanded Class": ["Cleric", "Druid"]
     },
 
     "Banishing Smite": {
@@ -50,7 +58,8 @@
     "Bigby's Hand": {
         "School": "Evocation",
         "Level": 5,
-        "Class": ["Wizard", "Artificer"]
+        "Class": ["Wizard", "Artificer"],
+        "Expanded Class": ["Sorcerer"]
     },
 
     "Blade Ward": {
@@ -140,7 +149,8 @@
     "Elemental Weapon": {
         "School": "Transmutation",
         "Level": 3,
-        "Class": ["Paladin", "Artificer"]
+        "Class": ["Paladin", "Artificer"],
+        "Expanded Class": ["Druid", "Ranger"]
     },
 
     "Ensnaring Strike": {
@@ -248,7 +258,8 @@
     "Otiluke's Freezing Sphere": {
         "School": "Evocation",
         "Level": 6,
-        "Class": ["Wizard"]
+        "Class": ["Wizard"],
+        "Expanded Class": ["Sorcerer"]
     },
 
     "Phantasmal Force": {
@@ -260,7 +271,8 @@
     "Power Word Heal": {
         "School": "Evocation",
         "Level": 9,
-        "Class": ["Bard"]
+        "Class": ["Bard"],
+        "Expanded Class": ["Cleric"]
     },
 
     "Rary's Telepathic Bond": {
@@ -279,7 +291,65 @@
         "School": "Transmutation",
         "Level": 7,
         "Class": ["Bard", "Cleric", "Druid"]
-    }
+    },
 
-    // Note for Seth, stopped at the top of list 17
+    "Staggering Smite": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": ["Paladin"]
+    },
+
+    "Swift Quiver": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": ["Ranger"]
+    },
+
+    "Tasha's Hideous Laughter": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Bard", "Wizard"]
+    },
+
+    "Telepathy": {
+        "School": "Evocation",
+        "Level": 8,
+        "Class": ["Wizard"]
+    },
+
+    "Tenser's Floating Disk": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Wizard"]
+    },
+
+    "Thorn Whip": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": ["Artificer", "Druid"]
+    },
+
+    "Thunderous Smite": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Paladin"]
+    },
+
+    "Tsunami": {
+        "School": "Conjuration",
+        "Level": 8,
+        "Class": ["Druid"]
+    },
+
+    "Witch Bolt": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Wrathful Smite": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Paladin"]
+    }
 }
