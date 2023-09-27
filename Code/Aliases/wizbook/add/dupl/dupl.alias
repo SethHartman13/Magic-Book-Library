@@ -59,7 +59,7 @@ def main() -> str, str, str, str:
     # Selects random image to display
     img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
 
-    return f"{name} ({ctx.author.display_name}) has added a Duplicious Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#4990E2"
+    return f"{name} ({ctx.author.display_name}) has added a Duplicious Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#C69FFB"
 
 
 # Gets outputs
