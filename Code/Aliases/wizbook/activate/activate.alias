@@ -6,7 +6,6 @@ embed
 
 
 
-
 def main(input_list: list[str]) -> str, str, str, str:
     
 
