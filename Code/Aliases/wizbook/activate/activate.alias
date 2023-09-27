@@ -53,26 +53,137 @@ def subtract_counter(result_key: list[str], ch: character) -> str|None:
     return book_name, False
 
 
-def magic_book_activator(input_list: list[str], ch: character) -> str, str, str, str:
+def magic_book_activator(book_name: str, input_list: list[str], ch: character) -> str, str, str, str:
 
     com = combat()
+    parsed_args = argparse(" ".join(input_list))
+    t_arg = parsed_args.get("t")
+    amt_arg = parsed_args.last("amt", default=0)
+    crit_arg = parsed_args.last("crit")
 
-    
+    if "alchem" in book_name.lower():
+        return f"{name} ({ctx.author.display_name}) uses their Alchemical Compendium", "As an action, you can touch a nonmagical object that isn't being worn or carried and spend a number of charges to transform the target into another object. For 1 charge, the object can be no larger than 1 foot on a side. You can spend additional charges to increase the maximum dimensions by 2 feet per charge. The new object must have a gold value equal to or less than the original.", image, "#B47F47"
 
+    elif "astrom" in book_name.lower():
+        return f"{name} ({ctx.author.display_name}) uses their Astromancy Archive", f"{vroll("1d4").full}\nWhen a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to expend 1 charge and force the creature to roll a d4 and apply the number rolled as a bonus or penalty (your choice) to the original roll. You can do this after you see the roll but before its effects are applied.", image, "#8CA5B7"
 
+    elif "atlas" in book_name.lower():
 
+        try:
+            amt_arg = int(amt_arg)
 
+        except:
+            amt_arg = 0
 
+        if amt_arg != 0:
+            if ch.hp + amt_arg <= ch.max_hp:
+                add_string = f"{ch.modify_hp(amt_arg, overflow=False)} (+{amt_arg})\n"
 
+            else:
+                ch.set_temp_hp(ch.hp + amt_arg - ch.max_hp)
+                ch.set_hp(ch.max_hp)
+                add_string = f"{ch.hp_str()} (+{amt_arg})\n"
 
+        else:
+            add_string = ""
 
+        return f"{name} ({ctx.author.display_name}) uses their Atlas of Endless Horizons", f"{add_string}When you are hit by an attack, you can use your reaction to expend 1 charge to teleport up to 10 feet to an unoccupied space you can see. If your new position is out of range of the attack, it misses you.", image, "#F5DA67"
 
+    elif "dupli" in book_name.lower():
+        return f"{name} ({ctx.author.display_name}) uses their Atlas of Endless Horizons", f"When a creature you can see makes an Intelligence (Investigation) check to discern the true nature of an illusion spell you cast, or makes a saving throw against an illusion spell you cast, you can use your reaction and expend 1 charge to impose disadvantage on the roll.", image, "#C69FFB"
 
+    elif "fulmi" in book_name.lower():
 
+        if not crit_arg:
+            pass
 
+        else:
+            crit_arg = True
 
+        target_name = "Meta"
 
+        if crit_arg:
+            dmg_dict = {"roll": vroll("4d6[force]")}
+            dmg_dict['damage'] = f"**Damage (CRIT!)**: {dmg_dict['roll'].full}"
+            dmg_dict['total'] = dmg_dict['roll'].total
 
+        else:
+            dmg_dict = {"roll": vroll("2d6[force]")}
+            dmg_dict['damage'] = f"**Damage**: {dmg_dict['roll'].full}"
+            dmg_dict['total'] = dmg_dict['roll'].total
+
+        dmg_str = dmg_dict['damage']
+        dmg_total = dmg_dict['total']
+        dmg_roll_obj = dmg_dict['roll']
+
+        hp_str = "\n"
+
+        if com:
+            target = com.get_combatant(t_arg[0])
+
+            if target:
+
+                if (target_name := target.monster_name):
+                    hide_hp = True
+                    
+                else:
+                    target_name = target.name
+                    hide_hp = False
+
+                dmg_dict = target.damage("2d6[force]", crit=crit_arg)
+
+                dmg_str = dmg_dict['damage']
+                dmg_total = dmg_dict['total']
+                dmg_roll_obj = dmg_dict['roll']
+
+                target.add_effect("Prone", args=f"dis", desc="An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise the Attack roll has disadvantage", buttons={
+                    "label": "Stand Up (Prone)",
+                    "style": 1,
+                    "verb": "Stands Up",
+                    "automation": {type: "remove_ieffect"}
+                    })
+
+                if hide_hp:
+                    if target.hp > target.max_hp / 2:
+                        hp_str = "<injured>\n"
+
+                    elif target.hp > target.max_hp / 10:
+                        hp_str = "<bloodied>\n"
+
+                    else:
+                        hp_str = "<critical>\n"
+
+                else:
+                    if target.temp_hp > 0:
+                        tmp_str = f" ({target.temp_hp} temp)\n"
+
+                    else:
+                        tmp_str = "\n"
+
+                    hp_str = f"<{target.hp}>{tmp_str}"
+            
+            else:
+                pass
+
+        else:
+            pass
+
+        return f"{name} ({ctx.author.display_name}) uses their Fulminating Treatise", f"**{target_name}**\n{dmg_str}\n{hp_str}\nWhen one creature you can see takes damage from an evocation spell you cast, you can use your reaction and expend 1 charge to deal an extra 2d6 force damage to the creature and knock the creature prone if it is Large or smaller.", image, "#D6614E"
+
+    elif "heart" in book_name.lower():
+        return f"{name} ({ctx.author.display_name}) uses their Heart Weaver's Primer", "When you cast an enchantment spell, you can expend 1 charge to impose disadvantage on the first saving throw one target makes against the spell.", image, "#ED90D9"
+
+    # Write add_effect
+    elif "libram" in book_name.lower():
+        return f"{name} ({ctx.author.display_name}) uses their Libram of Souls and Flesh", "When you cast an enchantment spell, you can expend 1 charge to impose disadvantage on the first saving throw one target makes against the spell.", image, "#B6ED89"
+
+    # Write add_effect
+    elif "plane" in blook_name.lower():
+        return f"{name} ({ctx.author.display_name}) uses their Planecaller's Codex", "When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute.", image, "#F5DA67"
+
+    # Write add thp
+    else:
+        return f"{name} ({ctx.author.display_name}) uses their Protective Verses", "When you cast an abjuration spell, you can expend 1 charge to grant a creature you can see within 30 feet of you 2d10 temporary hit points.", image, "#69AFEC"
 
 
 def main(input_list: list[str]) -> str, str, str, str:
@@ -117,55 +228,23 @@ def main(input_list: list[str]) -> str, str, str, str:
 
 
             if counter_change:
-                return magic_book_activator(input_list, ch)
+                return magic_book_activator(book_name, input_list, ch)
 
+            else:
+                return f"{ctx.author.display_name} has encountered an error", f"You have no counters left for {book_name}", img_url, color
 
-
-                
-
-            
-
-
-
-                 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        else:
+            return f"{ctx.author.display_name} has encountered an error", f"Book not found", img_url, color
 
     else:
-        pass
+        return f"{ctx.author.display_name} has encountered an error", f"Expected at least one input", img_url, color
 
 
-
-
-
-
-
-
-
-
-
-
+title, f, thumb, color = main(&ARGS&)
 
 
 </drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
