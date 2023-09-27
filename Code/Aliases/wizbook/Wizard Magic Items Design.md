@@ -15,7 +15,7 @@ Base the licensing on the individual magic items/spells
 - Duplicious Manuscript
     - Duplicious Manuscript - Tasha's Cauldron of Everything
     - Nystul's Magic Aura - Player's Handbook
-    - Phanasmal Force - Player's Handbook
+    - Phantasmal Force - Player's Handbook
 
 - Fulminating Treatise
     - Fulminating Treatise - Tasha's Cauldron of Everything
