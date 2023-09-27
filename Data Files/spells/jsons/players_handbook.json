@@ -1,0 +1,356 @@
+{
+    "SETTINGS": {
+        "Homebrew": false,
+        "Partnered Content": false
+    },
+
+    "Arcane Gate": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": ["Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Armor of Agathys": {
+        "School": "Abjuration",
+        "Level": 1,
+        "Class": ["Warlock"]
+    },
+
+    "Arms of Hadar": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Warlock"]
+    },
+
+    "Aura of Life": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": ["Paladin"],
+        "Expanded Class": ["Cleric"]
+
+    },
+
+    "Aura of Purity": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": ["Paladin"],
+        "Expanded Class": ["Cleric"]
+    },
+
+    "Aura of Vitality": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Paladin"],
+        "Expanded Class": ["Cleric", "Druid"]
+    },
+
+    "Banishing Smite": {
+        "School": "Abjuration",
+        "Level": 3,
+        "Class": ["Paladin"]
+    },
+
+    "Beast Sense": {
+        "School": "Divination",
+        "Level": 3,
+        "Class": ["Druid", "Ranger"]
+    },
+
+    "Bigby's Hand": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": ["Wizard", "Artificer"],
+        "Expanded Class": ["Sorcerer"]
+    },
+
+    "Blade Ward": {
+        "School": "Abjuration",
+        "Level": 0,
+        "Class": ["Bard", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Blinding Smite": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Paladin"]
+    },
+
+    "Chromatic Orb": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Circle of Power": {
+        "School": "Abjuration",
+        "Level": 5,
+        "Class": ["Paladin"]
+    },
+
+    "Cloud of Daggers": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Class": ["Bard", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Compelled Duel": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Paladin"]
+    },
+
+    "Conjure Barrage": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": ["Ranger"]
+    },
+
+    "Conjure Volley": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": ["Ranger"]
+    },
+
+    "Cordon of Arrows": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": ["Ranger"]
+    },
+
+    "Crown of Madness": {
+        "School": "Enchantment",
+        "Level": 2,
+        "Class": ["Bard", "Sorcerer", "Wizard"]
+    },
+
+    "Crusader's Mantle": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Paladin"]
+    },
+
+    "Destructive Wave": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": ["Paladin"]
+    },
+
+    "Dissonant Whispers": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Bard"]
+    },
+
+    "Drawmij's Instant Summons": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": ["Wizard"]
+    },
+
+    "Elemental Weapon": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": ["Paladin", "Artificer"],
+        "Expanded Class": ["Druid", "Ranger"]
+    },
+
+    "Ensnaring Strike": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Ranger"]
+    },
+
+    "Evard's Black Tentacle": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Wizard"]
+    },
+
+    "Feign Death": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Class": ["Bard", "Cleric", "Druid", "Wizard"]
+    },
+
+    "Friends": {
+        "School": "Enchantment",
+        "Level": 0,
+        "Class": ["Bard", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Grasping Vine": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Druid", "Ranger"]
+    },
+
+    "Hail of Thorns": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Ranger"]
+    },
+
+    "Hex": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Warlock"]
+    },
+
+    "Hunger of Hadar": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": ["Warlock"]
+    },
+
+    "Leomund's Secret Chest": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Leomund's Tiny Hut": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": ["Bard", "Wizard"]
+    },
+
+    "Lightning Arrow": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": ["Ranger"]
+    },
+
+    "Melf's Acid Arrow": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": ["Wizard"]
+    },
+
+    "Mordenkainen's Faithful Hound": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Mordenkainen's Magnificent Mansion": {
+        "School": "Conjuration",
+        "Level": 7,
+        "Class": ["Bard", "Wizard"]
+    },
+
+    "Mordenkainen's Private Sanctum": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Nystul's Magic Aura": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": ["Wizard"]
+    },
+
+    "Otiluke's Resilient Sphere": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": ["Wizard", "Artificer"]
+    },
+
+    "Otiluke's Freezing Sphere": {
+        "School": "Evocation",
+        "Level": 6,
+        "Class": ["Wizard"],
+        "Expanded Class": ["Sorcerer"]
+    },
+
+    "Phantasmal Force": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": ["Bard", "Sorcerer", "Wizard"]
+    },
+
+    "Power Word Heal": {
+        "School": "Evocation",
+        "Level": 9,
+        "Class": ["Bard"],
+        "Expanded Class": ["Cleric"]
+    },
+
+    "Rary's Telepathic Bond": {
+        "School": "Divination",
+        "Level": 5,
+        "Class": ["Wizard"]
+    },
+
+    "Ray of Sickness": {
+        "School": "Necromancy",
+        "Level": 1,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Regenerate": {
+        "School": "Transmutation",
+        "Level": 7,
+        "Class": ["Bard", "Cleric", "Druid"]
+    },
+
+    "Staggering Smite": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": ["Paladin"]
+    },
+
+    "Swift Quiver": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": ["Ranger"]
+    },
+
+    "Tasha's Hideous Laughter": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Bard", "Wizard"]
+    },
+
+    "Telepathy": {
+        "School": "Evocation",
+        "Level": 8,
+        "Class": ["Wizard"]
+    },
+
+    "Tenser's Floating Disk": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": ["Wizard"]
+    },
+
+    "Thorn Whip": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": ["Artificer", "Druid"]
+    },
+
+    "Thunderous Smite": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Paladin"]
+    },
+
+    "Tsunami": {
+        "School": "Conjuration",
+        "Level": 8,
+        "Class": ["Druid"]
+    },
+
+    "Witch Bolt": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Wrathful Smite": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Paladin"]
+    }
+}

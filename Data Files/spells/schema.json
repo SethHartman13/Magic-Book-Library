@@ -13,9 +13,17 @@
                         true,
                         false
                     ]
+                },
+                "Partnered Content": {
+                    "type": "boolean",
+                    "default": true,
+                    "examples": [
+                        true,
+                        false
+                    ]
                 }
             },
-            "required": ["Homebrew"]
+            "required": ["Homebrew", "Partnered Content"]
         }
     },
     "required": ["SETTINGS"],

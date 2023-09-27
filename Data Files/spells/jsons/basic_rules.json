@@ -1,0 +1,126 @@
+{
+    "SETTINGS": {
+        "Homebrew": false,
+        "Partnered Content": false
+    },
+
+    "Acid Arrow": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": ["Wizard"]
+    },
+
+    "Acid Splash": {
+        "School": "Conjuration",
+        "Level": 0,
+        "Class": ["Artificer", "Sorcerer", "Wizard"]
+    },
+
+    "Aid": {
+        "School": "Abjuration",
+        "Level": 2,
+        "Class": ["Cleric", "Artificer", "Paladin"]
+    },
+
+    "Alarm": {
+        "School": "Abjuration",
+        "Level": 1,
+        "Class": ["Artificer", "Ranger", "Wizard"]
+    },
+
+    "Alter Self": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": ["Artificer", "Ranger", "Wizard"]
+    },
+
+    "Animal Friendship": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Bard", "Druid", "Ranger"]
+    },
+
+    "Animal Messenger": {
+        "School": "Enchantment",
+        "Level": 2,
+        "Class": ["Bard", "Druid", "Ranger"]
+    },
+
+    "Animal Shapes": {
+        "School": "Transmutation",
+        "Level": 8,
+        "Class": ["Druid"]
+    },
+
+    "Animate Dead": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Class": ["Cleric", "Wizard"]
+    },
+
+    "Animate Objects": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": ["Artificer", "Bard", "Sorcerer"]
+    },
+
+    "Antilife Shell": {
+        "School": "Abjuration",
+        "Level": 5,
+        "Class": ["Druid"]
+    },
+
+    "Antimagic Field": {
+        "School": "Abjuration",
+        "Level": 8,
+        "Class": ["Cleric", "Wizard"]
+    },
+
+    "Antipathy/Sympathy": {
+        "School": "Enchantment",
+        "Level": 8,
+        "Class": ["Druid", "Wizard"]
+    },
+
+    "Arcane Eye": {
+        "School": "Divination",
+        "Level": 4,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Arcane Hand": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": ["Wizard"]
+    },
+
+    "Arcane Lock": {
+        "School": "Abjuration",
+        "Level": 2,
+        "Class": ["Artificer", "Wizard"]
+    },
+
+    "Arcanist's Magic Aura": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": ["Wizard"]
+    },
+
+    "Astral Projection": {
+        "School": "Necromancy",
+        "Level": 9,
+        "Class": ["Cleric", "Warlock", "Wizard"]
+    },
+
+    "Augury": {
+        "School": "Divination",
+        "Level": 2,
+        "Class": ["Cleric"]
+    },
+
+    "Awaken": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": ["Bard", "Druid"]
+    }
+}
