@@ -2,15 +2,151 @@ embed
 <drac2>
 
 
+def search_key(query: str, key_list: list[str]) -> list[str]|None:
+    """
+    Searches for dictionary key.
+
+    Args:
+        query (str): The query being made
+        key_list (list): List of keys
+
+    Return:
+        (str): If it finds it, it returns the key, otherwise it returns 'None'
+    """
+
+    # Creates list to store matches
+    key_results = []
+
+    # Checks each item if a match occurs
+    for key in key_list:
+
+        # If matches
+        if query.lower() in key.lower():
+            key_results.append(key)
+
+        else:
+            pass
+
+    # Finds at least 1 match
+    if len(key_results) > 0:
+        return key_results
+
+    # If it finds no matches
+    else:
+        return None
+
+
+def subtract_counter(result_key: list[str], ch: character) -> str|None:
+
+    for item in result_key
+        book_cc = ch.cc(item)
+
+        if book_cc.value > book_cc.min:
+            book_cc.mod(-1)
+
+            return book_cc.name, True
+
+        else:
+            book_name = book_cc.name
+
+
+    return book_name, False
+
+
+def magic_book_activator(input_list: list[str], ch: character) -> str, str, str, str:
+
+    com = combat()
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 def main(input_list: list[str]) -> str, str, str, str:
     
+    ch = character()
+    color = "#CF142B"
+    img_url = "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
 
     if len(input_list) > 0:
+
+        # Tries to grab dictionary from cvar
+        ibook_test = ch.get_cvar("ibook_dict")
+
+        if ibook_test:
+            ibook_dict = load_json(ibook_test)
+
+            try:
+                if len(ibook_dict["Wizard Books"].keys()) > 0:
+                    pass
+
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your `ibook_dict`", img_url, color
         
+            except:
+                return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your `ibook_dict`", img_url, color
+
+        else:
+            return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your `ibook_dict`", img_url, color
+
+        
+        result_key = search_key(input_list[0], ibook_dict["Wizard Books"].keys())
+
+
+        if result_key:
+            
+            book_name, counter_change = subtract_counter(result_key, ch)
+
+            temp_list = book_name.split()
+            temp_list.pop(-1)
+
+            book_name = " ".join(temp_list)
+
+
+            if counter_change:
+                return magic_book_activator(input_list, ch)
+
+
+
+                
+
+            
+
+
+
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
