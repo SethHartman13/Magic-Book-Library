@@ -50,6 +50,18 @@ def main() -> str, str, str, str:
     # Set entry to default spell list
     ibook_dict["Wizard Books"][f"Planecaller's Codex {i}"] = ["Banishment", "Find Familiar", "Gate", "Magic Circle", "Planar Binding", "Summon Elemental"]
 
+    # Creates Custom Counter
+    ch.create_cc(
+        name=f"Planecaller's Codex {i}",
+        minVal="0",
+        maxVal="3",
+        reset="long",
+        dispType="star",
+        reset_by="1d3",
+        title=f"Planecaller's Codex {i}",
+        desc="While you are holding the book, you can use it as a spellcasting focus for your wizard spells. The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the conjuration school.\n- When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute."
+    )
+
     # Join list for output
     join_list = "\n".join(ibook_dict["Wizard Books"][f"Planecaller's Codex {i}"])
 

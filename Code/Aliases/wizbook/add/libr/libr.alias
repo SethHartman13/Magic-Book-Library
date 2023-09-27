@@ -50,6 +50,18 @@ def main() -> str, str, str, str:
     # Set entry to default spell list
     ibook_dict["Wizard Books"][f"Libram of Souls and Flesh {i}"] = ["Animate Dead", "Circle of Death", "False Life", "Finger of Death", "Speak with Dead", "Summon Undead"]
 
+    # Creates Custom Counter
+    ch.create_cc(
+        name=f"Libram of Souls and Flesh {i}",
+        minVal="0",
+        maxVal="3",
+        reset="long",
+        dispType="star",
+        reset_by="1d3",
+        title=f"Libram of Souls and Flesh {i}",
+        desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the necromancy school.\n- As an action, you can expend 1 charge to take on a semblance of undeath for 10 minutes. For the duration, you take on a deathly appearance, and undead creatures are indifferent to you, unless you have damaged them. You also appear undead to all outward inspection and to spells used to determine the target's status. The effect ends if you deal damage or force a creature to make a saving throw."
+    )
+
     # Join list for output
     join_list = "\n".join(ibook_dict["Wizard Books"][f"Libram of Souls and Flesh {i}"])
 

@@ -50,6 +50,18 @@ def main() -> str, str, str, str:
     # Set entry to default spell list
     ibook_dict["Wizard Books"][f"Duplicious Manuscript {i}"] = ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"]
 
+    # Creates Custom Counter
+    ch.create_cc(
+        name=f"Duplicious Manuscript {i}",
+        minVal="0",
+        maxVal="3",
+        reset="long",
+        dispType="star",
+        reset_by="1d3",
+        title=f"Duplicious Manuscript {i}",
+        desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the illusion school.\n- When a creature you can see makes an Intelligence (Investigation) check to discern the true nature of an illusion spell you cast, or makes a saving throw against an illusion spell you cast, you can use your reaction and expend 1 charge to impose disadvantage on the roll."
+    )
+
     # Join list for output
     join_list = "\n".join(ibook_dict["Wizard Books"][f"Duplicious Manuscript {i}"])
 

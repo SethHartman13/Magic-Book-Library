@@ -50,6 +50,18 @@ def main() -> str, str, str, str:
     # Set entry to default spell list
     ibook_dict["Wizard Books"][f"Astromancy Archive {i}"] = ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"]
 
+    # Creates Custom Counter
+    ch.create_cc(
+        name=f"Astromancy Archive {i}",
+        minVal="0",
+        maxVal="3",
+        reset="long",
+        dispType="star",
+        reset_by="1d3",
+        title=f"Astromancy Archive {i}",
+        desc="The archive has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the archive, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the archive. The new spell must be of the divination school.\n- When a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to expend 1 charge and force the creature to roll a d4 and apply the number rolled as a bonus or penalty (your choice) to the original roll. You can do this after you see the roll but before its effects are applied."
+    )
+
     # Join list for output
     join_list = "\n".join(ibook_dict["Wizard Books"][f"Astromancy Archive {i}"])
 
