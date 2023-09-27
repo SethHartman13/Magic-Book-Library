@@ -4,23 +4,19 @@ import json
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-json_list = os.listdir(os.getcwd())
-
-json_list.pop(json_list.index("schema_checker.py"))
-json_list.pop(json_list.index("schema.json"))
-json_list.pop(json_list.index("example_sourcebook.jsonc"))
+json_list = os.listdir(f"{os.getcwd()}/jsons/")
 
 for json_file in json_list:
-    with open(json_file) as f:
+    with open(f"{os.getcwd()}/jsons/{json_file}") as f:
         data_json = json.load(f)
 
     with open("schema.json") as f:
         data_schema = json.load(f)
     try:
         js.validate(data_json, data_schema)
-        print("No Errors found")
+        print(f"No Errors found: {json_file}")
 
     except:
-        print("Error")
+        print(f"Error: {json_file}")
 
 print("Check completed")
