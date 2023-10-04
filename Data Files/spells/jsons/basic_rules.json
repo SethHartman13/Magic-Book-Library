@@ -122,5 +122,245 @@
         "School": "Transmutation",
         "Level": 5,
         "Class": ["Bard", "Druid"]
+    },
+
+    "Bane": {
+        "School": "Enchantment",
+        "Level": 5,
+        "Class": ["Bard", "Cleric"]
+    },
+
+    "Banishment": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": ["Cleric", "Paladin", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Barkskin": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": ["Druid", "Ranger"] 
+    },
+
+    "Beacon of Hope": {
+        "School": "Abjuration",
+        "Level": 3,
+        "Class": ["Cleric"]
+    },
+
+    "Bestow Curse": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Class": ["Bard", "Cleric", "Wizard"]
+    },
+
+    "Black Tentacles": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Wizard"]
+    },
+
+    "Blade Barrier": {
+        "School": "Evocation",
+        "Level": 6,
+        "Class": ["Cleric"]
+    },
+
+    "Bless": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Cleric", "Paladin"]
+    },
+
+    "Blight": {
+        "School": "Necromancy",
+        "Level": 4,
+        "Class": ["Druid", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Blindness/Deafness": {
+        "School": "Necromancy",
+        "Level": 2,
+        "Class": ["Bard", "Cleric", "Sorcerer", "Wizard"]
+    },
+
+    "Blink": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": ["Sorcerer", "Wizard", "Artificer"]
+    },
+
+    "Blur": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": ["Sorcerer", "Wizard", "Artificer"]
+    },
+
+    "Branding Smite": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": ["Paladin"]
+    },
+
+    "Burning Hands": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Call Lightning": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": ["Druid"]
+    },
+
+    "Calm Emotions": {
+        "School": "Enchantment",
+        "Level": 2,
+        "Class": ["Bard", "Cleric"]
+    },
+
+    "Chain Lightning": {
+        "School": "Evocation",
+        "Level": 6,
+        "Class": ["Bard", "Cleric"]
+    },
+
+    "Charm Person": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Bard", "Druid", "Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Chill Touch": {
+        "School": "Necromancy",
+        "Level": 0,
+        "Class": ["Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Circle of Death": {
+        "School": "Necromancy",
+        "Level": 6,
+        "Class": ["Sorcerer", "Warlock", "Wizard"]
+    },
+
+    "Clairvoyance": {
+        "School": "Divination",
+        "Level": 3,
+        "Class": ["Bard", "Cleric", "Sorcerer", "Wizard"]
+    },
+
+    "Clone": {
+        "School": "Necromancy",
+        "Level": 8,
+        "Class": ["Wizard"]
+    },
+
+    "Cloudkill": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Color Spray": {
+        "School": "Illusion",
+        "Level": 1,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Command": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": ["Cleric", "Paladin"]
+    },
+
+    "Commune": {
+        "School": "Divination",
+        "Level": 5,
+        "Class": ["Cleric"]
+    },
+
+    "Commune with Nature": {
+        "School": "Divination",
+        "Level": 5,
+        "Class": ["Druid", "Ranger"]
+    },
+
+    "Comprehend Languages": {
+        "School": "Divination",
+        "Level": 1,
+        "Class": ["Bard", "Sorcerer", "Warlock"]
+    },
+
+    "Compulsion": {
+        "School": "Enchantment",
+        "Level": 4,
+        "Class": ["Bard"]
+    },
+
+    "Cone of Cold": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": ["Sorcerer", "Wizard"]
+    },
+
+    "Confusion": {
+        "School": "Enchantment",
+        "Level": 4,
+        "Class": ["Bard", "Druid", "Sorcerer", "Wizard"]
+    },
+
+    "Conjure Animals": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": ["Druid", "Ranger"]
+    },
+
+    "Conjure Celestial": {
+        "School": "Conjuration",
+        "Level": 7,
+        "Class": ["Cleric"]
+    },
+
+    "Conjure Elemental": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": ["Druid", "Wizard"]
+    },
+
+    "Conjure Fey": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": ["Druid", "Warlock"]
+    },
+
+    "Conjure Minor Elemental": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Druid", "Wizard"]
+    },
+
+    "Conjure Woodland Beings": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": ["Druid", "Ranger"]
+    },
+
+    "Contact Other Plane": {
+        "School": "Divination",
+        "Level": 5,
+        "Class": ["Warlock", "Wizard"]
+    },
+
+    "Contagion": {
+        "School": "Necromancy",
+        "Level": 5,
+        "Class": ["Cleric", "Druid"]
+    },
+
+    "Contingency": {
+        "School": "Evocation",
+        "Level": 6,
+        "Class": ["Wizard"]
     }
 }
