@@ -81,7 +81,7 @@ def find_input(user_input: str, json_list: list[str]) -> str:
         # If it has found more than one match, insert header and assert False
         else:
             result_key.insert(
-                0, "\n" + color.BOLD + "Multiple Matches Found:" + color.END
+                0, "\n" + color.RED + "Multiple Matches Found:" + color.END
             )
             assert False, "\n".join(result_key)
 
