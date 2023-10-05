@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import json
-from random import uniform as random
 from zenrows import ZenRowsClient
 import os
 from config import Tokens
