@@ -2,5 +2,52 @@
     "SETTINGS": {
         "Homebrew": false,
         "Partnered Content": false
+    },
+    "Borrowed Knowledge": {
+        "School": "Divination",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Cleric",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Kinetic Jaunt": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Silvery Barbs": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Vortex Warp": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Wither and Bloom": {
+        "School": "Necromancy",
+        "Level": 2,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
     }
 }

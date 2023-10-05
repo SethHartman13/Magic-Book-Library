@@ -2,5 +2,33 @@
     "SETTINGS": {
         "Homebrew": false,
         "Partnered Content": false
+    },
+    "Booming Blade": {
+        "School": "Evocation",
+        "Level": 0,
+        "Class": [
+            "Sorcerer"
+        ]
+    },
+    "Green-Flame Blade": {
+        "School": "Evocation",
+        "Level": 0,
+        "Class": [
+            "Sorcerer"
+        ]
+    },
+    "Lightning Lure": {
+        "School": "Evocation",
+        "Level": 0,
+        "Class": [
+            "Sorcerer"
+        ]
+    },
+    "Sword Burst": {
+        "School": "Conjuration",
+        "Level": 0,
+        "Class": [
+            "Sorcerer"
+        ]
     }
 }
