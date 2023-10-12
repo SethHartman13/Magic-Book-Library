@@ -156,7 +156,7 @@ dmypy.json
 cython_debug/
 
 # Any python scripts are only used for testing purposes
-.py
+**/*.py
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
@@ -164,4 +164,4 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
-.css
+**/*.css
