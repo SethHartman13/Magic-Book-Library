@@ -1,27 +1,4 @@
-<style>
-    .level3 {
-        color: #00A7BA;
-    }
-    .level2 {
-        color: #00D37B;
-    }
-    .level1 {
-        color: #00FF3C;
-    }
-    .svar {
-        color: #ff5500;
-    }
-    .optional {
-        color: #8236f5;
-    }
-    .argument {
-        color: #ff5500;
-    }
-    .required {
-        color: #ff0000;
-    }
-</style>
-
+<link rel="stylesheet" href="styles.css">
 
 - [ ] <span class="level1">`!ibook`</span>
     - [ ] <span class="level2">`!ibook serve`</span>
