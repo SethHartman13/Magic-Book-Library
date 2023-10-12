@@ -14,7 +14,7 @@ for json_file in json_list:
         data_schema = json.load(f)
     try:
         js.validate(data_json, data_schema)
-        print(f"No Errors found: {json_file}")
+        print(f"No Schema Errors found: {json_file}")
 
     except:
         print(f"Error: {json_file}")

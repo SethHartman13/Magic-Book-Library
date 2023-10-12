@@ -23,26 +23,61 @@
                     ]
                 }
             },
-            "required": ["Homebrew", "Partnered Content"]
+            "required": [
+                "Homebrew", 
+                "Partnered Content"
+            ]
         }
     },
-    "required": ["SETTINGS"],
+    "required": [
+        "SETTINGS"
+    ],
     "additionalProperties": {
         "type": "object",
         "properties": {
             "School": {
                 "type": "string",
-                "enum": ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"]
+                "enum": [
+                    "Abjuration", 
+                    "Conjuration", 
+                    "Divination", 
+                    "Enchantment", 
+                    "Evocation", 
+                    "Illusion", 
+                    "Necromancy", 
+                    "Transmutation"
+                ]
             },
             "Level": {
                 "type": "integer",
-                "enum": [0,1,2,3,4,5,6,7,8,9]
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ]
             },
             "Class": {
                 "type": "array",
                 "items": {
                     "type": "string",
-                    "enum": ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
+                    "enum": [
+                        "Artificer", 
+                        "Bard", 
+                        "Cleric", 
+                        "Druid", 
+                        "Paladin", 
+                        "Ranger", 
+                        "Sorcerer", 
+                        "Warlock", 
+                        "Wizard"
+                    ]
                 },
                 "minItems": 1
             },
@@ -50,10 +85,38 @@
                 "type": "array",
                 "items": {
                     "type": "string",
-                    "enum": ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
+                    "enum": [
+                        "Artificer", 
+                        "Bard", 
+                        "Cleric", 
+                        "Druid", 
+                        "Paladin", 
+                        "Ranger", 
+                        "Sorcerer", 
+                        "Warlock", 
+                        "Wizard"
+                    ]
                 },
                 "minItems": 1
             }
-        }
+        },
+        "anyOf": [
+            {
+                "required": [
+                    "Class"
+                ]
+            },
+            {
+                "required": [
+                    "Expanded Class"
+                ]
+
+            }
+        ],
+        "required": [
+            "School", 
+            "Level"
+        ],
+        "additionalProperties": false
     }
 }
