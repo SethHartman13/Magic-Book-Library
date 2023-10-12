@@ -15,7 +15,7 @@ class Data_Holder:
             levels (list[str]): List of spell levels
             schools (list[str]): List of spell schools
         """
-        
+
         self.names = names
         self.levels = levels
         self.schools = schools
@@ -31,16 +31,16 @@ def send_request(url: str) -> Data_Holder:
     Returns:
         Data_Holder: Data object holding scraped data
     """
-    
+
     # Creates client object
     client = ZenRowsClient(Tokens.zenrows)
 
     # Sends and received response
     response = client.get(url)
-    
+
     # Parses data
     soup = BeautifulSoup(response.content, "html.parser")
-    
+
     # Level mapping table
     level_map = {
         "Cantrip": 0,
@@ -57,16 +57,26 @@ def send_request(url: str) -> Data_Holder:
 
     return Data_Holder(
         [
-            "".join(str(name).split(">")[1].split("<")[0]).replace("\u2019", "'") # Removes HTML tags
-            for name in soup.select(".info .row.spell-name .name a") # Grabs specified html content
+            "".join(str(name).split(">")[1].split("<")[0]).replace(
+                "\u2019", "'"
+            )  # Removes HTML tags
+            for name in soup.select(
+                ".info .row.spell-name .name a"
+            )  # Grabs specified html content
         ],
         [
-            level_map["".join(str(level).split(">")[1].split("<")[0])] # Removes HTML tags and run through level mapping table
-            for level in soup.select(".info .row.spell-level span") # Grabs specified content
+            level_map[
+                "".join(str(level).split(">")[1].split("<")[0])
+            ]  # Removes HTML tags and run through level mapping table
+            for level in soup.select(
+                ".info .row.spell-level span"
+            )  # Grabs specified content
         ],
         [
-            "".join(str(school).split(">")[1].split("<")[0]) # Removes HTML tags
-            for school in soup.select(".info .row.spell-name span span:first-child") # Grabs specified content
+            "".join(str(school).split(">")[1].split("<")[0])  # Removes HTML tags
+            for school in soup.select(
+                ".info .row.spell-name span span:first-child"
+            )  # Grabs specified content
         ],
     )
 
@@ -86,18 +96,16 @@ def run_calls(
         file_name (str): Name of file
         source_id (int): Source id of sourcebook
     """
-    
+
     # For each class
     for class_name in class_map.keys():
-        
         # Set starting values
         i = 1
         run = True
         data = Data_Holder([], [], [])
-        
+
         # While true
         while run:
-            
             # Set old data to data and request new data
             old_data = data
             data = send_request(
@@ -106,13 +114,10 @@ def run_calls(
 
             # If old data is not new data
             if old_data.names != data.names:
-                
                 # For each spell name scraped
                 for name in data.names:
-                    
                     # If the spell exists
                     if name in json_data.keys():
-                        
                         # If the class is not in the class list, add the class
                         if not class_name in json_data[name]["Class"]:
                             json_data[name]["Class"].append(class_name)
@@ -125,9 +130,11 @@ def run_calls(
                     else:
                         json_data[name] = {
                             "School": data.schools[data.names.index(name)],
-                            "Schools": data.levels[data.names.index(name)],
+                            "Level": data.levels[data.names.index(name)],
                             "Class": [class_name],
                         }
+
+                    print(f"{name} added")
 
                 # Increment page number
                 i += 1
@@ -137,22 +144,21 @@ def run_calls(
                 run = False
 
         # Prints that the class is done
-        print(f"{class_name} done")
+        print(f"{class_name} done\n")
 
     # Writes finished JSON to file
     with open(f"{os.getcwd()}/jsons/{file_name}", "w") as f:
         f.write(json.dumps(json_data, indent=4))
 
 
-
 def main() -> None:
     """
     Main program function
     """
-    
+
     # Sets current working directory
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    
+
     # Source mapping table
     SOURCE_MAP = {
         "basic_rules": 1,
@@ -169,7 +175,7 @@ def main() -> None:
         "sword_coast_adventurers_guide": 13,
         "taldorei_campaign_setting_reborn": 123,
         "tashas_cauldron_of_everything": 67,
-        "xanthars_guide_to_everything": 27
+        "xanthars_guide_to_everything": 27,
     }
 
     # Class mapping table
@@ -184,18 +190,20 @@ def main() -> None:
         "Wizard": 8,
         "Artificer": 252717,
     }
-    
-    # Loads json file (creates one if necessary)
-    with open(f"{os.getcwd()}/jsons/{file_name}", "r") as f:
-        json_file = json.load(f)
 
     # For each file in the source mapping table
     for file_name, source_id in SOURCE_MAP.items():
+
+        # Loads json file (creates one if necessary)
+        with open(f"{os.getcwd()}/jsons/{file_name}.json", "r") as f:
+            json_file = json.load(f)
+
         run_calls(json_file, CLASS_MAP, f"{file_name}.json", source_id)
         print(f"{file_name} done\n")
 
     # Prints All done
     print("All done")
+
 
 # If it is the main program executing, it executes
 if __name__ == "__main__":
