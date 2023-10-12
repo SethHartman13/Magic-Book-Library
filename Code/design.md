@@ -1,126 +1,161 @@
 <style>
-    .code3 {
+    .level3 {
         color: #00A7BA;
     }
-    .code2 {
+    .level2 {
         color: #00D37B;
     }
-    .code1 {
+    .level1 {
         color: #00FF3C;
     }
     .svar {
         color: #ff5500;
     }
-    .required {
-        color: #ba0627;
-    }
     .optional {
-        color: #4506ba;
+        color: #8236f5;
     }
     .argument {
-        color: #81ba06;
+        color: #ff5500;
+    }
+    .required {
+        color: #ff0000;
     }
 </style>
 
 
-- [ ] ibook <span class="code1">`!ibook`</span>
-    - [ ] serve <span class="code2">`!ibook serve`</span>
-        - [ ] clear <span class="code3">`!book serve clear`</span>
+- [ ] <span class="level1">`!ibook`</span>
+    - [ ] <span class="level2">`!ibook serve`</span>
+        - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
+        - [ ] <span class="level3">`!book serve clear`</span>
             - Clears the books within the <span class="svar">`magic_book_settings`</svar>
-            - confirm (argument, optional)
+            - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
                 - If this is not given, it will display a warning to the user that this will clear all the GVARs in the SVAR holding allowed content
-        -  [ ] Sends GVARS from the UVAR of the player to the SVAR holding allowed content
 
-    - [ ] sub <span class="code2">`!ibook unsub`
-        - [ ] ai* <span class="code3">`!ibook sub ai`
+    - [ ] <span class="level2">`!ibook sub`
+        - [ ] <span class="level3">`!ibook sub ai`</span><span class="required">*
             - Subscribes to Acquisition's Incorporated
 
-        - [ ] eepc* <span class="code3">`!ibook sub eepc`
+        - [ ] <span class="level3">`!ibook sub eepc`</span><span class="required">*
             - Subscribes to Elemental Evil Player's Companion
 
 
-        - [ ] egtw* <span class="code3">`!ibook sub egtw`
+        - [ ] <span class="level3">`!ibook sub egtw`</span><span class="required">*
             - Subscribes to Explorers Guide to Wildemount
 
 
-        - [ ] ftod* <span class="code3">`!ibook sub ftod`
+        - [ ] <span class="level3">`!ibook sub ftod`</span><span class="required">*
             - Subscribes to Fizban's Treasury of Dragons
 
 
-        - [ ] ggtr* <span class="code3">`!ibook sub ggtr`
+        - [ ] <span class="level3">`!ibook sub ggtr`</span><span class="required">*
             - Subscribes to Guildmaster's Guide to Ravnica
 
 
-        - [ ] idrotf* <span class="code3">`!ibook sub idrotf`
+        - [ ] <span class="level3">`!ibook sub idrotf`</span><span class="required">*
             - Subscribes to Icewind Dale: Rime of the Frostmaiden
 
 
-        - [ ] llok* <span class="code3">`!ibook sub llok`
+        - [ ] <span class="level3">`!ibook sub llok`</span><span class="required">*
             - Subscribes to Lost Laboratory of Kwalish
 
 
-        - [ ] phb* <span class="code3">`!ibook sub phb`
+        - [ ] <span class="level3">`!ibook sub phb`</span><span class="required">*
             - Subscribes to the Player's Handbook
 
 
-        - [ ] sais* <span class="code3">`!ibook sub sais`
+        - [ ] <span class="level3">`!ibook sub sais`</span><span class="required">*
             - Subscribes to Spelljammer: Adventurers in Space
 
 
-        - [ ] sacoc* <span class="code3">`!ibook sub sacoc`
+        - [ ] <span class="level3">`!ibook sub sacoc`</span><span class="required">*
             - Subscribes to Strixhaven: A Curriculum of Chaos
 
 
-        - [ ] scag* <span class="code3">`!ibook sub scag`
+        - [ ] <span class="level3">`!ibook sub scag`</span><span class="required">*
             - Subscribes to Sword Coast Adventurer's Guide
 
 
-        - [ ] tcsr* <span class="code3">`!ibook sub tcsr`
+        - [ ] <span class="level3">`!ibook sub tcsr`</span><span class="required">*
             - Subscribes to Tal'Dorei Campaign Setting Reborn
 
 
-        - [ ] tcoe* <span class="code3">`!ibook sub tcoe`
+        - [ ] <span class="level3">`!ibook sub tcoe`</span><span class="required">*
             - Subscribes to Tasha's Cauldron of Everything
 
 
-        - [ ] xgte* <span class="code3">`!book sub xgte`
+        - [ ] <span class="level3">`!book sub xgte`</span><span class="required">*
             - Subscribes to Xanathar's Guide to Everything
 
 
-    -  [ ] unsub `!ibook unsub`
-        -  book ()
+    -  [ ] unsub <span class="level2">`!ibook unsub`
+        -  book (<span class="argument">argument</span>, <span class="required">required</span>)
 
-- [ ] wizbook `!wizbook`
+- [ ] <span class="level1">`!wizbook`
     - Gives overview on how to use wizbook
-    - [ ] add `!wizbook add`
+    - [ ] <span class="level2">`!wizbook add`
         - Provdes a help menu listing the wizard books they can add (and if they can add it)
-        - [ ] aclh* `!wizbook add alch`
+        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*
             - Adds Alchemical Compendium to player CVAR
-        - [ ] astr* `!wizbook add astr`
-            - Adds Astromancy Archive to player CVAR
-        - [ ] atla* `!wizbook add atla`
+
+
+        - [ ] <span class="level3">`!wizbook add required`</span><span class="required">*
+            - Adds requiredomancy Archive to player CVAR
+
+
+        - [ ] <span class="level3">`!wizbook add atla`</span><span class="required">*
             - Adds Atlas of Endless Horizons to player CVAR
-        - [ ] dupl* `!wizbook add dupl` 
+
+
+        - [ ] <span class="level3">`!wizbook add dupl`</span><span class="required">*
             - Adds Duplicious Treatise to player CVAR
-        - [ ] fulm* `!wizbook add fulm`
+
+
+        - [ ] <span class="level3">`!wizbook add fulm`</span><span class="required">*
             - Adds Fulminating Treatise to player CVAR
-        - [ ] hear* `!wizbook add hear`
+
+
+        - [ ] <span class="level3">`!wizbook add hear`</span><span class="required">*
             - Adds Heart Weaver's Primer to player CVAR
-        - [ ] libr* `!wizbook add libr`
+
+
+        - [ ] <span class="level3">`!wizbook add libr`</span><span class="required">*
             - Adds Libram of Souls and Flesh to player CVAR
-        - [ ] plan* `!wizbook add plan`
+
+
+        - [ ] <span class="level3">`!wizbook add plan`</span><span class="required">*
             - Adds Planecaller's Codex to player CVAR
-        - [ ] prot* `!wizbook add prot`
+
+
+        - [ ] <span class="level3">`!wizbook add prot`</span><span class="required">*
             - Adds Protective Verses to player CVAR
 
 
+    - [ ] <span class="level2"> `!wizbook activate`
+        - book (<span class="argument">argument</span>, <span class="required">required</span>)
 
-    - activate
-    - cast
-    - remove
-    - switch
-    - cc
-- primer
+
+    - [ ] <span class="level2"> `!wizbook cast`
+        - spell (<span class="argument">argument</span>, <span class="required">required</span>)
+
+
+    - [ ] <span class="level2"> `!wizbook remove`
+
+        - book (<span class="argument">argument</span>, <span class="required">required</span>)
+        - \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
+  
+
+        - [ ] <span class="level3">`!wizbook remove undo`
+
+
+    - [ ] <span class="level2"> `!wizbook switch`
+        - spell 1 (<span class="argument">argument</span>, <span class="required">required</span>)
+        - spell 2 (<span class="argument">argument</span>, <span class="required">required</span>)
+
+
+    - [ ] <span class="level2"> `!wizbook cc`
+
+
+- [ ] <span class="level1"> `!primer`
     - add
     - cast
     - cc
