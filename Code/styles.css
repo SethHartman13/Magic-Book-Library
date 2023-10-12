@@ -1,0 +1,21 @@
+.level3 {
+    color: #00A7BA;
+}
+.level2 {
+    color: #00D37B;
+}
+.level1 {
+    color: #00FF3C;
+}
+.svar {
+    color: #ff5500;
+}
+.optional {
+    color: #8236f5;
+}
+.argument {
+    color: #ff5500;
+}
+.required {
+    color: #ff0000;
+}
