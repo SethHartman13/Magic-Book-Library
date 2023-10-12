@@ -3,10 +3,78 @@
         "Homebrew": false,
         "Partnered Content": false
     },
+    "Dream of the Blue Veil": {
+        "School": "Conjuration",
+        "Level": 7,
+        "Expanded Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Intellect Fortress": {
+        "School": "Abjuration",
+        "Level": 3,
+        "Class": [
+            "Artificer"
+        ],
+        "Expanded Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Spirit Shroud": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Expanded Class": [
+            "Cleric",
+            "Paladin",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Summon Celestial": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Expanded Class": [
+            "Cleric",
+            "Paladin"
+        ]
+    },
+    "Summon Beast": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Expanded Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Summon Elemental": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Expanded Class": [
+            "Druid",
+            "Ranger",
+            "Wizard"
+        ]
+    },
+    "Summon Fey": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Expanded Class": [
+            "Druid",
+            "Ranger",
+            "Warlock",
+            "Wizard"
+        ]
+    },
     "Blade of Disaster": {
         "School": "Conjuration",
         "Level": 9,
-        "Class": [
+        "Expanded Class": [
             "Sorcerer",
             "Warlock",
             "Wizard"
@@ -16,17 +84,9 @@
         "School": "Evocation",
         "Level": 0,
         "Class": [
-            "Sorcerer",
-            "Warlock",
-            "Wizard",
             "Artificer"
-        ]
-    },
-    "Dream of the Blue Veil": {
-        "School": "Conjuration",
-        "Level": 7,
-        "Class": [
-            "Bard",
+        ],
+        "Expanded Class": [
             "Sorcerer",
             "Warlock",
             "Wizard"
@@ -36,123 +96,31 @@
         "School": "Evocation",
         "Level": 0,
         "Class": [
+            "Artificer"
+        ],
+        "Expanded Class": [
             "Sorcerer",
             "Warlock",
-            "Wizard",
-            "Artificer"
-        ]
-    },
-    "Intellect Fortress": {
-        "School": "Abjuration",
-        "Level": 3,
-        "Class": [
-            "Bard",
-            "Sorcerer",
-            "Warlock",
-            "Wizard",
-            "Artificer"
+            "Wizard"
         ]
     },
     "Lightning Lure": {
         "School": "Evocation",
         "Level": 0,
         "Class": [
+            "Artificer"
+        ],
+        "Expanded Class": [
             "Sorcerer",
             "Warlock",
-            "Wizard",
-            "Artificer"
+            "Wizard"
         ]
     },
     "Mind Sliver": {
         "School": "Enchantment",
         "Level": 0,
-        "Class": [
+        "Expanded Class": [
             "Sorcerer",
-            "Warlock",
-            "Wizard"
-        ]
-    },
-    "Spirit Shroud": {
-        "School": "Necromancy",
-        "Level": 3,
-        "Class": [
-            "Cleric",
-            "Paladin",
-            "Warlock",
-            "Wizard"
-        ]
-    },
-    "Summon Aberration": {
-        "School": "Conjuration",
-        "Level": 4,
-        "Class": [
-            "Warlock",
-            "Wizard"
-        ]
-    },
-    "Summon Beast": {
-        "School": "Conjuration",
-        "Level": 2,
-        "Class": [
-            "Druid",
-            "Ranger"
-        ]
-    },
-    "Summon Celestial": {
-        "School": "Conjuration",
-        "Level": 5,
-        "Class": [
-            "Cleric",
-            "Paladin"
-        ]
-    },
-    "Summon Construct": {
-        "School": "Conjuration",
-        "Level": 4,
-        "Class": [
-            "Wizard",
-            "Artificer"
-        ]
-    },
-    "Summon Elemental": {
-        "School": "Conjuration",
-        "Level": 4,
-        "Class": [
-            "Druid",
-            "Ranger",
-            "Wizard"
-        ]
-    },
-    "Summon Fey": {
-        "School": "Conjuration",
-        "Level": 3,
-        "Class": [
-            "Druid",
-            "Ranger",
-            "Warlock",
-            "Wizard"
-        ]
-    },
-    "Summon Fiend": {
-        "School": "Conjuration",
-        "Level": 6,
-        "Class": [
-            "Warlock",
-            "Wizard"
-        ]
-    },
-    "Summon Shadowspawn": {
-        "School": "Conjuration",
-        "Level": 3,
-        "Class": [
-            "Warlock",
-            "Wizard"
-        ]
-    },
-    "Summon Undead": {
-        "School": "Necromancy",
-        "Level": 3,
-        "Class": [
             "Warlock",
             "Wizard"
         ]
@@ -161,25 +129,29 @@
         "School": "Conjuration",
         "Level": 0,
         "Class": [
+            "Artificer"
+        ],
+        "Expanded Class": [
             "Sorcerer",
             "Warlock",
-            "Wizard",
-            "Artificer"
+            "Wizard"
         ]
     },
     "Tasha's Caustic Brew": {
         "School": "Evocation",
         "Level": 1,
         "Class": [
-            "Sorcerer",
-            "Wizard",
             "Artificer"
+        ],
+        "Expanded Class": [
+            "Sorcerer",
+            "Wizard"
         ]
     },
     "Tasha's Mind Whip": {
         "School": "Enchantment",
         "Level": 2,
-        "Class": [
+        "Expanded Class": [
             "Sorcerer",
             "Wizard"
         ]
@@ -187,9 +159,51 @@
     "Tasha's Otherworldly Guise": {
         "School": "Transmutation",
         "Level": 6,
-        "Class": [
+        "Expanded Class": [
             "Sorcerer",
             "Warlock",
+            "Wizard"
+        ]
+    },
+    "Summon Aberration": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Expanded Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Summon Fiend": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Expanded Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Summon Shadowspawn": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Expanded Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Summon Undead": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Expanded Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Summon Construct": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Artificer"
+        ],
+        "Expanded Class": [
             "Wizard"
         ]
     }

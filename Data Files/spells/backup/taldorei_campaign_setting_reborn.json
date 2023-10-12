@@ -8,8 +8,7 @@
         "Level": 3,
         "Class": [
             "Druid",
-            "Ranger",
-            "Sorcerer"
+            "Ranger"
         ]
     },
     "Freedom of the Winds": {
@@ -17,8 +16,7 @@
         "Level": 5,
         "Class": [
             "Druid",
-            "Ranger",
-            "Sorcerer"
+            "Ranger"
         ]
     }
 }

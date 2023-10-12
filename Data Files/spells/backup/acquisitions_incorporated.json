@@ -9,7 +9,6 @@
         "Class": [
             "Bard",
             "Sorcerer",
-            "Warlock",
             "Wizard"
         ]
     },
@@ -30,21 +29,12 @@
             "Wizard"
         ]
     },
-    "Motivational Speech": {
-        "School": "Enchantment",
-        "Level": 3,
-        "Class": [
-            "Bard",
-            "Cleric"
-        ]
-    },
     "Incite Greed": {
         "School": "Enchantment",
         "Level": 3,
         "Class": [
             "Cleric",
             "Sorcerer",
-            "Warlock",
             "Wizard"
         ]
     },
@@ -60,6 +50,14 @@
         "Level": 1,
         "Class": [
             "Wizard"
+        ]
+    },
+    "Motivational Speech": {
+        "School": "Enchantment",
+        "Level": 3,
+        "Class": [
+            "Bard",
+            "Cleric"
         ]
     }
 }

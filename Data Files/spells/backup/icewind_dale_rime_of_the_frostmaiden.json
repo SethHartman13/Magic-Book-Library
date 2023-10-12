@@ -6,9 +6,8 @@
     "Blade of Disaster": {
         "School": "Conjuration",
         "Level": 9,
-        "Expanded Class": [
+        "Class": [
             "Sorcerer",
-            "Warlock",
             "Wizard"
         ]
     },

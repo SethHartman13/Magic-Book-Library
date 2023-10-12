@@ -3,9 +3,468 @@
         "Homebrew": false,
         "Partnered Content": false
     },
-    "Animal Friendship": {
+    "Arcane Gate": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Armor of Agathys": {
+        "School": "Abjuration",
+        "Level": 1,
+        "Class": [
+            "Warlock"
+        ]
+    },
+    "Arms of Hadar": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": [
+            "Warlock"
+        ]
+    },
+    "Aura of Life": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": [
+            "Paladin"
+        ],
+        "Expanded Class": [
+            "Cleric"
+        ]
+    },
+    "Aura of Purity": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": [
+            "Paladin"
+        ],
+        "Expanded Class": [
+            "Cleric"
+        ]
+    },
+    "Aura of Vitality": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Paladin"
+        ],
+        "Expanded Class": [
+            "Cleric",
+            "Druid"
+        ]
+    },
+    "Banishing Smite": {
+        "School": "Abjuration",
+        "Level": 3,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Beast Sense": {
+        "School": "Divination",
+        "Level": 3,
+        "Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Bigby's Hand": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Wizard",
+            "Artificer"
+        ],
+        "Expanded Class": [
+            "Sorcerer"
+        ]
+    },
+    "Blade Ward": {
+        "School": "Abjuration",
+        "Level": 0,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Blinding Smite": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Chromatic Orb": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Circle of Power": {
+        "School": "Abjuration",
+        "Level": 5,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Cloud of Daggers": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Compelled Duel": {
         "School": "Enchantment",
         "Level": 1,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Conjure Barrage": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": [
+            "Ranger"
+        ]
+    },
+    "Conjure Volley": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": [
+            "Ranger"
+        ]
+    },
+    "Cordon of Arrows": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": [
+            "Ranger"
+        ]
+    },
+    "Crown of Madness": {
+        "School": "Enchantment",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard",
+            "Warlock"
+        ]
+    },
+    "Crusader's Mantle": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Destructive Wave": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Dissonant Whispers": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": [
+            "Bard"
+        ]
+    },
+    "Drawmij's Instant Summons": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Elemental Weapon": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": [
+            "Paladin",
+            "Artificer"
+        ],
+        "Expanded Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Ensnaring Strike": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": [
+            "Ranger"
+        ]
+    },
+    "Evard's Black Tentacle": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Feign Death": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Class": [
+            "Bard",
+            "Cleric",
+            "Druid",
+            "Wizard"
+        ]
+    },
+    "Friends": {
+        "School": "Enchantment",
+        "Level": 0,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Grasping Vine": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Hail of Thorns": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": [
+            "Ranger"
+        ]
+    },
+    "Hex": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": [
+            "Warlock"
+        ]
+    },
+    "Hunger of Hadar": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": [
+            "Warlock"
+        ]
+    },
+    "Leomund's Secret Chest": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Artificer",
+            "Wizard"
+        ]
+    },
+    "Leomund's Tiny Hut": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Bard",
+            "Wizard"
+        ]
+    },
+    "Lightning Arrow": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": [
+            "Ranger"
+        ]
+    },
+    "Melf's Acid Arrow": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Mordenkainen's Faithful Hound": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Artificer",
+            "Wizard"
+        ]
+    },
+    "Mordenkainen's Magnificent Mansion": {
+        "School": "Conjuration",
+        "Level": 7,
+        "Class": [
+            "Bard",
+            "Wizard"
+        ]
+    },
+    "Mordenkainen's Private Sanctum": {
+        "School": "Abjuration",
+        "Level": 4,
+        "Class": [
+            "Artificer",
+            "Wizard"
+        ]
+    },
+    "Nystul's Magic Aura": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Otiluke's Resilient Sphere": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": [
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Otiluke's Freezing Sphere": {
+        "School": "Evocation",
+        "Level": 6,
+        "Class": [
+            "Wizard"
+        ],
+        "Expanded Class": [
+            "Sorcerer"
+        ]
+    },
+    "Phantasmal Force": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Power Word Heal": {
+        "School": "Evocation",
+        "Level": 9,
+        "Class": [
+            "Bard"
+        ],
+        "Expanded Class": [
+            "Cleric"
+        ]
+    },
+    "Rary's Telepathic Bond": {
+        "School": "Divination",
+        "Level": 5,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Ray of Sickness": {
+        "School": "Necromancy",
+        "Level": 1,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Regenerate": {
+        "School": "Transmutation",
+        "Level": 7,
+        "Class": [
+            "Bard",
+            "Cleric",
+            "Druid"
+        ]
+    },
+    "Staggering Smite": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Swift Quiver": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": [
+            "Ranger"
+        ]
+    },
+    "Tasha's Hideous Laughter": {
+        "School": "Enchantment",
+        "Level": 1,
+        "Class": [
+            "Bard",
+            "Wizard"
+        ]
+    },
+    "Telepathy": {
+        "School": "Evocation",
+        "Level": 8,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Tenser's Floating Disk": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Thorn Whip": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": [
+            "Artificer",
+            "Druid"
+        ]
+    },
+    "Thunderous Smite": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Tsunami": {
+        "School": "Conjuration",
+        "Level": 8,
+        "Class": [
+            "Druid"
+        ]
+    },
+    "Witch Bolt": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Wrathful Smite": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Animal Friendship": {
+        "School": "Enchantment",
+        "Schools": 1,
         "Class": [
             "Bard",
             "Druid",
@@ -14,7 +473,7 @@
     },
     "Animal Messenger": {
         "School": "Enchantment",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Druid",
@@ -23,7 +482,7 @@
     },
     "Animate Objects": {
         "School": "Transmutation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -33,7 +492,7 @@
     },
     "Awaken": {
         "School": "Transmutation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Druid"
@@ -41,7 +500,7 @@
     },
     "Bane": {
         "School": "Enchantment",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Cleric"
@@ -49,7 +508,7 @@
     },
     "Bestow Curse": {
         "School": "Necromancy",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Cleric",
@@ -58,7 +517,7 @@
     },
     "Blindness/Deafness": {
         "School": "Necromancy",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric",
@@ -68,7 +527,7 @@
     },
     "Calm Emotions": {
         "School": "Enchantment",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric"
@@ -76,7 +535,7 @@
     },
     "Charm Person": {
         "School": "Enchantment",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Druid",
@@ -87,7 +546,7 @@
     },
     "Clairvoyance": {
         "School": "Divination",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Cleric",
@@ -97,7 +556,7 @@
     },
     "Comprehend Languages": {
         "School": "Divination",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -107,14 +566,14 @@
     },
     "Compulsion": {
         "School": "Enchantment",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard"
         ]
     },
     "Confusion": {
         "School": "Enchantment",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard",
             "Druid",
@@ -124,7 +583,7 @@
     },
     "Cure Wounds": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Cleric",
@@ -136,7 +595,7 @@
     },
     "Dancing Lights": {
         "School": "Evocation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -146,7 +605,7 @@
     },
     "Detect Magic": {
         "School": "Divination",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Cleric",
@@ -160,7 +619,7 @@
     },
     "Detect Thoughts": {
         "School": "Divination",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -169,7 +628,7 @@
     },
     "Dimension Door": {
         "School": "Conjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -179,7 +638,7 @@
     },
     "Disguise Self": {
         "School": "Illusion",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -189,7 +648,7 @@
     },
     "Dispel Magic": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Cleric",
@@ -203,7 +662,7 @@
     },
     "Dominate Monster": {
         "School": "Enchantment",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -213,7 +672,7 @@
     },
     "Dominate Person": {
         "School": "Enchantment",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -222,7 +681,7 @@
     },
     "Dream": {
         "School": "Illusion",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Warlock",
@@ -231,22 +690,18 @@
     },
     "Enhance Ability": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric",
             "Druid",
             "Sorcerer",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Ranger",
-            "Wizard"
         ]
     },
     "Enthrall": {
         "School": "Enchantment",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Warlock"
@@ -254,7 +709,7 @@
     },
     "Etherealness": {
         "School": "Transmutation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Cleric",
@@ -265,7 +720,7 @@
     },
     "Eyebite": {
         "School": "Necromancy",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -275,7 +730,7 @@
     },
     "Faerie Fire": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Druid",
@@ -284,7 +739,7 @@
     },
     "Fear": {
         "School": "Illusion",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -294,7 +749,7 @@
     },
     "Feather Fall": {
         "School": "Transmutation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -304,7 +759,7 @@
     },
     "Feeblemind": {
         "School": "Enchantment",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Bard",
             "Druid",
@@ -314,7 +769,7 @@
     },
     "Find the Path": {
         "School": "Divination",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Bard",
             "Cleric",
@@ -323,7 +778,7 @@
     },
     "Forcecage": {
         "School": "Evocation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Warlock",
@@ -332,7 +787,7 @@
     },
     "Foresight": {
         "School": "Divination",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Bard",
             "Druid",
@@ -342,7 +797,7 @@
     },
     "Freedom of Movement": {
         "School": "Abjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard",
             "Cleric",
@@ -353,7 +808,7 @@
     },
     "Geas": {
         "School": "Enchantment",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Cleric",
@@ -364,7 +819,7 @@
     },
     "Glibness": {
         "School": "Transmutation",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Bard",
             "Warlock"
@@ -372,7 +827,7 @@
     },
     "Glyph of Warding": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Cleric",
@@ -382,7 +837,7 @@
     },
     "Greater Invisibility": {
         "School": "Illusion",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -391,20 +846,17 @@
     },
     "Greater Restoration": {
         "School": "Abjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Cleric",
             "Druid",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Ranger"
         ]
     },
     "Guards and Wards": {
         "School": "Abjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Bard",
             "Wizard"
@@ -412,7 +864,7 @@
     },
     "Hallucinatory Terrain": {
         "School": "Illusion",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard",
             "Druid",
@@ -422,7 +874,7 @@
     },
     "Healing Word": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Cleric",
@@ -431,7 +883,7 @@
     },
     "Heat Metal": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Druid",
@@ -440,7 +892,7 @@
     },
     "Heroism": {
         "School": "Enchantment",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Paladin"
@@ -448,7 +900,7 @@
     },
     "Hideous Laughter": {
         "School": "Enchantment",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Wizard"
@@ -456,7 +908,7 @@
     },
     "Hold Monster": {
         "School": "Enchantment",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -466,7 +918,7 @@
     },
     "Hold Person": {
         "School": "Enchantment",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric",
@@ -478,7 +930,7 @@
     },
     "Hypnotic Pattern": {
         "School": "Illusion",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -488,7 +940,7 @@
     },
     "Identify": {
         "School": "Divination",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Wizard",
@@ -497,7 +949,7 @@
     },
     "Illusory Script": {
         "School": "Illusion",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Warlock",
@@ -506,7 +958,7 @@
     },
     "Invisibility": {
         "School": "Illusion",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -517,7 +969,7 @@
     },
     "Knock": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -526,7 +978,7 @@
     },
     "Legend Lore": {
         "School": "Divination",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Cleric",
@@ -535,7 +987,7 @@
     },
     "Lesser Restoration": {
         "School": "Abjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric",
@@ -547,7 +999,7 @@
     },
     "Light": {
         "School": "Evocation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Cleric",
@@ -558,7 +1010,7 @@
     },
     "Locate Animals or Plants": {
         "School": "Divination",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Druid",
@@ -567,7 +1019,7 @@
     },
     "Locate Creature": {
         "School": "Divination",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard",
             "Cleric",
@@ -579,7 +1031,7 @@
     },
     "Locate Object": {
         "School": "Divination",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric",
@@ -591,7 +1043,7 @@
     },
     "Longstrider": {
         "School": "Transmutation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Druid",
@@ -602,7 +1054,7 @@
     },
     "Mage Hand": {
         "School": "Conjuration",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -613,7 +1065,7 @@
     },
     "Magic Mouth": {
         "School": "Illusion",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Wizard",
@@ -622,7 +1074,7 @@
     },
     "Magnificent Mansion": {
         "School": "Conjuration",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Wizard"
@@ -630,7 +1082,7 @@
     },
     "Major Image": {
         "School": "Illusion",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -640,7 +1092,7 @@
     },
     "Mass Cure Wounds": {
         "School": "Evocation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Cleric",
@@ -649,7 +1101,7 @@
     },
     "Mass Suggestion": {
         "School": "Enchantment",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -659,7 +1111,7 @@
     },
     "Mending": {
         "School": "Transmutation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Cleric",
@@ -671,7 +1123,7 @@
     },
     "Message": {
         "School": "Transmutation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -681,7 +1133,7 @@
     },
     "Mind Blank": {
         "School": "Abjuration",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Bard",
             "Wizard"
@@ -689,7 +1141,7 @@
     },
     "Minor Illusion": {
         "School": "Illusion",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -699,7 +1151,7 @@
     },
     "Mirage Arcane": {
         "School": "Illusion",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Druid",
@@ -708,18 +1160,15 @@
     },
     "Mislead": {
         "School": "Illusion",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Warlock"
         ]
     },
     "Modify Memory": {
         "School": "Enchantment",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Wizard"
@@ -727,7 +1176,7 @@
     },
     "Mordenkainen's Sword": {
         "School": "Evocation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Wizard"
@@ -735,7 +1184,7 @@
     },
     "Nondetection": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Ranger",
@@ -744,7 +1193,7 @@
     },
     "Otto's Irresistible Dance": {
         "School": "Enchantment",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Bard",
             "Wizard"
@@ -752,20 +1201,17 @@
     },
     "Planar Binding": {
         "School": "Abjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Cleric",
             "Druid",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Warlock"
         ]
     },
     "Plant Growth": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Druid",
@@ -774,7 +1220,7 @@
     },
     "Polymorph": {
         "School": "Transmutation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Bard",
             "Druid",
@@ -784,7 +1230,7 @@
     },
     "Power Word Kill": {
         "School": "Enchantment",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -794,7 +1240,7 @@
     },
     "Power Word Stun": {
         "School": "Enchantment",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -804,7 +1250,7 @@
     },
     "Prestidigitation": {
         "School": "Transmutation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -815,7 +1261,7 @@
     },
     "Programmed Illusion": {
         "School": "Illusion",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Bard",
             "Wizard"
@@ -823,7 +1269,7 @@
     },
     "Project Image": {
         "School": "Illusion",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Wizard"
@@ -831,25 +1277,16 @@
     },
     "Raise Dead": {
         "School": "Necromancy",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Cleric",
             "Paladin"
         ]
     },
-    "Regenerate": {
-        "School": "Transmutation",
-        "Level": 7,
-        "Class": [
-            "Bard",
-            "Cleric",
-            "Druid"
-        ]
-    },
     "Resurrection": {
         "School": "Necromancy",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Cleric"
@@ -857,7 +1294,7 @@
     },
     "Scrying": {
         "School": "Divination",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Cleric",
@@ -868,7 +1305,7 @@
     },
     "See Invisibility": {
         "School": "Divination",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -878,7 +1315,7 @@
     },
     "Seeming": {
         "School": "Illusion",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -887,7 +1324,7 @@
     },
     "Sending": {
         "School": "Evocation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Cleric",
@@ -896,7 +1333,7 @@
     },
     "Shatter": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -906,7 +1343,7 @@
     },
     "Silence": {
         "School": "Illusion",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric",
@@ -915,7 +1352,7 @@
     },
     "Silent Image": {
         "School": "Illusion",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -924,7 +1361,7 @@
     },
     "Sleep": {
         "School": "Enchantment",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -933,7 +1370,7 @@
     },
     "Speak with Animals": {
         "School": "Divination",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Druid",
@@ -942,18 +1379,15 @@
     },
     "Speak with Dead": {
         "School": "Necromancy",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Cleric"
-        ],
-        "Expanded Class": [
-            "Wizard"
         ]
     },
     "Speak with Plants": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Druid",
@@ -962,7 +1396,7 @@
     },
     "Stinking Cloud": {
         "School": "Conjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -971,7 +1405,7 @@
     },
     "Suggestion": {
         "School": "Enchantment",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -981,19 +1415,16 @@
     },
     "Symbol": {
         "School": "Abjuration",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Cleric",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Druid"
         ]
     },
     "Teleport": {
         "School": "Conjuration",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -1002,19 +1433,16 @@
     },
     "Teleportation Circle": {
         "School": "Conjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Bard",
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Warlock"
         ]
     },
     "Thunderwave": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Druid",
@@ -1024,7 +1452,7 @@
     },
     "Tiny Hut": {
         "School": "Evocation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Wizard"
@@ -1032,7 +1460,7 @@
     },
     "Tongues": {
         "School": "Divination",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Bard",
             "Cleric",
@@ -1043,7 +1471,7 @@
     },
     "True Polymorph": {
         "School": "Transmutation",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Bard",
             "Warlock",
@@ -1052,7 +1480,7 @@
     },
     "True Seeing": {
         "School": "Divination",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Bard",
             "Cleric",
@@ -1063,7 +1491,7 @@
     },
     "True Strike": {
         "School": "Divination",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard",
             "Sorcerer",
@@ -1073,7 +1501,7 @@
     },
     "Unseen Servant": {
         "School": "Conjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Bard",
             "Warlock",
@@ -1082,14 +1510,14 @@
     },
     "Vicious Mockery": {
         "School": "Enchantment",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Bard"
         ]
     },
     "Zone of Truth": {
         "School": "Enchantment",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Bard",
             "Cleric",
@@ -1098,20 +1526,16 @@
     },
     "Aid": {
         "School": "Abjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric",
             "Paladin",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Bard",
-            "Ranger"
         ]
     },
     "Animate Dead": {
         "School": "Necromancy",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Wizard"
@@ -1119,7 +1543,7 @@
     },
     "Antimagic Field": {
         "School": "Abjuration",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Cleric",
             "Wizard"
@@ -1127,7 +1551,7 @@
     },
     "Astral Projection": {
         "School": "Necromancy",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Cleric",
             "Warlock",
@@ -1136,18 +1560,14 @@
     },
     "Augury": {
         "School": "Divination",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric"
-        ],
-        "Expanded Class": [
-            "Druid",
-            "Wizard"
         ]
     },
     "Banishment": {
         "School": "Abjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Cleric",
             "Paladin",
@@ -1158,21 +1578,21 @@
     },
     "Beacon of Hope": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric"
         ]
     },
     "Blade Barrier": {
         "School": "Evocation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric"
         ]
     },
     "Bless": {
         "School": "Enchantment",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Paladin"
@@ -1180,32 +1600,29 @@
     },
     "Command": {
         "School": "Enchantment",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Paladin"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Commune": {
         "School": "Divination",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Cleric"
         ]
     },
     "Conjure Celestial": {
         "School": "Conjuration",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Cleric"
         ]
     },
     "Contagion": {
         "School": "Necromancy",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Cleric",
             "Druid"
@@ -1213,19 +1630,16 @@
     },
     "Continual Flame": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric",
             "Wizard",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Druid"
         ]
     },
     "Control Water": {
         "School": "Transmutation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Cleric",
             "Druid",
@@ -1234,7 +1648,7 @@
     },
     "Control Weather": {
         "School": "Transmutation",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Cleric",
             "Druid",
@@ -1243,7 +1657,7 @@
     },
     "Create Food and Water": {
         "School": "Conjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Paladin",
@@ -1252,7 +1666,7 @@
     },
     "Create or Destroy Water": {
         "School": "Transmutation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Druid"
@@ -1260,7 +1674,7 @@
     },
     "Create Undead": {
         "School": "Necromancy",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric",
             "Warlock",
@@ -1269,7 +1683,7 @@
     },
     "Daylight": {
         "School": "Evocation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Druid",
@@ -1280,7 +1694,7 @@
     },
     "Death Ward": {
         "School": "Abjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Cleric",
             "Paladin"
@@ -1288,7 +1702,7 @@
     },
     "Detect Evil and Good": {
         "School": "Divination",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Paladin"
@@ -1296,7 +1710,7 @@
     },
     "Detect Poison and Disease": {
         "School": "Divination",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Druid",
@@ -1306,7 +1720,7 @@
     },
     "Dispel Evil and Good": {
         "School": "Abjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Cleric",
             "Paladin"
@@ -1314,25 +1728,21 @@
     },
     "Divination": {
         "School": "Divination",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Cleric"
-        ],
-        "Expanded Class": [
-            "Druid",
-            "Wizard"
         ]
     },
     "Divine Word": {
         "School": "Evocation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Cleric"
         ]
     },
     "Earthquake": {
         "School": "Evocation",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Cleric",
             "Druid",
@@ -1341,7 +1751,7 @@
     },
     "Find Traps": {
         "School": "Divination",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric",
             "Druid",
@@ -1350,7 +1760,7 @@
     },
     "Fire Storm": {
         "School": "Evocation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Cleric",
             "Druid",
@@ -1359,51 +1769,45 @@
     },
     "Flame Strike": {
         "School": "Evocation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Cleric"
         ]
     },
     "Forbiddance": {
         "School": "Abjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric"
         ]
     },
     "Gate": {
         "School": "Conjuration",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Cleric",
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Warlock"
         ]
     },
     "Gentle Repose": {
         "School": "Necromancy",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Paladin"
         ]
     },
     "Guardian of Faith": {
         "School": "Conjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Cleric"
         ]
     },
     "Guidance": {
         "School": "Divination",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Cleric",
             "Druid",
@@ -1412,28 +1816,28 @@
     },
     "Guiding Bolt": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric"
         ]
     },
     "Hallow": {
         "School": "Evocation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Cleric"
         ]
     },
     "Harm": {
         "School": "Necromancy",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric"
         ]
     },
     "Heal": {
         "School": "Evocation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric",
             "Druid"
@@ -1441,32 +1845,29 @@
     },
     "Heroes' Feast": {
         "School": "Conjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric",
             "Druid"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Holy Aura": {
         "School": "Abjuration",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Cleric"
         ]
     },
     "Inflict Wounds": {
         "School": "Necromancy",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric"
         ]
     },
     "Insect Plague": {
         "School": "Conjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Cleric",
             "Druid",
@@ -1475,7 +1876,7 @@
     },
     "Magic Circle": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Paladin",
@@ -1485,42 +1886,36 @@
     },
     "Mass Heal": {
         "School": "Evocation",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Cleric"
         ]
     },
     "Mass Healing Word": {
         "School": "Evocation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Meld into Stone": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Druid"
-        ],
-        "Expanded Class": [
-            "Ranger"
         ]
     },
     "Planar Ally": {
         "School": "Conjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric"
         ]
     },
     "Plane Shift": {
         "School": "Conjuration",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Cleric",
             "Druid",
@@ -1531,17 +1926,14 @@
     },
     "Prayer of Healing": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric"
-        ],
-        "Expanded Class": [
-            "Paladin"
         ]
     },
     "Protection from Energy": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Druid",
@@ -1553,20 +1945,17 @@
     },
     "Protection from Evil and Good": {
         "School": "Abjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Paladin",
             "Warlock",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Druid"
         ]
     },
     "Protection from Poison": {
         "School": "Abjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric",
             "Druid",
@@ -1577,7 +1966,7 @@
     },
     "Purify Food and Drink": {
         "School": "Transmutation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Druid",
@@ -1587,7 +1976,7 @@
     },
     "Remove Curse": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Paladin",
@@ -1597,7 +1986,7 @@
     },
     "Resistance": {
         "School": "Abjuration",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Cleric",
             "Druid",
@@ -1606,27 +1995,23 @@
     },
     "Revivify": {
         "School": "Necromancy",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Paladin",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Druid",
-            "Ranger"
         ]
     },
     "Sacred Flame": {
         "School": "Evocation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Cleric"
         ]
     },
     "Sanctuary": {
         "School": "Abjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Artificer"
@@ -1634,7 +2019,7 @@
     },
     "Shield of Faith": {
         "School": "Abjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Cleric",
             "Paladin"
@@ -1642,7 +2027,7 @@
     },
     "Spare the Dying": {
         "School": "Necromancy",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Cleric",
             "Artificer"
@@ -1650,21 +2035,21 @@
     },
     "Spirit Guardians": {
         "School": "Conjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric"
         ]
     },
     "Spiritual Weapon": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric"
         ]
     },
     "Stone Shape": {
         "School": "Transmutation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Cleric",
             "Druid",
@@ -1674,14 +2059,14 @@
     },
     "Thaumaturgy": {
         "School": "Transmutation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Cleric"
         ]
     },
     "True Resurrection": {
         "School": "Necromancy",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Cleric",
             "Druid"
@@ -1689,17 +2074,14 @@
     },
     "Warding Bond": {
         "School": "Abjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Cleric"
-        ],
-        "Expanded Class": [
-            "Paladin"
         ]
     },
     "Water Walk": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Cleric",
             "Druid",
@@ -1710,39 +2092,36 @@
     },
     "Word of Recall": {
         "School": "Conjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Cleric"
         ]
     },
     "Animal Shapes": {
         "School": "Transmutation",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Druid"
         ]
     },
     "Antilife Shell": {
         "School": "Abjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Druid"
         ]
     },
     "Antipathy/Sympathy": {
         "School": "Enchantment",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Druid",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Barkskin": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid",
             "Ranger"
@@ -1750,7 +2129,7 @@
     },
     "Blight": {
         "School": "Necromancy",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -1760,14 +2139,14 @@
     },
     "Call Lightning": {
         "School": "Conjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Druid"
         ]
     },
     "Commune with Nature": {
         "School": "Divination",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Druid",
             "Ranger"
@@ -1775,7 +2154,7 @@
     },
     "Conjure Animals": {
         "School": "Conjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Druid",
             "Ranger"
@@ -1783,7 +2162,7 @@
     },
     "Conjure Elemental": {
         "School": "Conjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Druid",
             "Wizard"
@@ -1791,7 +2170,7 @@
     },
     "Conjure Fey": {
         "School": "Conjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Druid",
             "Warlock"
@@ -1799,7 +2178,7 @@
     },
     "Conjure Minor Elementals": {
         "School": "Conjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid",
             "Wizard"
@@ -1807,7 +2186,7 @@
     },
     "Conjure Woodland Beings": {
         "School": "Conjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid",
             "Ranger"
@@ -1815,7 +2194,7 @@
     },
     "Darkvision": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid",
             "Ranger",
@@ -1826,56 +2205,44 @@
     },
     "Dominate Beast": {
         "School": "Enchantment",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid",
             "Sorcerer"
-        ],
-        "Expanded Class": [
-            "Ranger"
         ]
     },
     "Druidcraft": {
         "School": "Transmutation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Druid"
         ]
     },
     "Entangle": {
         "School": "Conjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Druid"
-        ],
-        "Expanded Class": [
-            "Ranger"
         ]
     },
     "Flame Blade": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid"
-        ],
-        "Expanded Class": [
-            "Sorcerer"
         ]
     },
     "Flaming Sphere": {
         "School": "Conjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Sorcerer"
         ]
     },
     "Fog Cloud": {
         "School": "Conjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Druid",
             "Ranger",
@@ -1885,14 +2252,14 @@
     },
     "Giant Insect": {
         "School": "Transmutation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid"
         ]
     },
     "Goodberry": {
         "School": "Transmutation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Druid",
             "Ranger"
@@ -1900,19 +2267,16 @@
     },
     "Gust of Wind": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid",
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Ranger"
         ]
     },
     "Ice Storm": {
         "School": "Evocation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -1921,7 +2285,7 @@
     },
     "Jump": {
         "School": "Transmutation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Druid",
             "Ranger",
@@ -1932,14 +2296,14 @@
     },
     "Moonbeam": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid"
         ]
     },
     "Move Earth": {
         "School": "Transmutation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -1948,7 +2312,7 @@
     },
     "Pass without Trace": {
         "School": "Abjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid",
             "Ranger"
@@ -1956,7 +2320,7 @@
     },
     "Poison Spray": {
         "School": "Conjuration",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -1967,21 +2331,21 @@
     },
     "Produce Flame": {
         "School": "Conjuration",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Druid"
         ]
     },
     "Reincarnate": {
         "School": "Transmutation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Druid"
         ]
     },
     "Reverse Gravity": {
         "School": "Transmutation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -1990,7 +2354,7 @@
     },
     "Shapechange": {
         "School": "Transmutation",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Druid",
             "Wizard"
@@ -1998,14 +2362,14 @@
     },
     "Shillelagh": {
         "School": "Transmutation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Druid"
         ]
     },
     "Sleet Storm": {
         "School": "Conjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -2014,7 +2378,7 @@
     },
     "Spike Growth": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Druid",
             "Ranger"
@@ -2022,7 +2386,7 @@
     },
     "Stoneskin": {
         "School": "Abjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid",
             "Ranger",
@@ -2033,45 +2397,39 @@
     },
     "Storm of Vengeance": {
         "School": "Conjuration",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Druid"
         ]
     },
     "Sunbeam": {
         "School": "Evocation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Druid",
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Cleric"
         ]
     },
     "Sunburst": {
         "School": "Evocation",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Druid",
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Cleric"
         ]
     },
     "Transport via Plants": {
         "School": "Conjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Druid"
         ]
     },
     "Tree Stride": {
         "School": "Conjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Druid",
             "Ranger"
@@ -2079,7 +2437,7 @@
     },
     "Wall of Fire": {
         "School": "Evocation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -2088,7 +2446,7 @@
     },
     "Wall of Stone": {
         "School": "Evocation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Druid",
             "Sorcerer",
@@ -2098,14 +2456,14 @@
     },
     "Wall of Thorns": {
         "School": "Conjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Druid"
         ]
     },
     "Water Breathing": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Druid",
             "Ranger",
@@ -2116,14 +2474,14 @@
     },
     "Wind Walk": {
         "School": "Transmutation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Druid"
         ]
     },
     "Wind Wall": {
         "School": "Evocation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Druid",
             "Ranger"
@@ -2131,41 +2489,44 @@
     },
     "Branding Smite": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Paladin"
         ]
     },
     "Divine Favor": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Paladin"
         ]
     },
     "Find Steed": {
         "School": "Conjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Paladin"
         ]
     },
     "Magic Weapon": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Paladin",
             "Wizard",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Ranger",
-            "Sorcerer"
+        ]
+    },
+    "Searing Smite": {
+        "School": "Evocation",
+        "Schools": 1,
+        "Class": [
+            "Paladin"
         ]
     },
     "Alarm": {
         "School": "Abjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Ranger",
             "Wizard",
@@ -2174,14 +2535,14 @@
     },
     "Hunter's Mark": {
         "School": "Divination",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Ranger"
         ]
     },
     "Acid Splash": {
         "School": "Conjuration",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2190,7 +2551,7 @@
     },
     "Alter Self": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2199,7 +2560,7 @@
     },
     "Blink": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2208,7 +2569,7 @@
     },
     "Blur": {
         "School": "Illusion",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2217,7 +2578,7 @@
     },
     "Burning Hands": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2225,7 +2586,7 @@
     },
     "Chain Lightning": {
         "School": "Evocation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2233,7 +2594,7 @@
     },
     "Chill Touch": {
         "School": "Necromancy",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2242,7 +2603,7 @@
     },
     "Circle of Death": {
         "School": "Necromancy",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2251,7 +2612,7 @@
     },
     "Cloudkill": {
         "School": "Conjuration",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2259,29 +2620,23 @@
     },
     "Color Spray": {
         "School": "Illusion",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Cone of Cold": {
         "School": "Evocation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Druid"
         ]
     },
     "Counterspell": {
         "School": "Abjuration",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2290,7 +2645,7 @@
     },
     "Creation": {
         "School": "Illusion",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2299,7 +2654,7 @@
     },
     "Darkness": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2308,7 +2663,7 @@
     },
     "Delayed Blast Fireball": {
         "School": "Evocation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2316,7 +2671,7 @@
     },
     "Disintegrate": {
         "School": "Transmutation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2324,20 +2679,16 @@
     },
     "Enlarge/Reduce": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Wizard",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Bard",
-            "Druid"
         ]
     },
     "Expeditious Retreat": {
         "School": "Transmutation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2347,7 +2698,7 @@
     },
     "False Life": {
         "School": "Necromancy",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2356,7 +2707,7 @@
     },
     "Finger of Death": {
         "School": "Necromancy",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2365,7 +2716,7 @@
     },
     "Fire Bolt": {
         "School": "Evocation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2374,7 +2725,7 @@
     },
     "Fireball": {
         "School": "Evocation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2382,7 +2733,7 @@
     },
     "Fly": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2392,7 +2743,7 @@
     },
     "Gaseous Form": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2401,7 +2752,7 @@
     },
     "Globe of Invulnerability": {
         "School": "Abjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2409,7 +2760,7 @@
     },
     "Haste": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2418,18 +2769,15 @@
     },
     "Incendiary Cloud": {
         "School": "Conjuration",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Druid"
         ]
     },
     "Levitate": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2438,7 +2786,7 @@
     },
     "Lightning Bolt": {
         "School": "Evocation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2446,7 +2794,7 @@
     },
     "Mage Armor": {
         "School": "Abjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2454,7 +2802,7 @@
     },
     "Magic Missile": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2462,7 +2810,7 @@
     },
     "Meteor Swarm": {
         "School": "Evocation",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2470,19 +2818,16 @@
     },
     "Mirror Image": {
         "School": "Illusion",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Warlock",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Misty Step": {
         "School": "Conjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2491,7 +2836,7 @@
     },
     "Prismatic Spray": {
         "School": "Evocation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2499,7 +2844,7 @@
     },
     "Ray of Frost": {
         "School": "Evocation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2508,7 +2853,7 @@
     },
     "Scorching Ray": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2516,7 +2861,7 @@
     },
     "Shield": {
         "School": "Abjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2524,7 +2869,7 @@
     },
     "Shocking Grasp": {
         "School": "Evocation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2533,18 +2878,15 @@
     },
     "Slow": {
         "School": "Transmutation",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Sorcerer",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Spider Climb": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Warlock",
@@ -2554,7 +2896,7 @@
     },
     "Telekinesis": {
         "School": "Transmutation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2562,7 +2904,7 @@
     },
     "Time Stop": {
         "School": "Transmutation",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2570,7 +2912,7 @@
     },
     "Web": {
         "School": "Conjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Sorcerer",
             "Wizard",
@@ -2579,7 +2921,7 @@
     },
     "Wish": {
         "School": "Conjuration",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Sorcerer",
             "Wizard"
@@ -2587,7 +2929,7 @@
     },
     "Contact Other Plane": {
         "School": "Divination",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Warlock",
             "Wizard"
@@ -2595,44 +2937,37 @@
     },
     "Demiplane": {
         "School": "Conjuration",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Warlock",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Sorcerer"
         ]
     },
     "Eldritch Blast": {
         "School": "Evocation",
-        "Level": 0,
+        "Schools": 0,
         "Class": [
             "Warlock"
         ]
     },
     "Flesh to Stone": {
         "School": "Transmutation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Warlock",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Druid",
-            "Sorcerer"
         ]
     },
     "Hellish Rebuke": {
         "School": "Evocation",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Warlock"
         ]
     },
     "Imprisonment": {
         "School": "Abjuration",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Warlock",
             "Wizard"
@@ -2640,7 +2975,7 @@
     },
     "Ray of Enfeeblement": {
         "School": "Necromancy",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Warlock",
             "Wizard"
@@ -2648,25 +2983,22 @@
     },
     "Vampiric Touch": {
         "School": "Necromancy",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Warlock",
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Sorcerer"
         ]
     },
     "Acid Arrow": {
         "School": "Evocation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Wizard"
         ]
     },
     "Arcane Eye": {
         "School": "Divination",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard",
             "Artificer"
@@ -2674,14 +3006,14 @@
     },
     "Arcane Hand": {
         "School": "Evocation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Wizard"
         ]
     },
     "Arcane Lock": {
         "School": "Abjuration",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Wizard",
             "Artificer"
@@ -2689,35 +3021,42 @@
     },
     "Arcanist's Magic Aura": {
         "School": "Illusion",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Wizard"
         ]
     },
     "Black Tentacles": {
         "School": "Conjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard"
         ]
     },
     "Clone": {
         "School": "Necromancy",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Wizard"
         ]
     },
     "Contingency": {
         "School": "Evocation",
-        "Level": 6,
+        "Schools": 6,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Evard's Black Tentacles": {
+        "School": "Conjuration",
+        "Schools": 4,
         "Class": [
             "Wizard"
         ]
     },
     "Fabricate": {
         "School": "Transmutation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard",
             "Artificer"
@@ -2725,126 +3064,113 @@
     },
     "Faithful Hound": {
         "School": "Conjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard"
         ]
     },
     "Find Familiar": {
         "School": "Conjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Wizard"
         ]
     },
     "Fire Shield": {
         "School": "Evocation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Druid",
-            "Sorcerer"
         ]
     },
     "Floating Disk": {
         "School": "Conjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Wizard"
         ]
     },
     "Freezing Sphere": {
         "School": "Evocation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Wizard"
         ]
     },
     "Grease": {
         "School": "Conjuration",
-        "Level": 1,
+        "Schools": 1,
         "Class": [
             "Wizard",
             "Artificer"
-        ],
-        "Expanded Class": [
-            "Sorcerer"
         ]
     },
     "Instant Summons": {
         "School": "Conjuration",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Wizard"
         ]
     },
     "Magic Jar": {
         "School": "Necromancy",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Wizard"
         ]
     },
     "Maze": {
         "School": "Conjuration",
-        "Level": 8,
+        "Schools": 8,
         "Class": [
             "Wizard"
         ]
     },
     "Passwall": {
         "School": "Transmutation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Wizard"
         ]
     },
     "Phantasmal Killer": {
         "School": "Illusion",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Phantom Steed": {
         "School": "Illusion",
-        "Level": 3,
+        "Schools": 3,
         "Class": [
             "Wizard"
         ]
     },
     "Prismatic Wall": {
         "School": "Abjuration",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Bard"
         ]
     },
     "Private Sanctum": {
         "School": "Abjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard"
         ]
     },
     "Resilient Sphere": {
         "School": "Evocation",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard"
         ]
     },
     "Rope Trick": {
         "School": "Transmutation",
-        "Level": 2,
+        "Schools": 2,
         "Class": [
             "Wizard",
             "Artificer"
@@ -2852,54 +3178,51 @@
     },
     "Secret Chest": {
         "School": "Conjuration",
-        "Level": 4,
+        "Schools": 4,
         "Class": [
             "Wizard"
         ]
     },
     "Sequester": {
         "School": "Transmutation",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Wizard"
         ]
     },
     "Simulacrum": {
         "School": "Illusion",
-        "Level": 7,
+        "Schools": 7,
         "Class": [
             "Wizard"
         ]
     },
     "Telepathic Bond": {
         "School": "Divination",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Wizard"
         ]
     },
     "Wall of Force": {
         "School": "Evocation",
-        "Level": 5,
+        "Schools": 5,
         "Class": [
             "Wizard"
         ]
     },
     "Wall of Ice": {
         "School": "Evocation",
-        "Level": 6,
+        "Schools": 6,
         "Class": [
             "Wizard"
         ]
     },
     "Weird": {
         "School": "Illusion",
-        "Level": 9,
+        "Schools": 9,
         "Class": [
             "Wizard"
-        ],
-        "Expanded Class": [
-            "Warlock"
         ]
     }
 }

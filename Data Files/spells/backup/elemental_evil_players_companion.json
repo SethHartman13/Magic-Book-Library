@@ -3,54 +3,10 @@
         "Homebrew": false,
         "Partnered Content": false
     },
-    "Earth Tremor": {
-        "School": "Evocation",
-        "Level": 1,
+    "Abi-Dalzim's Horrid Wilting": {
+        "School": "Necromancy",
+        "Level": 8,
         "Class": [
-            "Bard",
-            "Druid",
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Pyrotechnics": {
-        "School": "Transmutation",
-        "Level": 2,
-        "Class": [
-            "Bard",
-            "Sorcerer",
-            "Wizard",
-            "Artificer"
-        ]
-    },
-    "Skywrite": {
-        "School": "Transmutation",
-        "Level": 2,
-        "Class": [
-            "Bard",
-            "Druid",
-            "Wizard",
-            "Artificer"
-        ]
-    },
-    "Thunderclap": {
-        "School": "Evocation",
-        "Level": 0,
-        "Class": [
-            "Bard",
-            "Druid",
-            "Sorcerer",
-            "Warlock",
-            "Wizard",
-            "Artificer"
-        ]
-    },
-    "Warding Wind": {
-        "School": "Evocation",
-        "Level": 2,
-        "Class": [
-            "Bard",
-            "Druid",
             "Sorcerer",
             "Wizard"
         ]
@@ -66,6 +22,14 @@
             "Artificer"
         ]
     },
+    "Aganazzar's Scorcher": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
     "Beast Bond": {
         "School": "Divination",
         "Level": 1,
@@ -79,6 +43,15 @@
         "Level": 6,
         "Class": [
             "Druid"
+        ]
+    },
+    "Catapult": {
+        "School": "Transmutation",
+        "Level": 1,
+        "Class": [
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
         ]
     },
     "Control Flames": {
@@ -114,6 +87,16 @@
         "School": "Conjuration",
         "Level": 2,
         "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Earth Tremor": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": [
+            "Bard",
             "Druid",
             "Sorcerer",
             "Wizard"
@@ -188,6 +171,14 @@
             "Wizard"
         ]
     },
+    "Immolation": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
     "Investiture of Flame": {
         "School": "Transmutation",
         "Level": 6,
@@ -244,6 +235,22 @@
             "Artificer"
         ]
     },
+    "Maximilian's Earthen Grasp": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Melf's Minute Meteors": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
     "Mold Earth": {
         "School": "Transmutation",
         "Level": 0,
@@ -260,6 +267,16 @@
             "Druid"
         ]
     },
+    "Pyrotechnics": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
     "Shape Water": {
         "School": "Transmutation",
         "Level": 0,
@@ -267,6 +284,44 @@
             "Druid",
             "Sorcerer",
             "Wizard"
+        ]
+    },
+    "Skywrite": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Druid",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Snilloc's Snowball Swarm": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Storm Sphere": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Thunderclap": {
+        "School": "Evocation",
+        "Level": 0,
+        "Class": [
+            "Bard",
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard",
+            "Artificer"
         ]
     },
     "Tidal Wave": {
@@ -287,10 +342,35 @@
             "Artificer"
         ]
     },
+    "Vitriolic Sphere": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Wall of Sand": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Wizard"
+        ]
+    },
     "Wall of Water": {
         "School": "Evocation",
         "Level": 3,
         "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Warding Wind": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": [
+            "Bard",
             "Druid",
             "Sorcerer",
             "Wizard"
@@ -311,86 +391,6 @@
         "Class": [
             "Druid",
             "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Abi-Dalzim's Horrid Wilting": {
-        "School": "Necromancy",
-        "Level": 8,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Aganazzar's Scorcher": {
-        "School": "Evocation",
-        "Level": 2,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Catapult": {
-        "School": "Transmutation",
-        "Level": 1,
-        "Class": [
-            "Sorcerer",
-            "Wizard",
-            "Artificer"
-        ]
-    },
-    "Immolation": {
-        "School": "Evocation",
-        "Level": 5,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Maximilian's Earthen Grasp": {
-        "School": "Transmutation",
-        "Level": 2,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Melf's Minute Meteors": {
-        "School": "Evocation",
-        "Level": 3,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Snilloc's Snowball Swarm": {
-        "School": "Evocation",
-        "Level": 2,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Storm Sphere": {
-        "School": "Evocation",
-        "Level": 4,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Vitriolic Sphere": {
-        "School": "Evocation",
-        "Level": 4,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Wall of Sand": {
-        "School": "Evocation",
-        "Level": 3,
-        "Class": [
             "Wizard"
         ]
     }

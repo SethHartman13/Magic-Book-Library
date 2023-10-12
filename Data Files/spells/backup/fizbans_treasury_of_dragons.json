@@ -3,6 +3,33 @@
         "Homebrew": false,
         "Partnered Content": false
     },
+    "Ashardalon's Stride": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": [
+            "Ranger",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Draconic Transformation": {
+        "School": "Transmutation",
+        "Level": 7,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Fizban's Platinum Shield": {
+        "School": "Abjuration",
+        "Level": 6,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
     "Nathair's Mischief": {
         "School": "Illusion",
         "Level": 2,
@@ -22,11 +49,10 @@
             "Wizard"
         ]
     },
-    "Draconic Transformation": {
-        "School": "Transmutation",
-        "Level": 7,
+    "Rime's Binding Ice": {
+        "School": "Evocation",
+        "Level": 2,
         "Class": [
-            "Druid",
             "Sorcerer",
             "Wizard"
         ]
@@ -36,32 +62,6 @@
         "Level": 5,
         "Class": [
             "Druid",
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Ashardalon's Stride": {
-        "School": "Transmutation",
-        "Level": 3,
-        "Class": [
-            "Ranger",
-            "Sorcerer",
-            "Wizard",
-            "Artificer"
-        ]
-    },
-    "Fizban's Platinum Shield": {
-        "School": "Abjuration",
-        "Level": 6,
-        "Class": [
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
-    "Rime's Binding Ice": {
-        "School": "Evocation",
-        "Level": 2,
-        "Class": [
             "Sorcerer",
             "Wizard"
         ]

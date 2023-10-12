@@ -3,25 +3,25 @@
         "Homebrew": false,
         "Partnered Content": false
     },
-    "Blade of Disaster": {
+    "Flock of Familiars": {
         "School": "Conjuration",
-        "Level": 9,
-        "Expanded Class": [
-            "Sorcerer",
+        "Level": 2,
+        "Class": [
             "Warlock",
             "Wizard"
         ]
     },
-    "Create Magen": {
-        "School": "Transmutation",
-        "Level": 7,
+    "Galder's Speedy Courier": {
+        "School": "Conjuration",
+        "Level": 4,
         "Class": [
+            "Warlock",
             "Wizard"
         ]
     },
-    "Frost Fingers": {
-        "School": "Evocation",
-        "Level": 1,
+    "Galder's Tower": {
+        "School": "Conjuration",
+        "Level": 3,
         "Class": [
             "Wizard"
         ]

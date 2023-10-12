@@ -1,0 +1,90 @@
+{
+    "SETTINGS": {
+        "Homebrew": false,
+        "Partnered Content": true
+    },
+    "Dark Star": {
+        "School": "Evocation",
+        "Level": 8,
+        "Class": []
+    },
+    "Fortune's Favor": {
+        "School": "Divination",
+        "Level": 2,
+        "Class": []
+    },
+    "Gift of Alacrity": {
+        "School": "Divination",
+        "Level": 1,
+        "Class": []
+    },
+    "Gravity Fissure": {
+        "School": "Evocation",
+        "Level": 6,
+        "Class": []
+    },
+    "Gravity Sinkhole": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": []
+    },
+    "Immovable Object": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": []
+    },
+    "Magnify Gravity": {
+        "School": "Transmutation",
+        "Level": 1,
+        "Class": []
+    },
+    "Pulse Wave": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": []
+    },
+    "Ravenous Void": {
+        "School": "Evocation",
+        "Level": 9,
+        "Class": []
+    },
+    "Reality Break": {
+        "School": "Conjuration",
+        "Level": 8,
+        "Class": []
+    },
+    "Sapping Sting": {
+        "School": "Necromancy",
+        "Level": 0,
+        "Class": []
+    },
+    "Temporal Shunt": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": []
+    },
+    "Tether Essence": {
+        "School": "Necromancy",
+        "Level": 7,
+        "Class": []
+    },
+    "Time Ravage": {
+        "School": "Necromancy",
+        "Level": 9,
+        "Class": []
+    },
+    "Wristpocket": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Class": []
+    },
+    "Shape Water": {
+        "School": "Transmutation",
+        "Schools": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    }
+}

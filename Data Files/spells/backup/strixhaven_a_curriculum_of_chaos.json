@@ -32,15 +32,6 @@
             "Wizard"
         ]
     },
-    "Wither and Bloom": {
-        "School": "Necromancy",
-        "Level": 2,
-        "Class": [
-            "Druid",
-            "Sorcerer",
-            "Wizard"
-        ]
-    },
     "Vortex Warp": {
         "School": "Conjuration",
         "Level": 2,
@@ -48,6 +39,15 @@
             "Sorcerer",
             "Wizard",
             "Artificer"
+        ]
+    },
+    "Wither and Bloom": {
+        "School": "Necromancy",
+        "Level": 2,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
         ]
     }
 }

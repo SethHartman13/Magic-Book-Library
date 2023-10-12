@@ -7,48 +7,28 @@
         "School": "Evocation",
         "Level": 0,
         "Class": [
-            "Artificer"
-        ],
-        "Expanded Class": [
-            "Sorcerer",
-            "Warlock",
-            "Wizard"
+            "Sorcerer"
         ]
     },
     "Green-Flame Blade": {
         "School": "Evocation",
         "Level": 0,
         "Class": [
-            "Artificer"
-        ],
-        "Expanded Class": [
-            "Sorcerer",
-            "Warlock",
-            "Wizard"
+            "Sorcerer"
         ]
     },
     "Lightning Lure": {
         "School": "Evocation",
         "Level": 0,
         "Class": [
-            "Artificer"
-        ],
-        "Expanded Class": [
-            "Sorcerer",
-            "Warlock",
-            "Wizard"
+            "Sorcerer"
         ]
     },
     "Sword Burst": {
         "School": "Conjuration",
         "Level": 0,
         "Class": [
-            "Artificer"
-        ],
-        "Expanded Class": [
-            "Sorcerer",
-            "Warlock",
-            "Wizard"
+            "Sorcerer"
         ]
     }
 }

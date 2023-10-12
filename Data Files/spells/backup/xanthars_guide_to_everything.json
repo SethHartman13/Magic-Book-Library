@@ -1,0 +1,830 @@
+{
+    "SETTINGS": {
+        "Homebrew": false,
+        "Partnered Content": false
+    },
+    "Abi-Dalzim's Horrid Wilting": {
+        "School": "Necromancy",
+        "Level": 8,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Absorb Elements": {
+        "School": "Abjuration",
+        "Level": 1,
+        "Class": [
+            "Druid",
+            "Ranger",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Aganazzar's Scorcher": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Beast Bond": {
+        "School": "Divination",
+        "Level": 1,
+        "Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Bones of the Earth": {
+        "School": "Transmutation",
+        "Level": 6,
+        "Class": [
+            "Druid"
+        ]
+    },
+    "Catapult": {
+        "School": "Transmutation",
+        "Level": 1,
+        "Class": [
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Catnap": {
+        "School": "Enchantment",
+        "Level": 3,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Cause Fear": {
+        "School": "Necromancy",
+        "Level": 1,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Ceremony": {
+        "School": "Abjuration",
+        "Level": 1,
+        "Class": [
+            "Cleric",
+            "Paladin"
+        ]
+    },
+    "Chaos Bolt": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": [
+            "Sorcerer"
+        ]
+    },
+    "Charm Monster": {
+        "School": "Enchantment",
+        "Level": 4,
+        "Class": [
+            "Bard",
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Control Flames": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Control Winds": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Create Bonfire": {
+        "School": "Conjuration",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Create Homunculus": {
+        "School": "Transmutation",
+        "Level": 6,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Crown of Stars": {
+        "School": "Evocation",
+        "Level": 7,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Danse Macabre": {
+        "School": "Necromancy",
+        "Level": 5,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Dawn": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Cleric",
+            "Wizard"
+        ]
+    },
+    "Dragon's Breath": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Druid Grove": {
+        "School": "Abjuration",
+        "Level": 6,
+        "Class": [
+            "Druid"
+        ]
+    },
+    "Dust Devil": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Earth Tremor": {
+        "School": "Evocation",
+        "Level": 1,
+        "Class": [
+            "Bard",
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Earthbind": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Elemental Bane": {
+        "School": "Transmutation",
+        "Level": 4,
+        "Class": [
+            "Druid",
+            "Warlock",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Enemies Abound": {
+        "School": "Enchantment",
+        "Level": 3,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Enervation": {
+        "School": "Necromancy",
+        "Level": 5,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Erupting Earth": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Far Step": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Find Greater Steed": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Paladin"
+        ]
+    },
+    "Flame Arrows": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": [
+            "Druid",
+            "Ranger",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Frostbite": {
+        "School": "Evocation",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Guardian of Nature": {
+        "School": "Transmutation",
+        "Level": 4,
+        "Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Gust": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Healing Spirit": {
+        "School": "Conjuration",
+        "Level": 2,
+        "Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Holy Weapon": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Cleric",
+            "Paladin"
+        ]
+    },
+    "Ice Knife": {
+        "School": "Conjuration",
+        "Level": 1,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Illusory Dragon": {
+        "School": "Illusion",
+        "Level": 8,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Immolation": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Infernal Calling": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Infestation": {
+        "School": "Conjuration",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Investiture of Flame": {
+        "School": "Transmutation",
+        "Level": 6,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Investiture of Ice": {
+        "School": "Transmutation",
+        "Level": 6,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Investiture of Stone": {
+        "School": "Transmutation",
+        "Level": 6,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Investiture of Wind": {
+        "School": "Transmutation",
+        "Level": 6,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Invulnerability": {
+        "School": "Abjuration",
+        "Level": 9,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Life Transference": {
+        "School": "Necromancy",
+        "Level": 3,
+        "Class": [
+            "Cleric",
+            "Wizard"
+        ]
+    },
+    "Maddening Darkness": {
+        "School": "Evocation",
+        "Level": 8,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Maelstrom": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Druid"
+        ]
+    },
+    "Magic Stone": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Warlock",
+            "Artificer"
+        ]
+    },
+    "Mass Polymorph": {
+        "School": "Transmutation",
+        "Level": 9,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Maximilian's Earthen Grasp": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Melf's Minute Meteors": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Mental Prison": {
+        "School": "Illusion",
+        "Level": 6,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Mighty Fortress": {
+        "School": "Conjuration",
+        "Level": 8,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Mind Spike": {
+        "School": "Divination",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Mold Earth": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Negative Energy Flood": {
+        "School": "Necromancy",
+        "Level": 5,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Power Word Pain": {
+        "School": "Enchantment",
+        "Level": 7,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Primal Savagery": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": [
+            "Druid"
+        ]
+    },
+    "Primordial Ward": {
+        "School": "Abjuration",
+        "Level": 6,
+        "Class": [
+            "Druid"
+        ]
+    },
+    "Psychic Scream": {
+        "School": "Enchantment",
+        "Level": 9,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Pyrotechnics": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Scatter": {
+        "School": "Conjuration",
+        "Level": 6,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Shadow Blade": {
+        "School": "Illusion",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Shadow of Moil": {
+        "School": "Necromancy",
+        "Level": 4,
+        "Class": [
+            "Warlock"
+        ]
+    },
+    "Shape Water": {
+        "School": "Transmutation",
+        "Level": 0,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Sickening Radiance": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Skill Empowerment": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Skywrite": {
+        "School": "Transmutation",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Druid",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Snare": {
+        "School": "Abjuration",
+        "Level": 1,
+        "Class": [
+            "Druid",
+            "Ranger",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Snilloc's Snowball Swarm": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Soul Cage": {
+        "School": "Necromancy",
+        "Level": 6,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Steel Wind Strike": {
+        "School": "Conjuration",
+        "Level": 5,
+        "Class": [
+            "Ranger",
+            "Wizard"
+        ]
+    },
+    "Storm Sphere": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Summon Greater Demon": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Summon Lesser Demons": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": [
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Synaptic Static": {
+        "School": "Enchantment",
+        "Level": 5,
+        "Class": [
+            "Bard",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Temple of the Gods": {
+        "School": "Conjuration",
+        "Level": 7,
+        "Class": [
+            "Cleric"
+        ]
+    },
+    "Tenser's Transformation": {
+        "School": "Transmutation",
+        "Level": 6,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Thunder Step": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Thunderclap": {
+        "School": "Evocation",
+        "Level": 0,
+        "Class": [
+            "Bard",
+            "Druid",
+            "Sorcerer",
+            "Warlock",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Tidal Wave": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Tiny Servant": {
+        "School": "Transmutation",
+        "Level": 3,
+        "Class": [
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Toll the Dead": {
+        "School": "Necromancy",
+        "Level": 0,
+        "Class": [
+            "Cleric",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Transmute Rock": {
+        "School": "Transmutation",
+        "Level": 5,
+        "Class": [
+            "Druid",
+            "Wizard",
+            "Artificer"
+        ]
+    },
+    "Vitriolic Sphere": {
+        "School": "Evocation",
+        "Level": 4,
+        "Class": [
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Wall of Light": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+        ]
+    },
+    "Wall of Sand": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Wizard"
+        ]
+    },
+    "Wall of Water": {
+        "School": "Evocation",
+        "Level": 3,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Warding Wind": {
+        "School": "Evocation",
+        "Level": 2,
+        "Class": [
+            "Bard",
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Watery Sphere": {
+        "School": "Conjuration",
+        "Level": 4,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Whirlwind": {
+        "School": "Evocation",
+        "Level": 7,
+        "Class": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ]
+    },
+    "Word of Radiance": {
+        "School": "Evocation",
+        "Level": 0,
+        "Class": [
+            "Cleric"
+        ]
+    },
+    "Wrath of Nature": {
+        "School": "Evocation",
+        "Level": 5,
+        "Class": [
+            "Druid",
+            "Ranger"
+        ]
+    },
+    "Zephyr Strike": {
+        "School": "Transmutation",
+        "Level": 1,
+        "Class": [
+            "Ranger"
+        ]
+    }
+}
