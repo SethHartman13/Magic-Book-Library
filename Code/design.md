@@ -1,62 +1,92 @@
-```css
-{
-    
-}
-```
-
-
-<head>
-    <style>
-        .code1 {
-            color: "#1E00FF";
-        }
-        .code2 {
-            color: "#0F809E";
-        }
-        .code3 {
-            color: "#00FF3C";
-        }
-    </style>
-</head>
+<style>
+    .code3 {
+        color: #00A7BA;
+    }
+    .code2 {
+        color: #00D37B;
+    }
+    .code1 {
+        color: #00FF3C;
+    }
+    .svar {
+        color: #ff5500;
+    }
+    .required {
+        color: #ba0627;
+    }
+    .optional {
+        color: #4506ba;
+    }
+    .argument {
+        color: #81ba06;
+    }
+</style>
 
 
 - [ ] ibook <span class="code1">`!ibook`</span>
-    - [ ] serve `!ibook serve`
-        - [ ] clear `!book serve clear`
-            - Clears the books within the `magic_book_settings`
+    - [ ] serve <span class="code2">`!ibook serve`</span>
+        - [ ] clear <span class="code3">`!book serve clear`</span>
+            - Clears the books within the <span class="svar">`magic_book_settings`</svar>
             - confirm (argument, optional)
                 - If this is not given, it will display a warning to the user that this will clear all the GVARs in the SVAR holding allowed content
         -  [ ] Sends GVARS from the UVAR of the player to the SVAR holding allowed content
 
-    - [ ] sub `!ibook unsub`
-        - [ ] ai* `!ibook sub ai`
+    - [ ] sub <span class="code2">`!ibook unsub`
+        - [ ] ai* <span class="code3">`!ibook sub ai`
             - Subscribes to Acquisition's Incorporated
-        - [ ] eepc* `!ibook sub eepc`
+
+        - [ ] eepc* <span class="code3">`!ibook sub eepc`
             - Subscribes to Elemental Evil Player's Companion
-        - [ ] egtw* `!ibook sub egtw`
+
+
+        - [ ] egtw* <span class="code3">`!ibook sub egtw`
             - Subscribes to Explorers Guide to Wildemount
-        - [ ] ftod* `!ibook sub ftod`
+
+
+        - [ ] ftod* <span class="code3">`!ibook sub ftod`
             - Subscribes to Fizban's Treasury of Dragons
-        - [ ] ggtr* `!ibook sub ggtr`
+
+
+        - [ ] ggtr* <span class="code3">`!ibook sub ggtr`
             - Subscribes to Guildmaster's Guide to Ravnica
-        - [ ] idrotf* `!ibook sub idrotf`
+
+
+        - [ ] idrotf* <span class="code3">`!ibook sub idrotf`
             - Subscribes to Icewind Dale: Rime of the Frostmaiden
-        - [ ] llok* `!ibook sub llok`
+
+
+        - [ ] llok* <span class="code3">`!ibook sub llok`
             - Subscribes to Lost Laboratory of Kwalish
-        - [ ] phb* `!ibook sub phb`
+
+
+        - [ ] phb* <span class="code3">`!ibook sub phb`
             - Subscribes to the Player's Handbook
-        - [ ] sais* `!ibook sub sais`
+
+
+        - [ ] sais* <span class="code3">`!ibook sub sais`
             - Subscribes to Spelljammer: Adventurers in Space
-        - [ ] sacoc* `!ibook sub sacoc`
+
+
+        - [ ] sacoc* <span class="code3">`!ibook sub sacoc`
             - Subscribes to Strixhaven: A Curriculum of Chaos
-        - [ ] scag* `!ibook sub scag`
+
+
+        - [ ] scag* <span class="code3">`!ibook sub scag`
             - Subscribes to Sword Coast Adventurer's Guide
-        - [ ] tcsr* `!ibook sub tcsr`
+
+
+        - [ ] tcsr* <span class="code3">`!ibook sub tcsr`
             - Subscribes to Tal'Dorei Campaign Setting Reborn
-        - [ ] tcoe* `!ibook sub tcoe`
+
+
+        - [ ] tcoe* <span class="code3">`!ibook sub tcoe`
             - Subscribes to Tasha's Cauldron of Everything
-        - [ ] xgte* `!book sub xgte`
+
+
+        - [ ] xgte* <span class="code3">`!book sub xgte`
             - Subscribes to Xanathar's Guide to Everything
+
+
     -  [ ] unsub `!ibook unsub`
         -  book ()
 
