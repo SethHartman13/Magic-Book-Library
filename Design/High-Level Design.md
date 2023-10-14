@@ -4,7 +4,7 @@
 
 ## Aliases
 - [ ] <span class="level1">`!ibook`</span>
-    - [ ] <span class="level2">`!ibook serve`</span>
+    - [ ] <span class="level2">`!ibook serve`</span> <span class="rft">RFT</span>
         - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
         - [ ] <span class="level3">`!book serve clear`</span>
             - Clears the books within the <span class="svar">`magic_book_settings`</svar>
@@ -12,12 +12,15 @@
                 - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
 
 
+        - [ ] <span class="level3">`!book serve remove`</span> <span class="rft">RFT</span>
+
+            - Clears a book within the <span class="svar">`magic_book_settings`</svar>
+            - book (<span class="argument">argument</span>, <span class="required">required</span>)
+
         - [ ] <span class="level3">`!book serve remove`</span>
 
-            - Clears the books within the <span class="svar">`magic_book_settings`</svar>
+            - Clears a book within the <span class="svar">`magic_book_settings`</svar>
             - book (<span class="argument">argument</span>, <span class="required">required</span>)
-            - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
-                - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
 
     - [ ] <span class="level2">`!ibook sub`
         - Provides a list of the different books to subscribe to
@@ -195,6 +198,8 @@
         - Provides list of books (and their spell) in CVAR
 
 <span class="required">*Requires licensing
+
+<span class="rft"><strong>R</strong>eady <strong>F</strong>or <strong>T</strong>esting 
 
 ## Snippets
 

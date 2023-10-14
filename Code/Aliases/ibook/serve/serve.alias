@@ -67,38 +67,40 @@ def main() -> str:
             if len(uvar := load_json(uvar_test)) > 0:
                 pass
 
-            # If length of UVAR is less than 0, set UVAR to an empty list and raise error
+            # If length of UVAR is 0, raise error
             else:
-                set_uvar("ibook_source_list", "[]")
                 err("You are not subscribed to any sourcebooks")
 
         # If there were problems with the UVAR, raise error
         except:
             err("Problems with UVAR")
 
-        # Tries to grab SVAR
-        svar_test = get_svar("ibook_settings")
-
-        svar_default_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6}, "Books": []}
-
-
-
-        # Grabs SVAR and if it exists, load dictionary
-        if (svar_test := get_svar("ibook_settings")):
-            svar = set_default_settings(load_json(svar_test))
-
-        # If SVAR does not exist, create new dictionary
-        else:
-            svar = svar_default_dict
-
-        
-
-
-
-
+    # If UVAR does not exist
     else:
         err("You are not subscribed to any sourcebooks")
 
+    # Set default settings dictionary
+    svar_default_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6}, "Books": []}
+
+    # Grabs SVAR and if it exists
+    if (svar_test := get_svar('ibook_settings')):
+        svar = set_default_settings(load_json(svar_test), svar_default_dict)
+
+    # If SVAR does not exist, create new dictionary
+    else:
+        svar = svar_default_dict
+
+    # Grabs SVAR and if it exists, load dictionary
+    if (svar_test := get_svar("ibook_settings")):
+        svar = set_default_settings(load_json(svar_test), svar_default_dict)
+
+    # If SVAR does not exist, create new dictionary
+    else:
+        svar = svar_default_dict
+
+    svar['Books'] = list(set(svar['Books']).union(set(uvar)))
+
+    return dump_json(svar)
 
 
 </drac2>
