@@ -9,9 +9,18 @@
         - [ ] <span class="level3">`!book serve clear`</span>
             - Clears the books within the <span class="svar">`magic_book_settings`</svar>
             - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
-                - If this is not given, it will display a warning to the user that this will clear all the GVARs in the SVAR holding allowed content
+                - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
+
+
+        - [ ] <span class="level3">`!book serve remove`</span>
+
+            - Clears the books within the <span class="svar">`magic_book_settings`</svar>
+            - book (<span class="argument">argument</span>, <span class="required">required</span>)
+            - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
+                - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
 
     - [ ] <span class="level2">`!ibook sub`
+        - Provides a list of the different books to subscribe to
         - [ ] <span class="level3">`!ibook sub ai`</span><span class="required">*
             - Subscribes to Acquisition's Incorporated
 
@@ -68,6 +77,7 @@
 
 
     -  [ ] <span class="level2">`!ibook unsub`
+        -  Unsubscribes the user from the book in their library
         -  book (<span class="argument">argument</span>, <span class="required">required</span>)
 
 - [ ] <span class="level1">`!wizbook`
@@ -125,6 +135,7 @@
   
 
         - [ ] <span class="level3">`!wizbook remove undo`
+            - Undo removal of book
 
 
     - [ ] <span class="level2"> `!wizbook switch`
@@ -136,6 +147,8 @@
         - book (<span class="argument">argument</span>, <span class="required">required</span>)
         - \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
+    - [ ] <span class="level2"> `!wizbook list`
+        - Provides list of books (and their spell) in CVAR
 
 - [ ] <span class="level1"> `!primer`
     - [ ] <span class="level2">`!primer add`
@@ -169,9 +182,17 @@
 
         - book (<span class="argument">argument</span>, <span class="required">required</span>)
         - \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
+
+        - [ ] <span class="level3">`!primer remove undo`
+
+            - Undo removal of book
+
     - [ ] <span class="level2"> `!primer switch`
         - spell 1 (<span class="argument">argument</span>, <span class="required">required</span>)
         - spell 2 (<span class="argument">argument</span>, <span class="required">required</span>)
+
+    - [ ] <span class="level2"> `!primer list`
+        - Provides list of books (and their spell) in CVAR
 
 <span class="required">*Requires licensing
 
