@@ -1,0 +1,81 @@
+embed
+<drac2>
+
+
+def main() -> str:
+    """
+    Main program function
+    
+    Returns:
+        str: Title
+        str: Content
+        str: Thumbnail URL 
+        str: Color (hex)
+    """
+
+    # Main character object
+    ch = character()
+    
+    # If the character has at least 1 level in Wizard
+    if ch.levels.get("Wizard", default=None):
+        pass
+
+    # If the character does not have at least 1 level in wizard, return error.
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+    # Set book #
+    i = 1
+
+    # If the cvar exists, load dictionary
+    if (ibook_test := ch.get_cvar("ibook_dict")):
+        ibook_dict = load_json(ibook_test)
+
+        # If there are wizard books in the dictionary, find an unsued book
+        if "Wizard Books" in ibook_dict.keys():
+            while f"Crystalline Chronicle {i}" in ibook_dict["Wizard Books"].keys():
+                i += 1
+
+        # There are no wizard books, create empty dictionary
+        else:
+            ibook_dict['Wizard Books'] = dict()
+
+        # Set book in CVAR to default spell list
+        ibook_dict['Wizard Books'][f'Crystalline Chronicle {i}'] = {"Static": ["Mage Hand", "Mind Sliver", "Message"], "Dynamic": ["Detect Thoughts", "Intellect Fortress", "Rary's Telepathic Bond", "Sending", "Telekinesis", "Tasha's Mind Whip", "Tenser's Floating Disk"]}
+
+    # If the CVAR does not exist, create entire dictionary
+    else:
+        ibook_dict = {"Wizard Books": {"Crystalline Chronicle 1": {"Static": ["Mage Hand", "Mind Sliver", "Message"], "Dynamic": ["Detect Thoughts", "Intellect Fortress", "Rary's Telepathic Bond", "Sending", "Telekinesis", "Tasha's Mind Whip", "Tenser's Floating Disk"]}}}
+
+    # Join list for output
+    join_list = "\n".join(ibook_dict["Wizard Books"][f"Crystalline Chronicle {i}"]["Dynamic"])
+    cantrip_list = "\n".join(ibook_dict["Wizard Books"][f"Crystalline Chronicle {i}"]["Static"])
+
+    # Creates Custom Counter
+    ch.create_cc(
+        name=f"Crystalline Chronicle {i}",
+        minVal="0",
+        maxVal="3",
+        reset="long",
+        dispType="star",
+        reset_by="1d3",
+        title=f"Crystalline Chronicle {i}",
+        desc="The crystal has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the information within the crystal, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the crystal.\n- When you cast a wizard spell, you can expend 1 charge to cast the spell without verbal, somatic, or material components of up to 100 gp value."
+    )
+
+    # Set cvar with a new book
+    ch.set_cvar("ibook_dict", dump_json(ibook_dict))
+
+    return f"{name} ({ctx.author.display_name}) has added a Crystalline Chronicle to their Magic Book Inventory", f"**You know the following cantrips:**\n{cantrip_list}\n**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#CCA387"
+
+
+# Gets outputs
+title, f, thumb, color = main()
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!wizbook add crys | Updated 10/20/23 | ShadowsStride"

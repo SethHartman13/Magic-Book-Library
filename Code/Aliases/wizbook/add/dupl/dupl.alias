@@ -2,17 +2,17 @@ embed
 <drac2>
 
 
-def main() -> str, str, str, str:
+def main() -> str:
     """
     Main program function
     
     Returns:
-        (str): Title
-        (str): Content
-        (str): Thumbnail URL 
-        (str): Color (hex)
+        str: Title
+        str: Content
+        str: Thumbnail URL 
+        str: Color (hex)
     """
-    # Duplicious Manuscript
+
     # Main character object
     ch = character()
     
@@ -24,32 +24,32 @@ def main() -> str, str, str, str:
     else:
         return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-    # Tries to grab dictionary from cvar
-    ibook_test = ch.get_cvar("ibook_dict")
+    # Set book #
+    i = 1
 
     # If the cvar exists, load dictionary
-    if ibook_test:
+    if (ibook_test := ch.get_cvar("ibook_dict")):
         ibook_dict = load_json(ibook_test)
 
-        # Checks to see if there is a Wizard Book dictionary
-        try:
-            ibook_dict["Wizard Books"]
+        # If there are wizard books in the dictionary, find an unused book
+        if "Wizard Books" in ibook_dict.keys():
+            while f"Duplicious Manuscript {i}" in ibook_dict["Wizard Books"].keys():
+                i += 1
+ 
+        # If there are no wizard books, create empty dictionary
+        else:
+            ibook_dict['Wizard Books'] = dict()
 
-        except:
-            ibook_dict["Wizard Books"] = {}
+        # Set book CVAR to default spell list
+        ibook_dict["Wizard Books"][f"Duplicious Manuscript {i}"] = ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"]
 
-    # If the cvar doesn't exist, create dictionary
+    # If the CVAR does not exist, create entire dictionary
     else:
-        ibook_dict = {"Wizard Books": {}}
+        ibook_dict = {"Wizard Books": {"Duplicious Manuscript 1": ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"]}}
 
-    # Process to find an entry that has not already been taken
-    i = 1
-    while f"Duplicious Manuscript {i}" in ibook_dict["Wizard Books"].keys():
-        i += 1
+    # Join list for output
+    join_list = "\n".join(ibook_dict["Wizard Books"][f"Duplicious Manuscript {i}"])
     
-    # Set entry to default spell list
-    ibook_dict["Wizard Books"][f"Duplicious Manuscript {i}"] = ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"]
-
     # Creates Custom Counter
     ch.create_cc(
         name=f"Duplicious Manuscript {i}",
@@ -62,16 +62,10 @@ def main() -> str, str, str, str:
         desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the illusion school.\n- When a creature you can see makes an Intelligence (Investigation) check to discern the true nature of an illusion spell you cast, or makes a saving throw against an illusion spell you cast, you can use your reaction and expend 1 charge to impose disadvantage on the roll."
     )
 
-    # Join list for output
-    join_list = "\n".join(ibook_dict["Wizard Books"][f"Duplicious Manuscript {i}"])
-
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(ibook_dict))
   
-    # Selects random image to display
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
-
-    return f"{name} ({ctx.author.display_name}) has added a Duplicious Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#C69FFB"
+    return f"{name} ({ctx.author.display_name}) has added a Duplicious Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#C69FFB"
 
 
 # Gets outputs
@@ -83,4 +77,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
+-footer "!wizbook add alch | Updated 10/20/23 | ShadowsStride"

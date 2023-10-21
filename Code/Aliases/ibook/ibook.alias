@@ -1,0 +1,21 @@
+embed
+<drac2>
+
+result_list = [
+    "`!ibook serve`: Sends subscribed content in user's UVAR to server SVAR. Note: You MUST have permissions to edit SVARs for this to work.",
+    "",
+    "`!ibook sub`: Provides a list of the different sourcebooks to subscribe to.",
+    "`!ibook unsub` Provides a list of the different sourcebooks to unsubscribe from.",
+    "",
+    "`!ibook list`: Provides a list of sourcebooks the user is subscribed to.",
+    "",
+    "`!ibook settings`: Lists the current settings.",
+    "`!ibook settings <settings name>`: Lists the current setting.",
+    "`!ibook settings <settings name> <settings condition>`: Changes the settings specified. Note: You MUST have permissions to edit SVARs for this to work."
+]
+
+
+</drac2>
+-title "{{ctx.author.display_name}} needs the help action"
+-f "{{'\n'.join(result_list)}}"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['', 1, 2, 3, 4, 5])}}.png"

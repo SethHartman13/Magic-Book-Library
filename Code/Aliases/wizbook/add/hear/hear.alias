@@ -24,31 +24,30 @@ def main() -> str, str, str, str:
     else:
         return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-    # Tries to grab dictionary from cvar
-    ibook_test = ch.get_cvar("ibook_dict")
+    # Set book #
+    i = 1
 
     # If the cvar exists, load dictionary
-    if ibook_test:
+    if (ibook_test := ch.get_cvar("ibook_dict")):
         ibook_dict = load_json(ibook_test)
 
-        # Checks to see if there is a Wizard Book dictionary
-        try:
-            ibook_dict["Wizard Books"]
+        # If there are wizard books in the dictionary, find an unused book
+        if "Wizard Books" in ibook_dict.kays():
+            while f"Heart Weaver's Primer {i}" in ibook_dict["Wizard Books"].keys():
+                i += 1
 
-        except:
-            ibook_dict["Wizard Books"] = {}
+        # If there are no wizard books, create empty dictionary
+        else:
+            ibook_dict['Wizard Books'] = dict()
 
-    # If the cvar doesn't exist, create dictionary
+        ibook_dict['Wizard Books'][f"Heart Weaver's Primer {i}"] = ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"]
+
+    # If the CVAR does not exist, create entire dictionary
     else:
-        ibook_dict = {"Wizard Books": {}}
+        ibook_dict = {"Wizard Books": {"Heart Weaver's Primer 1": ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"]}}
 
-    # Process to find an entry that has not already been taken
-    i = 1
-    while f"Heart Weaver's Primer {i}" in ibook_dict["Wizard Books"].keys():
-        i += 1
-    
-    # Set entry to default spell list
-    ibook_dict["Wizard Books"][f"Heart Weaver's Primer {i}"] = ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"]
+    # Join list for output
+    join_list = "\n".join(ibook_dict["Wizard Books"][f"Heart Weaver's Primer {i}"])
 
     # Creates Custom Counter
     ch.create_cc(
@@ -62,16 +61,10 @@ def main() -> str, str, str, str:
         desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the enchantment school.\n- When you cast an enchantment spell, you can expend 1 charge to impose disadvantage on the first saving throw one target makes against the spell."
     )
 
-    # Join list for output
-    join_list = "\n".join(ibook_dict["Wizard Books"][f"Heart Weaver's Primer {i}"])
-
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(ibook_dict))
   
-    # Selects random image to display
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
-
-    return f"{name} ({ctx.author.display_name}) has added a Heart Weaver's Primer to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#ED90D9"
+    return f"{name} ({ctx.author.display_name}) has added a Heart Weaver's Primer to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#ED90D9"
 
 
 # Gets outputs
@@ -83,4 +76,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
+-footer "!wizbook add alch | Updated 10/20/23 | ShadowsStride"

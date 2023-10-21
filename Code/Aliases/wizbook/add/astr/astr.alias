@@ -2,17 +2,17 @@ embed
 <drac2>
 
 
-def main() -> str, str, str, str:
+def main() -> str:
     """
     Main program function
     
     Returns:
-        (str): Title
-        (str): Content
-        (str): Thumbnail URL 
-        (str): Color (hex)
+        str: Title
+        str: Content
+        str: Thumbnail URL 
+        str: Color (hex)
     """
-    # Astromancy Archive
+
     # Main character object
     ch = character()
     
@@ -24,32 +24,32 @@ def main() -> str, str, str, str:
     else:
         return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-    # Tries to grab dictionary from cvar
-    ibook_test = ch.get_cvar("ibook_dict")
+    # Set book #
+    i = 1
 
     # If the cvar exists, load dictionary
-    if ibook_test:
+    if (ibook_test := ch.get_cvar("ibook_dict")):
         ibook_dict = load_json(ibook_test)
 
-        # Checks to see if there is a Wizard Book dictionary
-        try:
-            ibook_dict["Wizard Books"]
+        # If there are wizard books in the dictionary find an unused book
+        if "Wizard Books" in ibook_dict.keys():
+            while f"Alchemical Compendium {i}" in ibook_dict["Wizard Books"].keys():
+                i += 1
 
-        except:
-            ibook_dict["Wizard Books"] = {}
+        # There are no wizard books, create empty dictionary
+        else:
+            ibook_dict["Wizard Books"] = dict()
 
-    # If the cvar doesn't exist, create dictionary
+        # Set book in CVAR to default spell list
+        ibook_dict["Wizard Books"][f"Astromancy Archive {i}"] = ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"]
+
+    # If the CVAR does not exist, create entire dictionary
     else:
-        ibook_dict = {"Wizard Books": {}}
+        ibook_dict = {"Wizard Books": {"Astromancy Archive 1": ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"]}}
 
-    # Process to find an entry that has not already been taken
-    i = 1
-    while f"Astromancy Archive {i}" in ibook_dict["Wizard Books"].keys():
-        i += 1
-    
-    # Set entry to default spell list
-    ibook_dict["Wizard Books"][f"Astromancy Archive {i}"] = ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"]
-
+    # Join list for output
+    join_list = "\n".join(ibook_dict["Wizard Books"][f"Astromancy Archive {i}"])
+        
     # Creates Custom Counter
     ch.create_cc(
         name=f"Astromancy Archive {i}",
@@ -62,16 +62,10 @@ def main() -> str, str, str, str:
         desc="The archive has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the archive, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the archive. The new spell must be of the divination school.\n- When a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to expend 1 charge and force the creature to roll a d4 and apply the number rolled as a bonus or penalty (your choice) to the original roll. You can do this after you see the roll but before its effects are applied."
     )
 
-    # Join list for output
-    join_list = "\n".join(ibook_dict["Wizard Books"][f"Astromancy Archive {i}"])
-
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(ibook_dict))
   
-    # Selects random image to display
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
-
-    return f"{name} ({ctx.author.display_name}) has added an Astromancy Archive to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#8CA5B7"
+    return f"{name} ({ctx.author.display_name}) has added an Astromancy Archive to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#8CA5B7"
 
 
 # Gets outputs
@@ -83,4 +77,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
+-footer "!wizbook add alch | Updated 10/20/23 | ShadowsStride"

@@ -2,15 +2,64 @@ embed
 <drac2>
 
 
-def main() -> str, str, str, str:
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            # Run default dictionary test
+            try:
+                dictionary[default_key]
+
+            # Failed entry, insert default value
+            except:
+                dictionary[default_key] = default_dictionary[default_key] 
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                # If it is a threshold dictionary, run default dictionary test
+                try:
+                    dictionary[default_key]
+
+                # Failed entry, insert default value
+                except:
+                    dictionary[default_key] = default_dictionary[default_key] 
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
+def main() -> str:
     """
     Main program function
     
     Returns:
-        (str): Title
-        (str): Content
-        (str): Thumbnail URL 
-        (str): Color (hex)
+        str: Title
+        str: Content
+        str: Thumbnail URL 
+        str: Color (hex)
     """
 
     # Main character object
@@ -18,37 +67,75 @@ def main() -> str, str, str, str:
     
     # If the character has at least 1 level in Wizard
     if ch.levels.get("Wizard", default=None):
-        pass
-
+        
     # If the character does not have at least 1 level in wizard, return error.
     else:
         return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-    # Tries to grab dictionary from cvar
-    ibook_test = ch.get_cvar("ibook_dict")
+    # Set book #
+    i = 1
 
-    # If the cvar exists, load dictionary
-    if ibook_test:
+    # If the CVAR exists, load dictionary
+    if (ibook_test := ch.get_cvar('ibook_dict')):
         ibook_dict = load_json(ibook_test)
 
-        # Checks to see if there is a Wizard Book dictionary
-        try:
-            ibook_dict["Wizard Books"]
+        # If SVAR settings exists
+        if (settings_test := get_svar("ibook_settings")):
 
-        except:
-            ibook_dict["Wizard Books"] = {}
+            # Create default dictionary
+            default_dic = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
-    # If the cvar doesn't exist, create dictionary
+            # Load dictionary, checking default values
+            settings_dict = set_default_settings(load_json(settings_test), default_dict)
+
+            # If there are existing wizard books, adds how many.
+            if "Wizard Books" in (keys := ibook_dict.keys()):
+                current = len(ibook_dict["Wizard Books"].keys())
+
+            # If there are not existing wizard books
+            else:
+                current = 0
+
+            # If there are existing primer books, adds how many.
+            if "Primer Books" in keys:
+                current += len(ibook_dict["Primer Books"])
+
+            # If there are not existing primer books
+            else:
+                pass
+
+            # If current is not going to breach limit
+            if current < settings_dict['Settings']['Book Limit']:
+                pass
+
+            # If current is going to breach limit
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        # If SVAR settings do not exist
+        else:
+            return f"{ctx.author.display_name} has encountered an error", "SVAR `ibook_settings` has not been setup", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+
+        # If there are wizard books in the dictionary, find an unused book
+        if "Wizard Books" in keys:
+            while f"Alchemical Compendium {i}" in ibook_dict["Wizard Books"].keys():
+                i += 1
+
+        # If there are no wizard books, create empty dictionary
+        else:
+            ibook_dict["Wizard Books"] = dict()
+
+        # Set book in CVAR to default spell list
+        ibook_dict["Wizard Books"][f"Alchemical Compendium {i}"] = ["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"]
+
+    # If the CVAR does not exist, create entire dictionary
     else:
-        ibook_dict = {"Wizard Books": {}}
+        ibook_dict = {"Wizard Books": {"Alchemical Compendium 1": ["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"]}}
 
-    # Process to find an entry that has not already been taken
-    i = 1
-    while f"Alchemical Compendium {i}" in ibook_dict["Wizard Books"].keys():
-        i += 1
-    
-    # Set entry to default spell list
-    ibook_dict["Wizard Books"][f"Alchemical Compendium {i}"] = ["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"]
+    # Join list for output
+    join_list = "\n".join(ibook_dict["Wizard Books"][f"Alchemical Compendium {i}"])
 
     # Creates Custom Counter
     ch.create_cc(
@@ -59,19 +146,13 @@ def main() -> str, str, str, str:
         dispType="star",
         reset_by="1d3",
         title=f"Alchemical Compendium {i}",
-        desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n-If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the transmutation school.\n-As an action, you can touch a nonmagical object that isn't being worn or carried and spend a number of charges to transform the target into another object. For 1 charge, the object can be no larger than 1 foot on a side. You can spend additional charges to increase the maximum dimensions by 2 feet per charge. The new object must have a gold value equal to or less than the original."
+        desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the transmutation school.\n-As an action, you can touch a nonmagical object that isn't being worn or carried and spend a number of charges to transform the target into another object. For 1 charge, the object can be no larger than 1 foot on a side. You can spend additional charges to increase the maximum dimensions by 2 feet per charge. The new object must have a gold value equal to or less than the original."
     )
-
-    # Join list for output
-    join_list = "\n".join(ibook_dict["Wizard Books"][f"Alchemical Compendium {i}"])
 
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(ibook_dict))
   
-    # Selects random image to display
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
-
-    return f"{name} ({ctx.author.display_name}) has added an Alchemical Compendium to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#B47F47"
+    return f"{name} ({ctx.author.display_name}) has added an Alchemical Compendium to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#B47F47"
 
 
 # Gets outputs
@@ -83,4 +164,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
+-footer "!wizbook add alch | Updated 10/20/23 | ShadowsStride"
