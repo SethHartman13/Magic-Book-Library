@@ -1,7 +1,7 @@
-## CVAR
+## CVAR - ibook_dict
 
 ```json
-
+s
 {
     "Wizard Books": {
         "Alchemical Compendium 1":["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"],

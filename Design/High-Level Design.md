@@ -3,8 +3,9 @@
 # High-level Design
 
 ## Aliases
-- [ ] <span class="level1">`!ibook`</span>
-    - [ ] <span class="level2">`!ibook serve`</span> <span class="rft">RFT</span>
+- [ ] <span class="level1">`!ibook`</span> <span class="major">Major Requirement</span> <span class="rft">RFT</span>
+    - Provides help menu
+    - [ ] <span class="level2">`!ibook serve`</span> 
         - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
         - [ ] <span class="level3">`!book serve clear`</span>
             - Clears the books within the <span class="svar">`magic_book_settings`</svar>
@@ -12,18 +13,21 @@
                 - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
 
 
-        - [ ] <span class="level3">`!book serve remove`</span> <span class="rft">RFT</span>
-
-            - Clears a book within the <span class="svar">`magic_book_settings`</svar>
-            - book (<span class="argument">argument</span>, <span class="required">required</span>)
-
         - [ ] <span class="level3">`!book serve remove`</span>
 
             - Clears a book within the <span class="svar">`magic_book_settings`</svar>
-            - book (<span class="argument">argument</span>, <span class="required">required</span>)
+            - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
+
+        - [ ] <span class="level3">`!book serve add`</span>
+
+            - Adds a book within the <span class="svar">`magic_book_settings`</svar>
+            - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
+
+        - [ ] <span class="level3">`!book serve help`</span>
+            - Provides help menu
 
     - [ ] <span class="level2">`!ibook sub`
-        - Provides a list of the different books to subscribe to
+        - Provides a list of the different sourcebooks to subscribe to
         - [ ] <span class="level3">`!ibook sub ai`</span><span class="required">*
             - Subscribes to Acquisition's Incorporated
 
@@ -80,81 +84,89 @@
 
 
     -  [ ] <span class="level2">`!ibook unsub`
-        -  Unsubscribes the user from the book in their library
-        -  book (<span class="argument">argument</span>, <span class="required">required</span>)
+        -  Unsubscribes the user from a sourcebook in their library
+        -  sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
+    
+    - [ ] <span class="level2">`!ibook list`
+        - Lists sourcebooks the user is subscribed to
 
-- [ ] <span class="level1">`!wizbook`
+    - [ ] <span class="level2">`!ibook settings`
+        - Lists the current settings
+        - setting name (<span class="argument">argument</span>, <span class="optional">optional</span>)
+        - setting condition (<span class="argument">argument</span>, <span class="optional">optional</span>)
+
+- [ ] <span class="level1">`!wizbook` <span class="major">Major Requirement
     - Gives overview on how to use wizbook
     - [ ] <span class="level2">`!wizbook add`
         - Provdes a help menu listing the wizard books they can add (and if they can add it)
-        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*
+        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*</span> <span class="rft">RFT</span>
             - Adds Alchemical Compendium to player CVAR
-
 
         - [ ] <span class="level3">`!wizbook add astr`</span><span class="required">*
             - Adds Astromancy Archive to player CVAR
 
-
         - [ ] <span class="level3">`!wizbook add atla`</span><span class="required">*
             - Adds Atlas of Endless Horizons to player CVAR
 
-
         - [ ] <span class="level3">`!wizbook add dupl`</span><span class="required">*
-            - Adds Duplicious Treatise to player CVAR
-
+            - Adds Duplicitous Manuscript to player CVAR
 
         - [ ] <span class="level3">`!wizbook add fulm`</span><span class="required">*
             - Adds Fulminating Treatise to player CVAR
 
-
         - [ ] <span class="level3">`!wizbook add hear`</span><span class="required">*
             - Adds Heart Weaver's Primer to player CVAR
-
 
         - [ ] <span class="level3">`!wizbook add libr`</span><span class="required">*
             - Adds Libram of Souls and Flesh to player CVAR
 
-
         - [ ] <span class="level3">`!wizbook add plan`</span><span class="required">*
             - Adds Planecaller's Codex to player CVAR
-
 
         - [ ] <span class="level3">`!wizbook add prot`</span><span class="required">*
             - Adds Protective Verses to player CVAR
 
+        - [ ] <span class="level3">`!wizbook add crys`</span><span class="required">*</span> <span class="minor">Minor Requirement
+            - Adds Crystalline Chronicle to player CVAR
+
 
     - [ ] <span class="level2"> `!wizbook activate`
-        - book (<span class="argument">argument</span>, <span class="required">required</span>)
+        - Activates the books special ability
+        - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
 
 
     - [ ] <span class="level2"> `!wizbook cast`
-        - spell (<span class="argument">argument</span>, <span class="required">required</span>)
+        - Casts a spell from the book
+        - spell name (<span class="argument">argument</span>, <span class="required">required</span>)
 
 
     - [ ] <span class="level2"> `!wizbook remove`
-
-        - book (<span class="argument">argument</span>, <span class="required">required</span>)
-        - \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
-  
+        - Removes a book from the character's CVAR
+        - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
+        - wizard book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
         - [ ] <span class="level3">`!wizbook remove undo`
             - Undo removal of book
 
 
     - [ ] <span class="level2"> `!wizbook switch`
-        - spell 1 (<span class="argument">argument</span>, <span class="required">required</span>)
-        - spell 2 (<span class="argument">argument</span>, <span class="required">required</span>)
+        - Switches out spell from their book from a spell in their spellbook
+        - spell name 1 (in magic book) (<span class="argument">argument</span>, <span class="required">required</span>)
+        - spell name 2 (in spellbook) (<span class="argument">argument</span>, <span class="required">required</span>)
 
 
     - [ ] <span class="level2"> `!wizbook cc`
-        - book (<span class="argument">argument</span>, <span class="required">required</span>)
-        - \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
+        - Checks Custom Counter of book specified (with # modifies the counter number)
+        - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
+        - wizard book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
     - [ ] <span class="level2"> `!wizbook list`
-        - Provides list of books (and their spell) in CVAR
+        - Provides list of wizard books (and their spells) in CVAR
 
-- [ ] <span class="level1"> `!primer`
+- [ ] <span class="level1"> `!primer` <span class="minor">Minor Requirement
+    - Provdes a help menu listing the primers they can add (and if they can add it)
     - [ ] <span class="level2">`!primer add`
+        - Gives a list on sources
         - [ ] <span class="level3"> `!primer add lore`</span><span class="required">*
             - Adds Lorehold Primer to player CVAR
 
@@ -175,50 +187,50 @@
             - Adds Witherbloom Primer to player CVAR
 
     - [ ] <span class="level2"> `!primer cast`
-        - spell (<span class="argument">argument</span>, <span class="required">required</span>)
+        - Casts spell using the primer
+        - spell name (<span class="argument">argument</span>, <span class="required">required</span>)
 
     - [ ] <span class="level2"> `!primer cc`
-        - book (<span class="argument">argument</span>, <span class="required">required</span>)
-        - \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
+        - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
+        - primer book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
     - [ ] <span class="level2"> `!primer remove`
 
-        - book (<span class="argument">argument</span>, <span class="required">required</span>)
-        - \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
+        - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
+        - primer book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
         - [ ] <span class="level3">`!primer remove undo`
 
             - Undo removal of book
 
     - [ ] <span class="level2"> `!primer switch`
-        - spell 1 (<span class="argument">argument</span>, <span class="required">required</span>)
-        - spell 2 (<span class="argument">argument</span>, <span class="required">required</span>)
+        - Switches spell that the primer has and switches it to the spell specified
+        -  spell name (<span class="argument">argument</span>, <span class="required">required</span>)
 
     - [ ] <span class="level2"> `!primer list`
-        - Provides list of books (and their spell) in CVAR
-
-<span class="required">*Requires licensing
-
-<span class="rft"><strong>R</strong>eady <strong>F</strong>or <strong>T</strong>esting 
+        - Provides list of primers (and their spell) in CVAR
 
 ## Snippets
 
-- [ ] <span class="level1"> `lore`
-  
+- [ ] <span class="level1"> `lore` <span class="minor">Minor Requirement
     - Adds a d4 to <span class="skill">`history`</span> and <span class="skill">`religion`</span> checks
 
 
-- [ ] <span class="level1"> `pris`
+- [ ] <span class="level1"> `pris` <span class="minor">Minor Requirement
     - Adds a d4 to <span class="skill">`acrobatics`</span> and <span class="skill">`performance`</span> checks
 
 
-- [ ] <span class="level1"> `quan`
+- [ ] <span class="level1"> `quan` <span class="minor">Minor Requirement
     - Adds a d4 to <span class="skill">`arcana`</span> and <span class="skill">`nature`</span> checks
 
 
-- [ ] <span class="level1"> `silv`
+- [ ] <span class="level1"> `silv` <span class="minor">Minor Requirement
     - Adds a d4 to <span class="skill">`intimidation`</span> and <span class="skill">`persuasion`</span> checks
 
 
-- [ ] <span class="level1"> `with`
+- [ ] <span class="level1"> `with` <span class="minor">Minor Requirement
     - Adds a d4 to <span class="skill">`nature`</span> and <span class="skill">`survival`</span> checks
+
+<span class="required">*Requires licensing
+
+<span class="rft"><strong>R</strong>eady <strong>F</strong>or <strong>T</strong>esting
