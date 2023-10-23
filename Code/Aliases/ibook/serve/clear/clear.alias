@@ -24,7 +24,7 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
 
 def main(input_list: list[str]) -> str:
 
-    # If it recieved at least one input
+    # If we get at least one input
     if len(input_list) > 0:
 
         # If the SVAR exists, load it
@@ -35,53 +35,32 @@ def main(input_list: list[str]) -> str:
         else:
             return None, "SVAR has not been created"
 
-    # If it recieved no inputs 
+    # If we get no inputs
     else:
-        return None, "Expected at least one argument"
+        return None, "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
 
-    # If it finds at least one match
-    if (item_results := search_list(input_list[0], svar['Books']))
+    # Checks to see if "confirm" is present
+    for input_item in input_list:
+        if input_item.lower() != "confirm":
+            pass
 
-        # If it finds exactly one match, remove item from list
-        if len(item_results) == 1:
-            removed_item = svar['Books'].pop(svar['Books'].index(item_results[0]))
-
-            return dump_json(svar), removed_item
-
-        # If it finds more than one match
         else:
+            return True, svar
 
-            # For each match
-            for potential_match in item_results:
-
-                # If it does not find an exact match
-                if potential_match.lower() != input_list[0].lower():
-                    pass
-
-                # If it finds an exact match, remove item from list
-                else:
-                    removed_item = svar['Books'].pop(svar['Books'].index(potential_match))
-
-                    return dump_json(svar), removed_item
-
-            # If it did not find an exact match
-            item_results.insert(0, "**Multiple Sources Found:**")
-            return None, "\n".join(item_results)
-
-    # If it finds no matches
-    else:
-        return None, "Source not found"
+    return None, "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
 
 
-outcome, content = main(&ARGS&)
+outcome, f = main()
 
 if outcome:
-    title = f"{ctx.author.display_name} has (attempted) to remove {content} from `ibook_settings`"
+    title = f"{ctx.author.display_name} has cleared the sourcebooks in `ibook_settings`"
+    svar = {key: value for key, value in f.items() if key != "Books"}
     f = ""
     color = ""
     thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(["", 2, 3, 4, 5])}.png"
 
-    svar_str = f"!svar ibook_settings {outcome}"
+    svar['Books'] = []
+    svar_str = f"!svar ibook_settings {dump_json(svar)}"
 
 else:
     title = f"{ctx.author.display_name} has encountered an error"
@@ -90,6 +69,7 @@ else:
     thumb = "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
 
     svar_str = ""
+
 
 </drac2>
 {{svar_str}}

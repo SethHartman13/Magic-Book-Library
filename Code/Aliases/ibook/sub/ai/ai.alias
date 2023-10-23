@@ -1,0 +1,20 @@
+embed
+<drac2>
+
+
+def main() -> str:
+
+    if (uvar := get_uvar("ibook_source_list")):
+        uvar.append("Acquisitions Incorporated (ai)")
+
+    else:
+        uvar = ['Aquisitions Incorproated (ai)']
+    
+    set_uvar('ibook_source_list', dump_json(uvar))
+
+
+main()
+
+
+</drac2>
+-title "{{ctx.author.display_name}} has added Acquisitions Incorporated (ai)"

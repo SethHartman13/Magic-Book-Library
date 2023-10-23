@@ -18,14 +18,11 @@ def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
 
         # If the value is not a dictionary
         if typeof(default_dictionary[default_key]) != "SafeDict":
+            if default_key in dictionary.keys():
+                pass
 
-            # Run default dictionary test
-            try:
-                dictionary[default_key]
-
-            # Failed entry, insert default value
-            except:
-                dictionary[default_key] = default_dictionary[default_key] 
+            else:
+                dictionary[default_key] = default_dictionary[default_key]                
 
         # If the value is a dictionary
         else:
@@ -35,12 +32,10 @@ def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
                 for test_key in default_dictionary[default_key].keys():
                     float(test_key)
 
-                # If it is a threshold dictionary, run default dictionary test
-                try:
-                    dictionary[default_key]
+                if default_key in dictionary.keys():
+                    pass
 
-                # Failed entry, insert default value
-                except:
+                else:
                     dictionary[default_key] = default_dictionary[default_key] 
 
             # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
@@ -57,6 +52,7 @@ def main() -> str:
     Return:
         String version of new SVAR
     """
+
     # Grabs UVAR and if it exists
     if (uvar_test := get_uvar("ibook_source_list")):
 
@@ -90,17 +86,9 @@ def main() -> str:
     else:
         svar = svar_default_dict
 
-    # Grabs SVAR and if it exists, load dictionary
-    if (svar_test := get_svar("ibook_settings")):
-        svar = set_default_settings(load_json(svar_test), svar_default_dict)
-
-    # If SVAR does not exist, create new dictionary
-    else:
-        svar = svar_default_dict
-
     svar['Books'] = list(set(svar['Books']).union(set(uvar)))
 
-    return dump_json(svar)
+    return f"ibook_settings {dump_json(svar)}"
 
 
 </drac2>

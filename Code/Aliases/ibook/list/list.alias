@@ -1,0 +1,46 @@
+embed
+<drac2>
+
+
+def main() -> str:
+
+
+    if (svar_test := get_svar("ibook_settings")):
+        svar = load_json(svar_test)
+
+
+    else:
+        svar = {"Books": ["(Not setup)"]}
+
+    if (uvar_test := get_uvar("ibook_source_list")):
+        uvar = load_json(uvar_test)
+
+    else:
+        uvar = ["(Not setup)"]
+
+
+    svar['Books'].insert(0, "**Server Sourcebooks:**")
+    uvar.insert(0, "**User Sourcebooks:**")
+
+    if len(svar['Books']) > 1:
+        pass
+
+    else:
+        svar['Books'].append("None")
+
+    if len(uvar) > 1:
+        pass
+
+    else:
+        uvar.append("None")
+
+    return f"{ctx.author.display_name} views subscribed sourcebooks", "\n".join(svar['Books']) + "\n" + "\n".join(uvar)
+
+
+title, f = main()
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(["", 2, 3, 4, 5])}}.png"
