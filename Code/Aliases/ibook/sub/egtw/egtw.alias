@@ -4,7 +4,8 @@ embed
 
 def main() -> str:
 
-    if (uvar := get_uvar("ibook_source_list")):
+    if (uvar_test := get_uvar("ibook_source_list")):
+        uvar = load_json(uvar_test)
         uvar.append("Explorer's Guide to Wildemount (egtw)")
 
     else:
@@ -19,4 +20,4 @@ main()
 </drac2>
 -title "{{ctx.author.display_name}} has added Explorer's Guide to Wildemount (egtw) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/egtw.png"
--footer "!ibook sub egtw | Updated 10/23/23 | ShadowsStride"
+-footer "!ibook sub egtw | Updated 10/25/23 | ShadowsStride"

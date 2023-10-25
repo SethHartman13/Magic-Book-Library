@@ -1,0 +1,23 @@
+embed
+<drac2>
+
+
+def main() -> str:
+
+    if (uvar_test := get_uvar("ibook_source_list")):
+        uvar = load_json(uvar_test)
+        uvar.append("Guildmasters' Guide to Ravnica (ggtr)")
+
+    else:
+        uvar = ["Guildmasters' Guide to Ravnica (ggtr)"]
+    
+    set_uvar('ibook_source_list', dump_json(uvar))
+
+
+main()
+
+
+</drac2>
+-title "{{ctx.author.display_name}} has added Guildmasters' Guide to Ravnica (ggtr) to their sourcebook list"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/ggtr.png"
+-footer "!ibook sub ggtr | Updated 10/25/23 | ShadowsStride"

@@ -4,7 +4,8 @@ embed
 
 def main() -> str:
 
-    if (uvar := get_uvar("ibook_source_list")):
+    if (uvar_test := get_uvar("ibook_source_list")):
+        uvar = load_json(uvar_test)
         uvar.append("Xanathar's Guide to Everything (xgte)")
 
     else:
@@ -19,4 +20,4 @@ main()
 </drac2>
 -title "{{ctx.author.display_name}} has added Xanathar's Guide to Everything (xgte) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/xgte.png"
--footer "!ibook sub xgte | Updated 10/24/23 | ShadowsStride"
+-footer "!ibook sub xgte | Updated 10/25/23 | ShadowsStride"
