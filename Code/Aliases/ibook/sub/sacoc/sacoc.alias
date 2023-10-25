@@ -1,0 +1,22 @@
+embed
+<drac2>
+
+
+def main() -> str:
+
+    if (uvar := get_uvar("ibook_source_list")):
+        uvar.append("Spelljammer Adventures in Space (sacoc)")
+
+    else:
+        uvar = ["Spelljammer Adventures in Space (sacoc)"]
+    
+    set_uvar('ibook_source_list', dump_json(uvar))
+
+
+main()
+
+
+</drac2>
+-title "{{ctx.author.display_name}} has added Spelljammer Adventures in Space (sacoc) to their sourcebook list"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/sacoc.png"
+-footer "!ibook sub sacoc | Updated 10/24/23 | ShadowsStride"

@@ -1,0 +1,22 @@
+embed
+<drac2>
+
+
+def main() -> str:
+
+    if (uvar := get_uvar("ibook_source_list")):
+        uvar.append("Player's Handbook (phb)")
+
+    else:
+        uvar = ["Player's Handbook (phb)"]
+    
+    set_uvar('ibook_source_list', dump_json(uvar))
+
+
+main()
+
+
+</drac2>
+-title "{{ctx.author.display_name}} has added Player's Handbook (phb) to their sourcebook list"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/phb.png"
+-footer "!ibook sub phb | Updated 10/24/23 | ShadowsStride"

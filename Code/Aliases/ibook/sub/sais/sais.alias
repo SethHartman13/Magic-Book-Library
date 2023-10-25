@@ -1,0 +1,22 @@
+embed
+<drac2>
+
+
+def main() -> str:
+
+    if (uvar := get_uvar("ibook_source_list")):
+        uvar.append("Strixhaven: A Curriculum of Chaos (sais)")
+
+    else:
+        uvar = ["Strixhaven: A Curriculum of Chaos (sais)"]
+    
+    set_uvar('ibook_source_list', dump_json(uvar))
+
+
+main()
+
+
+</drac2>
+-title "{{ctx.author.display_name}} has added Strixhaven: A Curriculum of Chaos (sais) to their sourcebook list"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/sais.png"
+-footer "!ibook sub sais | Updated 10/24/23 | ShadowsStride"
