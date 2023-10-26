@@ -164,9 +164,9 @@
         - Provides list of wizard books (and their spells) in CVAR
 
 - [ ] <span class="level1"> `!primer` <span class="minor">Minor Requirement
-    - Provdes a help menu listing the primers they can add (and if they can add it)
+    - Gives help menu
     - [ ] <span class="level2">`!primer add`
-        - Gives a list on sources
+        - Provides a help menu listing the primers they can add (and if they can add it)
         - [ ] <span class="level3"> `!primer add lore`</span><span class="required">*
             - Adds Lorehold Primer to player CVAR
 

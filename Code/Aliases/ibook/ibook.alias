@@ -19,3 +19,4 @@ result_list = [
 -title "{{ctx.author.display_name}} needs the help action"
 -f "{{'\n'.join(result_list)}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['', 1, 2, 3, 4, 5])}}.png"
+-footer
