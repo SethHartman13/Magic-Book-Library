@@ -7,23 +7,23 @@
     - Provides help menu
     - [ ] <span class="level2">`!ibook serve`</span> 
         - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
-        - [ ] <span class="level3">`!book serve clear`</span>
+        - [ ] <span class="level3">`!ibook serve clear`</span>
             - Clears the books within the <span class="svar">`magic_book_settings`</svar>
             - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
                 - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
 
 
-        - [ ] <span class="level3">`!book serve remove`</span>
+        - [ ] <span class="level3">`!ibook serve remove`</span>
 
             - Clears a book within the <span class="svar">`magic_book_settings`</svar>
             - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
 
-        - [ ] <span class="level3">`!book serve add`</span>
+        - [ ] <span class="level3">`!ibook serve add`</span>
 
             - Adds a book within the <span class="svar">`magic_book_settings`</svar>
             - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
 
-        - [ ] <span class="level3">`!book serve help`</span>
+        - [ ] <span class="level3">`!ibook serve help`</span>
             - Provides help menu
 
     - [ ] <span class="level2">`!ibook sub`
@@ -79,7 +79,7 @@
             - Subscribes to Tasha's Cauldron of Everything
 
 
-        - [ ] <span class="level3">`!book sub xgte`</span><span class="required">*
+        - [ ] <span class="level3">`!ibook sub xgte`</span><span class="required">*
             - Subscribes to Xanathar's Guide to Everything
 
 
@@ -188,7 +188,6 @@
 
     - [ ] <span class="level2"> `!primer cast`
         - Casts spell using the primer
-        - spell name (<span class="argument">argument</span>, <span class="required">required</span>)
 
     - [ ] <span class="level2"> `!primer cc`
         - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
