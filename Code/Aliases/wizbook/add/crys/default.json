@@ -1,1 +1,16 @@
-["Detect Thoughts", "Intellect Fortress", "Rary's Telepathic Bond", "Sending", "Telekinesis", "Tasha's Mind Whip", "Tenser's Floating Disk"]
+{
+    "Static": [
+        "Mage Hand",
+        "Mind Sliver",
+        "Message"
+        ], 
+    "Dynamic": [
+        "Detect Thoughts", 
+        "Intellect Fortress", 
+        "Rary's Telepathic Bond", 
+        "Sending", 
+        "Telekinesis", 
+        "Tasha's Mind Whip", 
+        "Tenser's Floating Disk"
+        ]
+    }
