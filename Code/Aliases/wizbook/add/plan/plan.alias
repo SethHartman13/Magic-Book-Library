@@ -2,7 +2,52 @@ embed
 <drac2>
 
 
-def main() -> str, str, str, str:
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            if default_key in dictionary.keys():
+                pass
+
+            else:
+                dictionary[default_key] = default_dictionary[default_key]
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                if default_key in dictionary.keys():
+                    pass
+
+                else:
+                    dictionary[default_key] = default_dictionary[default_key]
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
+def main() -> str:
     """
     Main program function
     
@@ -12,43 +57,91 @@ def main() -> str, str, str, str:
         (str): Thumbnail URL 
         (str): Color (hex)
     """
-    # Planecaller's Codex
+
     # Main character object
     ch = character()
     
     # If the character has at least 1 level in Wizard
-    if ch.levels.get("Wizard", default=None):
+    if ch.levels.get("Wizard", default=None) or ch.levels.get('Artificer', default=0) >= 14:
         pass
 
     # If the character does not have at least 1 level in wizard, return error.
     else:
-        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
-
-    # Tries to grab dictionary from cvar
-    ibook_test = ch.get_cvar("ibook_dict")
+        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If the cvar exists, load dictionary
-    if ibook_test:
-        ibook_dict = load_json(ibook_test)
+    if (cvar_test := ch.get_cvar('ibook_dict')):
+        cvar_dict = load_json(cvar_test)
 
-        # Checks to see if there is a Wizard Book dictionary
-        try:
-            ibook_dict["Wizard Books"]
+        if (svar_test := get_svar("ibook_settings")):
+            svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
 
-        except:
-            ibook_dict["Wizard Books"] = {}
+        else:
+            svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
-    # If the cvar doesn't exist, create dictionary
+        # If CVAR has "Primer Books"
+        if "Primer Books" in (cvar_dict_keys:= cvar_dict.keys()):
+            cvar_book_num = len(cvar_dict['Primer Books'].keys())
+
+        # If CVAR does not have "Primer Books"
+        else:
+            cvar_dict['Primer Books'] = {}
+            cvar_book_num = 0
+
+        # If CVAR has "Wizard Books"
+        if "Wizard Books" in cvar_dict_keys:
+            cvar_book_num += len(cvar_dict['Wizard Books'].keys())
+
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                if "Planecaller's Codex" not in cvar_dict['Wizard Books'].keys():
+                    cvar_dict['Wizard Books']["Planecaller's Codex"] = [
+                        "Banishment", 
+                        "Find Familiar", 
+                        "Gate", 
+                        "Magic Circle", 
+                        "Planar Binding", 
+                        "Summon Elemental"
+                        ]
+
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        else:
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                cvar_dict['Wizard Books'] = {
+                    "Planecaller's Codex": [
+                        "Banishment", 
+                        "Find Familiar", 
+                        "Gate", 
+                        "Magic Circle", 
+                        "Planar Binding", 
+                        "Summon Elemental"
+                        ]
+                    }
+
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
     else:
-        ibook_dict = {"Wizard Books": {}}
+        cvar_dict = {
+            "Wizard Books": {
+                "Planecaller's Codex": [
+                    "Banishment",
+                    "Find Familiar",
+                    "Gate",
+                    "Magic Circle",
+                    "Planar Binding",
+                    "Summon Elemental"
+                ]
+            },
+            "Primer Books": {}            
+        }
 
-    # Process to find an entry that has not already been taken
-    i = 1
-    while f"Planecaller's Codex {i}" in ibook_dict["Wizard Books"].keys():
-        i += 1
-    
-    # Set entry to default spell list
-    ibook_dict["Wizard Books"][f"Planecaller's Codex {i}"] = ["Banishment", "Find Familiar", "Gate", "Magic Circle", "Planar Binding", "Summon Elemental"]
+    # Join list for output
+    join_list = "\n".join(cvar_dict["Wizard Books"][f"Planecaller's Codex"])
 
     # Creates Custom Counter
     ch.create_cc(
@@ -62,11 +155,10 @@ def main() -> str, str, str, str:
         desc="While you are holding the book, you can use it as a spellcasting focus for your wizard spells. The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the conjuration school.\n- When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute."
     )
 
-    # Join list for output
-    join_list = "\n".join(ibook_dict["Wizard Books"][f"Planecaller's Codex {i}"])
+
 
     # Set cvar with new book
-    ch.set_cvar("ibook_dict", dump_json(ibook_dict))
+    ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
     # Selects random image to display
     img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"

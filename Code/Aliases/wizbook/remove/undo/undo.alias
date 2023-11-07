@@ -1,0 +1,43 @@
+embed
+<drac2>
+
+
+def main(ch: character) -> str:
+
+    if (cvar_test := ch.get_cvar('ibook_dict')):
+
+        if (backup_test := ch.get_cvar('ibook_dict_backup')):
+
+            ch.set_cvar('ibook_dict', backup_test)
+            ch.set_cvar('ibook_dict_backup', cvar_test)
+
+            return 'Success', ''
+
+        else:
+            return None, 'No backup found'
+
+    else:
+        return None, 'No CVAR found'
+
+ch = character()
+
+status, f = main(ch)
+
+
+if status:
+    title = f"{name}'s Wizard Book Library Backup restored"
+    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png"
+    color = ""
+
+else:
+    title = f"{ctx.author.display_name} has encountered an error"
+    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
+    color = "#cf142b"
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!wizbook remove undo | Updated 11/4/23 | ShadowsStride"

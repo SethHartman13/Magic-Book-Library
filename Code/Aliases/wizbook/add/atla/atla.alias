@@ -2,6 +2,51 @@ embed
 <drac2>
 
 
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            if default_key in dictionary.keys():
+                pass
+
+            else:
+                dictionary[default_key] = default_dictionary[default_key]
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                if default_key in dictionary.keys():
+                    pass
+
+                else:
+                    dictionary[default_key] = default_dictionary[default_key]
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
 def main() -> str:
     """
     Main program function
@@ -16,59 +61,121 @@ def main() -> str:
     # Main character object
     ch = character()
     
-    # If the character has at least 1 level in Wizard
-    if ch.levels.get("Wizard", default=None):
+    # If the character has at least 1 level in Wizard or at least 14 levels in artificer
+    if ch.levels.get("Wizard", default=None) or ch.levels.get("Artificer", default=0) >= 14:
         pass
-
-    # If the character does not have at least 1 level in wizard, return error.
+        
+    # If they do not have at least 14 levels in artificer
     else:
-        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-    # Set book #
-    i = 1
+    # If the CVAR exists, load dictionary
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
 
-    # If the cvar exists, load dictionary
-    if (ibook_test := ch.get_cvar("ibook_dict")):
-        ibook_dict = load_json(ibook_test)
+        # If SVAR settings exists
+        if (svar_test := get_svar("ibook_settings")):
 
-        # If there are wizard books in the dictionary, find an unused book
-        if "Wizard Books" in ibook_dict.keys():
-            while f"Atlas of Endlsess Horizons {i}" in ibook_dict["Wizard Books"].keys():
-                i += 1
+            # Load dictionary, checking default values
+            svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
 
-        # There are no wizard books, create empty dictionary
+        # If SVAR settings does not exist 
         else:
-            ibook_dict["Wizard Books"] = dict()
+            svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
-        # Set book in CVAR to default spell list
-        ibook_dict['Wizard Books'][f'Atlas of Endless Horizons {i}'] = ["Augury", "Divination", "Find the Path", "Foresight", "Locate Creature", "Locate Object"]
+        # If CVAR has "Primer Books"
+        if "Primer Books" in (cvar_dict_keys := cvar_dict.keys()):
+            cvar_book_num = len(cvar_dict['Primer Books'].keys())
 
-    # If the CVAR does not exist, create entire dictionary
+        # If CVAR does not have "Primer Books"
+        else:
+            cvar_dict['Primer Books'] = {}
+            cvar_book_num = 0
+
+        # If CVAR has "Wizard Books"
+        if "Wizard Books" in cvar_dict.keys():
+            cvar_book_num += len(cvar_dict['Wizard Books'].keys())
+
+            # If within book limit and if the character is not already attuned to one
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                if "Atlas of Endless Horizons" not in cvar_dict['Wizard Books'].keys():
+
+                    # Set unused name key to spell list
+                    cvar_dict['Wizard Books']['Atlas of Endless Horizons'] = [
+                        "Arcane Endless", 
+                        "Dimension Door", 
+                        "Gate", 
+                        "Misty Step", 
+                        "Plane Shift", 
+                        "Teleportation Circle", 
+                        "Word of Recall"
+                    ]
+
+                # If the character is already attuned to a specific book
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+            # If not within book limit
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        # If CVAR does not have Wizard Books, check book limit
+        else:
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                cvar_dict['Wizard Books'] = {
+                    "Atlas of Endless Horizons": [
+                            "Arcane Endless", 
+                            "Dimension Door", 
+                            "Gate",
+                            "Misty Step", 
+                            "Plane Shift", 
+                            "Teleportation Circle", 
+                            "Word of Recall"
+                        ]
+                    }
+
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+    
+    # If CVAR does not exist, create dictionary
     else:
-        ibook_dict = {"Wizard Books": {"Atlas of Endless Horizons 1": ["Augury", "Divination", "Find the Path", "Foresight", "Locate Creature", "Locate Object"]}}
+        cvar_dict = {
+            "Wizard Books": {
+                "Atlas of Endless Horizons": [
+                    "Arcane Endless", 
+                    "Dimension Door", 
+                    "Gate",
+                    "Misty Step", 
+                    "Plane Shift", 
+                    "Teleportation Circle", 
+                    "Word of Recall"
+                ]
+            },
+            "Primer Books": {}
+        }
 
     # Join list for output
-    join_list = "\n".join(ibook_dict["Wizard Books"][f"Atlas of Endless Horizons {i}"])
+    join_list = "\n".join(cvar_dict["Wizard Books"]["Atlas of Endless Horizons"])
 
     # Creates Custom Counter
     ch.create_cc(
-        name=f"Atlas of Endless Horizons {i}",
+        name="Atlas of Endless Horizons",
         minVal="0",
         maxVal="3",
         reset="long",
         dispType="star",
         reset_by="1d3",
-        title=f"Atlas of Endless Horizons {i}",
+        title="Atlas of Endless Horizons",
         desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the conjuration school.\n- When you are hit by an attack, you can use your reaction to expend 1 charge to teleport up to 10 feet to an unoccupied space you can see. If your new position is out of range of the attack, it misses you."
     )
 
     # Set cvar with new book
-    ch.set_cvar("ibook_dict", dump_json(ibook_dict))
+    ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added an Atlas of Endless Horizons to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#F5DA67"
+    return f"{name} ({ctx.author.display_name}) has added an Atlas of Endless Horizons to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "#F5DA67"
 
 
-# Gets outputs
+# Main function
 title, f, thumb, color = main()
 
 
@@ -77,4 +184,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add alch | Updated 10/20/23 | ShadowsStride"
+-footer "!wizbook add atla | Updated 10/30/23 | ShadowsStride"

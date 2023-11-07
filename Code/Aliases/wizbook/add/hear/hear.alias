@@ -2,7 +2,52 @@ embed
 <drac2>
 
 
-def main() -> str, str, str, str:
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            if default_key in dictionary.keys():
+                pass
+
+            else:
+                dictionary[default_key] = default_dictionary[default_key]
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                if default_key in dictionary.keys():
+                    pass
+
+                else:
+                    dictionary[default_key] = default_dictionary[default_key]
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
+def main() -> str:
     """
     Main program function
     
@@ -12,57 +57,111 @@ def main() -> str, str, str, str:
         (str): Thumbnail URL 
         (str): Color (hex)
     """
-    # Heart Weaver's Primer
+
     # Main character object
     ch = character()
     
     # If the character has at least 1 level in Wizard
-    if ch.levels.get("Wizard", default=None):
+    if ch.levels.get("Wizard", default=None) or ch.levels.get("Artificer", default=0) >= 14:
         pass
 
     # If the character does not have at least 1 level in wizard, return error.
     else:
-        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
-
-    # Set book #
-    i = 1
+        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If the cvar exists, load dictionary
-    if (ibook_test := ch.get_cvar("ibook_dict")):
-        ibook_dict = load_json(ibook_test)
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
 
-        # If there are wizard books in the dictionary, find an unused book
-        if "Wizard Books" in ibook_dict.kays():
-            while f"Heart Weaver's Primer {i}" in ibook_dict["Wizard Books"].keys():
-                i += 1
 
-        # If there are no wizard books, create empty dictionary
+        if (svar_test := get_svar("ibook_settings")):
+            svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
+
         else:
-            ibook_dict['Wizard Books'] = dict()
+            svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
-        ibook_dict['Wizard Books'][f"Heart Weaver's Primer {i}"] = ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"]
+        # If CVAR has "Primer Books"
+        if "Primer Books" in (cvar_dict_keys := cvar_dict.keys()):
+            cvar_book_num = len(cvar_dict['Primer Books'].keys())
 
-    # If the CVAR does not exist, create entire dictionary
+        # If CVAR does not have "Primer Books"
+        else:
+            cvar_dict['Primer Books'] = {}
+            cvar_book_num = 0
+
+        # If CVAR has "Wizard Books"
+        if "Wizard Books" in cvar_dict_keys:
+            cvar_book_num += len(cvar_dict['Wizard Books'].keys())
+
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                if "Heart Weaver's Primer" not in cvar_dict['Wizard Books'].keys():
+
+                    cvar_dict['Wizard Books']["Heart Weaver's Primer"] = [
+                        "Antipathy/Sympathy", 
+                        "Charm Person", 
+                        "Dominate Person", 
+                        "Enthrall", 
+                        "Hypnotic Pattern", 
+                        "Modify Memory", 
+                        "Suggestion"
+                        ]
+
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        else:
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                cvar_dict['Wizard Books'] = {
+                    "Heart Weaver's Primer": [
+                        "Antipathy/Sympathy", 
+                        "Charm Person", 
+                        "Dominate Person", 
+                        "Enthrall", 
+                        "Hypnotic Pattern", 
+                        "Modify Memory", 
+                        "Suggestion"
+                        ]
+                    }
+
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
     else:
-        ibook_dict = {"Wizard Books": {"Heart Weaver's Primer 1": ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"]}}
+        cvar_dict = {
+            "Wizard Books": {
+                "Heart Weaver's Primer": [
+                    "Antipathy/Sympathy", 
+                    "Charm Person", 
+                    "Dominate Person", 
+                    "Enthrall", 
+                    "Hypnotic Pattern", 
+                    "Modify Memory", 
+                    "Suggestion"
+                ]
+            },
+            "Primer Books": {}
+        }
 
     # Join list for output
-    join_list = "\n".join(ibook_dict["Wizard Books"][f"Heart Weaver's Primer {i}"])
+    join_list = "\n".join(cvar_dict["Wizard Books"][f"Heart Weaver's Primer {i}"])
 
     # Creates Custom Counter
     ch.create_cc(
-        name=f"Heart Weaver's Primer {i}",
+        name="Heart Weaver's Primer",
         minVal="0",
         maxVal="3",
         reset="long",
         dispType="star",
         reset_by="1d3",
-        title=f"Heart Weaver's Primer {i}",
+        title="Heart Weaver's Primer",
         desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the enchantment school.\n- When you cast an enchantment spell, you can expend 1 charge to impose disadvantage on the first saving throw one target makes against the spell."
     )
 
     # Set cvar with new book
-    ch.set_cvar("ibook_dict", dump_json(ibook_dict))
+    ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
     return f"{name} ({ctx.author.display_name}) has added a Heart Weaver's Primer to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#ED90D9"
 
@@ -76,4 +175,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add alch | Updated 10/20/23 | ShadowsStride"
+-footer "!wizbook add hear | Updated 11/2/23 | ShadowsStride"
