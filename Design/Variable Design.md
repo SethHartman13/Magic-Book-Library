@@ -1,52 +1,108 @@
 ## CVAR - ibook_dict
 
 ```json
-s
+
 {
     "Wizard Books": {
-        "Alchemical Compendium 1":["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"],
-        "Alchemical Compendium 2":["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"],
-
-        "Astromancy Archive 1": ["Augury", "Divination", "Find the Path", "Foresight", "Locate Creature", "Locate Object"],
-        "Astromancy Archive 2": ["Augury", "Divination", "Find the Path", "Foresight", "Locate Creature", "Locate Object"],
-
-        "Atlas of Endless Horizons 1": ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"],
-        "Atlas of Endless Horizons 2": ["Arcane Endless", "Dimension Door", "Gate", "Misty Step", "Plane Shift", "Teleportation Circle", "Word of Recall"],
-
-        "Duplicious Manuscript 1": ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"],
-        "Duplicious Manuscript 2": ["Hallucinatory Terrain", "Major Image", "Mirror Image", "Mislead", "Nystul's Magic Aura", "Phantasmal Force", "Silent Image"],
-
-        "Fulminating Treatise 1": ["Contingency", "Fireball", "Gust of Wind", "Leomund's Tiny Hut", "Magic Missile", "Wall of Force"],
-        "Fulminating Treatise 2": ["Contingency", "Fireball", "Gust of Wind", "Leomund's Tiny Hut", "Magic Missile", "Wall of Force"],
-
-        "Heart Weaver's Primer 1": ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"],
-        "Heart Weaver's Primer 2": ["Antipathy/Sympathy", "Charm Person", "Dominate Person", "Enthrall", "Hypnotic Pattern", "Modify Memory", "Suggestion"],
-
-        "Libram of Souls and Flesh 1": ["Animate Dead", "Circle of Death", "False Life", "Finger of Death", "Speak with Dead", "Summon Undead"],
-        "Libram of Souls and Flesh 2": ["Animate Dead", "Circle of Death", "False Life", "Finger of Death", "Speak with Dead", "Summon Undead"],
-
-        "Planecaller's Codex 1": ["Banishment", "Find Familiar", "Gate", "Magic Circle", "Planar Binding", "Summon Elemental"],
-        "Planecaller's Codex 2": ["Banishment", "Find Familiar", "Gate", "Magic Circle", "Planar Binding", "Summon Elemental"],
-
-        "Protective Verses 1": ["Arcane Lock", "Dispel Magic", "Globe of Invulnerability", "Glyph of Warning", "Mordenkainen's Private Sanctum", "Protection from Evil and Good", "Symbol"],
-        "Protective Verses 2": ["Arcane Lock", "Dispel Magic", "Globe of Invulnerability", "Glyph of Warning", "Mordenkainen's Private Sanctum", "Protection from Evil and Good", "Symbol"]
+        "Alchemical Compendium":[
+            "Enlarge/Reduce", 
+            "Feather Fall", 
+            "Flesh to Stone", 
+            "Gaseous Form", 
+            "Magic Weapon", 
+            "Polymorph"
+            ],
+        "Astromancy Archive": [
+            "Augury", 
+            "Divination", 
+            "Find the Path", 
+            "Foresight", 
+            "Locate Creature", 
+            "Locate Object"
+            ],
+        "Atlas of Endless Horizons": [
+            "Arcane Endless", 
+            "Dimension Door", 
+            "Gate", 
+            "Misty Step",
+            "Plane Shift",
+            "Teleportation Circle",
+            "Word of Recall"
+            ],
+        "Duplicious Manuscript": [
+            "Hallucinatory Terrain", 
+            "Major Image", 
+            "Mirror Image", 
+            "Mislead", 
+            "Nystul's Magic Aura", 
+            "Phantasmal Force", 
+            "Silent Image"
+            ],
+        "Fulminating Treatise": [
+            "Contingency", 
+            "Fireball", 
+            "Gust of Wind", 
+            "Leomund's Tiny Hut", 
+            "Magic Missile", 
+            "Wall of Force"
+            ],
+        "Heart Weaver's Primer": [
+            "Antipathy/Sympathy", 
+            "Charm Person", 
+            "Dominate Person", 
+            "Enthrall", 
+            "Hypnotic Pattern", 
+            "Modify Memory", 
+            "Suggestion"
+            ],
+        "Libram of Souls and Flesh": [
+            "Animate Dead", 
+            "Circle of Death", 
+            "False Life", 
+            "Finger of Death", 
+            "Speak with Dead", 
+            "Summon Undead"
+            ],
+        "Planecaller's Codex": [
+            "Banishment", 
+            "Find Familiar", 
+            "Gate", 
+            "Magic Circle", 
+            "Planar Binding", 
+            "Summon Elemental"
+            ],
+        "Protective Verses": [
+            "Arcane Lock", 
+            "Dispel Magic", 
+            "Globe of Invulnerability", 
+            "Glyph of Warning", 
+            "Mordenkainen's Private Sanctum", 
+            "Protection from Evil and Good", 
+            "Symbol"
+            ],
+        "Crystalline Chronicle": {
+            "Static": [
+                "Mage Hand",
+                "Mind Sliver",
+                "Message"
+            ], 
+            "Dynamic": [
+                "Detect Thoughts", 
+                "Intellect Fortress", 
+                "Rary's Telepathic Bond", 
+                "Sending", 
+                "Telekinesis", 
+                "Tasha's Mind Whip", 
+                "Tenser's Floating Disk"
+            ]
+        }
     },
-
     "Primer Books": {
-        "Lorehold Primer 1": "",
-        "Lorehold Primer 2": "",
-
-        "Prismari Primer 1": "",
-        "Prismari Primer 2": "",
-
-        "Quandrix Primer 1": "",
-        "Quandrix Primer 2": "",
-
-        "Silverquill Primer 1": "",
-        "Silverquill Primer 2": "",
-
-        "Witherbloom Primer 1": "",
-        "Witherbloom Primer 2": ""
+        "Lorehold Primer": "",
+        "Prismari Primer": "",
+        "Quandrix Primer": "",
+        "Silverquill Primer": "",
+        "Witherbloom Primer": "",
     }
 }
 ```
@@ -54,7 +110,7 @@ s
 ## UVAR - ibook_source_list
 
 ```json
-["phb", "ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "sacoc", "sais", "scag", "tcoe", "tcsr", "xgte"]
+["Player's Handbook (phb)", "ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "sacoc", "sais", "scag", "tcoe", "tcsr", "xgte"]
 ```
 
 ## SVAR - ibook_settings
@@ -64,7 +120,8 @@ s
     "Settings": {
         "Homebrew": false,
         "Partnered Content": true,
-        "Book Limit": 6
+        "Book Limit": 6,
+        "Expanded Class": true
     },
     "Books": ["phb", "ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "sacoc", "sais", "scag", "tcoe", "tcsr", "xgte"]
 }

@@ -143,7 +143,6 @@
     - [ ] <span class="level2"> `!wizbook remove`
         - Removes a book from the character's CVAR
         - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
-        - wizard book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
         - [ ] <span class="level3">`!wizbook remove undo`
             - Undo removal of book
@@ -158,7 +157,6 @@
     - [ ] <span class="level2"> `!wizbook cc`
         - Checks Custom Counter of book specified (with # modifies the counter number)
         - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
-        - wizard book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
     - [ ] <span class="level2"> `!wizbook list`
         - Provides list of wizard books (and their spells) in CVAR
@@ -191,12 +189,10 @@
 
     - [ ] <span class="level2"> `!primer cc`
         - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
-        - primer book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
+
 
     - [ ] <span class="level2"> `!primer remove`
-
         - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
-        - primer book \# (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
         - [ ] <span class="level3">`!primer remove undo`
 
@@ -204,7 +200,8 @@
 
     - [ ] <span class="level2"> `!primer switch`
         - Switches spell that the primer has and switches it to the spell specified
-        -  spell name (<span class="argument">argument</span>, <span class="required">required</span>)
+        - spell name 1 (in magic book) (<span class="argument">argument</span>, <span class="required">required</span>)
+        - spell name 2 (to be switched to) (<span class="argument">argument</span>, <span class="required">required</span>)
 
     - [ ] <span class="level2"> `!primer list`
         - Provides list of primers (and their spell) in CVAR
