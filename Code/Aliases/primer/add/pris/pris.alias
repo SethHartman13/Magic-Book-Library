@@ -1,0 +1,166 @@
+embed
+<drac2>
+
+
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            if default_key in dictionary.keys():
+                pass
+
+            else:
+                dictionary[default_key] = default_dictionary[default_key]
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                if default_key in dictionary.keys():
+                    pass
+
+                else:
+                    dictionary[default_key] = default_dictionary[default_key]
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
+def main() -> str:
+    """
+    Main program function
+    
+    Returns:
+        str: Title
+        str: Content
+        str: Thumbnail URL 
+        str: Color (hex)
+    """
+
+    # Main character object
+    ch = character()
+    
+    # If the CVAR exists, load dictionary
+    if (cvar_test := ch.get_cvar('ibook_dict')):
+        cvar_dict = load_json(cvar_test)
+
+        # If SVAR settings exists
+        if (svar_test := get_svar("ibook_settings")):
+
+            # Load dictionary, checking default values
+            svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
+
+        # If SVAR settings does not exist 
+        else:
+            svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
+
+        # If CVAR has "Wizard Books"
+        if "Wizard Books" in (cvar_dict_keys := cvar_dict.keys()):
+            cvar_book_num = len(cvar_dict['Wizard Books'].keys())
+
+        # If CVAR does not have "Wizard Books"
+        else:
+            cvar_dict['Wizard Books'] = {}
+            cvar_book_num = 0
+
+        # If CVAR has "Primer Books"
+        if "Primer Books" in cvar_dict_keys:
+
+            cvar_book_num += len(cvar_dict['Primer Books'].keys())
+
+            # If within book limit and if the character is not already attuned to one
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                if "Prismari Primer" not in cvar_dict[' Books'].keys():
+
+                    # Set unused name key to empty string
+                    cvar_dict['Primer Books']["Prismari Primer"] = ""
+
+                # If the character is already attuned to a specific book
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+            # If not within book limit
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        
+        # If CVAR does not have Primer Books, check book limit
+        else:
+
+            # If within book limit
+            if cvar_book_num < svar_dict['Settings']['Book Limit']:
+                cvar_dict['Primer Books'] = {"Prismari Primer": ""}
+
+            # If not within book limit
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+    # If CVAR does not exist, create dictionary
+    else:
+        cvar_dict = {
+            "Wizard Books": {}, 
+            "Primer Books": {
+                "Prismari Primer": ""
+            }
+        }
+
+    # Creates Custom Counter
+    ch.create_cc(
+        name="Prismari Primer (Check)",
+        minVal="0",
+        maxVal="3",
+        reset="long",
+        dispType="star",
+        reset_by="1d3",
+        title="Prismari Primer",
+        desc="The Prismari Primer is a magic textbook created at Strixhaven's Prismari College. The primer has 3 charges, and it regains 1d3 expended charges daily at dawn. If you make a Dexterity (Acrobatics) or a Charisma (Performance) check while holding the primer, you can expend 1 charge to give yourself a 1d4 bonus to the check, immediately after you roll the d20."
+    )
+
+    # Creates Custom Counter
+    ch.create_cc(
+        name="Prismari Primer (Spell)",
+        minVal="0",
+        maxVal="1",
+        reset="long",
+        dispType="star",
+        reset_by="1",
+        title="Prismari Primer",
+        desc="If you study the primer at the end of a long rest, you can choose one 1st-level spell from the bard or sorcerer spell list. Before you finish your next long rest, you can cast the chosen spell once without a spell slot if you are holding the primer. Your spellcasting ability for this spell is your choice of Intelligence, Wisdom, or Charisma."
+    )
+
+    # Set cvar with new book
+    ch.set_cvar("ibook_dict", dump_json(cvar_dict))
+  
+    return f"{name} ({ctx.author.display_name}) has added a Prismari Primer to their Magic Book Library", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "#BB6F87"
+
+
+# Main program function
+title, f, thumb, color = main()
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!primer add pris | Updated 11/10/23 | ShadowsStride"
