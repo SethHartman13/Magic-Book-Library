@@ -68,143 +68,143 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def search_spell(spell_name: str, spell_list: list[str], spell_num: int = 1) -> str|None:
-    """
-    
-    
-    """
+def search_spell_1(spell_1_search: str, cvar_dict: dict) -> str:
 
-    if (key_result := search_list(spell_name, spell_list)):
+    if "Wizard Books" in cvar_dict.keys():
 
-        if len(key_result) == 1:
-            return key_result[0], ""
+        if len((wizbook_keys := cvar_dict['Wizard Books'].keys())) > 0:
 
+            spell_1_dict = dict()
+
+            for magic_book in wizbook_keys:
+                if typeof(cvar_dict['Wizard Books'][magic_book]) == "SafeList":
+                    result_key = search_list(spell_1_search, cvar_dict['Wizard Books'][magic_book])
+
+                else:
+                    result_key = search_list(spell_1_search, cvar_dict['Wizard Books'][magic_book]["Dynamic"])
+
+                if result_key:
+                    if len(result_key) == 1:
+                        spell_1_dict.update({magic_book: [result_key[0]]})
+
+                    else:
+                        spell_1_dict.update({magic_book: result_key})
+
+                else:
+                    pass
+
+            if len(spell_1_dict) == 0:
+                return None, "Spell 1 not found"
+
+            elif len(spell_1_dict) == 1:
+                if len(spell_1_dict[spell_1_dict.keys()[0]]) == 1:
+                    return spell_1_dict.values()[0][0], spell_1_dict.keys()[0]
+                
+                else:
+                    return None, "\n".join(["**Multiple Matches Found (Spell 1):**"] + spell_1_dict.values()[0])
+
+            else:
+                return None, "\n".join(["**Multiple Matches Found (Spell 1):**"] + [spell for magic_book in spell_1_dict.keys() for spell in spell_1_dict[magic_book]]
+)
         else:
+            return None, "Wizard Book library is empty"
 
-            for key in key_result:
-                if key.lower() != spell_name:
+    else:
+        return None, "Wizard Book library is empty"
+
+
+def search_spell_2(spell_2_search: str, massive_source_spell_dict: dict, temp_source_set: set, svar_dict: dict) -> str:
+
+    partnered_source_list = [
+        "Explorer's Guide to Wildemount (egtw)",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)"
+    ]
+
+    wotc_source_list = [
+        "Xanathar's Guide to Everything (xgte)",
+        "Tasha's Cauldron of Everything (tcoe)",
+        "Sword Coast Adventurer's Guide (scag)",
+        "Strixhaven: A Curriculum of Chaos (sais)",
+        "Spelljammer Adventures in Space (sacoc)",
+        "Player's Handbook (phb)",
+        "Lost Laboratory of Kwalish (llok)",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)",
+        "Guildmasters' Guide to Ravnica (ggtr)",
+        "Fizban's Treasury of Dragons (ftod)",
+        "Elemental Evil Player's Companion (eepc)",
+        "Acquisitions Incorporated (ai)"
+    ]
+
+    source_set = {}
+    
+
+    if len(temp_source_set) > 0:
+
+        for source in temp_source_set:
+            if source in wotc_source_list:
+                source_set.add(source)
+
+            elif source in partnered_source_list and svar_dict['Settings']['Partnered Content']:
+                source_set.add(source)
+
+            else:
+                if source in partnered_source_list:
+                    pass
+                
+                elif not svar_dict['Settings']['Homebrew']:
                     pass
 
                 else:
-                    return key, ""
+                    if "-" in source:
+                        try:
+                            massive_source_spell_dict.update(load_json(get_gvar(source)))
+                            source_set.add(source)
 
-            key_result.insert(0, f"**Multiple Matches Found (Spell {spell_num}):**")
+                        except:
+                            pass
 
-            return None, "\n".join(key_result)
+                    else:
+                        try:
+                            massive_source_spell_dict.update(load_json(get_uvar(source)))
+                            source_set.add(source)
+
+                        except:
+                            try:
+                                massive_source_spell_dict.update(load_json(get_svar(source)))
+                                source_set.add(source)
+
+                            except:
+                                pass
 
     else:
-        return None, f"Spell {spell_num} not found"
+        return None, "No Subscriptions Found To Sourcebooks"
 
-
-def compile_source_spells(source_set: set, settings_dictionary: dict) -> dict:
-    """
-    
-    
-    
-    
-    """
-
-    # Load massive dictionary
-    official_source = load_json(get_gvar('6011f3a8-737d-4413-9dbf-04cebe165212'))
-    
-    # Create empty map
-    spell_dict = dict()
-
+    spell_2_dict = {}
     for source in source_set:
+        massive_source_spell_dict[source].pop('Settings')
 
-        match source:
-            case s if "(ai)" in s:
-                spell_dict['ai'] = official_source.pop('ai')
+        for spell in massive_source_spell_dict[source].keys():
+            spell_2_dict[spell] = massive_source_spell_dict[source][spell]
 
-            case s if "(eepc)" in s:
-                spell_dict['eepc'] = official_source.pop('eepc')
+    if (result_key := search_list(spell_2_search, spell_2_dict.keys())):
 
-            case s if "(egtw)" in s:
-                spell_dict['egtw'] = official_source.pop('egtw')
+        if len(result_key) == 1:
+            return result_key[0], spell_2_dict[result_key[0]]
 
-            case s if "(ftod)" in s:
-                spell_dict['ftod'] = official_source.pop('ftod')
-
-            case s if "(ggtr)" in s:
-                spell_dict['ggtr'] = official_source.pop('ggtr')
-
-            case s if "(idrotf)" in s:
-                spell_dict['idrotf'] = official_source.pop('idrotf')
-
-            case s if "(llok)" in s:
-                spell_dict['llok'] = official_source.pop('llok')
-
-            case s if "(phb)" in s:
-                spell_dict['phb'] = official_source.pop('phb')
-
-            case s if "(sacoc)" in s:
-                spell_dict['sacoc'] = official_source.pop('sacoc')
-
-            case s if "(sais)" in s:
-                spell_dict['sais'] = official_source.pop('sais')
-
-            case s if "(scag)" in s:
-                spell_dict['scag'] = official_source.pop('scag')
-
-            case s if "(tcoe)" in s:
-                spell_dict['tcoe'] = official_source.pop('tcoe')
-
-            case s if "(tcsr)" in s:
-                spell_dict['tcsr'] = official_source.pop('tcsr')
-
-            case s if "(xgte)" in s:
-                spell_dict['xgte'] = official_source.pop('xgte')
-
-            case s if "-" in s:
-                try:
-                    i = 1
-                    while f"HB Source {i}" in spell_dict.keys():
-                        i += 1
-
-                    spell_dict[f'HB Source {i}'] = load_json(get_gvar(source))
-
-                except:
+        else:
+            for key in result_key:
+                if key.lower() != spell_2_search.lower():
                     pass
 
-            case _:
-                pass
+                else:
+                    return key, spell_2_dict[key]
 
-    # Empty remaining items to save memory
-    for source in official_source.keys():
-        official_source.pop(source)
+            result_key.insert(0, "**Multiple Matches Found (Spell 2):**")
+            
+            return None, "\n".join(result_key)
 
-    # Creates toss list
-    toss_list = []
-
-    # For each source
-    for source in spell_dict.keys():
-        source_settings = spell_dict[source].pop('SETTINGS')
-        
-        if settings_dictionary['SETTINGS']['Homebrew']:
-            pass
-
-        else:
-            if not source_settings['Homebrew']:
-                pass
-
-            else:
-                toss_list.append(source)
-
-        if settings_dictionary['SETTINGS']['Partnered Content']:
-            pass
-
-        else:
-            if not source_settings['Partnered Content']:
-                pass
-
-            else:
-                toss_list.append(source)
-
-    for source in toss_list:
-        spell_dict.pop(source)
-
-    return {spell: spell_dict[source][spell] for source in spell_list for spell in source}
-
+    else:
+        return None, "Spell 2 Not Found"
 
 
 def main(input_list: list[str]) -> str:
@@ -217,132 +217,92 @@ def main(input_list: list[str]) -> str:
 
         ch = character()
 
-        if (cvar_test != ch.get_cvar('ibook_dict')):
+        if (cvar_test := ch.get_cvar('ibook_dict')):
             cvar_dict = load_json(cvar_test)
+            spell_1, spell_1_source = search_spell_1(input_list[0], cvar_dict)
 
-            if "Wizard Books" in (cvar_dict_keys := cvar_dict.keys()):
+            book_cc = ch.cc(spell_1_source)
 
-                if len(cvar_dict['Wizard Books']) > 0:
-
-                    spell_1, message = search_spell(input_list[0], [spell for wizard_book in cvar_dict['Wizard Books'].keys() for spell in (cvar_dict['Wizard Books'][wizard_book] if typeof(cvar_dict['Wizard Books'][wizard_book]) == "SafeList" else cvar_dict['Wizard Books'][wizard_book]['Dynamic'])])
-
-                    if spell_1:
-                        pass
-
-                    else:
-                        return f"{ctx.author.display_name} has encountered an error", message, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
-
-                else:
-                    return f"{ctx.author.display_name} has encountered an error", "You have no wizard books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            if book_cc.value > 0:
+                pass
 
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You have no wizard books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return f"{ctx.author.display_name} has encountered an error", f"{spell_1_source} does not have enough charges", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         else:
-            return f"{ctx.author.display_name} has encountered an error", "You have no wizard books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+        if spell_1:
+            if (svar_test := get_svar('ibook_settings')):
+                svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []})
+
+            else:
+                svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
+
+        else:
+            return f"{ctx.author.display_name} has encountered an error", spell_1_source, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    
     else:
         return f"{ctx.author.display_name} has encountered an error", "Expected at least two arguments", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
-
-    if (svar_test := get_svar("ibook_settings")):
-        svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True},"Books": []})
-
-    else:
-        svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True},"Books": []}
-
     if (uvar_test := get_uvar("ibook_source_list")):
-        uvar_list = load_json(uvar_test)
+        uvar_source_list = load_json(uvar_test)
+
+        source_set = set(uvar_source_list).union(set(svar_dict['Books']))
 
     else:
-        uvar_list = []
+        source_set = set(svar_dict['Books'])
 
-    available_spells = compile_source_spells(set(svar_dict['Books']).union(set(uvar_list)), svar_dict)
-
-    spell_2, message = search_spell(input_list[1], available_spells.keys(), 2)
-
+    spell_2, spell_2_dict = search_spell_2(input_list[1], load_json(get_gvar("6011f3a8-737d-4413-9dbf-04cebe165212")), source_set, svar_dict)
 
     if spell_2:
 
-        if "Wizard" in available_spells[spell_2]['Class']:
+        book_school_map = {
+            "Alchemical Compendium": "Transmutation",
+            "Astromancy Archive": "Divination",
+            "Atlas of Endless Horizons": "Conjuration",
+            "Duplicious Manuscript": "Illusion",
+            "Fulminating Treatise": "Evocation",
+            "Heart Weaver's Primer": "Enchantment",
+            "Libram of Souls and Flesh": "Necromancy",
+            "Planecaller's Codex": "Conjuration",
+            "Protective Verses": "Abjuration"
+        }
+
+        if spell_1_source in book_school_map.keys():
+            if book_school_map[spell_1_source].lower() == spell_2_dict["School"].lower():
+                pass
+
+            else:
+                return f"{ctx.author.display_name} has encountered an error", f"You may only switch spells in {spell_1_source} with spells from the School of {book_school_map[spell_1_source]}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        else:
             pass
 
-        else:
-            if svar_dict['Settings']['Expanded Class'] and "Wizard" in available_spells[spell_2]['Expanded Class']:
-                pass
+        if typeof(cvar_dict['Wizard Books'][spell_1_source]) == "SafeList":
+            cvar_dict['Wizard Books'][spell_1_source][cvar_dict['Wizard Books'][spell_1_source].index(spell_1)] = spell_2
 
-            else:
-                return f"{ctx.author.display_name} has encountered an error", "Spell 2 not found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        else:
+            cvar_dict['Wizard Books'][spell_1_source]['Dynamic'][cvar_dict['Wizard Books'][spell_1_source]['Dynamic'].index(spell_1)] = spell_2
+
+
+        ch.set_svar('ibook_dict', dump_json(cvar_dict))
+        f = [
+            "**Old Spell**",
+            spell_1,
+            "",
+            "**New Spell**",
+            spell_2,
+            f"{book_cc.full_str().split("\n")[0]} (-1)"
+        ]
+
+        return f"{name} switches out their spells for their {spell_1_source}", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", ""
 
     else:
-        return f"{ctx.author.display_name} has encountered an error", message, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return f"{ctx.author.display_name} has encountered an error", spell_2_dict, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-    school_rule_map = {
-        "Alchemical Compendium": "tr",
-        "Astromancy Archive": "di",
-        "Atlas of Endless Horizons": "co",
-        "Duplicious Manuscript": "il",
-        "Fulminating Treatise": "ev",
-        "Heart Weaver's Primer": "en",
-        "Libram of Souls and Flesh": "ne",
-        "Planecaller's Codex": "co",
-        "Protective Verses": "ab",
-        "Crystalline Chronicle": None
-    }
-    for magic_book in cvar_dict['Wizard Books'].keys():
 
-        if magic_book in school_rule_map.keys():
-
-            if school_rule_map[magic_book]:
-                
-                if spell_1 in cvar_dict['Wizard Books'][magic_book]:
-
-                    if school_rule_map[magic_book] in available_spells[spell_2]["School"].lower():
-                        dynamic = False
-                        book_name = magic_book
-
-                    else:
-                        return f"{ctx.author.display_name} has encountered an error", "You have attempted to add a spell of the wrong school", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
-
-                else:
-                    pass
-
-            else:
-                if spell_1 in cvar_dict['Wizard Books'][magic_book]['Dynamic']:
-                    dynamic = True
-                    book_name = magic_book
-
-                else:
-                    pass
-
-        else:
-            if spell_1 in cvar_dict['Wizard Books'][magic_book]:
-                dynamic = False
-                book_name = magic_book
-
-            else:
-                pass
-
-    try:
-        if not dynamic:
-            cvar_dict['Wizard Books'][book_name].pop(cvar_dict['Wizard Books'][book_name].index(spell_1))
-
-            cvar_dict['Wizard Books'][book_name].append(spell_2)
-
-        else:
-            cvar_dict['Wizard Books'][book_name]['Dynamic'].pop(cvar_dict['Wizard Books'][book_name]['Dynamic'].index(spell_1))
-
-            cvar_dict['Wizard Books'][book_name]['Dynamic'].append(spell_2)
-
-    except:
-        return f"{ctx.author.display_name} has encountered an error", "An unexpected error has occured", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
-
-    ch.set_cvar('ibook_dict', dump_json(cvar_dict))
-
-    return f"{name} has switched a spell in their spellbook", "\n".join(["**Magic Book:**", book_name, "", "**Removed Spell:**", spell_1, "", "**Added Spell:**", spell_2]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", ""
-
-            
 title, f, thumb, color = main(&ARGS&)
 
 
