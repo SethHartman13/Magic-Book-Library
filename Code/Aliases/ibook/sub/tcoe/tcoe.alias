@@ -2,22 +2,30 @@ embed
 <drac2>
 
 
-def main() -> str:
+def main():
 
+    # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar = load_json(uvar_test)
-        uvar.append("Tasha's Cauldron of Everything (tcoe)")
 
+        if "Tasha's Cauldron of Everything (tcoe)" not in uvar:
+            uvar.append("Tasha's Cauldron of Everything (tcoe)")
+
+        else:
+            pass
+
+    # If UVAR does not exist, create list
     else:
         uvar = ["Tasha's Cauldron of Everything (tcoe)"]
     
+    # Set UVAR
     set_uvar('ibook_source_list', dump_json(uvar))
 
-
+# Main program function
 main()
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Tasha's Cauldron of Everything (tcoe) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/tcoe.png"
--footer "!ibook sub tcoe | Updated 10/25/23 | ShadowsStride"
+-footer "!ibook sub tcoe | Updated 11/15/23 | ShadowsStride"

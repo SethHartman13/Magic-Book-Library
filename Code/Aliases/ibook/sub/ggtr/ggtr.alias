@@ -2,22 +2,34 @@ embed
 <drac2>
 
 
-def main() -> str:
+def main():
+    """
+    Main program function
+    """
 
+    # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar = load_json(uvar_test)
-        uvar.append("Guildmasters' Guide to Ravnica (ggtr)")
 
+        if "Guildmasters' Guide to Ravnica (ggtr)" not in uvar:
+            uvar.append("Guildmasters' Guide to Ravnica (ggtr)")
+
+        else:
+            pass
+
+    # If UVAR does not exist, creat list
     else:
         uvar = ["Guildmasters' Guide to Ravnica (ggtr)"]
     
+    # Set UVAR
     set_uvar('ibook_source_list', dump_json(uvar))
 
 
+# Main program function
 main()
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Guildmasters' Guide to Ravnica (ggtr) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/ggtr.png"
--footer "!ibook sub ggtr | Updated 10/25/23 | ShadowsStride"
+-footer "!ibook sub ggtr | Updated 11/14/23 | ShadowsStride"

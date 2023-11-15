@@ -2,22 +2,33 @@ embed
 <drac2>
 
 
-def main() -> str:
+def main():
+    """
+    Main program function
+    """
 
+    # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar = load_json(uvar_test)
-        uvar.append("Icewind Dale Rime of the Frostmaiden (idrotf)")
 
+        if "Icewind Dale Rime of the Frostmaiden (idrotf)" not in uvar:
+            uvar.append("Icewind Dale Rime of the Frostmaiden (idrotf)")
+
+        else:
+            pass
+
+    # If UVAR does not exist, create list
     else:
         uvar = ["Icewind Dale Rime of the Frostmaiden (idrotf)"]
     
+    # Set UVAR
     set_uvar('ibook_source_list', dump_json(uvar))
 
-
+# Main program function
 main()
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Icewind Dale Rime of the Frostmaiden (idrotf) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/idrotf.png"
--footer "!ibook sub idrotf | Updated 10/25/23 | ShadowsStride"
+-footer "!ibook sub idrotf | Updated 11/14/23 | ShadowsStride"

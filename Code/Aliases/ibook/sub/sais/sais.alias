@@ -2,22 +2,31 @@ embed
 <drac2>
 
 
-def main() -> str:
+def main():
 
+    # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar = load_json(uvar_test)
-        uvar.append("Strixhaven: A Curriculum of Chaos (sais)")
 
+        if "Strixhaven: A Curriculum of Chaos (sais)" not in uvar:
+            uvar.append("Strixhaven: A Curriculum of Chaos (sais)")
+
+        else:
+            pass
+
+    # If UVAR does not exist, create list
     else:
         uvar = ["Strixhaven: A Curriculum of Chaos (sais)"]
     
+    # Set UVAR
     set_uvar('ibook_source_list', dump_json(uvar))
 
 
+# Main program function
 main()
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Strixhaven: A Curriculum of Chaos (sais) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/sais.png"
--footer "!ibook sub sais | Updated 10/25/23 | ShadowsStride"
+-footer "!ibook sub sais | Updated 11/15/23 | ShadowsStride"

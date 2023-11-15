@@ -2,22 +2,34 @@ embed
 <drac2>
 
 
-def main() -> str:
+def main():
+    """
+    Main program function
+    """
 
+    # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar = load_json(uvar_test)
-        uvar.append("Explorer's Guide to Wildemount (egtw)")
 
+        if "Explorer's Guide to Wildemount (egtw)" not in uvar:
+            uvar.append("Explorer's Guide to Wildemount (egtw)")
+
+        else:
+            pass
+
+    # If UVAR does not exist create list
     else:
         uvar = ["Explorer's Guide to Wildemount (egtw)"]
     
+    # Set UVAR
     set_uvar('ibook_source_list', dump_json(uvar))
 
 
+# Main program function
 main()
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Explorer's Guide to Wildemount (egtw) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/egtw.png"
--footer "!ibook sub egtw | Updated 10/25/23 | ShadowsStride"
+-footer "!ibook sub egtw | Updated 11/14/23 | ShadowsStride"
