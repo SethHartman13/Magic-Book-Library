@@ -132,9 +132,11 @@ def search_spell_2(spell_2_search: str, massive_source_spell_dict: dict, temp_so
         "Guildmasters' Guide to Ravnica (ggtr)",
         "Fizban's Treasury of Dragons (ftod)",
         "Elemental Evil Player's Companion (eepc)",
-        "Acquisitions Incorporated (ai)"
+        "Acquisitions Incorporated (ai)",
+        "Basic Rules (br)"
     ]
 
+    temp_source_set.add("Basic Rules (br)")
     source_set = {}
     
 
@@ -179,8 +181,33 @@ def search_spell_2(spell_2_search: str, massive_source_spell_dict: dict, temp_so
     else:
         return None, "No Subscriptions Found To Sourcebooks"
 
+    source_mapping = {
+        "Xanathar's Guide to Everything (xgte)": "xgte",
+        "Tasha's Cauldron of Everything (tcoe)": "tcoe",
+        "Sword Coast Adventurer's Guide (scag)": "scag",
+        "Strixhaven: A Curriculum of Chaos (sais)": "sais",
+        "Spelljammer Adventures in Space (sacoc)", "sacoc",
+        "Player's Handbook (phb)": "phb",
+        "Lost Laboratory of Kwalish (llok)": "llok",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "idrotf",
+        "Guildmasters' Guide to Ravnica (ggtr)": "ggtr",
+        "Fizban's Treasury of Dragons (ftod)": "ftod",
+        "Elemental Evil Player's Companion (eepc)": "eepc",
+        "Acquisitions Incorporated (ai)": "ai",
+        "Basic Rules (br)": "br",
+        "Explorer's Guide to Wildemount (egtw)": "egtw",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
+    }
+
     spell_2_dict = {}
     for source in source_set:
+
+        if source in source_mapping.keys():
+            source = source_mapping[source]
+
+        else:
+            pass
+
         massive_source_spell_dict[source].pop('Settings')
 
         for spell in massive_source_spell_dict[source].keys():
