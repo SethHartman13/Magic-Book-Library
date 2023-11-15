@@ -28,58 +28,58 @@
 
     - [ ] <span class="level2">`!ibook sub`
         - Provides a list of the different sourcebooks to subscribe to
-        - [ ] <span class="level3">`!ibook sub ai`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub ai`</span><span class="required">*
             - Subscribes to Acquisition's Incorporated
 
-        - [ ] <span class="level3">`!ibook sub eepc`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub eepc`</span><span class="required">*
             - Subscribes to Elemental Evil Player's Companion
 
 
-        - [ ] <span class="level3">`!ibook sub egtw`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub egtw`</span><span class="required">*
             - Subscribes to Explorers Guide to Wildemount
 
 
-        - [ ] <span class="level3">`!ibook sub ftod`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub ftod`</span><span class="required">*
             - Subscribes to Fizban's Treasury of Dragons
 
 
-        - [ ] <span class="level3">`!ibook sub ggtr`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub ggtr`</span><span class="required">*
             - Subscribes to Guildmaster's Guide to Ravnica
 
 
-        - [ ] <span class="level3">`!ibook sub idrotf`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub idrotf`</span><span class="required">*
             - Subscribes to Icewind Dale: Rime of the Frostmaiden
 
 
-        - [ ] <span class="level3">`!ibook sub llok`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub llok`</span><span class="required">*
             - Subscribes to Lost Laboratory of Kwalish
 
 
-        - [ ] <span class="level3">`!ibook sub phb`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub phb`</span><span class="required">*
             - Subscribes to the Player's Handbook
 
 
-        - [ ] <span class="level3">`!ibook sub sais`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub sais`</span><span class="required">*
             - Subscribes to Spelljammer: Adventurers in Space
 
 
-        - [ ] <span class="level3">`!ibook sub sacoc`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub sacoc`</span><span class="required">*
             - Subscribes to Strixhaven: A Curriculum of Chaos
 
 
-        - [ ] <span class="level3">`!ibook sub scag`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub scag`</span><span class="required">*
             - Subscribes to Sword Coast Adventurer's Guide
 
 
-        - [ ] <span class="level3">`!ibook sub tcsr`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub tcsr`</span><span class="required">*
             - Subscribes to Tal'Dorei Campaign Setting Reborn
 
 
-        - [ ] <span class="level3">`!ibook sub tcoe`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub tcoe`</span><span class="required">*
             - Subscribes to Tasha's Cauldron of Everything
 
 
-        - [ ] <span class="level3">`!ibook sub xgte`</span><span class="required">*
+        - [x] <span class="level3">`!ibook sub xgte`</span><span class="required">*
             - Subscribes to Xanathar's Guide to Everything
 
 

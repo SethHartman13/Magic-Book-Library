@@ -30,7 +30,6 @@ def main(input_list: list[str], ch: character) -> str:
 
         ch = character()
 
-
         if (cvar_test != ch.get_cvar("ibook_dict")):
             cvar_dict = load_json(cvar_test)
 
