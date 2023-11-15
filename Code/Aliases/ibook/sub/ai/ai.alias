@@ -11,15 +11,15 @@ def main():
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar = load_json(uvar_test)
 
-        if "Acquisitions Incorporated (ai)" not in uvar:
-            uvar.append("Acquisitions Incorporated (ai)")
+        if "Acquisition's Incorporated (ai)" not in uvar:
+            uvar.append("Acquisition's Incorporated (ai)")
 
         else:
             pass
 
     # If UVAR does not exist, create list
     else:
-        uvar = ['Aquisitions Incorproated (ai)']
+        uvar = ["Aquisition's Incorporated (ai)"]
     
     # Set UVAR
     set_uvar('ibook_source_list', dump_json(uvar))
