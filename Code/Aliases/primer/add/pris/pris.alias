@@ -94,7 +94,7 @@ def main() -> str:
                 if "Prismari Primer" not in cvar_dict[' Books'].keys():
 
                     # Set unused name key to empty string
-                    cvar_dict['Primer Books']["Prismari Primer"] = ""
+                    cvar_dict['Primer Books']["Prismari Primer"] = "Burning Hands"
 
                 # If the character is already attuned to a specific book
                 else:
@@ -109,7 +109,7 @@ def main() -> str:
 
             # If within book limit
             if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                cvar_dict['Primer Books'] = {"Prismari Primer": ""}
+                cvar_dict['Primer Books'] = {"Prismari Primer": "Burning Hands"}
 
             # If not within book limit
             else:
@@ -120,7 +120,7 @@ def main() -> str:
         cvar_dict = {
             "Wizard Books": {}, 
             "Primer Books": {
-                "Prismari Primer": ""
+                "Prismari Primer": "Burning Hands"
             }
         }
 
@@ -145,13 +145,25 @@ def main() -> str:
         dispType="star",
         reset_by="1",
         title="Prismari Primer",
-        desc="If you study the primer at the end of a long rest, you can choose one 1st-level spell from the bard or sorcerer spell list. Before you finish your next long rest, you can cast the chosen spell once without a spell slot if you are holding the primer. Your spellcasting ability for this spell is your choice of Intelligence, Wisdom, or Charisma."
+        desc="Before you finish your next long rest, you can cast the chosen spell once without a spell slot if you are holding the primer. Your spellcasting ability for this spell is your choice of Intelligence, Wisdom, or Charisma."
+    )
+
+    # Creates Custom Counter
+    ch.create_cc(
+        name="Prismari Primer (Switch)",
+        minVal="0",
+        maxVal="1",
+        reset="long",
+        dispType="star",
+        reset_by="1",
+        title="Prismari Primer",
+        desc="If you study the primer at the end of a long rest, you can choose one 1st-level spell from the bard or sorcerer spell list."
     )
 
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added a Prismari Primer to their Magic Book Library", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "#BB6F87"
+    return f"{name} ({ctx.author.display_name}) has added a Prismari Primer to their Magic Book Library", "Your starting spell is Burning Hands", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "#BB6F87"
 
 
 # Main program function

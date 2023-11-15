@@ -1,0 +1,330 @@
+embed
+<drac2>
+
+
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            if default_key in dictionary.keys():
+                pass
+
+            else:
+                dictionary[default_key] = default_dictionary[default_key]
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                if default_key in dictionary.keys():
+                    pass
+
+                else:
+                    dictionary[default_key] = default_dictionary[default_key]
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
+def search_list(query: str, item_list: list[str]) -> list[str]|None:
+    """
+    Searches for item in list.
+
+    Args:
+        query (str): The query being made
+        item_list (list): List of items
+
+    Return:
+        list[str]|None: If it finds at least one match, it returns the item(s) in a list, otherwise it returns None
+    """
+
+    # Finds at least 1 match
+    if len(item_results := [item for item in item_list if query.lower() in item.lower()]) > 0:
+        return item_results
+
+    # If it finds no matches
+    else:
+        return None
+
+
+def search_spell_1(spell_1_search: str, cvar_dict: dict) -> str:
+
+    if "Primer Books" in cvar_dict.keys():
+
+        if len(cvar_dict['Primer Books'].keys()) > 0:
+
+            spell_1_dict = {cvar_dict['Primer Books'][primer_book]: primer_book for primer_book in cvar_dict['Primer Books'].keys()}
+
+            if (result_key := search_list(spell_1_search, spell_1_dict.keys()))
+
+                if len(result_key) == 1:
+                    return result_key[0], spell_1_dict[result_key[0]]
+
+                else:
+                    for key in result_key:
+                        if key.lower() != spell_1_search.lower():
+                            pass
+
+                        else:
+                            return key, spell_1_dict[key]
+
+                    key_result.insert(0, "**Multiple Matches Found (Spell 1)**")
+
+                    return None, "\n".join(key_result)
+
+            else:
+                return None, "Spell 1 Not Found"
+
+        else:
+            return None, "Primer Book library is empty"
+
+    else:
+        return None, "Primer Book library is empty"
+
+
+def search_spell_2(spell_2_search: str, massive_source_spell_dict: dict, temp_source_set: set, svar_dict: dict) -> str:
+
+    partnered_source_list = [
+        "Explorer's Guide to Wildemount (egtw)",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)"
+    ]
+
+    wotc_source_list = [
+        "Xanathar's Guide to Everything (xgte)",
+        "Tasha's Cauldron of Everything (tcoe)",
+        "Sword Coast Adventurer's Guide (scag)",
+        "Strixhaven: A Curriculum of Chaos (sais)",
+        "Spelljammer Adventures in Space (sacoc)",
+        "Player's Handbook (phb)",
+        "Lost Laboratory of Kwalish (llok)",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)",
+        "Guildmasters' Guide to Ravnica (ggtr)",
+        "Fizban's Treasury of Dragons (ftod)",
+        "Elemental Evil Player's Companion (eepc)",
+        "Acquisitions Incorporated (ai)",
+        "Basic Rules (br)"
+    ]
+
+    temp_source_set.add("Basic Rules (br)")
+    source_set = {}
+    
+
+    if len(temp_source_set) > 0:
+
+        for source in temp_source_set:
+            if source in wotc_source_list:
+                source_set.add(source)
+
+            elif source in partnered_source_list and svar_dict['Settings']['Partnered Content']:
+                source_set.add(source)
+
+            else:
+                if source in partnered_source_list:
+                    pass
+                
+                elif not svar_dict['Settings']['Homebrew']:
+                    pass
+
+                else:
+                    if "-" in source:
+                        try:
+                            massive_source_spell_dict.update(load_json(get_gvar(source)))
+                            source_set.add(source)
+
+                        except:
+                            pass
+
+                    else:
+                        try:
+                            massive_source_spell_dict.update(load_json(get_uvar(source)))
+                            source_set.add(source)
+
+                        except:
+                            try:
+                                massive_source_spell_dict.update(load_json(get_svar(source)))
+                                source_set.add(source)
+
+                            except:
+                                pass
+
+    else:
+        return None, "No Subscriptions Found To Sourcebooks"
+
+    source_mapping = {
+        "Xanathar's Guide to Everything (xgte)": "xgte",
+        "Tasha's Cauldron of Everything (tcoe)": "tcoe",
+        "Sword Coast Adventurer's Guide (scag)": "scag",
+        "Strixhaven: A Curriculum of Chaos (sais)": "sais",
+        "Spelljammer Adventures in Space (sacoc)", "sacoc",
+        "Player's Handbook (phb)": "phb",
+        "Lost Laboratory of Kwalish (llok)": "llok",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "idrotf",
+        "Guildmasters' Guide to Ravnica (ggtr)": "ggtr",
+        "Fizban's Treasury of Dragons (ftod)": "ftod",
+        "Elemental Evil Player's Companion (eepc)": "eepc",
+        "Acquisitions Incorporated (ai)": "ai",
+        "Basic Rules (br)": "br",
+        "Explorer's Guide to Wildemount (egtw)": "egtw",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
+    }
+
+    spell_2_dict = {}
+    for source in source_set:
+
+        if source in source_mapping.keys():
+            source = source_mapping[source]
+
+        else:
+            pass
+
+        massive_source_spell_dict[source].pop('Settings')
+
+        for spell in massive_source_spell_dict[source].keys():
+            spell_2_dict[spell] = massive_source_spell_dict[source][spell]
+
+    if (result_key := search_list(spell_2_search, spell_2_dict.keys())):
+
+        if len(result_key) == 1:
+            return result_key[0], spell_2_dict[result_key[0]]
+
+        else:
+            for key in result_key:
+                if key.lower() != spell_2_search.lower():
+                    pass
+
+                else:
+                    return key, spell_2_dict[key]
+
+            result_key.insert(0, "**Multiple Matches Found (Spell 2):**")
+            
+            return None, "\n".join(result_key)
+
+    else:
+        return None, "Spell 2 Not Found"
+
+
+def main(input_list: list[str]) -> str:
+    """
+    
+    
+    """
+
+    if len(input_list) >= 2:
+
+        ch = character()
+
+        if (cvar_test := ch.get_cvar('ibook_dict')):
+            cvar_dict = load_json(cvar_test)
+
+            spell_1, spell_1_source = search_spell_1(input_list[0], cvar_dict)
+
+            book_cc = ch.cc(f"{spell_1_source} (Switch)")
+
+            if book_cc.value > 0:
+                book_cc.mod(-1)
+
+            else:
+                return f"{ctx.author.display_name} has encountered an error", f"{spell_1_source} does not have enough charges", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        else:
+            return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        if spell_1:
+            if (svar_test := get_svar('ibook_settings')):
+                svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []})
+
+            else:
+                svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
+
+        else:
+            return f"{ctx.author.display_name} has encountered an error", spell_1_source, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "Expected at least two arguments", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+    if (uvar_test := get_uvar("ibook_source_list")):
+        uvar_source_list = load_json(uvar_test)
+
+        source_set = set(uvar_source_list).union(set(svar_dict['Books']))
+
+    else:
+        source_set = set(svar_dict['Books'])
+
+    spell_2, spell_2_dict = search_spell_2(input_list[1], load_json(get_gvar("6011f3a8-737d-4413-9dbf-04cebe165212")), source_set, svar_dict)
+
+    if spell_2:
+
+        book_class_map = {
+            "Lorehold Primer": ["Cleric", "Wizard"],
+            "Prismari Primer": ["Bard", "Sorcerer"],
+            "Quandrix Primer": ["Druid", "Wizard"],
+            "Silverquill Primer": ["Cleric", "Bard"],
+            "Witherbloom Primer": ["Druid", "Wizard"],
+        }
+
+        if spell_1_source in book_class_map.keys():
+            if len(set(book_class_map[spell_1_source]).intersection(set(spell_2_dict['Class']))) > 0:
+                pass
+
+            else:
+                if svar_dict['Settings']['Expanded Class'] and "Expanded Class" in spell_2_dict.keys():
+                    if len(set(book_class_map[spell_1_source]).intersection(set(spell_2_dict['Expanded Class']))) > 0:
+                        pass
+
+                    else:
+                        return f"{ctx.author.display_name} has encountered an error", f"You may only switch spells in {spell_1_source} with spells from the following classes:\n" + "\n".join(book_class_map[spell_1_source]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", f"You may only switch spells in {spell_1_source} with spells from the following classes:\n" + "\n".join(book_class_map[spell_1_source]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        else:
+            pass
+
+        cvar_dict["Primer Books"][spell_1_source] = spell_2
+
+        ch.set_svar('ibook_dict', dump_json(cvar_dict))
+        f = [
+            "**Old Spell**",
+            spell_1,
+            "",
+            "**New Spell**",
+            spell_2,
+            f"{book_cc.full_str().split("\n")[0]} (-1)"
+        ]
+
+        return f"{name} switches out their spells for their {spell_1_source}", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", ""
+
+    else:
+        return f"{ctx.author.display_name} has encountered an error", spell_2_dict, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+title, f, thumb, color = main(&ARGS&)
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
