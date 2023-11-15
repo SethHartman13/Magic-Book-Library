@@ -13,5 +13,14 @@
         "Expanded Class": [
             "Warlock"
         ]
+    },
+
+    "Summon Lesser Demons": {
+        "School": "Conjuration",
+        "Level": 3,
+        "Class": [
+            "Wizard",
+            "Warlock"
+        ]
     }
 }
