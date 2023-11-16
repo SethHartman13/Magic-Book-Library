@@ -9,19 +9,19 @@
         - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
 
         - [ ] <span class="level3">`!ibook serve clear`</span>
-            - Clears the books within the <span class="svar">`magic_book_settings`</svar>
+            - Clears the books within the <span class="svar">`ibook_settings`</svar>
             - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
                 - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
 
 
         - [ ] <span class="level3">`!ibook serve remove`</span>
 
-            - Clears a book within the <span class="svar">`magic_book_settings`</svar>
+            - Clears a book within the <span class="svar">`ibook_settings`</svar>
             - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
 
         - [ ] <span class="level3">`!ibook serve add`</span>
 
-            - Adds a book within the <span class="svar">`magic_book_settings`</svar>
+            - Adds a book within the <span class="svar">`ibook_settings`</svar>
             - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
                 - If "all" is given, it will add all sourcebooks
 
