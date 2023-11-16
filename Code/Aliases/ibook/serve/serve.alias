@@ -1,95 +1,131 @@
-svar
+embed
 <drac2>
 
-def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
-    """
-    Loops through dictionary checking for missing entries and adding default ones where necessary
 
-    Args:
-        dictionary (dict): Dictionary to be checked
-        default_dictionary (dict): Default dictionary
+def output_serve_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -> str:
 
-    Return:
-        dict: Corrected dictionary
-    """
+    for item in set(uvar_list).intersection(svar_list):
+        uvar_list.remove(item)
 
-    # For each key in the default dictionary
-    for default_key in default_dictionary.keys():
+    items = {
+        "Acquisition's Incorporated (ai)": "`!ibook serve ai`: Serves Acquisition's Incorporated content",
+        "Elemental Evil Player's Companion (eepc)": "`!ibook serve eepc`: Serves Elemental Evil Player's Companion content",
+        "Explorer's Guide to Wildemount (egtw)": "`!ibook serve egtw`: Serves Explorers Guide to Wildemount content",
+        "Fizban's Treasury of Dragons (ftod)": "`!ibook serve ftod`: Serves Fizban's Treasury of Dragons content",
+        "Guildmasters' Guide to Ravnica (ggtr)": "`!ibook serve ggtr`: Serves Guildmaster's Guide to Ravnica content",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "`!ibook serve idrotf`: Serves Icewind Dale: Rime of the Frostmaiden content",
+        "Lost Laboratory of Kwalish (llok)": "`!ibook serve llok`: Serves Lost Laboratory of Kwalish content",
+        "Player's Handbook (phb)": "`!ibook serve phb`: Serves the Player's Handbook content",
+        "Spelljammer Adventures in Space (sacoc)": "`!ibook serve sacoc`: Serves Spelljammer Adventures in Space content",
+        "Strixhaven: A Curriculum of Chaos (sais)": "`!ibook serve sais`: Serves Strixhaven: A Curriculum of Chaos content",
+        "Sword Coast Adventurer's Guide (scag)": "`!ibook serve scag`: Serves Sword Coast Adventurer's Guide content",
+        "Tasha's Cauldron of Everything (tcoe)": "`!ibook serve tcoe`: Serves Tasha's Cauldron of Everything content",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "`!ibook serve tcsr`: Serves Tal'Dorei Campaign Setting Reborn content",
+        "Xanathar's Guide to Everything (xgte)": "`!ibook serve xgte`: Serves Xanathar's Guide to Everything content" 
+    }
 
-        # If the value is not a dictionary
-        if typeof(default_dictionary[default_key]) != "SafeDict":
-            if default_key in dictionary.keys():
-                pass
+    shorthand_items = {
+        "Acquisition's Incorporated (ai)": "ai",
+        "Elemental Evil Player's Companion (eepc)": "eepc",
+        "Explorer's Guide to Wildemount (egtw)": "egtw",
+        "Fizban's Treasury of Dragons (ftod)": "ftod",
+        "Guildmasters' Guide to Ravnica (ggtr)": "ggtr",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "idrotf",
+        "Lost Laboratory of Kwalish (llok)": "llok",
+        "Player's Handbook (phb)": "phb",
+        "Spelljammer Adventures in Space (sacoc)": "sacoc",
+        "Strixhaven: A Curriculum of Chaos (sais)": "sais",
+        "Sword Coast Adventurer's Guide (scag)": "scag",
+        "Tasha's Cauldron of Everything (tcoe)": "tcoe",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr",
+        "Xanathar's Guide to Everything (xgte)": "xgte" 
+    }
 
-            else:
-                dictionary[default_key] = default_dictionary[default_key]                
+    q = "'"
+    i = 1
+    for item in uvar_list:
+        if item in items.keys():
+            pass
 
-        # If the value is a dictionary
         else:
+            if " " in item:
+                items[item] = f"`ibook serve {q}{item}{q}`: Serves custom content #{i}"
 
-            # Check to see if it is a threshold dictionary
-            try:
-                for test_key in default_dictionary[default_key].keys():
-                    float(test_key)
-
-                if default_key in dictionary.keys():
-                    pass
-
-                else:
-                    dictionary[default_key] = default_dictionary[default_key] 
-
-            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
-            except:
-                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
-
-    return dictionary
-
-
-def main() -> str:
-    """
-    Main program function
-    
-    Return:
-        String version of new SVAR
-    """
-
-    # Grabs UVAR and if it exists
-    if (uvar_test := get_uvar("ibook_source_list")):
-
-        # Try to check length of list
-        try:
-
-            # If length of UVAR is greater than 0
-            if len(uvar := load_json(uvar_test)) > 0:
-                pass
-
-            # If length of UVAR is 0, raise error
             else:
-                err("You are not subscribed to any sourcebooks")
+                items[item] = f"`ibook serve {item}`: Serves custom content #{i}"
 
-        # If there were problems with the UVAR, raise error
+            shorthand_items[item] = ""
+            i += 1
+
+    display_list = [items[key] for key in items.keys() if key in uvar_list]
+    shorthand_list = [shorthand_items[key] for key in items.keys() if key in uvar_list]
+
+    result_list = [display_list[i:i+3] for i in range(0,len(display_list), 3)]
+    short_list = [shorthand_list[i:i+3] for i in range(0,len(shorthand_list), 3)]
+
+    if page_num > 1 and (res_length := len(result_list)):
+
+        if page_num < res_length:
+            pass
+
+        else:
+            page_num = res_length
+
+    else:
+        page_num = 1
+
+    if len(result_list) > 0:
+        res_length = len(result_list)
+
+    else:
+        result_list.append(['None'])
+        short_list.append(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])
+        page_num = 1
+        res_length = 1
+
+    result_list[page_num-1].insert(0, f"**Available Sourcebooks: ({page_num}/{res_length})**")
+
+    while "" in short_list[page_num-1]:
+        short_list[page_num-1].remove("")
+
+    return f"{ctx.author.display_name} checks what content they can serve", "\n\n".join(result_list[page_num-1]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num-1])}.png", ""
+
+
+def main(input_list: list[str]) -> str:
+
+    if (uvar_test := get_uvar("ibook_source_list")):
+        if len((uvar_list := load_json(uvar_test))) != 0:
+            pass
+
+        else:
+            return f"{ctx.author.display_name} checks what content they can serve", "None", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+
+    else:
+        return f"{ctx.author.display_name} checks what content they can serve", "None", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+
+    if (svar_test := get_svar("ibook_settings")):
+        svar_list = load_json(svar_test)['Books']
+
+    else:
+        svar_list = []
+    
+    if len(input_list) > 0:
+        try:
+            return output_serve_list(int(input_list[0]), uvar_list, svar_list)
+
         except:
-            err("Problems with UVAR")
+            return output_serve_list(1, uvar_list, svar_list)
 
-    # If UVAR does not exist
     else:
-        err("You are not subscribed to any sourcebooks")
+        return output_serve_list(1, uvar_list, svar_list) 
 
-    # Set default settings dictionary
-    svar_default_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6}, "Books": []}
 
-    # Grabs SVAR and if it exists
-    if (svar_test := get_svar('ibook_settings')):
-        svar = set_default_settings(load_json(svar_test), svar_default_dict)
-
-    # If SVAR does not exist, create new dictionary
-    else:
-        svar = svar_default_dict
-
-    svar['Books'] = list(set(svar['Books']).union(set(uvar)))
-
-    return f"ibook_settings {dump_json(svar)}"
-
+title, f, thumb, color = main(&ARGS&)
+l = "<"
 
 </drac2>
-"{{main()}}"
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!ibook serve {{l}}#> | Updated 11/16/23 | ShadowsStride"
