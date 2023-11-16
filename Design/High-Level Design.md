@@ -22,11 +22,12 @@
 
             - Adds a book within the <span class="svar">`magic_book_settings`</svar>
             - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
+                - If "all" is given, it will add all sourcebooks
 
         - [ ] <span class="level3">`!ibook serve help`</span>
             - Provides help menu
 
-    - [ ] <span class="level2">`!ibook sub`
+    - [x] <span class="level2">`!ibook sub`
         - Provides a list of the different sourcebooks to subscribe to
         - [x] <span class="level3">`!ibook sub ai`</span><span class="required">*
             - Subscribes to Acquisition's Incorporated
@@ -83,11 +84,11 @@
             - Subscribes to Xanathar's Guide to Everything
 
 
-    -  [ ] <span class="level2">`!ibook unsub`
+    -  [x] <span class="level2">`!ibook unsub`
         -  Unsubscribes the user from a sourcebook in their library
         -  sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
     
-    - [ ] <span class="level2">`!ibook list`
+    - [x] <span class="level2">`!ibook list`
         - Lists sourcebooks the user is subscribed to
 
     - [ ] <span class="level2">`!ibook settings`

@@ -10,8 +10,6 @@ result_list = [
     "`!ibook list`: Provides a list of sourcebooks the user is subscribed to.",
     "",
     "`!ibook settings`: Lists the current settings.",
-    "`!ibook settings <settings name>`: Lists the current setting.",
-    "`!ibook settings <settings name> <settings condition>`: Changes the settings specified. Note: You MUST have permissions to edit SVARs for this to work."
 ]
 
 
@@ -19,4 +17,4 @@ result_list = [
 -title "{{ctx.author.display_name}} needs the help action"
 -f "{{'\n'.join(result_list)}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['', 1, 2, 3, 4, 5])}}.png"
--footer
+-footer "!ibook | Updated 11/16/23 | ShadowsStride"
