@@ -2,45 +2,96 @@ embed
 <drac2>
 
 
-def main() -> str:
+def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -> str:
 
+    for item in set(uvar_list).intersection(svar_list):
+        svar_list.remove(item)
 
-    if (svar_test := get_svar("ibook_settings")):
-        svar = load_json(svar_test)
+    shorthand_items = {
+        "Acquisition's Incorporated (ai)": "ai",
+        "Elemental Evil Player's Companion (eepc)": "eepc",
+        "Explorer's Guide to Wildemount (egtw)": "egtw",
+        "Fizban's Treasury of Dragons (ftod)": "ftod",
+        "Guildmasters' Guide to Ravnica (ggtr)": "ggtr",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "idrotf",
+        "Lost Laboratory of Kwalish (llok)": "llok",
+        "Player's Handbook (phb)": "phb",
+        "Spelljammer Adventures in Space (sacoc)": "sacoc",
+        "Strixhaven: A Curriculum of Chaos (sais)": "sais",
+        "Sword Coast Adventurer's Guide (scag)": "scag",
+        "Tasha's Cauldron of Everything (tcoe)": "tcoe",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr",
+        "Xanathar's Guide to Everything (xgte)": "xgte" 
+    }
 
+    display_list = [f"{item} **(User)**" for item in uvar_list] + [f"{item} **(Server)**" for item in svar_list]
+    shorthand_list = [shorthand_items[item.split(" *")[0]] for item in display_list]
+
+    result_list = [display_list[i:i+5] for i in range(0,len(display_list), 5)]
+    short_list = [shorthand_list[i:i+5] for i in range(0,len(shorthand_list), 5)]
+
+    if page_num > 1 and (res_length := len(result_list)):
+
+        if page_num < res_length:
+            pass
+
+        else:
+            page_num = res_length
 
     else:
-        svar = {"Books": ["(Not setup)"]}
+        page_num = 1
+
+    if len(result_list) > 0:
+        res_length = len(result_list)
+
+    else:
+        result_list.append(['None'])
+        short_list.append(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])
+        page_num = 1
+        res_length = 1
+
+    result_list[page_num-1].insert(0, f"**Subscribed Sourcebooks: ({page_num}/{res_length})**")
+
+    return f"{ctx.author.display_name} checks their subscribed sourcebooks", "\n\n".join(result_list[page_num-1]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num-1])}.png", ""
+
+
+def main(input_list: list[str]) -> str:
 
     if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+        uvar_list = load_json(uvar_test)
 
     else:
-        uvar = ["(Not setup)"]
+        uvar_list = []
 
+    if(svar_test := get_svar('ibook_settings')):
+        svar_list = load_json(svar_test)['Books']
 
-    svar['Books'].insert(0, "**Server Sourcebooks:**")
-    uvar.insert(0, "**User Sourcebooks:**")
+    else:
+        svar_list = []
 
-    if len(svar['Books']) > 1:
+    if len(svar_list) != 0 or len(uvar_list) != 0:
         pass
 
     else:
-        svar['Books'].append("None")
+        return f"{ctx.author.display_name} checks their subscribed sourcebooks", "None", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["phb", "ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "sacoc", "sais", "scag", "tcoe", "tcsr", "xgte"])}.png', ""
 
-    if len(uvar) > 1:
-        pass
+    if len(input_list) > 0:
+        try:
+            return output_sub_list(int(input_list[0]), uvar_list, svar_list)
+
+        except:
+            return output_sub_list(1, uvar_list, svar_list)
 
     else:
-        uvar.append("None")
-
-    return f"{ctx.author.display_name} views subscribed sourcebooks", "\n".join(svar['Books']) + "\n" + "\n".join(uvar)
+        return output_sub_list(1, uvar_list, svar_list)
 
 
-title, f = main()
-
+title, f, thumb, color = main(&ARGS&)
+l = "<"
 
 </drac2>
 -title "{{title}}"
 -f "{{f}}"
--thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(["", 2, 3, 4, 5])}}.png"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!ibook list {{l}}#> | Updated 11/16/23 | ShadowsStride"
