@@ -30,7 +30,7 @@ def output_sub_list(page_num: int, uvar_list: list[str]) -> str:
         "Icewind Dale Rime of the Frostmaiden (idrotf)": "`!ibook sub idrotf`: Subscribes to Icewind Dale: Rime of the Frostmaiden",
         "Lost Laboratory of Kwalish (llok)": "`!ibook sub llok`: Subscribes to Lost Laboratory of Kwalish",
         "Player's Handbook (phb)": "`!ibook sub phb`: Subscribes to the Player's Handbook",
-        "Spelljammer Adventures in Space (sacoc)": "`!ibook sub sacoc`: Subscribes to Strixhaven: A Curriculum of Chaos",
+        "Spelljammer Adventures in Space (sacoc)": "`!ibook sub sacoc`: Subscribes to Spelljammer Adventures in Space",
         "Strixhaven: A Curriculum of Chaos (sais)": "`!ibook sub sais`: Subscribes to Strixhaven: A Curriculum of Chaos",
         "Sword Coast Adventurer's Guide (scag)": "`!ibook sub scag`: Subscribes to Sword Coast Adventurer's Guide",
         "Tasha's Cauldron of Everything (tcoe)": "`!ibook sub tcoe`: Subscribes to Tasha's Cauldron of Everything",
@@ -93,8 +93,6 @@ def main(input_list: list[str]) -> str:
 
     else:
         uvar_list = []
-
-    
 
     if len(input_list) > 0:
         try:
