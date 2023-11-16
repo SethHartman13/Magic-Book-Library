@@ -3,10 +3,11 @@
 # High-level Design
 
 ## Aliases
-- [ ] <span class="level1">`!ibook`</span> <span class="major">Major Requirement</span> <span class="rft">RFT</span>
+- [x] <span class="level1">`!ibook`</span>
     - Provides help menu
-    - [ ] <span class="level2">`!ibook serve`</span> 
+    - [x] <span class="level2">`!ibook serve`</span> 
         - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
+
         - [ ] <span class="level3">`!ibook serve clear`</span>
             - Clears the books within the <span class="svar">`magic_book_settings`</svar>
             - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
@@ -29,6 +30,7 @@
 
     - [x] <span class="level2">`!ibook sub`
         - Provides a list of the different sourcebooks to subscribe to
+        - Also allows the adding of GVARs and SVARs
         - [x] <span class="level3">`!ibook sub ai`</span><span class="required">*
             - Subscribes to Acquisition's Incorporated
 
@@ -96,11 +98,11 @@
         - setting name (<span class="argument">argument</span>, <span class="optional">optional</span>)
         - setting condition (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
-- [ ] <span class="level1">`!wizbook` <span class="major">Major Requirement
+- [ ] <span class="level1">`!wizbook`
     - Gives overview on how to use wizbook
     - [ ] <span class="level2">`!wizbook add`
         - Provdes a help menu listing the wizard books they can add (and if they can add it)
-        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*</span> <span class="rft">RFT</span>
+        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*</span>
             - Adds Alchemical Compendium to player CVAR
 
         - [ ] <span class="level3">`!wizbook add astr`</span><span class="required">*
@@ -127,7 +129,7 @@
         - [ ] <span class="level3">`!wizbook add prot`</span><span class="required">*
             - Adds Protective Verses to player CVAR
 
-        - [ ] <span class="level3">`!wizbook add crys`</span><span class="required">*</span> <span class="minor">Minor Requirement
+        - [ ] <span class="level3">`!wizbook add crys`</span><span class="required">*</span>
             - Adds Crystalline Chronicle to player CVAR
 
 
@@ -162,7 +164,7 @@
     - [ ] <span class="level2"> `!wizbook list`
         - Provides list of wizard books (and their spells) in CVAR
 
-- [ ] <span class="level1"> `!primer` <span class="minor">Minor Requirement
+- [ ] <span class="level1"> `!primer`
     - Gives help menu
     - [ ] <span class="level2">`!primer add`
         - Provides a help menu listing the primers they can add (and if they can add it)
