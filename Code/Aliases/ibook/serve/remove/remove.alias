@@ -40,7 +40,7 @@ def main(input_list: list[str]) -> str:
         return None, "Expected at least one argument"
 
     # If it finds at least one match
-    if (item_results := search_list(input_list[0], svar['Books']))
+    if (item_results := search_list(input_list[0], svar['Books'])):
 
         # If it finds exactly one match, remove item from list
         if len(item_results) == 1:
@@ -79,7 +79,7 @@ if outcome:
     title = f"{ctx.author.display_name} has (attempted) to remove {content} from `ibook_settings`"
     f = ""
     color = ""
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(["", 2, 3, 4, 5])}.png"
+    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"
 
     svar_str = f"!svar ibook_settings {outcome}"
 
@@ -93,4 +93,4 @@ else:
 
 </drac2>
 {{svar_str}}
-"!embed -title {{title}} -f {{f}} -color {{color}} -thumb {{thumb}}"
+!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve remove [source] | Updated 11/16/23 | ShadowsStride"

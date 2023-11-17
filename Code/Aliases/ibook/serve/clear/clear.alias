@@ -33,44 +33,58 @@ def main(input_list: list[str]) -> str:
 
         # If the SVAR does not exist
         else:
-            return None, "SVAR has not been created"
+            return None, f"{ctx.author.display_name} has encountered an error", "SVAR has not been created"
 
     # If we get no inputs
     else:
-        return None, "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
+        return None, f"{ctx.author.display_name} has encountered a warning", "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
 
-    # Checks to see if "confirm" is present
-    for input_item in input_list:
-        if input_item.lower() != "confirm":
-            pass
+    if len(svar['Books']) != 0:
+        pass
+
+    else:
+        return None, f"{ctx.author.display_name} has encountered a error", "The server sourcebooks have already been cleared"
+
+    if "confirm" in (join_str := "".join(input_list).lower()):
+        svar['Books'] = []
+
+        return f"{ctx.author.display_name} has attempted to clear the SVAR sourcebooks", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {dump_json(svar)}"
+
+    elif "undo" in join_str:
+        
+        if (svar_backup_test := get_svar('ibook_settings_backup')):
+            svar_str1 = f"!svar ibook_settings_backup {svar_test}"
+
+            svar_str2 = f"!svar ibook_settings {svar_backup_test}"
+
+            return f"{ctx.author.display_name} has attempted to restore the SVAR sourcebooks from backup", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {svar_backup_test}"
 
         else:
-            return True, svar
+            return None, f"{ctx.author.display_name} has encountered an error", "There are no backups to restore"
 
-    return None, "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
+    else:
+        return None, f"{ctx.author.display_name} has encountered a warning", "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
 
+title, svar_str1, svar_str2 = main(&ARGS&)
 
-outcome, f = main()
-
-if outcome:
-    title = f"{ctx.author.display_name} has cleared the sourcebooks in `ibook_settings`"
-    svar = {key: value for key, value in f.items() if key != "Books"}
+if title:
     f = ""
     color = ""
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(["", 2, 3, 4, 5])}.png"
-
-    svar['Books'] = []
-    svar_str = f"!svar ibook_settings {dump_json(svar)}"
+    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"
 
 else:
-    title = f"{ctx.author.display_name} has encountered an error"
-    f = content
+    title = svar_str1
+    f = svar_str2
     color = "#cc0202"
     thumb = "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
 
-    svar_str = ""
+    svar_str1 = ""
+    svar_str2 = ""
+
+l = "<"
 
 
 </drac2>
-{{svar_str}}
-"!embed -title {{title}} -f {{f}} -color {{color}} -thumb {{thumb}}"
+{{svar_str1}}
+{{svar_str2}}
+!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve {{l}}clear/confirm> | Updated 11/16/23 | ShadowsStride"

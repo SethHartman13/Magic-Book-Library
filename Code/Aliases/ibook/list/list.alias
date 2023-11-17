@@ -25,7 +25,7 @@ def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -
     }
 
     display_list = [f"{item} **(User)**" for item in uvar_list] + [f"{item} **(Server)**" for item in svar_list]
-    shorthand_list = [shorthand_items[item.split(" *")[0]] for item in display_list]
+    shorthand_list = [shorthand_items[item.split(" *")[0]] for item in display_list if item.split(" *")[0] in shorthand_items.keys()]
 
     result_list = [display_list[i:i+5] for i in range(0,len(display_list), 5)]
     short_list = [shorthand_list[i:i+5] for i in range(0,len(shorthand_list), 5)]

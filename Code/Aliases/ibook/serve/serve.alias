@@ -8,20 +8,20 @@ def output_serve_list(page_num: int, uvar_list: list[str], svar_list: list[str])
         uvar_list.remove(item)
 
     items = {
-        "Acquisition's Incorporated (ai)": "`!ibook serve ai`: Serves Acquisition's Incorporated content",
-        "Elemental Evil Player's Companion (eepc)": "`!ibook serve eepc`: Serves Elemental Evil Player's Companion content",
-        "Explorer's Guide to Wildemount (egtw)": "`!ibook serve egtw`: Serves Explorers Guide to Wildemount content",
-        "Fizban's Treasury of Dragons (ftod)": "`!ibook serve ftod`: Serves Fizban's Treasury of Dragons content",
-        "Guildmasters' Guide to Ravnica (ggtr)": "`!ibook serve ggtr`: Serves Guildmaster's Guide to Ravnica content",
-        "Icewind Dale Rime of the Frostmaiden (idrotf)": "`!ibook serve idrotf`: Serves Icewind Dale: Rime of the Frostmaiden content",
-        "Lost Laboratory of Kwalish (llok)": "`!ibook serve llok`: Serves Lost Laboratory of Kwalish content",
-        "Player's Handbook (phb)": "`!ibook serve phb`: Serves the Player's Handbook content",
-        "Spelljammer Adventures in Space (sacoc)": "`!ibook serve sacoc`: Serves Spelljammer Adventures in Space content",
-        "Strixhaven: A Curriculum of Chaos (sais)": "`!ibook serve sais`: Serves Strixhaven: A Curriculum of Chaos content",
-        "Sword Coast Adventurer's Guide (scag)": "`!ibook serve scag`: Serves Sword Coast Adventurer's Guide content",
-        "Tasha's Cauldron of Everything (tcoe)": "`!ibook serve tcoe`: Serves Tasha's Cauldron of Everything content",
-        "Tal'Dorei Campaign Setting Reborn (tcsr)": "`!ibook serve tcsr`: Serves Tal'Dorei Campaign Setting Reborn content",
-        "Xanathar's Guide to Everything (xgte)": "`!ibook serve xgte`: Serves Xanathar's Guide to Everything content" 
+        "Acquisition's Incorporated (ai)": "`!ibook serve add (ai)`: Serves Acquisition's Incorporated content",
+        "Elemental Evil Player's Companion (eepc)": "`!ibook serve add (eepc)`: Serves Elemental Evil Player's Companion content",
+        "Explorer's Guide to Wildemount (egtw)": "`!ibook serve add (egtw)`: Serves Explorers Guide to Wildemount content",
+        "Fizban's Treasury of Dragons (ftod)": "`!ibook serve add (ftod)`: Serves Fizban's Treasury of Dragons content",
+        "Guildmasters' Guide to Ravnica (ggtr)": "`!ibook serve add (ggtr)`: Serves Guildmaster's Guide to Ravnica content",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "`!ibook serve add (idrotf)`: Serves Icewind Dale: Rime of the Frostmaiden content",
+        "Lost Laboratory of Kwalish (llok)": "`!ibook serve add (llok)`: Serves Lost Laboratory of Kwalish content",
+        "Player's Handbook (phb)": "`!ibook serve add (phb)`: Serves the Player's Handbook content",
+        "Spelljammer Adventures in Space (sacoc)": "`!ibook serve add (sacoc)`: Serves Spelljammer Adventures in Space content",
+        "Strixhaven: A Curriculum of Chaos (sais)": "`!ibook serve add (sais)`: Serves Strixhaven: A Curriculum of Chaos content",
+        "Sword Coast Adventurer's Guide (scag)": "`!ibook serve add (scag)`: Serves Sword Coast Adventurer's Guide content",
+        "Tasha's Cauldron of Everything (tcoe)": "`!ibook serve add (tcoe)`: Serves Tasha's Cauldron of Everything content",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "`!ibook serve add (tcsr)`: Serves Tal'Dorei Campaign Setting Reborn content",
+        "Xanathar's Guide to Everything (xgte)": "`!ibook serve add (xgte)`: Serves Xanathar's Guide to Everything content" 
     }
 
     shorthand_items = {
@@ -49,10 +49,10 @@ def output_serve_list(page_num: int, uvar_list: list[str], svar_list: list[str])
 
         else:
             if " " in item:
-                items[item] = f"`ibook serve {q}{item}{q}`: Serves custom content #{i}"
+                items[item] = f"`ibook serve {q}{item}{q})`: Serves custom content #{i}"
 
             else:
-                items[item] = f"`ibook serve {item}`: Serves custom content #{i}"
+                items[item] = f"`ibook serve {item})`: Serves custom content #{i}"
 
             shorthand_items[item] = ""
             i += 1
