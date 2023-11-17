@@ -23,6 +23,15 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
 
 
 def main(input_list: list[str]) -> str:
+    """
+    Main program function
+
+    Args:
+        input_list (list[str]): List of inputs from user
+
+    Return:
+        str: Results    
+    """
 
     # If we get at least one input
     if len(input_list) > 0:
@@ -39,39 +48,46 @@ def main(input_list: list[str]) -> str:
     else:
         return None, f"{ctx.author.display_name} has encountered a warning", "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
 
+    # If there is at least one sourcebook to clear
     if len(svar['Books']) != 0:
         pass
 
+    # If there are no sourcebooks to clear
     else:
         return None, f"{ctx.author.display_name} has encountered a error", "The server sourcebooks have already been cleared"
 
+    # If confirm was given, clear sourcebooks
     if "confirm" in (join_str := "".join(input_list).lower()):
         svar['Books'] = []
 
-        return f"{ctx.author.display_name} has attempted to clear the SVAR sourcebooks", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {dump_json(svar)}"
+        return f"{ctx.author.display_name} clears the served SVAR sourcebooks", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {dump_json(svar)}"
 
+    # If undo was given
     elif "undo" in join_str:
         
+        # If a backup exists, return svar strings
         if (svar_backup_test := get_svar('ibook_settings_backup')):
-            svar_str1 = f"!svar ibook_settings_backup {svar_test}"
-
-            svar_str2 = f"!svar ibook_settings {svar_backup_test}"
-
             return f"{ctx.author.display_name} has attempted to restore the SVAR sourcebooks from backup", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {svar_backup_test}"
 
+        # If a backup goes exist, return error
         else:
             return None, f"{ctx.author.display_name} has encountered an error", "There are no backups to restore"
 
+    # If neither undo, nor confirm was given, return error
     else:
         return None, f"{ctx.author.display_name} has encountered a warning", "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
 
+
+# Main Program Function
 title, svar_str1, svar_str2 = main(&ARGS&)
 
+# If there was no error
 if title:
     f = ""
     color = ""
     thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"
 
+# If there was an error
 else:
     title = svar_str1
     f = svar_str2
@@ -81,10 +97,8 @@ else:
     svar_str1 = ""
     svar_str2 = ""
 
-l = "<"
-
 
 </drac2>
 {{svar_str1}}
 {{svar_str2}}
-!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve {{l}}clear/confirm> | Updated 11/16/23 | ShadowsStride"
+!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve [clear/confirm] | Updated 11/17/23 | ShadowsStride"

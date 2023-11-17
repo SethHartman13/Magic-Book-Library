@@ -23,6 +23,16 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
 
 
 def main(input_list: list[str]) -> str:
+    """
+    Main Program Function
+    
+    Args:
+        input_list (list[str]): List of inputs from the user
+
+    Return:
+        str: Results
+    
+    """
 
     # If it recieved at least one input
     if len(input_list) > 0:
@@ -73,16 +83,18 @@ def main(input_list: list[str]) -> str:
         return None, "Source not found"
 
 
+# Main program function
 outcome, content = main(&ARGS&)
 
+# If there were no errors
 if outcome:
     title = f"{ctx.author.display_name} has (attempted) to remove {content} from `ibook_settings`"
     f = ""
     color = ""
     thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"
-
     svar_str = f"!svar ibook_settings {outcome}"
 
+# If there were errors
 else:
     title = f"{ctx.author.display_name} has encountered an error"
     f = content
@@ -93,4 +105,4 @@ else:
 
 </drac2>
 {{svar_str}}
-!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve remove [source] | Updated 11/16/23 | ShadowsStride"
+!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve remove [source] | Updated 11/17/23 | ShadowsStride"
