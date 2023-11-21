@@ -8,18 +8,15 @@
     - [x] <span class="level2">`!ibook serve`</span> <span class="documented">Documented</span>
         - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
 
-        - [x] <span class="level3">`!ibook serve clear`</span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook serve clear`<span class="required">`[confirm/undo]`</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/clear/clear.md)
-            - confirm (<span class="argument">argument</span>, <span class="required">required</span>)
             
-        - [x] <span class="level3">`!ibook serve remove`</span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook serve remove`<span class="required">`[source/gvar/svar]`</span></span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/remove/remove.md)
-            - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
 
-        - [x] <span class="level3">`!ibook serve add`</span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook serve add`<span class="required">`[source/gvar/svar/all]`</span></span> <span class="documented">Documented</span>
 
             - [Markdown](../Code/Aliases/ibook/serve/add/add.md)
-            - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
 
         - [x] <span class="level3">`!ibook serve help`</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/help/help.md)
@@ -27,68 +24,65 @@
     - [x] <span class="level2">`!ibook sub`
         - Provides a list of the different sourcebooks to subscribe to
         - Also allows the adding of GVARs and SVARs
-        - [x] <span class="level3">`!ibook sub ai`</span><span class="required">* </span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook sub ai`</span><span class="required">* 
             - [Markdown](../Code/Aliases/ibook/sub/ai/ai.md)
 
-        - [x] <span class="level3">`!ibook sub eepc`</span><span class="required">* </span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook sub eepc`</span><span class="required">* 
             - [Markdown](../Code/Aliases/ibook/sub/eepc/eepc.md)
 
-        - [x] <span class="level3">`!ibook sub egtw`</span><span class="required">* </span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook sub egtw`</span><span class="required">* 
             - [Markdown](../Code/Aliases/ibook/sub/egtw/egtw.md)
 
-        - [x] <span class="level3">`!ibook sub ftod`</span><span class="required">* </span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook sub ftod`</span><span class="required">* 
             - [Markdown](../Code/Aliases/ibook/sub/egtw/egtw.md)
 
-        - [x] <span class="level3">`!ibook sub ggtr`</span><span class="required">* </span> <span class="documented">Documented</span>
-            - [Markdown](../Code/Aliases/ibook/sub/idrtf/idrtf.md)
+        - [x] <span class="level3">`!ibook sub ggtr`</span><span class="required">* 
+            - [Markdown](../Code/Aliases/ibook/sub/ggtr/ggtr.md)
 
 
-        - [x] <span class="level3">`!ibook sub idrotf`</span><span class="required">*
-            - Subscribes to Icewind Dale: Rime of the Frostmaiden
+        - [x] <span class="level3">`!ibook sub idrotf`</span><span class="required">* 
+            - [Markdown](../Code/Aliases/ibook/sub/idrotf/idrotf.md)
 
 
-        - [x] <span class="level3">`!ibook sub llok`</span><span class="required">*
-            - Subscribes to Lost Laboratory of Kwalish
+        - [x] <span class="level3">`!ibook sub llok`</span><span class="required">* 
+            - [Markdown](../Code/Aliases/ibook/sub/llok/llok.md)
 
 
         - [x] <span class="level3">`!ibook sub phb`</span><span class="required">*
-            - Subscribes to the Player's Handbook
+            - [Markdown](../Code/Aliases/ibook/sub/phb/phb.md)
 
 
         - [x] <span class="level3">`!ibook sub sais`</span><span class="required">*
-            - Subscribes to Spelljammer: Adventurers in Space
+            - [Markdown](../Code/Aliases/ibook/sub/sais/sais.md)
 
 
         - [x] <span class="level3">`!ibook sub sacoc`</span><span class="required">*
-            - Subscribes to Strixhaven: A Curriculum of Chaos
+            - [Markdown](../Code/Aliases/ibook/sub/sacoc/sacoc.md)
 
 
         - [x] <span class="level3">`!ibook sub scag`</span><span class="required">*
-            - Subscribes to Sword Coast Adventurer's Guide
+            - [Markdown](../Code/Aliases/ibook/sub/scag/scag.md)
 
 
         - [x] <span class="level3">`!ibook sub tcsr`</span><span class="required">*
-            - Subscribes to Tal'Dorei Campaign Setting Reborn
+            - [Markdown](../Code/Aliases/ibook/sub/tcsr/tcsr.md)
 
 
         - [x] <span class="level3">`!ibook sub tcoe`</span><span class="required">*
-            - Subscribes to Tasha's Cauldron of Everything
+            - [Markdown](../Code/Aliases/ibook/sub/tcoe/tcoe.md)
 
 
         - [x] <span class="level3">`!ibook sub xgte`</span><span class="required">*
-            - Subscribes to Xanathar's Guide to Everything
+            - [Markdown](../Code/Aliases/ibook/sub/xgte/xgte.md)
 
-    -  [x] <span class="level2">`!ibook unsub`
+    -  [x] <span class="level2">`!ibook unsub`<span class="required">`[source/gvar/svar]`</span></span>
         -  Unsubscribes the user from a sourcebook in their library
-        -  sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
     
     - [x] <span class="level2">`!ibook list`
         - Lists sourcebooks the user is subscribed to
 
-    - [x] <span class="level2">`!ibook settings`
+    - [x] <span class="level2">`!ibook settings`<span class="optional">`<setting_name> <setting condition>`</span></span>
         - Lists the current settings
-        - setting name (<span class="argument">argument</span>, <span class="optional">optional</span>)
-        - setting condition (<span class="argument">argument</span>, <span class="optional">optional</span>)
 
 - [ ] <span class="level1">`!wizbook`
     - Gives overview on how to use wizbook
