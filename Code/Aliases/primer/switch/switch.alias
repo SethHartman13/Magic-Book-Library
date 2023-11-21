@@ -230,6 +230,7 @@ def main(input_list: list[str]) -> str:
     
     """
 
+    # NEED TO CHECK TO SEE IF SOURCES WITHIN UVAR AND SVAR EXIST
     if len(input_list) >= 2:
 
         ch = character()

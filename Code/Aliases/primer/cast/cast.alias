@@ -25,6 +25,8 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
 
 def main(input_list: list[str], ch: character) -> str:
 
+    # NEED TO CHECK TO SEE IF SOURCES WITHIN UVAR AND SVAR EXIST
+
 
     if len(input_list) > 0:
 
