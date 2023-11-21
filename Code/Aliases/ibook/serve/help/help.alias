@@ -1,0 +1,28 @@
+embed
+<drac2>
+
+
+f = [
+    "- `*!ibook serve <#>`: Brings up list of content available to serve to the server variable `ibook_settings` (and their commands).",
+    "   - `<#>`: Page number",
+    "",
+    "- `*!ibook serve add [source/all]`: Serves content from the player's sourcebook to the `ibook_setting` server variable",
+    "   - `source`: Name of the sourcebook, server variable, or global variable",
+    "   - `all`: If all is given, it adds all sourcebooks in the user's",
+    "",
+    "- `*!ibook serve remove [source]`: Removes the specified served content within the `ibook_settings` server variable.",
+    "   - `source`: Name of the sourcebook, server variable, or global variable",
+    "",
+    "- `*!ibook serve clear`: Clears the served content within the `ibook_settings` server variable.",
+    "",
+    "-  `!ibook serve help`: Brings up this menu",
+    "",
+    "`*Requires Requires permissions to edit server variables. Either Administrator Discord permissions or a role named \'Server Aliaser\' or \'Dragonspeaker\' is required.`"
+]
+
+
+</drac2>
+-title "{{ctx.author.display_name}} needs someone to give them the help action"
+-f "{{'\n'.join(f)}}"
+-thumb "{{f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"}}"
+-footer "<>'s are optional | []'s are required{{"\n"}}!ibook serve help | Updated 11/20/23 | ShadowsStride"

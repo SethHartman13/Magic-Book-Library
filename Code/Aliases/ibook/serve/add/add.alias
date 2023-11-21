@@ -24,7 +24,18 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
 
 
 def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> str:
+    """
+    Handles adding to svar list from the uvar list
 
+    Args:
+        input_list (list[str]): Sources being added to the svar
+        uvar_list (list[str]): Subbed sources
+
+    Return:
+        str: Result  
+    """
+
+    # Mapping table for codes
     shorthand_items = {
         "Acquisition's Incorporated (ai)": "ai",
         "Elemental Evil Player's Companion (eepc)": "eepc",
@@ -42,39 +53,46 @@ def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> str:
         "Xanathar's Guide to Everything (xgte)": "xgte" 
     }
 
+    # If SVAR exists, load dictionary
     if (svar_test := get_svar('ibook_settings')):
         svar_dict = load_json(svar_test)
 
+        # If Books key in dictionary
         if "Books" in svar_dict.keys():
             pass
 
+        # If Books key not in dictionary
         else:
             svar_dict['Books'] = []
 
+    # If SVAR does not exist, create dictionary
     else:
-        svar_dict = {'Settings': {}, 'Books': []}
+        svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
 
-    for item in svar_dict['Books']:
-        if item in input_list:
-            input_list.remove(item)
+    # Removes already existing sources
+    input_list = list(set(input_list) - set(svar_dict['Books']))
 
-        else:
-            pass
-
+    # Grabs image_codes for the thumbnail
     image_codes = [shorthand_items[source] for source in svar_dict['Books'] if source in shorthand_items]
 
-    if len(image_codes) == 0:
-        image_codes.append("")
-
-    else:
+    # If there are image codes
+    if len(image_codes) > 0:
         pass
 
+    # If there are not image codes
+    else:
+        image_codes.append("")
+
+    
+    # If there was at least 1 unique source being served
     if len(input_list) > 0:
         pass
         
+    # If there were no unique sources being served
     else:
         return "", f"{ctx.author.display_name} adds to the server's sources", "**Served Sources:**\nNone", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(image_codes)}.png", ""
 
+    # Adds sources to SVAR dict
     for source in input_list:
         svar_dict['Books'].append(source)
 
@@ -82,30 +100,54 @@ def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> str:
 
 
 def main(input_list: list[str]) -> str:
+    """
+    Main program function
+
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Restult
+    """
+
+    # If there was at least one input
     if len(input_list) > 0:
+
+        # If UVAR exists, load list
         if (uvar_test := get_uvar("ibook_source_list")):
             uvar_list = load_json(uvar_test)
 
+        # If UVER does not exist
         else:
             return "", f"{ctx.author.display_name} has encountered an error", "You are not subscribed to any content", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
+    # If there were no inputs
     else:
         return "", f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b" 
 
+    # If 'all' parameter is passed
     if "all" in input_list[0].lower():
         return add_to_svar_list(uvar_list, uvar_list)
 
+    # If 'all' parameter is not passed
     else:
-        
+
+        # If the source exists
         if (key_result := search_list(input_list[0], uvar_list)):
+
+            # If it only finds exactly one match
             if len(key_result) == 1:
                 return add_to_svar_list(key_result, uvar_list)
 
+            # If it finds more than one match, go through each match
             else:
                 for key in key_result:
+
+                    # If it is not an exact match
                     if key.lower() != input_list[0].lower():
                         pass
 
+                    # If it is an exact match
                     else:
                         return add_to_svar_list([key], uvar_list)
 
@@ -113,13 +155,15 @@ def main(input_list: list[str]) -> str:
 
                 return "", f"{ctx.author.display_name} has encountered an error", "\n".join(key_result), f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
+        # If the source does not exist
         else:
             return "", f"{ctx.author.display_name} has encountered an error", "Source not found", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
 
+# Main program function
 svar_str, title, f, thumb, color = main(&ARGS&)
 l = "<"
 
 </drac2>
 {{svar_str}}
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve add [source/all] | Updated 11/16/23 | ShadowsStride"
+!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve add [source/all] | Updated 11/17/23 | ShadowsStride"
