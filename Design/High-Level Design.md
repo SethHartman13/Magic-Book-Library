@@ -5,28 +5,24 @@
 ## Aliases
 - [x] <span class="level1">`!ibook`</span>
     - Provides help menu
-    - [x] <span class="level2">`!ibook serve`</span> 
+    - [x] <span class="level2">`!ibook serve`</span> <span class="documented">Documented</span>
         - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
 
-        - [ ] <span class="level3">`!ibook serve clear`</span>
-            - Clears the books within the <span class="svar">`ibook_settings`</svar>
-            - confirm (<span class="argument">argument</span>, <span class="optional">optional</span>)
-                - If this is not given, it will display a warning to the user that this will clear all the GVARs/sourcebooks in the SVAR holding allowed content
-
-
-        - [ ] <span class="level3">`!ibook serve remove`</span>
-
-            - Clears a book within the <span class="svar">`ibook_settings`</svar>
+        - [x] <span class="level3">`!ibook serve clear`</span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/serve/clear/clear.md)
+            - confirm (<span class="argument">argument</span>, <span class="required">required</span>)
+            
+        - [x] <span class="level3">`!ibook serve remove`</span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/serve/remove/remove.md)
             - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
 
-        - [ ] <span class="level3">`!ibook serve add`</span>
+        - [x] <span class="level3">`!ibook serve add`</span> <span class="documented">Documented</span>
 
-            - Adds a book within the <span class="svar">`ibook_settings`</svar>
+            - [Markdown](../Code/Aliases/ibook/serve/add/add.md)
             - sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
-                - If "all" is given, it will add all sourcebooks
 
-        - [ ] <span class="level3">`!ibook serve help`</span>
-            - Provides help menu
+        - [x] <span class="level3">`!ibook serve help`</span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/serve/help/help.md)
 
     - [x] <span class="level2">`!ibook sub`
         - Provides a list of the different sourcebooks to subscribe to
@@ -85,7 +81,6 @@
         - [x] <span class="level3">`!ibook sub xgte`</span><span class="required">*
             - Subscribes to Xanathar's Guide to Everything
 
-
     -  [x] <span class="level2">`!ibook unsub`
         -  Unsubscribes the user from a sourcebook in their library
         -  sourcebook name (<span class="argument">argument</span>, <span class="required">required</span>)
@@ -93,7 +88,7 @@
     - [x] <span class="level2">`!ibook list`
         - Lists sourcebooks the user is subscribed to
 
-    - [ ] <span class="level2">`!ibook settings`
+    - [x] <span class="level2">`!ibook settings`
         - Lists the current settings
         - setting name (<span class="argument">argument</span>, <span class="optional">optional</span>)
         - setting condition (<span class="argument">argument</span>, <span class="optional">optional</span>)
