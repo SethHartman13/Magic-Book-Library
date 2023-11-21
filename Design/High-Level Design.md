@@ -6,7 +6,7 @@
 - [x] <span class="level1">`!ibook`</span>
     - Provides help menu
     - [x] <span class="level2">`!ibook serve`</span> <span class="documented">Documented</span>
-        - Sends GVARS from the UVAR of the player to the SVAR holding allowed content
+        - [Markdown](../Code/Aliases/ibook/serve/serve.md)
 
         - [x] <span class="level3">`!ibook serve clear`<span class="required">`[confirm/undo]`</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/clear/clear.md)
@@ -74,7 +74,7 @@
         - [x] <span class="level3">`!ibook sub xgte`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/xgte/xgte.md)
 
-    -  [x] <span class="level2">`!ibook unsub`<span class="required">`[source/gvar/svar]`</span></span>
+    -  [ ] <span class="level2">`!ibook unsub`<span class="required">`[source/gvar/svar]`</span></span>
         -  Unsubscribes the user from a sourcebook in their library
     
     - [x] <span class="level2">`!ibook list`
@@ -118,31 +118,22 @@
             - Adds Crystalline Chronicle to player CVAR
 
 
-    - [ ] <span class="level2"> `!wizbook activate`
+    - [ ] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span>
         - Activates the books special ability
-        - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
 
-
-    - [ ] <span class="level2"> `!wizbook cast`
+    - [ ] <span class="level2"> `!wizbook cast`<span class="required">`[Spell Name]`</span>
         - Casts a spell from the book
-        - spell name (<span class="argument">argument</span>, <span class="required">required</span>)
 
-
-    - [ ] <span class="level2"> `!wizbook remove`
+    - [ ] <span class="level2"> `!wizbook remove`<span class="required">`[Book Name]`</span>
         - Removes a book from the character's CVAR
-        - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
 
         - [ ] <span class="level3">`!wizbook remove undo`
             - Undo removal of book
 
-
-    - [ ] <span class="level2"> `!wizbook switch`
+    - [ ] <span class="level2"> `!wizbook switch`<span class="required">`[Magic Book Spell] [Spellbook Spell]`</span>
         - Switches out spell from their book from a spell in their spellbook
-        - spell name 1 (in magic book) (<span class="argument">argument</span>, <span class="required">required</span>)
-        - spell name 2 (in spellbook) (<span class="argument">argument</span>, <span class="required">required</span>)
 
-
-    - [ ] <span class="level2"> `!wizbook cc`
+    - [ ] ~~<span class="level2"> `!wizbook cc`~~
         - Checks Custom Counter of book specified (with # modifies the counter number)
         - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
 
@@ -175,21 +166,17 @@
     - [ ] <span class="level2"> `!primer cast`
         - Casts spell using the primer
 
-    - [ ] <span class="level2"> `!primer cc`
+    - [ ] ~~<span class="level2"> `!primer cc`~~
         - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
 
 
-    - [ ] <span class="level2"> `!primer remove`
-        - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
+    - [ ] <span class="level2"> `!primer remove`<span class="required">`[Book Name]`</span>
 
-        - [ ] <span class="level3">`!primer remove undo`
-
+        - [ ] <span class="level3">`!primer remove undo`</span>
             - Undo removal of book
 
-    - [ ] <span class="level2"> `!primer switch`
+    - [ ] <span class="level2"> `!primer switch`<span class="required">`[Primer Book Spell] [Spellbook Spell]`</span>
         - Switches spell that the primer has and switches it to the spell specified
-        - spell name 1 (in magic book) (<span class="argument">argument</span>, <span class="required">required</span>)
-        - spell name 2 (to be switched to) (<span class="argument">argument</span>, <span class="required">required</span>)
 
     - [ ] <span class="level2"> `!primer list`
         - Provides list of primers (and their spell) in CVAR

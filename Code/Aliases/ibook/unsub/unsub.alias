@@ -24,45 +24,78 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
 
 
 def image_grab(title_str: str) -> str:
+    """
+    Grabs the image code requested (or a random one)
 
-    for code in ['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sacoc', 'sais', 'scag', 'tcoe', 'tcsr', 'xgte']:
+    Args:
+        title_str (str): Name of sourcebook
+
+    Return:
+        str: Image code
+    """
+
+    # Checks to see if it finds a match by checking this set (for randomness to try to obtain average time complexity)
+    for code in {'(ai)', '(eepc)', '(egtw)', '(ftod)', '(ggtr)', '(idrotf)', '(llok)', '(phb)', '(sacoc)', '(sais)', '(scag)', '(tcoe)', '(tcsr)', '(xgte)'}:
         if code.lower() in title_str.lower():
-            return code
+            return code.split("(")[1].split(")")[0]
 
         else:
             pass
 
-    return f"wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}"
+    # If it found no match, return random code
+    return randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sacoc', 'sais', 'scag', 'tcoe', 'tcsr', 'xgte'])
 
 
 def main(input_list: list[str]) -> str:
+    """
+    Main program function
 
+    Args:
+        input_list (list[str]): List of inputs from user
+
+    Return:
+        str: Results
+    """
+
+    # If there was at least one input
     if len(input_list) > 0:
         pass
     
+    # If there were no inputs
     else:
         return None, "Expected at least one argument"
     
+    # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar = load_json(uvar_test)
 
+    # If UVAR does not exist
     else:
         return None, "UVAR does not exist"
 
+    # If it finds at least one match
     if (result_list := search_list(input_list[0], uvar)):
 
+        # If it finds exactly one match
         if len(result_list) == 1:
+
+            # Remove item and update UVAR
             removed_item = uvar.pop(uvar.index(result_list[0]))
             set_uvar("ibook_source_list", dump_json(uvar))
 
             return f"{ctx.author.display_name} has removed {removed_item} from their ibook list", ""
 
-
+        # If it finds more than one match
         else:
+
+            # Searches through all the matches, trying to find an exact match
             for item in result_list:
+
+                # If not an exact match
                 if item.lower() != input_list[0].lower():
                     pass
 
+                # If an exact match, remove item and update UVAR
                 else:
                     removed_item = uvar.pop(uvar.index(item))
                     set_uvar("ibook_source_list", dump_json(uvar))
@@ -73,18 +106,21 @@ def main(input_list: list[str]) -> str:
 
             return None, "\n".join(result_list)
 
+    # If it finds no matches
     else:
         return None, "Sourcebook not found"
 
 
+# Main program function
 title, f = main(&ARGS&)
 
-
+# If there was no error
 if title:
 
     thumb = f"{image_grab(title)}"
     color = ""
 
+# If there was an error
 else:
     title = f"{ctx.author.display_name} has encountered an error"
     thumb = f"no_wizard"
@@ -96,4 +132,4 @@ else:
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{{thumb}}.png"
 -color "{{color}}"
--footer "!ibook unsub [sourcebook_name] | Updated 10/25/23 | ShadowsStride"
+-footer "!ibook unsub [sourcebook_name] | Updated 11/21/23 | ShadowsStride"
