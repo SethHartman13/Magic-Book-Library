@@ -6,7 +6,7 @@ Subalias to subscribe to the spells within Tasha's Cauldron of Everything
 `!ibook sub tcoe`: Subscribes to Tasha's Cauldron of Everything
 
 ## Licensing:
-This subalias requires owning the spells from [Tasha's Cauldron of Everything](https://www.dndbeyond.com/sources/scag):
+This subalias requires owning the spells from [Tasha's Cauldron of Everything](https://www.dndbeyond.com/sources/tcoe):
 - Booming Blade
 - Green-Flame Blade
 - Lightning Lure
