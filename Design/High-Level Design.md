@@ -27,23 +27,20 @@
     - [x] <span class="level2">`!ibook sub`
         - Provides a list of the different sourcebooks to subscribe to
         - Also allows the adding of GVARs and SVARs
-        - [x] <span class="level3">`!ibook sub ai`</span><span class="required">*
-            - Subscribes to Acquisition's Incorporated
+        - [x] <span class="level3">`!ibook sub ai`</span><span class="required">* </span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/sub/ai/ai.md)
 
-        - [x] <span class="level3">`!ibook sub eepc`</span><span class="required">*
-            - Subscribes to Elemental Evil Player's Companion
+        - [x] <span class="level3">`!ibook sub eepc`</span><span class="required">* </span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/sub/eepc/eepc.md)
 
+        - [x] <span class="level3">`!ibook sub egtw`</span><span class="required">* </span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/sub/egtw/egtw.md)
 
-        - [x] <span class="level3">`!ibook sub egtw`</span><span class="required">*
-            - Subscribes to Explorers Guide to Wildemount
+        - [x] <span class="level3">`!ibook sub ftod`</span><span class="required">* </span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/sub/egtw/egtw.md)
 
-
-        - [x] <span class="level3">`!ibook sub ftod`</span><span class="required">*
-            - Subscribes to Fizban's Treasury of Dragons
-
-
-        - [x] <span class="level3">`!ibook sub ggtr`</span><span class="required">*
-            - Subscribes to Guildmaster's Guide to Ravnica
+        - [x] <span class="level3">`!ibook sub ggtr`</span><span class="required">* </span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/ibook/sub/idrtf/idrtf.md)
 
 
         - [x] <span class="level3">`!ibook sub idrotf`</span><span class="required">*
@@ -96,7 +93,7 @@
 - [ ] <span class="level1">`!wizbook`
     - Gives overview on how to use wizbook
     - [ ] <span class="level2">`!wizbook add`
-        - Provdes a help menu listing the wizard books they can add (and if they can add it)
+        - Provides a help menu listing the wizard books they can add (and if they can add it)
         - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*</span>
             - Adds Alchemical Compendium to player CVAR
 
