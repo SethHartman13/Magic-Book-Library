@@ -2,28 +2,24 @@ embed
 <drac2>
 
 
-def main():
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
 
-    # If UVAR exists, load list
-    if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+    # If phb is not already in the list
+    if "Player's Handbook (phb)" not in uvar:
+        uvar.append("Player's Handbook (phb)")
 
-        if "Player's Handbook (phb)" not in uvar:
-            uvar.append("Player's Handbook (phb)")
+        # Set UVAR
+        set_uvar('ibook_source_list', dump_json(uvar))
 
-        else:
-            pass
-
-    # If UVAR does not exist, create list
+    # If phb is already in the list
     else:
-        uvar = ["Player's Handbook (phb)"]
-    
-    # Set UVAR
-    set_uvar('ibook_source_list', dump_json(uvar))
+        pass
 
-
-# Main program function
-main()
+# If UVAR does not exist, create list and set UVAR
+else:
+    set_uvar('ibook_source_list', dump_json(["Player's Handbook (phb)"]))
 
 
 </drac2>

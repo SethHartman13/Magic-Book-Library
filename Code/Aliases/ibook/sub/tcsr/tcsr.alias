@@ -1,32 +1,27 @@
 embed
 <drac2>
 
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
 
-def main():
+    # If tcsr is not already in the list
+    if "Tal'Dorei Campaign Setting Reborn (tcsr)" not in uvar:
+        uvar.append("Tal'Dorei Campaign Setting Reborn (tcsr)")
 
-    # If UVAR exists, load list
-    if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+        # Set UVAR
+        set_uvar('ibook_source_list', dump_json(uvar))
 
-        if "Tal'Dorei Campaign Setting Reborn (tcsr)" not in uvar:
-            uvar.append("Tal'Dorei Campaign Setting Reborn (tcsr)")
-
-        else:
-            pass
-
-    # If UVAR does not exist, create list
+    # If tcsr is already in the list
     else:
-        uvar = ["Tal'Dorei Campaign Setting Reborn (tcsr)"]
-    
-    # Set UVAR
-    set_uvar('ibook_source_list', dump_json(uvar))
+        pass
 
-
-# Main program function
-main()
+# If UVAR does not exist, create list and set UVAR
+else:
+    set_uvar('ibook_source_list', dump_json(["Tal'Dorei Campaign Setting Reborn (tcsr)"]))
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Tal'Dorei Campaign Setting Reborn (tcsr) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/tcsr.png"
--footer "!ibook sub tcsr | Updated 11/15/23 | ShadowsStride"
+-footer "!ibook sub tcsr | Updated 11/21/23 | ShadowsStride"

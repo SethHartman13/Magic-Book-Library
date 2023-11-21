@@ -2,31 +2,27 @@ embed
 <drac2>
 
 
-def main():
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
 
-    # If UVAR exists, load list
-    if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+    # If xgte is not already in the list
+    if "Xanathar's Guide to Everything (xgte)" not in uvar:
+        uvar.append("Xanathar's Guide to Everything (xgte)")
 
-        if "Xanathar's Guide to Everything (xgte)" not in uvar:
-            uvar.append("Xanathar's Guide to Everything (xgte)")
+        # Set UVAR
+        set_uvar('ibook_source_list', dump_json(uvar))
 
-        else:
-            pass
-
-    # If UVAR does not exist, create list
+    # If xgte is already in the list
     else:
-        uvar = ["Xanathar's Guide to Everything (xgte)"]
-    
-    # Set UVAR
-    set_uvar('ibook_source_list', dump_json(uvar))
+        pass
 
-
-# Main program function
-main()
+# If UVAR does not exist, create list and set UVAR
+else:
+    set_uvar('ibook_source_list', dump_json(["Xanathar's Guide to Everything (xgte)"]))
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Xanathar's Guide to Everything (xgte) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/xgte.png"
--footer "!ibook sub xgte | Updated 11/15/23 | ShadowsStride"
+-footer "!ibook sub xgte | Updated 11/21/23 | ShadowsStride"

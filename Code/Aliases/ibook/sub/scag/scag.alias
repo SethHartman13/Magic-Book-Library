@@ -2,30 +2,27 @@ embed
 <drac2>
 
 
-def main():
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
 
-    # If UVAR exists, load list
-    if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+    # If scag is not already in the list
+    if "Sword Coast Adventurer's Guide (scag)" not in uvar:
+        uvar.append("Sword Coast Adventurer's Guide (scag)")
 
-        if "Sword Coast Adventurer's Guide (scag)" not in uvar:
-            uvar.append("Sword Coast Adventurer's Guide (scag)")
+        # Set UVAR
+        set_uvar('ibook_source_list', dump_json(uvar))
 
-        else:
-            pass
-
-    # UVAR does not exist, create list
+    # If scag is already in the list
     else:
-        uvar = ["Sword Coast Adventurer's Guide (scag)"]
-    
-    # Set UVAR
-    set_uvar('ibook_source_list', dump_json(uvar))
+        pass
 
-# Main program function
-main()
+# UVAR does not exist, create list and set UVAR
+else:
+    set_uvar('ibook_source_list', dump_json(["Sword Coast Adventurer's Guide (scag)"]))
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Sword Coast Adventurer's Guide (scag) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/scag.png"
--footer "!ibook sub scag | Updated 11/15/23 | ShadowsStride"
+-footer "!ibook sub scag | Updated 11/21/23 | ShadowsStride"

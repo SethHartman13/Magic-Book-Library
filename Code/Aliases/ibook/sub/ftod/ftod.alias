@@ -2,33 +2,27 @@ embed
 <drac2>
 
 
-def main():
-    """
-    Main program function
-    """
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
 
-    # If UVAR exists, load list
-    if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+    # If ftod is not already in the list
+    if "Fizban's Treasury of Dragons (ftod)" not in uvar:
+        uvar.append("Fizban's Treasury of Dragons (ftod)")
 
-        if "Fizban's Treasury of Dragons (ftod)" not in uvar:
-            uvar.append("Fizban's Treasury of Dragons (ftod)")
-        
-        else:
-            pass
-
-    # If UVAR does not exist, create list
-    else:
-        uvar = ["Fizban's Treasury of Dragons (ftod)"]
+        # Set UVAR
+        set_uvar('ibook_source_list', dump_json(uvar))
     
-    # Set UVAR
-    set_uvar('ibook_source_list', dump_json(uvar))
+    # If ftod is already in the list
+    else:
+        pass
 
-# Main program function
-main()
+# If UVAR does not exist, create list and set UVAR
+else:
+    set_uvar('ibook_source_list', dump_json(["Fizban's Treasury of Dragons (ftod)"]))
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Fizban's Treasury of Dragons (ftod) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/ftod.png"
--footer "!ibook sub ftod | Updated 11/14/23 | ShadowsStride"
+-footer "!ibook sub ftod | Updated 11/21/23 | ShadowsStride"

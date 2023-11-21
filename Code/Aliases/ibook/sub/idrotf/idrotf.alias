@@ -2,30 +2,24 @@ embed
 <drac2>
 
 
-def main():
-    """
-    Main program function
-    """
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
 
-    # If UVAR exists, load list
-    if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+    # If idrotf is not already in the list
+    if "Icewind Dale Rime of the Frostmaiden (idrotf)" not in uvar:
+        uvar.append("Icewind Dale Rime of the Frostmaiden (idrotf)")
 
-        if "Icewind Dale Rime of the Frostmaiden (idrotf)" not in uvar:
-            uvar.append("Icewind Dale Rime of the Frostmaiden (idrotf)")
+        # Set UVAR
+        set_uvar('ibook_source_list', dump_json(uvar))
 
-        else:
-            pass
-
-    # If UVAR does not exist, create list
+    # If idrotf is already in the list
     else:
-        uvar = ["Icewind Dale Rime of the Frostmaiden (idrotf)"]
-    
-    # Set UVAR
-    set_uvar('ibook_source_list', dump_json(uvar))
+        pass
 
-# Main program function
-main()
+# If UVAR does not exist, create list and set UVAR
+else:
+    set_uvar('ibook_source_list', dump_json(["Icewind Dale Rime of the Frostmaiden (idrotf)"]))
 
 
 </drac2>

@@ -2,34 +2,27 @@ embed
 <drac2>
 
 
-def main():
-    """
-    Main program function    
-    """
-
-    # If UVAR exists, load list
-    if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
-        
-        if "Elemental Evil Player's Companion (eepc)" not in uvar:
-            uvar.append("Elemental Evil Player's Companion (eepc)")
-
-        else:
-            pass
-
-    # If UVAR does not exist, create list
-    else:
-        uvar = ["Elemental Evil Player's Companion (eepc)"]
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
     
-    # Set UVAR
-    set_uvar('ibook_source_list', dump_json(uvar))
+    # If eepc is not already in the list
+    if "Elemental Evil Player's Companion (eepc)" not in uvar:
+        uvar.append("Elemental Evil Player's Companion (eepc)")
 
+        # Set UVAR
+        set_uvar('ibook_source_list', dump_json(uvar))
 
-# Main program function
-main()
+    # If eepc is already in the list
+    else:
+        pass
+
+# If UVAR does not exist, create list and set UVAR
+else:
+    set_uvar('ibook_source_list', dump_json(["Elemental Evil Player's Companion (eepc)"]))
 
 
 </drac2>
 -title "{{ctx.author.display_name}} has added Elemental Evil Player's Companion (eepc) to their sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/eepc.png"
--footer "!ibook sub eepc | Updated 11/14/23 | ShadowsStride"
+-footer "!ibook sub eepc | Updated 11/21/23 | ShadowsStride"
