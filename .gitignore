@@ -1,6 +1,9 @@
 # Key file
 Data Files/spells/config.py
 
+# Complete JSON
+Code/Aliases/ibook/sub/all_spells.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -167,3 +170,4 @@ cython_debug/
 
 /.vscode
 Design/exampleUI.alias
+Data Files/all_spells.json
