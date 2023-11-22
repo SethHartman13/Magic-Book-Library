@@ -68,92 +68,207 @@ def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
     return dictionary
 
 
-def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, setting_change: str = None):
+def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, setting_change: str = None) -> str:
+    """
+    Changes/views a specific setting
 
+    Args:
+        setting_request (str): Setting that is being viewed/changed
+        svar_dict (dict): SVAR dictionary
+        default_dict (dict): Default dictionary
+        setting_change (str): New value (default: None)
+    
+    Return:
+        str: Results
+    """
+
+    # If it is not changing a setting
     if not setting_change:
-        return "", f"{ctx.author.display_name} checks ibook settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", ""
+        return (
+            "", 
+            f"{ctx.author.display_name} checks ibook settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", 
+            ""
+            )
 
+    # If it is changing a setting
     else:
+
+        # If the type of setting that is being changed is a boolean
         if typeof(svar_dict['Settings'][setting_request]) == "bool":
+
+            # If it has a valid value (true or false)
             if "true" in setting_change.lower() or "false" in setting_change.lower():
+
+                # If true
                 if "true" in setting_change.lower():
                     svar_dict['Settings'][setting_request] = True
 
+                # If false
                 else:
                     svar_dict['Settings'][setting_request] = False
 
-                return f"!svar ibook_settings {dump_json(svar_dict)}", f"{ctx.author.display_name} updates ibook settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", ""
+                return (
+                    f"!svar ibook_settings {dump_json(svar_dict)}", f"{ctx.author.display_name} updates ibook settings",
+                    f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", 
+                    ""
+                    )
 
+            # If it does not have a valid value
             else:
-                return "", f"{ctx.author.display_name} attempts to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b"
+                return (
+                    "", 
+                    f"{ctx.author.display_name} attempts to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
+                    "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png",
+                    "#cf142b"
+                    )
 
+        # If the type of setting that is being changed is an integer
         elif typeof(svar_dict['Settings'][setting_request]) == "int":
+
+            # Try to turn the value into an integer
             try:
                 svar_dict['Settings'][setting_request] = int(setting_change)
-                return f"!svar ibook_settings {dump_json(svar_dict)}", f"{ctx.author.display_name} updates ibook settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", ""
 
+                return (
+                    f"!svar ibook_settings {dump_json(svar_dict)}", 
+                    f"{ctx.author.display_name} updates ibook settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
+                    f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png",
+                    ""
+                    )
+
+            # If it couldn't convert to an integer
             except:
                 return "", f"{ctx.author.display_name} attempts to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b"
 
+        # If it is a datatype that doesn't currently exist in settings
         else:
-            return "", f"{ctx.author.display_name} attempts to update ibook settings", f"`Shadow has not programmed this to handle this datatype, message him to fix this`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b"
+            return (
+                "", 
+                f"{ctx.author.display_name} attempts to update ibook settings", 
+                f"`Shadow has not programmed this to handle this datatype, message him to fix this`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
+                "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
+                "#cf142b"
+                )
 
 
 def main(input_list: list[str]) -> str:
+    """
+    Main program function
 
+    Args:
+        input_list (listp[str]): List of user inputs
+
+    Return:
+        str: Results    
+    """
+
+    # Default settings dictionary
     default_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
 
+    # If SVAR exists, verify against default settings (no missing settings)
     if (svar_test := get_svar("ibook_settings")):
         svar_dict = set_default_settings(load_json(svar_test), default_dict)
 
+    # If SVAR does not exist, set default dictionary
     else:
         svar_dict = default_dict
 
+    # If there are no inputs, list all settings and their values
     if len(input_list) == 0:
-        return "", f"{ctx.author.display_name} checks ibook settings", "\n".join([f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", ""
+        return (
+            "", 
+            f"{ctx.author.display_name} checks ibook settings", 
+            "\n".join([f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]), 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", 
+            ""
+            )
 
+    # If number of inputs is 1
     elif len(input_list) == 1:
-        if (result_key := search_list(input_list[0], svar_dict['Settings'])):
+
+        # If it finds at least one match for settings names
+        if (result_key := search_list(input_list[0], svar_dict['Settings'].keys())):
+
+            # If there is exactly one match
             if len(result_key) == 1:
                 return change_setting(result_key[0], svar_dict, default_dict)
 
+            # If there are multiple matches, try to find an exact match
             else:
                 for key in result_key:
+
+                    # If it is not an exact match
                     if key.lower() != input_list[0].lower():
                         pass
 
+                    # If it is an exact match
                     else:
                         return change_setting(key, svar_dict, default_dict)
 
                 result_key.insert(0, "**Multiple Settings Found:**")
 
-                return "", f"{ctx.author.display_name} checks ibook settings", "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b" 
+                return (
+                    "", 
+                    f"{ctx.author.display_name} checks ibook settings", 
+                    "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]),
+                    "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
+                    "#cf142b"
+                    ) 
 
+        # If no matches were found
         else:
-            return "", f"{ctx.author.display_name} checks ibook settings", "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b"
+            return (
+                "", 
+                f"{ctx.author.display_name} checks ibook settings", 
+                "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]),
+                "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
+                "#cf142b"
+                )
 
-
+    # If there were more than one input
     else:
-        if (result_key := search_list(input_list[0], svar_dict['Settings'])):
+
+        # If it finds at least one match for settings names
+        if (result_key := search_list(input_list[0], svar_dict['Settings'].keys())):
+
+            # If there is exactly one match
             if len(result_key) == 1:
                 return change_setting(result_key[0], svar_dict, default_dict, input_list[1])
 
+            # If there are multiple matches, try to find an exact match
             else:
                 for key in result_key:
+
+                    # If it is not an exact match
                     if key.lower() != input_list[0].lower():
                         pass
 
+                    # If it is an exact match
                     else:
                         return change_setting(key, svar_dict, default_dict, input_list[1])
 
                 result_key.insert(0, "**Multiple Settings Found:**")
 
-                return "", f"{ctx.author.display_name} checks ibook settings", "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b"
+                return (
+                    "", 
+                    f"{ctx.author.display_name} checks ibook settings", 
+                    "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]),
+                    "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png",
+                    "#cf142b"
+                    )
 
+        # If no matches were found
         else:
-            return "", f"{ctx.author.display_name} checks ibook settings", "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b"
+            return (
+                "", 
+                f"{ctx.author.display_name} checks ibook settings", "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]),
+                "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
+                "#cf142b"
+                )
 
 
+# Main program function
 svar_str, title, f, thumb, color = main(&ARGS&)
 l = "<"
 
