@@ -55,7 +55,7 @@ def output_sub_list(page_num: int, uvar_list: list[str]) -> str:
     match res_length:
 
         # If there is just one page
-        case _ if res_length == 1:
+        case 1:
             return (
             f"{ctx.author.display_name} checks what they can subscribe to", 
             "\n\n".join(["**Available Sourcebooks:**"] + [item_list[0] for item_list in result_list[0]]), 
