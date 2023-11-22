@@ -132,4 +132,4 @@ else:
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{{thumb}}.png"
 -color "{{color}}"
--footer "!ibook unsub [sourcebook_name] | Updated 11/21/23 | ShadowsStride"
+-footer "!ibook unsub [source name] | Updated 11/21/23 | ShadowsStride"
