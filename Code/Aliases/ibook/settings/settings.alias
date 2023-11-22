@@ -275,4 +275,4 @@ l = "<"
 
 </drac2>
 {{svar_str}}
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 11/17/23 | ShadowsStride"
+!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 11/21/23 | ShadowsStride"
