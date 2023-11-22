@@ -3,10 +3,23 @@ embed
 
 
 def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -> str:
+    """
+    Compiles output based upon page number, UVAR, and SVAR.
 
+    Args:
+        page_num (int): Page number
+        uvar_list (list[str]): Sourcebooks within UVAR
+        svar_list (list[str]): Sourcebooks within SVAR
+    
+    Return:
+        str: Results
+    """
+
+    # Removes items that are already in the svar
     for item in set(uvar_list).intersection(svar_list):
         svar_list.remove(item)
 
+    # Short-code mapping table
     shorthand_items = {
         "Acquisition's Incorporated (ai)": "ai",
         "Elemental Evil Player's Companion (eepc)": "eepc",
@@ -24,68 +37,112 @@ def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -
         "Xanathar's Guide to Everything (xgte)": "xgte" 
     }
 
+    # Creates lists of sources and and a list of their sources
     display_list = [f"{item} **(User)**" for item in uvar_list] + [f"{item} **(Server)**" for item in svar_list]
     shorthand_list = [shorthand_items[item.split(" *")[0]] for item in display_list if item.split(" *")[0] in shorthand_items.keys()]
 
+    # Seperates both lists into groupings of 5 (if possible)
     result_list = [display_list[i:i+5] for i in range(0,len(display_list), 5)]
     short_list = [shorthand_list[i:i+5] for i in range(0,len(shorthand_list), 5)]
 
-    if page_num > 1 and (res_length := len(result_list)):
+    # Grabs length of result_list
+    res_length = len(result_list)
 
-        if page_num < res_length:
-            pass
+    match res_length:
 
-        else:
-            page_num = res_length
+        # If there is just one page
+        case 1:
+            return (
+            f"{ctx.author.display_name} checks their subscribed sourcebooks", 
+            "\n\n".join(["**Available Sourcebooks:**"] + result_list[0]), 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[0])}.png", 
+            ""
+            )
 
-    else:
-        page_num = 1
+        # if there are more than one page
+        case _ if res_length > 1:
 
-    if len(result_list) > 0:
-        res_length = len(result_list)
+            match page_num:
 
-    else:
-        result_list.append(['None'])
-        short_list.append(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])
-        page_num = 1
-        res_length = 1
+                # If page number is less than 1
+                case _ if page_num < 1:
+                    page_num = 1
 
-    result_list[page_num-1].insert(0, f"**Subscribed Sourcebooks: ({page_num}/{res_length})**")
+                # If page number is greater than length
+                case _ if page_num > res_length:
+                    page_num = res_length
 
-    return f"{ctx.author.display_name} checks their subscribed sourcebooks", "\n\n".join(result_list[page_num-1]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num-1])}.png", ""
+                # If page number is within bounds
+                case _:
+                    pass
+
+            return (
+            f"{ctx.author.display_name} checks their subscribed sourcebooks", 
+            "\n\n".join([f"**Available Sourcebooks ({page_num}/{res_length}):**"] + result_list[page_num - 1]), 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num - 1])}.png", 
+            ""
+            )
+
+        # If there are no pages
+        case _:
+            return (
+            f"{ctx.author.display_name} checks their subscribed sourcebooks", 
+            "**Available Sourcebooks:**\n\nNone", 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", 
+            ""
+            )
 
 
 def main(input_list: list[str]) -> str:
+    """
+    Main program function
 
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Results    
+    """
+
+    # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar_list = load_json(uvar_test)
 
+    # If UVAR does not exist, create empty list
     else:
         uvar_list = []
 
-    if(svar_test := get_svar('ibook_settings')):
+    # If SVAR exists, load book list
+    if (svar_test := get_svar('ibook_settings')):
         svar_list = load_json(svar_test)['Books']
 
+    # If SVAR does not exist, create empty list
     else:
         svar_list = []
 
+    # If there is content 
     if len(svar_list) != 0 or len(uvar_list) != 0:
         pass
 
+    # If there is no content
     else:
         return f"{ctx.author.display_name} checks their subscribed sourcebooks", "None", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["phb", "ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "sacoc", "sais", "scag", "tcoe", "tcsr", "xgte"])}.png', ""
 
+    # If there was at least one input, try to make it an integer
     if len(input_list) > 0:
         try:
             return output_sub_list(int(input_list[0]), uvar_list, svar_list)
 
+        # If fails, defaults to page 1
         except:
             return output_sub_list(1, uvar_list, svar_list)
 
+    # If there were no inputs
     else:
         return output_sub_list(1, uvar_list, svar_list)
 
 
+# Main program function
 title, f, thumb, color = main(&ARGS&)
 l = "<"
 
@@ -94,4 +151,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!ibook list {{l}}#> | Updated 11/16/23 | ShadowsStride"
+-footer "!ibook list {{l}}#> | Updated 11/21/23 | ShadowsStride"
