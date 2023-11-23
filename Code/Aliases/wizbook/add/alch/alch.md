@@ -7,3 +7,11 @@ Subalias to add the Alchemical Compendium and its spells to the `ibook_dict` cha
 
 ## Licensing:
 This subalias requires owning the [Alchemical Compendium](https://www.dndbeyond.com/magic-items/2400596-alchemical-compendium).
+
+## Spells:
+- Enlarge/Reduce
+- Feather Fall
+- Flesh to Stone
+- Gaseous Form
+- Magic Weapon
+- Polymorph
