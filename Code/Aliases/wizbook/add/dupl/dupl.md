@@ -17,8 +17,3 @@ This subalias requires owning the [Duplicitous Manuscript](https://www.dndbeyond
 - Mirror Image
 - Mislead
 - Silent Image
-
-
-
-
-

@@ -16,8 +16,3 @@ This subalias requires owning the [Fulminating Treatise](https://www.dndbeyond.c
 - Gust of Wind
 - Magic Missile
 - Wall of Force
-
-
-
-
-
