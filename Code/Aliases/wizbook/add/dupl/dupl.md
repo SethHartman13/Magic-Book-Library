@@ -8,19 +8,15 @@ Subalias to add the Duplicitous Manuscript and its spells to the `ibook_dict` ch
 ## Licensing:
 This subalias requires owning the [Duplicitous Manuscript](https://www.dndbeyond.com/magic-items/2412157-duplicitous-manuscript) and the following spells:
 
-- Intellect Fortress
-- Rary's Telepathic Bond
-- Tasha's Mind Whip
-- Tenser's Floating Disk
-- Mind Sliver
+- Nystul's Magic Aura
+- Phantasmal Force
 
 ## Additional Spells:
-- Mage Hand
-- Mind Sliver
-- Message
-- Detect Thoughts
-- Sending
-- Telekinesis
+- Hallucinatory Terrain
+- Major Image
+- Mirror Image
+- Mislead
+- Silent Image
 
 
 
