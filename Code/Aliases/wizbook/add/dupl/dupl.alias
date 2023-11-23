@@ -98,10 +98,10 @@ def main() -> str:
 
             # If within book limit and if the character is not already attuned to one
             if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                if "Duplicious Manuscript" not in cvar_dict['Wizard Books'].keys():
+                if "Duplicitous Manuscript" not in cvar_dict['Wizard Books'].keys():
 
-                    cvar_dict['Wizard Books']['Duplicious Manuscript'] = [
-                        "Arcane Endless", 
+                    cvar_dict['Wizard Books']['Duplicitous Manuscript'] = [
+                        "Arcane Gate", 
                         "Dimension Door", 
                         "Gate", 
                         "Misty Step", 
@@ -111,7 +111,7 @@ def main() -> str:
                         ]
 
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             else:
                 return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
@@ -120,8 +120,8 @@ def main() -> str:
 
             if cvar_book_num < svar_dict['Settings']['Book Limit']:
                 cvar_dict['Wizard Books'] = {
-                    "Duplicious Manuscript": [
-                        "Arcane Endless", 
+                    "Duplicitous Manuscript": [
+                        "Arcane Gate", 
                         "Dimension Door", 
                         "Gate", 
                         "Misty Step", 
@@ -137,8 +137,8 @@ def main() -> str:
     else:
         cvar_dict = {
             "Wizard Books": {
-                "Duplicious Manuscript": [
-                    "Arcane Endless", 
+                "Duplicitous Manuscript": [
+                    "Arcane Gate", 
                     "Dimension Door", 
                     "Gate", 
                     "Misty Step", 
@@ -151,24 +151,24 @@ def main() -> str:
         }
 
     # Join list for output
-    join_list = "\n".join(cvar_dict["Wizard Books"]["Duplicious Manuscript"])
+    join_list = "\n".join(cvar_dict["Wizard Books"]["Duplicitous Manuscript"])
     
     # Creates Custom Counter
     ch.create_cc(
-        name="Duplicious Manuscript",
+        name="Duplicitous Manuscript",
         minVal="0",
         maxVal="3",
         reset="long",
         dispType="star",
         reset_by="1d3",
-        title="Duplicious Manuscript",
+        title="Duplicitous Manuscript",
         desc="The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the illusion school.\n- When a creature you can see makes an Intelligence (Investigation) check to discern the true nature of an illusion spell you cast, or makes a saving throw against an illusion spell you cast, you can use your reaction and expend 1 charge to impose disadvantage on the roll."
     )
 
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added a Duplicious Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#C69FFB"
+    return f"{name} ({ctx.author.display_name}) has added a Duplicitous Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/dupl.png", "#C69FFB"
 
 
 # Gets outputs
@@ -180,4 +180,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add dupl | Updated 11/2/23 | ShadowsStride"
+-footer "!wizbook add dupl | Updated 11/23/23 | ShadowsStride"
