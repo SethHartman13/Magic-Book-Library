@@ -12,8 +12,8 @@ Base the licensing on the individual magic items/spells
     - Atlas of Endless Horizons - Tasha's Cauldron of Everything
     - Arcane Gate - Player's Handbook
 
-- Duplicious Manuscript
-    - Duplicious Manuscript - Tasha's Cauldron of Everything
+- Duplicitous Manuscript
+    - Duplicitous Manuscript - Tasha's Cauldron of Everything
     - Nystul's Magic Aura - Player's Handbook
     - Phantasmal Force - Player's Handbook
 
