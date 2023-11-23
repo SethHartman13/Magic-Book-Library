@@ -133,9 +133,9 @@ def activate_crystalline_chronicle(ch: character, error_color: str, error_image:
         return f"{ctx.author.display_name} has encountered an error", "Crystalline Chronicle has no more charges", error_image, error_color, ""
 
 
-def activate_duplicious_manuscript(ch: character, com: combat, input_list: list[str] error_color: str, error_image: str) -> str:
+def activate_Duplicitous_manuscript(ch: character, com: combat, input_list: list[str] error_color: str, error_image: str) -> str:
 
-    book_cc, f = subtract_counter("Duplicious Manuscript", ch)
+    book_cc, f = subtract_counter("Duplicitous Manuscript", ch)
 
     if book_cc:
         f = [
@@ -144,10 +144,10 @@ def activate_duplicious_manuscript(ch: character, com: combat, input_list: list[
             f"{book_cc.full_str().split("\n")[0]} (-1)"
         ]
 
-        return f"{name} uses their Duplicious Manuscript", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
+        return f"{name} uses their Duplicitous Manuscript", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
 
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Duplicious Manuscript has no more charges", error_image, error_color, ""
+        return f"{ctx.author.display_name} has encountered an error", "Duplicitous Manuscript has no more charges", error_image, error_color, ""
 
 
 def activate_fulminating_treatise(ch: character, com: combat, input_list: list[str] error_color: str, error_image: str) -> str:
@@ -648,8 +648,8 @@ def main(input_list: list[str]) -> str:
         case "Crystalline Chronicle":
             return activate_crystalline_chronicle(ch, color, img_url)
 
-        case "Duplicious Manuscript":
-            return activate_duplicious_manuscript(ch, com, input_list, color, img_url)
+        case "Duplicitous Manuscript":
+            return activate_Duplicitous_manuscript(ch, com, input_list, color, img_url)
 
         case "Fulminating Treatise":
             return activate_fulminating_treatise(ch, com, color, img_url)

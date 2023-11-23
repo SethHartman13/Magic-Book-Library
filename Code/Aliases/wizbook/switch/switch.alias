@@ -290,7 +290,7 @@ def main(input_list: list[str]) -> str:
             "Alchemical Compendium": "Transmutation",
             "Astromancy Archive": "Divination",
             "Atlas of Endless Horizons": "Conjuration",
-            "Duplicious Manuscript": "Illusion",
+            "Duplicitous Manuscript": "Illusion",
             "Fulminating Treatise": "Evocation",
             "Heart Weaver's Primer": "Enchantment",
             "Libram of Souls and Flesh": "Necromancy",
