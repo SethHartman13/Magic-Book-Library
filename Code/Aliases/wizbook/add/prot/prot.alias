@@ -80,14 +80,14 @@ def main() -> str:
         else:
             svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
-        if "Primer Books" in (svar_dict_keys := cvar_dict.keys()):
+        if "Primer Books" in cvar_dict.keys():
             cvar_book_num = len(cvar_dict['Primer Books'].keys())
 
         else:
             svar_dict['Primer Books'] = {}
             cvar_book_num = 0
 
-        if "Wizard Books" in cvar_dict_keys:
+        if "Wizard Books" in cvar_dict.keys():
 
             cvar_book_num += len(cvar_dict['Wizard Books'].keys())
 
@@ -105,7 +105,7 @@ def main() -> str:
                         ]
 
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             else:
                 return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
@@ -162,7 +162,7 @@ def main() -> str:
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
     # Selects random image to display
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
+    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png"
 
     return f"{name} ({ctx.author.display_name}) has added a Protective Verses to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#69AFEC"
 
@@ -176,4 +176,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add prot | Updated 11/2/23 | ShadowsStride"
+-footer "!wizbook add prot | Updated 11/22/23 | ShadowsStride"
