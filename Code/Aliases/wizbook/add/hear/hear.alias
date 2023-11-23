@@ -107,7 +107,7 @@ def main() -> str:
                         ]
 
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             else:
                 return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
@@ -146,7 +146,7 @@ def main() -> str:
         }
 
     # Join list for output
-    join_list = "\n".join(cvar_dict["Wizard Books"][f"Heart Weaver's Primer {i}"])
+    join_list = "\n".join(cvar_dict["Wizard Books"]["Heart Weaver's Primer"])
 
     # Creates Custom Counter
     ch.create_cc(
@@ -163,7 +163,7 @@ def main() -> str:
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added a Heart Weaver's Primer to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png", "#ED90D9"
+    return f"{name} ({ctx.author.display_name}) has added a Heart Weaver's Primer to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/hear.png", "#ED90D9"
 
 
 # Gets outputs
@@ -175,4 +175,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add hear | Updated 11/2/23 | ShadowsStride"
+-footer "!wizbook add hear | Updated 11/22/23 | ShadowsStride"
