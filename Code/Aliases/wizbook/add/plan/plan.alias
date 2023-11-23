@@ -104,7 +104,7 @@ def main() -> str:
                         ]
 
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
             
             else:
                 return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
@@ -145,13 +145,13 @@ def main() -> str:
 
     # Creates Custom Counter
     ch.create_cc(
-        name=f"Planecaller's Codex {i}",
+        name=f"Planecaller's Codex",
         minVal="0",
         maxVal="3",
         reset="long",
         dispType="star",
         reset_by="1d3",
-        title=f"Planecaller's Codex {i}",
+        title=f"Planecaller's Codex",
         desc="While you are holding the book, you can use it as a spellcasting focus for your wizard spells. The book has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the book, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the book. The new spell must be of the conjuration school.\n- When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute."
     )
 
@@ -161,7 +161,7 @@ def main() -> str:
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
     # Selects random image to display
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{str(randchoice(['', 1, 2, 3, 4, 5]))}.png"
+    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png"
 
     return f"{name} ({ctx.author.display_name}) has added a Planecaller's Codex to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#F5DA67"
 
@@ -175,4 +175,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add alch | Updated 9/26/23 | ShadowsStride"
+-footer "!wizbook add alch | Updated 11/23/23 | ShadowsStride"
