@@ -75,7 +75,7 @@ Base the licensing on the individual magic items/spells
             "Teleportation Circle",
             "Word of Recall"
             ],
-        "Duplicious Manuscript": [
+        "Duplicitous Manuscript": [
             "Hallucinatory Terrain",
             "Major Image",
             "Mirror Image",
