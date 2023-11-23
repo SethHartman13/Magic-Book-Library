@@ -74,49 +74,48 @@
         - [x] <span class="level3">`!ibook sub xgte`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/xgte/xgte.md)
 
-    -  [ ] <span class="level2">`!ibook unsub`<span class="required">`[source/gvar/svar]`</span></span>
-        -  Unsubscribes the user from a sourcebook in their library
+    -  [x] <span class="level2">`!ibook unsub`<span class="required">`[source/gvar/svar]`</span></span> <span class="documented">Documented</span>
+        -  [Markdown](../Code/Aliases/ibook/unsub/unsub.md)
     
-    - [x] <span class="level2">`!ibook list`
-        - Lists sourcebooks the user is subscribed to
+    - [x] <span class="level2">`!ibook list` <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/ibook/list/list.md)
 
-    - [x] <span class="level2">`!ibook settings`<span class="optional">`<setting_name> <setting condition>`</span></span>
-        - Lists the current settings
+    - [x] <span class="level2">`!ibook settings`<span class="optional">`<setting_name> <setting condition>`</span></span> <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/ibook/settings/settings.md)
 
 - [ ] <span class="level1">`!wizbook`
     - Gives overview on how to use wizbook
     - [ ] <span class="level2">`!wizbook add`
         - Provides a help menu listing the wizard books they can add (and if they can add it)
-        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*</span>
-            - Adds Alchemical Compendium to player CVAR
+        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*</span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/alch/alch.md)
 
-        - [ ] <span class="level3">`!wizbook add astr`</span><span class="required">*
-            - Adds Astromancy Archive to player CVAR
+        - [ ] <span class="level3">`!wizbook add astr`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/astr/astr.md)
 
-        - [ ] <span class="level3">`!wizbook add atla`</span><span class="required">*
-            - Adds Atlas of Endless Horizons to player CVAR
+        - [ ] <span class="level3">`!wizbook add atla`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/atla/atla.md)
 
-        - [ ] <span class="level3">`!wizbook add dupl`</span><span class="required">*
-            - Adds Duplicitous Manuscript to player CVAR
+        - [ ] <span class="level3">`!wizbook add crys`</span><span class="required">*</span> <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/crys/crys.md)
 
-        - [ ] <span class="level3">`!wizbook add fulm`</span><span class="required">*
-            - Adds Fulminating Treatise to player CVAR
+        - [ ] <span class="level3">`!wizbook add dupl`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/dupl/dupl.md)
 
-        - [ ] <span class="level3">`!wizbook add hear`</span><span class="required">*
-            - Adds Heart Weaver's Primer to player CVAR
+        - [ ] <span class="level3">`!wizbook add fulm`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/fulm/ulm.md)
 
-        - [ ] <span class="level3">`!wizbook add libr`</span><span class="required">*
-            - Adds Libram of Souls and Flesh to player CVAR
+        - [ ] <span class="level3">`!wizbook add hear`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/hear/hear.md)
 
-        - [ ] <span class="level3">`!wizbook add plan`</span><span class="required">*
-            - Adds Planecaller's Codex to player CVAR
+        - [ ] <span class="level3">`!wizbook add libr`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/libr/libr.md)
 
-        - [ ] <span class="level3">`!wizbook add prot`</span><span class="required">*
-            - Adds Protective Verses to player CVAR
+        - [ ] <span class="level3">`!wizbook add plan`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/plan/plan.md)
 
-        - [ ] <span class="level3">`!wizbook add crys`</span><span class="required">*</span>
-            - Adds Crystalline Chronicle to player CVAR
-
+        - [ ] <span class="level3">`!wizbook add prot`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/add/prot/prot.md)
 
     - [ ] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span>
         - Activates the books special ability
