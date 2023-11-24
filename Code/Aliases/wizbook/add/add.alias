@@ -1,0 +1,261 @@
+embed
+<drac2>
+
+
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            if default_key in dictionary.keys():
+                pass
+
+            else:
+                dictionary[default_key] = default_dictionary[default_key]
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                if default_key in dictionary.keys():
+                    pass
+
+                else:
+                    dictionary[default_key] = default_dictionary[default_key]
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
+def output_add_list(page_num: int, cvar_dict: dict) -> str:
+    """
+    Outputs available subscription items
+
+    Args:
+        page_num (int): Page number
+        cvar_dict (dict): Dictionary with current added dictionaries
+    """
+
+    # Book dictionary with values of messages sent to user
+    items = {
+        "Alchemical Compendium": "`!wizbook add alch`: Adds the Alchemical Compendium",
+        "Astromancy Archive": "`!wizbook add astr`: Adds the Astromancy Archive",
+        "Atlas of Endless Horizons": "`!wizbook add atla`: Adds the Atlas of Endless Horizons",
+        "Crystalline Chronicle": "`!wizbook add crys`: Adds the Crystalline Chronicle",
+        "Duplicitous Manuscript": "`!wizbook add dupl`: Adds the Duplicitous Manuscript",
+        "Fulminating Treatise": "`!wizbook add fulm`: Adds the Fulminating Treatise",
+        "Heart Weaver's Primer": "`!wizbook add hear`: Adds the Heart Weaver's Primer",
+        "Libram of Souls and Flesh": "`!wizbook add libr`: Adds the Libram of Souls and Flesh",
+        "Planecaller's Codex": "`!wizbook add plan`: Adds the Planecaller's Codex",
+        "Protective Verses": "`!wizbook add prot`: Adds the Protective Verses"
+    }
+
+    # Short-code mapping table
+    shorthand_items = {
+        "Alchemical Compendium": "alch",
+        "Astromancy Archive": "astr",
+        "Atlas of Endless Horizons": "atla",
+        "Crystalline Chronicle": "crys",
+        "Duplicitous Manuscript": "dupl",
+        "Fulminating Treatise": "fulm",
+        "Heart Weaver's Primer": "hear",
+        "Libram of Souls and Flesh": "libr",
+        "Planecaller's Codex": "plan",
+        "Protective Verses": "prot"
+    }
+
+    # Load Server settings if SVAR exists
+    if (svar_test := get_svar('ibook_settings')):
+        svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []})
+
+    # Create SVAR dict with settings
+    else:
+        svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
+
+    # If the user can add books
+    if len(cvar_dict) < svar_dict['Settings']['Book Limit']:
+        pass
+
+    # If the user cannot add books
+    else:
+        return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "**Available Magic Books:**\n\nNone", 
+            f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["alch", "astr", "atla", "crys", "dupl", "fulm", "hear", "libr", "plan", "prot"])}.png', 
+            ""
+            ) 
+
+    # Creates a list within a list of item_outputs with their short-code
+    output_list = [[items[key], shorthand_items[key]] for key in items.keys() if key not in cvar_dict.keys()]
+
+    # Seperates the lists into groupings of 4 (if possible)
+    result_list = [output_list[i:i+5] for i in range(0,len(output_list), 5)]
+
+    # Grabs length of result_list
+    res_length = len(result_list)
+
+    match res_length:
+
+        # If there is just one page
+        case 1:
+            return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "\n\n".join(["**Available Magic Books:**"] + [item_list[0] for item_list in result_list[0]]), 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[0]])}.png", 
+            ""
+            )
+
+        # If there are more than one page
+        case _ if res_length > 1:
+
+            match page_num:
+
+                # If page number is less than 1
+                case _ if page_num < 1:
+                    page_num = 1
+
+                # If page number is greater than length
+                case _ if page_num > res_length:
+                    page_num = res_length
+                
+                # If page number is within bounds
+                case _:
+                    pass
+
+            return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "\n\n".join([f"**Available Magic Books ({page_num}/{res_length}):**"] + [item_list[0] for item_list in result_list[page_num - 1]]), 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[page_num - 1]])}.png", 
+            ""
+            )
+
+        # If there are no pages
+        case _:
+            return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "**Available Magic Books:**\n\nNone", 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(shorthand_items.values())}.png", 
+            ""
+            )
+
+
+def add_to_cvar(ch: character, add_string: str, cvar_dict: dict) -> str:
+    """
+    Adds sources to CVAR from svar/gvar
+
+    Args:
+        add_string (str): Name/GUID of source
+        cvar_dict (dict): Current CVAR dictionary
+
+    Return:
+        str: Results
+    """
+    
+    # If SVAR exists, add SVAR contents to CVAR dictionary
+    if (svar_test := get_svar(add_string)):
+        try:
+            cvar_dict[add_string] = svar_test
+
+        # If there was an error
+        except:
+            return f"{ctx.author.display_name} has encountered an error", "Error loading SVAR into CVAR dictionary", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CC0202"
+
+    # If SVAR does not exist, if GVAR exists, add GVAR contents to CVAR dictionary
+    else:
+        if (gvar_test := get_gvar(add_string)):
+            try:
+                cvar_dict[add_string] = gvar_test
+
+            # If there was an error
+            except:
+                return f"{ctx.author.display_name} has encountered an error", "Error loading GVAR into CVAR dictionary", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CC0202"
+
+        # If SVAR/GVAR does not exist
+        else:
+            title, f, thumb, _ = output_add_list(1, cvar_dict)
+            f = f"`SVAR\GVAR not found ({add_string})`\n\n{f}"
+            return title, f, thumb, "#CC0202"
+
+    # Save CVAR
+    ch.set_cvar('ibook_dict', dump_json(cvar_dict))
+
+    return f"{ctx.author.display_name} has added a SVAR/GVAR to their sourcebook list", "", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["alch", "astr", "atla", "crys", "dupl", "fulm", "hear", "libr", "plan", "prot"])}.png', ""
+
+
+def main(input_list: list[str]) -> str:
+    """
+    Main program function
+    
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Results
+    """
+
+    # Load character variable
+    ch = character()
+
+    # If the character has at least 1 level in Wizard or at least 14 levels in artificer
+    if ch.levels.get("Wizard", default=None) or ch.levels.get("Artificer", default=0) >= 14:
+        pass
+        
+    # If they do not have at least 14 levels in artificer
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to any of these items", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+    # If CVAR exists, load list
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
+
+    # If CVAR doesn't exist, create dict
+    else:
+        cvar_dict = {}
+
+    # If there is at least one input
+    if len(input_list) > 0:
+
+        # Tries to convert input to integer to output list
+        try:
+            return output_add_list(int(input_list[0]), cvar_dict)
+
+        # If failed, looks to add SVAR/GVAR to CVAR
+        except:
+            return add_to_cvar(ch, input_list[0], cvar_dict)
+
+    # If there are no inputs
+    else:
+        return output_add_list(1, cvar_dict) 
+
+
+# Main program function
+title, f, thumb, color = main(&ARGS&)
+l = "<"
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!wizbook add {{l}}#/GVAR/SVAR> | Updated 11/23/23 | ShadowsStride"
