@@ -3,7 +3,7 @@
 Subalias to add the Crystalline Chronicle and its spells to the `ibook_dict` character variable.
 
 ## Help:
-`!wizbook add astr`: Adds the Crystalline Chronicle
+`!wizbook add crys`: Adds the Crystalline Chronicle
 
 ## Licensing:
 This subalias requires owning the [Crystalline Chronicle](https://www.dndbeyond.com/magic-items/2407470-crystalline-chronicle) and the following spells:

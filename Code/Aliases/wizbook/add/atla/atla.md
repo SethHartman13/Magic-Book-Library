@@ -3,7 +3,7 @@
 Subalias to add the Atlas of Endless Horizons and its spells to the `ibook_dict` character variable.
 
 ## Help:
-`!wizbook add astr`: Adds the Atlas of Endless Horizons
+`!wizbook add atla`: Adds the Atlas of Endless Horizons
 
 ## Licensing:
 This subalias requires owning the [Atlast of Endless Horizons](https://www.dndbeyond.com/magic-items/2400706-atlas-of-endless-horizons) and the following spell:
