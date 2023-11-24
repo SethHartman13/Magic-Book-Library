@@ -174,7 +174,7 @@ def add_to_cvar(ch: character, add_string: str, cvar_dict: dict) -> str:
     # If SVAR exists, add SVAR contents to CVAR dictionary
     if (svar_test := get_svar(add_string)):
         try:
-            cvar_dict[add_string] = svar_test
+            cvar_dict[add_string] = load_json(svar_test)
 
         # If there was an error
         except:
@@ -184,7 +184,7 @@ def add_to_cvar(ch: character, add_string: str, cvar_dict: dict) -> str:
     else:
         if (gvar_test := get_gvar(add_string)):
             try:
-                cvar_dict[add_string] = gvar_test
+                cvar_dict[add_string] = load_json(gvar_test)
 
             # If there was an error
             except:
