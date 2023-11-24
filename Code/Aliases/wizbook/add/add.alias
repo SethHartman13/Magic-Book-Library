@@ -92,8 +92,21 @@ def output_add_list(page_num: int, cvar_dict: dict) -> str:
     else:
         svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
 
+    if "Wizard Books" in cvar_dict.keys():
+        book_num = len(cvar_dict['Wizard Books'])
+
+    else:
+        cvar_dict['Wizard Books'] = {}
+        book_num = 0
+
+    if "Primer Books" in cvar_dict.keys():
+        book_num += len(cvar_dict['Primer Books'])
+
+    else:
+        pass
+
     # If the user can add books
-    if len(cvar_dict) < svar_dict['Settings']['Book Limit']:
+    if book_num < svar_dict['Settings']['Book Limit']:
         pass
 
     # If the user cannot add books
@@ -106,7 +119,7 @@ def output_add_list(page_num: int, cvar_dict: dict) -> str:
             ) 
 
     # Creates a list within a list of item_outputs with their short-code
-    output_list = [[items[key], shorthand_items[key]] for key in items.keys() if key not in cvar_dict.keys()]
+    output_list = [[items[key], shorthand_items[key]] for key in items.keys() if key not in cvar_dict['Wizard Books'].keys()]
 
     # Seperates the lists into groupings of 4 (if possible)
     result_list = [output_list[i:i+5] for i in range(0,len(output_list), 5)]
@@ -170,11 +183,17 @@ def add_to_cvar(ch: character, add_string: str, cvar_dict: dict) -> str:
     Return:
         str: Results
     """
+
+    if "Wizard Books" in cvar_dict.keys():
+        pass
+
+    else:
+        cvar_dict['Wizard Books'] = {}
     
     # If SVAR exists, add SVAR contents to CVAR dictionary
     if (svar_test := get_svar(add_string)):
         try:
-            cvar_dict[add_string] = load_json(svar_test)
+            cvar_dict['Wizard Books'][add_string] = load_json(svar_test)
 
         # If there was an error
         except:
@@ -184,7 +203,7 @@ def add_to_cvar(ch: character, add_string: str, cvar_dict: dict) -> str:
     else:
         if (gvar_test := get_gvar(add_string)):
             try:
-                cvar_dict[add_string] = load_json(gvar_test)
+                cvar_dict['Wizard Books'][add_string] = load_json(gvar_test)
 
             # If there was an error
             except:
