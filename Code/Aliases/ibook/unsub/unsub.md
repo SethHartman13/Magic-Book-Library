@@ -3,7 +3,7 @@
 Subalias to unsubscribe from sourcebooks, SVARs, and GVARs.
 
 ## Help:
-`!ibook [source name]`:
+`!ibook unsub [source name]`:
 
 `[source name]` is a required argument:
 - `source name`: Name of source, SVAR, or GVAR.
