@@ -23,26 +23,24 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def main(input_list: list[str], ch: character) -> str:
+def main(input_list: list[str]) -> str:
 
+    ch = character()
 
-
-    if len(input_list) == 0:
-
-
+    if len(input_list) > 0:
 
         if (cvar_test := ch.get_cvar('ibook_dict')):
             cvar_dict = load_json(cvar_test)
 
 
-            if "Wizard Books" in ibook_dict.keys():
+            if "Wizard Books" in cvar_dict.keys():
 
-                if (key_result := search_list(input_list[0], ibook_dict['Wizard Books'].keys())):
+                if (key_result := search_list(input_list[0], cvar_dict['Wizard Books'].keys())):
 
                     if len(key_result) == 1:
                         ch.set_cvar('ibook_dict_backup', dump_json(cvar_dict))
 
-                        book_removed_data = ibook_dict['Wizard Books'].pop(key_result[0])
+                        book_removed_data = cvar_dict['Wizard Books'].pop(key_result[0])
 
                         ch.set_cvar('ibook_dict', dump_json(cvar_dict))
 
@@ -56,7 +54,7 @@ def main(input_list: list[str], ch: character) -> str:
                             else:
                                 ch.set_cvar('ibook_dict_backup', dump_json(cvar_dict))
 
-                                book_removed_data = ibook_dict['Wizard Books'].pop(key)
+                                book_removed_data = cvar_dict['Wizard Books'].pop(key)
 
                                 ch.set_cvar('ibook_dict', dump_json(cvar_dict))
 
@@ -64,10 +62,10 @@ def main(input_list: list[str], ch: character) -> str:
 
                         key_result.insert(0, "**Multiple Matches Found:**")
 
-                        return, None, "\n".join(key_result)
+                        return None, "\n".join(key_result)
                         
                 else:
-                    return None, "Spell not found"
+                    return None, "Wizard Book not found"
 
             else:
                 return None, "Wizard Books not found"
@@ -79,16 +77,33 @@ def main(input_list: list[str], ch: character) -> str:
         return None, "Expected at least one argument"
 
 
-ch = character()
-
-book_name, book_info = main(&ARGS&, ch)
+book_name, book_info = main(&ARGS&)
 
 
 if book_name:
 
-    title = f"{name} has removed {book_name} from their wizard magic book library"
+    # Short-code mapping table
+    shorthand_items = {
+        "Alchemical Compendium": "alch",
+        "Astromancy Archive": "astr",
+        "Atlas of Endless Horizons": "atla",
+        "Crystalline Chronicle": "crys",
+        "Duplicitous Manuscript": "dupl",
+        "Fulminating Treatise": "fulm",
+        "Heart Weaver's Primer": "hear",
+        "Libram of Souls and Flesh": "libr",
+        "Planecaller's Codex": "plan",
+        "Protective Verses": "prot"
+    }
+
+    title = f"{name} has removed {book_name} from their Magic Book Inventory"
     color = ""
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png"
+
+    if book_name in shorthand_items.keys():
+        thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[book_name]}.png"
+
+    else:
+        thumb - f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(shorthand_items.values())}.png"
 
     if typeof(book_info) == "SafeList":
         f = f"**Spells Removed:**\n" + "\n".join(book_info)
@@ -108,20 +123,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!remove [book_name] | Updated 11/4/23 | ShadowsStride"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-footer "!wizbook remove [source name] | Updated 11/23/23 | ShadowsStride"
