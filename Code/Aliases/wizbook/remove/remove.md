@@ -3,7 +3,7 @@
 Subalias to remove wizard magic books from the `ibook_dict` character variable.
 
 ## Help:
-`!wizbook remove [source name]`:
+`!wizbook remove [source name]`: Removes book specified from the wizard magic book inventory.
 
 `[source name]` is a required argument:
 - `source name`: Name of source, SVAR, or GVAR.
