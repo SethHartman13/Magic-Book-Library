@@ -68,58 +68,96 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def search_spell_1(spell_1_search: str, cvar_dict: dict) -> str:
+def search_cvar_dict(sb_spell_search: str, cvar_dict: dict) -> str:
+    """
+    Searches the CVAR for the spell to be switched out
 
+    Args:
+        sb_spell_search (str): Name of spell being searched
+        cvar_dict (dict): CVAR dictionary
+
+    Return:
+        str, str: spell name, magic book name
+    """
+
+    # Checks to see if there is a Wizard Books key
     if "Wizard Books" in cvar_dict.keys():
 
+        # Checks to see if there's at least one book
         if len((wizbook_keys := cvar_dict['Wizard Books'].keys())) > 0:
 
+            # Creates dictionary holder
             spell_1_dict = dict()
 
+            # For each book
             for magic_book in wizbook_keys:
+
+                # If a book holds a list of spells, search list for spell
                 if typeof(cvar_dict['Wizard Books'][magic_book]) == "SafeList":
-                    result_key = search_list(spell_1_search, cvar_dict['Wizard Books'][magic_book])
+                    result_key = search_list(sb_spell_search, cvar_dict['Wizard Books'][magic_book])
 
+                # If a book holds a dictionary of spells, search Dynamic entry (list) for spell
                 else:
-                    result_key = search_list(spell_1_search, cvar_dict['Wizard Books'][magic_book]["Dynamic"])
+                    result_key = search_list(sb_spell_search, cvar_dict['Wizard Books'][magic_book]["Dynamic"])
 
+                # If it found at least 1 match, add it to spell_dict
                 if result_key:
-                    if len(result_key) == 1:
-                        spell_1_dict.update({magic_book: [result_key[0]]})
+                    spell_1_dict.update({magic_book: result_key})
 
-                    else:
-                        spell_1_dict.update({magic_book: result_key})
-
+                # If no matches found
                 else:
                     pass
 
-            if len(spell_1_dict) == 0:
+            # If it found at least one book with the spell
+            if len(spell_1_dict) != 0:
+
+                # For each book found, check length of spells found in book
+                for book in spell_1_dict.keys():
+
+                    # If it finds only one spell
+                    if len(spell_1_dict[book]) == 1:
+                        pass
+
+                    # If it finds more than one spell
+                    else:
+                        return None, "\n".join(["**Multiple Matches Found (Spell 1):**"] + spell_1_dict[book])
+
+                return list(spell_1_dict.values())[0][0], list(spell_1_dict.keys())[0]
+
+            # If it did not find any spells
+            else:
                 return None, "Spell 1 not found"
 
-            elif len(spell_1_dict) == 1:
-                if len(spell_1_dict[spell_1_dict.keys()[0]]) == 1:
-                    return spell_1_dict.values()[0][0], spell_1_dict.keys()[0]
-                
-                else:
-                    return None, "\n".join(["**Multiple Matches Found (Spell 1):**"] + spell_1_dict.values()[0])
-
-            else:
-                return None, "\n".join(["**Multiple Matches Found (Spell 1):**"] + [spell for magic_book in spell_1_dict.keys() for spell in spell_1_dict[magic_book]]
-)
+        # If there are no books
         else:
             return None, "Wizard Book library is empty"
 
+    # If the Wizard Book Library was not created
     else:
         return None, "Wizard Book library is empty"
 
 
-def search_spell_2(spell_2_search: str, massive_source_spell_dict: dict, temp_source_set: set, svar_dict: dict) -> str:
+def search_sourcebook(ch: character, sourcebook_search: str, massive_source_spell_dict: dict, temp_source_set: set, svar_dict: dict) -> str:
+    """
+    Searches the sources (both UVAR and SVAR) for the spell to be switched in
 
+    Args:
+        sourcebook_search (str): Name of spell being searched
+        massive_source_spell_dict (dict): Massive dictionary containing all spells (and details) within sources
+        temp_source_set (set): Sources to pull from
+        svar_dict (dict): Server settings dictionary
+
+    Return:
+        str, dict: spell name, dictionary containing spell details
+    """
+
+    # Partnered content source list
     partnered_source_list = [
         "Explorer's Guide to Wildemount (egtw)",
         "Tal'Dorei Campaign Setting Reborn (tcsr)"
     ]
 
+    # Official content source list
     wotc_source_list = [
         "Xanathar's Guide to Everything (xgte)",
         "Tasha's Cauldron of Everything (tcoe)",
@@ -136,57 +174,63 @@ def search_spell_2(spell_2_search: str, massive_source_spell_dict: dict, temp_so
         "Basic Rules (br)"
     ]
 
+    # Everyone owns the Basic Rules sourcebook
     temp_source_set.add("Basic Rules (br)")
-    source_set = {}
+
+    # Create empty set
+    source_set = set()
     
+    # For each spell in the temp_source_set 
+    for source in temp_source_set:
 
-    if len(temp_source_set) > 0:
+        match source:
 
-        for source in temp_source_set:
-            if source in wotc_source_list:
+            # If the source is official content
+            case c if c in wotc_source_list:
                 source_set.add(source)
 
-            elif source in partnered_source_list and svar_dict['Settings']['Partnered Content']:
-                source_set.add(source)
+            # If the source is partnered content
+            case c if c in partnered_source_list:
 
-            else:
-                if source in partnered_source_list:
-                    pass
-                
-                elif not svar_dict['Settings']['Homebrew']:
-                    pass
+                # If partnered content is allowed
+                if svar_dict['Settings']['Partnered Content']:
+                    source_set.add(source)
 
+                # If partnered content is not allowed
                 else:
-                    if "-" in source:
-                        try:
-                            massive_source_spell_dict.update(load_json(get_gvar(source)))
-                            source_set.add(source)
+                    pass
 
-                        except:
-                            pass
+            # If the source is homebrew content
+            case _:
 
+                # If homebrew content is allowed
+                if svar_dict['Settings']["Homebrew"]:
+
+                    # If it is a GVAR
+                    if (gvar_test := get_gvar(source)):
+                        massive_source_spell_dict[source] = load_json(gvar_test)
+                        source_set.add(source)
+
+                    # If it is a SVAR
+                    elif (svar_test := get_svar(source)):
+                        massive_source_spell_dict[source] = load_json(svar_test)
+                        source_set.add(source)
+
+                    # If SVAR/GVAR does not exist
                     else:
-                        try:
-                            massive_source_spell_dict.update(load_json(get_uvar(source)))
-                            source_set.add(source)
+                        pass
 
-                        except:
-                            try:
-                                massive_source_spell_dict.update(load_json(get_svar(source)))
-                                source_set.add(source)
+                # If homebrew content is not allowed
+                else:
+                    pass
 
-                            except:
-                                pass
-
-    else:
-        return None, "No Subscriptions Found To Sourcebooks"
-
+    # Source mapping table
     source_mapping = {
         "Xanathar's Guide to Everything (xgte)": "xgte",
         "Tasha's Cauldron of Everything (tcoe)": "tcoe",
         "Sword Coast Adventurer's Guide (scag)": "scag",
         "Strixhaven: A Curriculum of Chaos (sais)": "sais",
-        "Spelljammer Adventures in Space (sacoc)", "sacoc",
+        "Spelljammer Adventures in Space (sacoc)": "sacoc",
         "Player's Handbook (phb)": "phb",
         "Lost Laboratory of Kwalish (llok)": "llok",
         "Icewind Dale Rime of the Frostmaiden (idrotf)": "idrotf",
@@ -199,93 +243,151 @@ def search_spell_2(spell_2_search: str, massive_source_spell_dict: dict, temp_so
         "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
     }
 
-    spell_2_dict = {}
+    # Create empty dictionary
+    spell_2_dict = dict()
+
+    # For each source
     for source in source_set:
 
+        # If source in mapping table, alter source to fit
         if source in source_mapping.keys():
             source = source_mapping[source]
 
+        # If source is in mapping table
         else:
             pass
 
-        massive_source_spell_dict[source].pop('Settings')
+        # If there are settings in the source, remove them
+        if (settings_key := search_list("settings", massive_source_spell_dict[source].keys())):
+            massive_source_spell_dict[source].pop(settings_key[0])
 
+        # If there aren't settings in the source
+        else:
+            pass
+
+        # Add each spell within source to a master dictionary
         for spell in massive_source_spell_dict[source].keys():
             spell_2_dict[spell] = massive_source_spell_dict[source][spell]
 
-    if (result_key := search_list(spell_2_search, spell_2_dict.keys())):
+    # Searches for the spell requested in master dictioanry
+    if (result_key := search_list(sourcebook_search, spell_2_dict.keys())):
 
+        # If it finds only one spell
         if len(result_key) == 1:
-            return result_key[0], spell_2_dict[result_key[0]]
 
+            # If the spell is in the character's spellbook
+            if result_key[0] in ch.spellbook:
+                return result_key[0], spell_2_dict[result_key[0]]
+
+            # If the spell is not in the character's spellbook
+            else:
+                return None, f"{result_key[0]} is not in {name}'s spellbook"
+
+        # If it finds more than one spell
         else:
+
+            # For each spell, look for exact match
             for key in result_key:
-                if key.lower() != spell_2_search.lower():
+                if key.lower() != sourcebook_search.lower():
                     pass
 
                 else:
-                    return key, spell_2_dict[key]
+
+                    # If the spell is in the character's spellbook
+                    if key in ch.spellbook:
+                        return key, spell_2_dict[key]
+
+                    # If the spell is not in the character's spellbook
+                    else:
+                        return None, f"{key} is not in {name}'s spellbook"
 
             result_key.insert(0, "**Multiple Matches Found (Spell 2):**")
             
             return None, "\n".join(result_key)
 
+    # If no matches found
     else:
         return None, "Spell 2 Not Found"
 
 
 def main(input_list: list[str]) -> str:
     """
-    
+    Main program function
+
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Results
     
     """
 
-    # NEED TO CHECK TO SEE IF SOURCES WITHIN UVAR AND SVAR EXIST
+    # If there are at least 2 inputs
     if len(input_list) >= 2:
 
+        # Grabs character object
         ch = character()
 
+        # If the CVAR exists, load dictionary
         if (cvar_test := ch.get_cvar('ibook_dict')):
             cvar_dict = load_json(cvar_test)
-            spell_1, spell_1_source = search_spell_1(input_list[0], cvar_dict)
 
-            book_cc = ch.cc(spell_1_source)
+            # Searches the soells that the user has in their CVAR
+            spell_1, spell_1_source = search_cvar_dict(input_list[0], cvar_dict)
 
-            if book_cc.value > 0:
-                pass
+            # If there was no error
+            if spell_1:
 
+                # Grabs the cc for the book
+                book_cc = ch.cc(spell_1_source)
+
+                # Checks to see if it at least has 1 charge, if so it will decrease it by 1
+                if book_cc.value > 0:
+
+                    # If the server settings exist
+                    if (svar_test := get_svar('ibook_settings')):
+                        svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []})
+
+                    # If the server settings do not exist
+                    else:
+                        svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
+
+                # If there are no charges
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", f"{spell_1_source} does not have enough charges", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+            # If there is an error
             else:
-                return f"{ctx.author.display_name} has encountered an error", f"{spell_1_source} does not have enough charges", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return f"{ctx.author.display_name} has encountered an error", spell_1_source, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+        # If the CVAR does not exist
         else:
             return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-        if spell_1:
-            if (svar_test := get_svar('ibook_settings')):
-                svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []})
-
-            else:
-                svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
-
-        else:
-            return f"{ctx.author.display_name} has encountered an error", spell_1_source, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
-                    
+    # If there were less than 2 inputs          
     else:
         return f"{ctx.author.display_name} has encountered an error", "Expected at least two arguments", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
-
+    # If UVAR source list exists, create a set of it with the SVAR book list
     if (uvar_test := get_uvar("ibook_source_list")):
         uvar_source_list = load_json(uvar_test)
 
         source_set = set(uvar_source_list).union(set(svar_dict['Books']))
 
+    # Create a set of the SVAR book list
     else:
         source_set = set(svar_dict['Books'])
 
-    spell_2, spell_2_dict = search_spell_2(input_list[1], load_json(get_gvar("6011f3a8-737d-4413-9dbf-04cebe165212")), source_set, svar_dict)
+    # Load all source dict
+    all_source_dict = load_json(get_gvar("6011f3a8-737d-4413-9dbf-04cebe165212"))
 
+    # Search for the second spell within the sources that the user has access to
+    spell_2, spell_2_dict = search_sourcebook(ch, input_list[1], all_source_dict, source_set, svar_dict)
+
+    # If there was no error
     if spell_2:
 
+        # School mapping table
         book_school_map = {
             "Alchemical Compendium": "Transmutation",
             "Astromancy Archive": "Divination",
@@ -298,39 +400,102 @@ def main(input_list: list[str]) -> str:
             "Protective Verses": "Abjuration"
         }
 
+        # If the source is in the mapping table
         if spell_1_source in book_school_map.keys():
+
+            # If the school lines up properly
             if book_school_map[spell_1_source].lower() == spell_2_dict["School"].lower():
                 pass
 
+            # If the school does not line up properly
             else:
-                return f"{ctx.author.display_name} has encountered an error", f"You may only switch spells in {spell_1_source} with spells from the School of {book_school_map[spell_1_source]}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+                # Store source name
+                spell_1_source_old = spell_1_source
+
+                # remove old source from list
+                old_source_value = cvar_dict['Wizard Books'].pop(spell_1_source_old)
+                spell_1, spell_1_source = search_cvar_dict(spell_1, cvar_dict)
+
+                # If spell exists in another book (Crystalline is an example)
+                if spell_1:
+
+                    # If the new source is in the mapping table
+                    if spell_1_source in book_school_map.keys():
+
+                        # If the school line up
+                        if book_school_map[spell_1_source].lower() == spell_2_dict["School"].lower():
+                            cvar_dict['Wizard Books'][spell_1_source_old] = old_source_value
+
+                        # If the school does not line up
+                        else:
+                            return f"{ctx.author.display_name} has encountered an error", f"You may only switch spells in {spell_1_source_old} with spells from the School of {book_school_map[spell_1_source_old]}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+                    # If the new source is not in the mappoing table
+                    else:
+                        cvar_dict['Wizard Books'][spell_1_source_old] = old_source_value
+
+                # If the spell does not exist in another book
+                else:
+                    return f"{ctx.author.display_name} has encountered an error", f"You may only switch spells in {spell_1_source_old} with spells from the School of {book_school_map[spell_1_source_old]}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        # if the source is not in the mapping table
         else:
             pass
 
+        # If the magic book is listbased, swap the spells
         if typeof(cvar_dict['Wizard Books'][spell_1_source]) == "SafeList":
-            cvar_dict['Wizard Books'][spell_1_source][cvar_dict['Wizard Books'][spell_1_source].index(spell_1)] = spell_2
+            cvar_dict['Wizard Books'][spell_1_source].remove(spell_1)
+            cvar_dict['Wizard Books'][spell_1_source].append(spell_2)
 
+        # If the magic book is dictionary based, swap the spells
         else:
-            cvar_dict['Wizard Books'][spell_1_source]['Dynamic'][cvar_dict['Wizard Books'][spell_1_source]['Dynamic'].index(spell_1)] = spell_2
+            cvar_dict['Wizard Books'][spell_1_source]['Dynamic'].remove(spell_1)
+            cvar_dict['Wizard Books'][spell_1_source]['Dynamic'].append(spell_2)
 
-
-        ch.set_svar('ibook_dict', dump_json(cvar_dict))
+        # Set the ibook_dict CVAR
+        ch.set_cvar('ibook_dict', dump_json(cvar_dict))
+        book_cc.mod(-1)
+        # Output results
         f = [
             "**Old Spell**",
             spell_1,
             "",
             "**New Spell**",
             spell_2,
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
+            book_cc.full_str().split("\n")[0] + " (-1)"
         ]
 
-        return f"{name} switches out their spells for their {spell_1_source}", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", ""
+        # Short-code mapping table
+        shorthand_items = {
+            "Alchemical Compendium": "alch",
+            "Astromancy Archive": "astr",
+            "Atlas of Endless Horizons": "atla",
+            "Crystalline Chronicle": "crys",
+            "Duplicitous Manuscript": "dupl",
+            "Fulminating Treatise": "fulm",
+            "Heart Weaver's Primer": "hear",
+            "Libram of Souls and Flesh": "libr",
+            "Planecaller's Codex": "plan",
+            "Protective Verses": "prot"
+        }
 
+        # If source in shortcode mapping, use it
+        if spell_1_source in shorthand_items.keys():
+            short_code = shorthand_items[spell_1_source]
+
+        # Otherwise, use random shortcode mapping
+        else:
+            short_code = randchoice(shorthand_items.values())
+
+        return f"{name} switches out their spells for their {spell_1_source}", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{short_code}.png", ""
+
+    # If it did not find the second spell
     else:
         return f"{ctx.author.display_name} has encountered an error", spell_2_dict, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
+# Main program function
 title, f, thumb, color = main(&ARGS&)
 
 
@@ -339,3 +504,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
+-footer "!wizbook switch [Magic Book Spell] [Spellbook Spell] | Updated 11/25/23 | ShadowsStride"
