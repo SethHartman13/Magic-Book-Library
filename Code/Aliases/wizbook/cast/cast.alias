@@ -23,74 +23,416 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def main(input_list: list[str]) -> str:
+def construct_spell_str(ch: character, spell_name: str, l_arg: str|None, dc_arg: str|int, t_arg: list[str], d_arg: list[str], b_arg: list[str], i_arg: bool, cvar_dict: dict):
+    """
+    Constructs spell string to be used to cast spell
 
-    # NEED TO CHECK TO SEE IF SOURCES WITHIN UVAR AND SVAR EXIST
-    if len(input_list) > 0:
+    Args:
+        ch (character): Character object
+        spell_name (str): Name of spell
+        l_arg (str|None): User specified spell level, default None
+        dc_arg (str|int): User specified DC, default character spell DC
+        t_arg (list[str]): List of targets
+        d_arg (list[str]): List of additional damage modifiers
+        b_arg (list[str]): List of additional to hit modifiers
+        i_arg (bool): Ignore used, default False
+        cvar_dict (dict): Character dictionary containing magicbooks
 
-        ch = character()
+    Return:
+        str|None: Spell casting string, None if error
+        int|str: Spell level, string if error
+        str: Source name, "" if error
+    """
 
+    # Load massive spell dictionary
+    all_source_dict = load_json(get_gvar("6011f3a8-737d-4413-9dbf-04cebe165212"))
 
-        if (cvar_test != ch.get_cvar("ibook_dict")):
-            cvar_dict = load_json(cvar_test)
+    # If spell level is specified, check input
+    if l_arg:
+        match l_arg:
 
+            # If cantrip
+            case c if "0" in l_arg or "cantrip" in l_arg.lower():
+                l = 0
 
-            if "Wizard Books" in (cvar_dict_keys := cvar_dict.keys()):
+            # If 1st level
+            case c if "1" in l_arg:
+                l = 1
 
-                if len(cvar_dict['Wizard Books']) > 0:
+            # If 2nd level
+            case c if "2" in l_arg:
+                l = 2
 
-                    if (key_result := search_list(input_list[0], [spell for wizard_book in cvar_dict['Wizard Books'].keys() for spell in (cvar_dict['Wizard Books'][wizard_book] if typeof(cvar_dict['Wizard Books'][wizard_book]) == "SafeList" else cvar_dict['Wizard Books'][wizard_book]['Static'] + cvar_dict['Wizard Books'][wizard_book]['Dynamic'])])):
+            # If 3rd level
+            case c if "3" in l_arg:
+                l = 3
 
-                        if len(key_result) == 1:
-                            input_list.pop(0)
-                            return key_result[0], " ".join(input_list)
+            # If 4th level
+            case c if "4" in l_arg:
+                l = 4
 
+            # If 5th level
+            case c if "5" in l_arg:
+                l = 5
 
-                        else:
-                            for key in key_result:
-                                if key.lower() != input_list[0].lower():
-                                    pass
+            # If 6th level
+            case c if "6" in l_arg:
+                l = 6
 
-                                else:
-                                    input_list.pop(0)
-                                    return key, " ".join(input_list)
+            # If 7th level
+            case c if "7" in l_arg:
+                l = 7
 
-                        
-                            key_result.insert(0, "**Multiple Matches Found:**")
+            # If 8th level
+            case c if "8" in l_arg:
+                l = 8
 
-                            return None, "\n".join(key_result)
+            # If 9th level
+            case c if "9" in l_arg:
+                l = 9
 
+            # If invalid input
+            case _:
 
-                    else:
-                        return None, "Spell not found"
+                # Search for spell level within sources
+                for sourcebook in all_source_dict.keys():
+                    if spell_name in all_source_dict[sourcebook].keys():
+                        l = all_source_dict[sourcebook][spell_name]["Level"]
+                        break
 
+                    pass
+
+                # Try to convert to int
+                try:
+                    l = int(l)
+
+                # If dictionary contained invalid value
+                except:
+                    return None, "Error finding spell level within sourcebook", ""
+
+        # Searches for base spell level within sources
+        for sourcebook in all_source_dict.keys():
+            if spell_name in all_source_dict[sourcebook].keys():
+                l_test = all_source_dict[sourcebook][spell_name]["Level"]
+                break
+
+            pass
+
+        # Try to compare spell casting level and spell level
+        try:
+
+            # If casting level is higher than base level and it is not a cantrip or casting level matches base level
+            if l > l_test and l_test != 0 or l == l_test:
+                pass
+
+            # If -i was used
+            elif i_arg:
+
+                # If the spell is a cantrip and the casting level is above such
+                if l_test == 0 and l != 0:
+                    l = 0
+
+                # If the spell casting is lower than base level, set casting level
+                elif l_test >= l:
+                    l = l_test
+
+                # If the spell is not a cantrip and casting level is above base level 
                 else:
-                    return None, "No Wizard Books have been found"
+                    pass
+
+            # If the spell is a cantrip and the casting level is above such
+            elif l_test == 0 and l != 0:
+                l = 0
+
+            # If the spell casting is lower than base level, set casting level
+            else:
+                l = l_test
+
+        # If there were problems making the comparison
+        except:
+            return None, "Error comparing spell casting level against spell level", ""
+
+    # If no spell level was specified, search for spell level within sources
+    else:
+        for sourcebook in all_source_dict.keys():
+            if spell_name in all_source_dict[sourcebook].keys():
+                l = all_source_dict[sourcebook][spell_name]["Level"]
+                break
+
+            pass
+
+        # Try to convert to int
+        try:
+            l = int(l)
+            l_test = l
+
+        # If dictionary contained invalid value
+        except:
+            return None, "Error finding spell level within owned sources", ""
+
+    # Checks for spell slots (or ignores spell slot usage)
+    if ch.spellbook.get_slots(l) > 0 or i_arg:
+        pass
+
+    # If spell slots were not ignored and there were no spell slots to use
+    else:
+        return None, f"You do not have enough level {l} spell slots", ""
+
+    # Verify that DC is a number
+    try:
+        dc_arg = f"-dc {int(dc_arg)}"
+
+    # If DC is not a number, set to default
+    except:
+        dc_arg = f"-dc {ch.spellbook.dc}"
+
+    # Construct dbt_list (-d1 # -d2 #d# -b1 # -b2 #d# -t "target" -t "target")
+    dbt_result = []
+
+    # For each value in d_arg
+    for i in range(1, len(d_arg) + 1):
+
+        # If dice roll was passed (or with damage type), add string
+        if "d" in d_arg[i-1] or "[" in d_arg[i-1]:
+            dbt_result.append(f"-d{i} {d_arg[i-1]}")
+
+        # If a number, verify, then add string
+        else:
+            try:
+                dbt_result.append(f"-d{i} {int(d_arg[i-1])}")
+
+            # If a number was not passed
+            except:
+                pass
+
+    # For each value in b_arg
+    for i in range (1, len(b_arg) + 1):
+
+        # If dice roll was passed, add string
+        if "d" in b_arg[i-1]:
+            dbt_result.append(f"-b{i} {b_arg[i-1]}")
+
+        # If a number, verify, then add string
+        else:
+            try:
+                dbt_result.append(f"-b{i} {int(b_arg[i-1])}")
+
+            # If a number was not pass
+            except:
+                pass
+    
+    # For each value in t_arg, add target string
+    for target in t_arg:
+        dbt_result.append(f"-t {target}")
+
+    # Search for magic book name
+    for magic_book in cvar_dict['Wizard Books'].keys():
+        source = "None"
+
+        # If it is a list based magic book
+        if typeof(cvar_dict['Wizard Books'][magic_book]) == "SafeList":
+            if spell_name in cvar_dict['Wizard Books'][magic_book]:
+                source = magic_book
+                break
 
             else:
-                return None, "No Wizard Books have been found"
+                pass
 
+        # If it is a dictionary based magic book
         else:
-            return None, "No Wizard Books have been found"
+            if spell_name in cvar_dict['Wizard Books'][magic_book]['Dynamic'] or spell_name in cvar_dict['Wizard Books'][magic_book]['Static']:
+                source = magic_book
+                break
 
+            else:
+                pass
+
+    # Checks for source
+    if source in [
+        "Alchemical Compendium",
+        "Astromancy Archive",
+        "Atlas of Endless Horizons",
+        "Crystalline Chronicle",
+        "Duplicitous Manuscript",
+        "Fulminating Treatise",
+        "Heart Weaver's Primer",
+        "Libram of Souls and Flesh",
+        "Planecaller's Codex",
+        "Protective Verses"
+        ]:
+        pass
+
+    # If source is HB, change source name
     else:
-        return None, "Expected at least one input"
+        source = "HB Wizard Magic Book"
 
+    return f"!cast \"{spell_name}\" {dc_arg} " + " ".join(dbt_result) + f" -l {l} -i", l, source
+   
 
+def main(input_list: list[str], ch: character):
+    """
+    Main program function
 
-spell, args = main(&ARGS&)
+    Args:
+        input_list (list[str]): List of user inputs
+        ch (character): Character object
 
+    Return:
+        str|None: Spell string, None if error
+        int|str: Spell level, "" if error
+        str: Title
+        str: Body message
+        str: Thumbnail URL
+        str: Source name, hex color code if error    
+    """
 
-if spell:
-    spell_cast_str = f"!cast '{spell}' {args} -i"
-    result_str = ""
+    # If there is at least 1 input, parse arguments
+    if len(input_list) > 0:
+        arg_parsed = argparse(" ".join(input_list))
 
+        # Check for spell level, -i, dc value, targets, additional damage, and bonus to hit.
+        l_arg = arg_parsed.last("l", default=None)
+        i_arg = arg_parsed.last("i", default=False)
+        dc_arg = arg_parsed.last("dc", default=ch.spellbook.dc)
+        t_arg = arg_parsed.get("t", default=list(), ephem=True)
+        d_arg = arg_parsed.get("d", default=list(), ephem=True)
+        b_arg = arg_parsed.get("b", default=list(), ephem=True)
+
+    # If there were no inputs
+    else:
+        return None, "", f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+    # If ibook_dict exists, load dictionary
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
+
+    # If ibook_dict does not exist
+    else:
+        return None, "", f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+    # If Wizard Books entry exists
+    if "Wizard Books" in cvar_dict.keys():
+
+        # If there is at least one book
+        if len(cvar_dict['Wizard Books']) > 0:
+
+            # If there was at least one spell match
+            if (key_result := search_list(input_list[0], [spell for wizard_book in cvar_dict['Wizard Books'].keys() for spell in (cvar_dict['Wizard Books'][wizard_book] if typeof(cvar_dict['Wizard Books'][wizard_book]) == "SafeList" else cvar_dict['Wizard Books'][wizard_book]['Static'] + cvar_dict['Wizard Books'][wizard_book]['Dynamic'])])):
+
+                # If there was exactly one spell match, construct spell string
+                if len(key_result) == 1:
+                    spell_str, output, source = construct_spell_str(ch, key_result[0], l_arg, dc_arg, t_arg, d_arg, b_arg, i_arg, cvar_dict)
+
+                    # If there was no error
+                    if spell_str:
+
+                        # If -i was not used
+                        if not i_arg:
+                            pass
+
+                        # If -i was used, set spell level to 0
+                        else:
+                            output = 0
+                
+                        return spell_str, output, f"{name} uses their {source} to cast {key_result[0]}", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", source
+
+                    # If there was an error
+                    else:
+                        return None, "", f"{ctx.author.display_name} has encountered an error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+                # If there were multiple matches, search for an exact match
+                else:
+                    for key in key_result:
+
+                        # If entry was not an exact match
+                        if key.lower() != input_list[0].lower():
+                            pass
+
+                        # If it was an exact match, construct spell string
+                        else:
+                            spell_str, output, source = construct_spell_str(ch, key, l_arg, dc_arg, t_arg, d_arg, b_arg, i_arg, cvar_dict)
+
+                            # If there was no error
+                            if spell_str:
+
+                                # If -i was not used
+                                if not i_arg:
+                                    pass
+
+                                # If -i was used, set spell level to 0
+                                else:
+                                    output = 0
+
+                                return spell_str, output, f"{name} uses their {source} to cast {key}", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", source
+
+                            # If there was an error
+                            else:
+                                return None, "", f"{ctx.author.display_name} has encountered an error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+                    # If it could not find an exact match, return error with match list
+                    key_result.insert(0, "**Multiple Matches Found:**")
+
+                    return None, "", f"{ctx.author.display_name} has encountered an error", "\n".join(key_result), 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+            # If there were no spell matches
+            else:
+                return None, "", f"{ctx.author.display_name} has encountered an error", "Spell not found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+        # If there are no wizard books
+        else:
+            return None, "",f"{ctx.author.display_name} has encountered an error", "No Wizard Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+    # If wizard Books entry does not exist
+    else:
+        return None, "", f"{ctx.author.display_name} has encountered an error", "No Wizard Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+# Character object
+ch = character()
+
+# Main program function
+spell_str, spell_level, title, f, thumb, color_source = main(&ARGS&, ch)
+
+# If there were no errors
+if spell_str:
+
+    # If the spell is not a cantrip (and -i is not used)
+    if spell_level != 0:
+        ch.spellbook.use_slot(spell_level)
+        f += f"**Spell Slots:**\n{ch.spellbook.slots_str(spell_level)} (-1)"
+
+    # If the spell is a cantrip or -i was used
+    else:
+        pass
+
+    # Short-code mapping table
+    shorthand_items = {
+        "Alchemical Compendium": "alch",
+        "Astromancy Archive": "astr",
+        "Atlas of Endless Horizons": "atla",
+        "Crystalline Chronicle": "crys",
+        "Duplicitous Manuscript": "dupl",
+        "Fulminating Treatise": "fulm",
+        "Heart Weaver's Primer": "hear",
+        "Libram of Souls and Flesh": "libr",
+        "Planecaller's Codex": "plan",
+        "Protective Verses": "prot"
+    }
+
+    # If the source exists, give it a special image
+    if color_source in shorthand_items.keys():
+        thumb = f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[color_source]}.png'
+
+        # Reset color
+        color_source = ""
+
+    # If the source does not exist, keep generic image and reset the image.
+    else:
+        color_source = ""
+
+# If there were errors
 else:
-    spell_cast_str = ""
-    result_str = f"!embed -title '{ctx.author.display_name}' -f '{args}' -thumb 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png' -color '#cf142b'"
-
+    spell_str = color_source
 
 </drac2>
-
-{{spell_cast_str}}
-{{result_str}}
+!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "!wizbook cast [spell name] | Updated 11/28/23 | ShadowsStride"
+{{spell_str}}
