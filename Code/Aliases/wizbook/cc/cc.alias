@@ -1,0 +1,289 @@
+embed
+<drac2>
+
+
+def search_list(query: str, item_list: list[str]) -> list[str]|None:
+    """
+    Searches for item in list.
+
+    Args:
+        query (str): The query being made
+        item_list (list): List of items
+
+    Return:
+        list[str]|None: If it finds at least one match, it returns the item(s) in a list, otherwise it returns None
+    """
+
+    # Finds at least 1 match
+    if len(item_results := [item for item in item_list if query.lower() in item.lower()]) > 0:
+        return item_results
+
+    # If it finds no matches
+    else:
+        return None
+
+
+def list_all_cc(ch: AliasCharacter, cc_list: list[str]):
+    """
+    Function to list CCs
+
+    Args:
+        ch (AliasCharacter): Character object
+        cc_list (list[str]): List of cc names
+
+    Return:
+        str: Title
+        str: Body Content
+        str: Image URL
+        str: Color Hex Code
+    """
+    
+    # Short-code mapping table
+    shorthand_items = {
+        "Alchemical Compendium": "alch",
+        "Astromancy Archive": "astr",
+        "Atlas of Endless Horizons": "atla",
+        "Crystalline Chronicle": "crys",
+        "Duplicitous Manuscript": "dupl",
+        "Fulminating Treatise": "fulm",
+        "Heart Weaver's Primer": "hear",
+        "Libram of Souls and Flesh": "libr",
+        "Planecaller's Codex": "plan",
+        "Protective Verses": "prot"
+    }
+
+    # Results lists
+    shorthand_list = []
+    result_list = []
+
+    # For each cc in the list
+    for cc_name in cc_list:
+
+        # If the source is not HB
+        if cc_name in shorthand_items.keys():
+
+            # Add code to code list and append counter string
+            shorthand_list.append(shorthand_items[cc_name])
+            result_list += [f"**{cc_name}**", ch.cc(cc_name).full_str().split("\n")[0], ""]
+
+        # If the source is HB, this alias does not support HB at this time
+        else:
+            pass
+
+    # If there are is at least 1 valid result
+    if len(shorthand_list) > 0:
+        return f"{name} checks their custom counters", "\n".join(result_list), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(shorthand_list)}.png", ""
+
+    # If there are no valid results
+    else:
+        return f"{name} checks their custom counters", "None (Does not support HB sources at this time)", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(list(shorthand_items.values()))}.png", ""
+
+
+def edit_ind_cc(ch: AliasCharacter, cc_name: str, mod_num: str):
+    """
+    Edits the CC value for a specific CC
+
+    Args:
+        ch (AliasCharacter): Character object
+        cc_name (str): Name of CC
+        mod_num (str): Number input (has to be a number)
+
+    Return:
+        str: Title
+        str: Body Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    # Tries to convert mod_num to integer
+    try:
+        mod_num = int(mod_num)
+
+    # If if failed to convert, display CC but give error
+    except:
+        title, f, thumb, _ = list_all_cc(ch, [cc_name])
+
+        return title, "`Invalid number input`\n\n" + f, thumb, "#CF142B"
+
+    # Short-code mapping table
+    shorthand_items = {
+        "Alchemical Compendium": "alch",
+        "Astromancy Archive": "astr",
+        "Atlas of Endless Horizons": "atla",
+        "Crystalline Chronicle": "crys",
+        "Duplicitous Manuscript": "dupl",
+        "Fulminating Treatise": "fulm",
+        "Heart Weaver's Primer": "hear",
+        "Libram of Souls and Flesh": "libr",
+        "Planecaller's Codex": "plan",
+        "Protective Verses": "prot"
+    }
+
+    # Create result list
+    result_list = []
+
+    # If the source is not HB
+    if cc_name in shorthand_items.keys():
+
+        # If the number is non-zero positive
+        if mod_num > 0:
+            adj = f"adds {mod_num} to"
+
+        # If the number is zero
+        elif mod_num == 0:
+            return list_all_cc(ch, [cc_name])
+
+        # If the number is non-zero negative
+        else:
+            adj = f"removes {mod_num * -1} from"
+        
+        # Store CC object and edit CC
+        book_cc = ch.cc(cc_name)
+        book_cc.mod(mod_num)
+
+        return f"{ctx.author.display_name} {adj} their {cc_name} custom counter", book_cc.full_str().split("\n")[0], f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[cc_name]}.png", ""
+
+    # If the source is HB, this alias does not support HB at this time
+    else:
+        title, f, thumb, _ = list_all_cc(ch, [])
+
+        return title, "`!wizbook cc does not support HB at this time`\n\n" + f, thumb, "#CF142B"
+
+
+def edit_view_cc(ch: AliasCharacter, cvar_list: list[str], search_str: str = "None", mod_num: str = 0) -> str:
+    """
+    Driver of editing and viewing CCs
+
+    Args:
+        ch (AliasCharacter): Character object
+        cvar_list (list[str]): List of CC names (including HB sources)
+        search_str (str): Name of CC to be searched
+        mod_num (str): Number input (has to be a number), default is 0
+
+    Return:
+        str: Title
+        str: Body Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    match (search_str, mod_num):
+
+        # search_str = "None" and mod_num = 0
+        case ("None", 0):
+            return list_all_cc(ch, cvar_list)
+
+        # search_str != "None" and mod_num = 0
+        case (_, 0):
+
+            # If it finds at least one matching CC
+            if (result_list := search_list(search_str, cvar_list)):
+                return list_all_cc(ch, result_list)
+
+            # If it does not find at least one matching CC
+            else:
+                title, f, thumb, color = list_all_cc(ch, cvar_list)
+                return title, f"`CC for '{search_str}' not found`\n\n" + f, thumb, "#CF142B"
+
+        # search_str != "None" and mod_num != 0
+        case (_, _):
+
+            # If it finds at least one match
+            if (result_list := search_list(search_str, cvar_list)):
+
+                # If it finds exactly one match
+                if len(result_list) == 1:
+                    return edit_ind_cc(ch, result_list[0], mod_num)
+
+                # If it finds more than one match, search for an exact match
+                else:
+                    for item in result_list:
+
+                        # If no exact match
+                        if item.lower() != search_str.lower():
+                            pass
+
+                        # If exact match
+                        else:
+                            return edit_ind_cc(ch, item, mod_num)
+
+                    
+                    # Return list of matching CCs with error
+                    title, f, thumb, _ = list_all_cc(ch, result_list)
+                    result_list.insert(0, "**Multiple Matches Found:**")
+
+                    return title, "\n".join(result_list) + "\n\n" + f, thumb, "#CF142B"
+
+            # If it finds no matches, return list of all CCs with error
+            else:
+                title, f, thumb, _ = list_all_cc(ch, cvar_list)
+                return title, f"`CC for '{search_str}' not found`\n\n" + f, thumb, "#CF142B"
+
+
+def main(input_list: list[str]):
+    """
+    Main Program Function
+
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Title
+        str: Body Content
+        str: Image URL
+        str: Color Hex Code
+    """
+    
+    # Character object
+    ch = character()
+
+    # If the cvar ibook_dict exists, load dictionary
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
+
+        # If Wizard Books in cvar_dict keys
+        if "Wizard Books" in cvar_dict.keys():
+
+            # If there is at least one book in Wizard Books
+            if len(cvar_dict['Wizard Books']) > 0:
+                cvar_list = cvar_dict['Wizard Books']
+
+            # If there are no books in Wizard Books
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        # If Wizard Books are not in cvar_dict keys
+        else:
+            return f"{ctx.author.display_name} has encountered an error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+    # If cvar ibook_dict does not exist
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+    match len(input_list):
+
+        # No inputs
+        case 0:
+            return edit_view_cc(ch, cvar_list)
+
+        # One input
+        case 1:
+            return edit_view_cc(ch, cvar_list, input_list[0])
+
+        # Two or more inputs
+        case _: 
+            return edit_view_cc(ch, cvar_list, input_list[0], input_list[1])
+
+
+# Main program function
+title, f, thumb, color = main(&ARGS&)
+l = "<"
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!wizbook cc {{l}}wizard book name> {{l}}#> | Updated 11/30/23 | ShadowsStride"
