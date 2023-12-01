@@ -1,0 +1,20 @@
+embed
+<drac2>
+
+f = [
+    "`!wizbook add`: Subalias to view available magic books to add from custom sources within SVARs and GVARs.",
+    "`!wizbook remove`: Subalias to remove wizard magic books from the `ibook_dict` character variable.",
+    "",
+    "`!wizbook cast`: Subalias to cast spells from wizard magic books in the `ibook_dict` character variable.",
+    "`!wizbook activate`: Subalias to activate wizard magic books from the `ibook_dict` character variable.",
+    "`!wizbook switch`: Subalias to remove wizard magic books from the `ibook_dict` character variable.",
+    "",
+    "`!wizbook list`: Subalias that lists all spells contained in the CVAR `ibook_dict` (organized)",
+    "`!wizbook cc`: Subalias to edit/view wizard magic book custom counters."
+]
+
+</drac2>
+-title "Someone needs the help action"
+-f "{{"\n".join(f)}}"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['', 1, 2, 3, 4, 5])}}.png"
+-footer "!wizbook | Updated 12/1/23 | ShadowsStride"
