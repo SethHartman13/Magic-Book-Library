@@ -1,0 +1,192 @@
+embed
+<drac2>
+
+
+
+def combine_list_items(list_of_dicts: list[dict], page_num: int, character_name: str):
+    """
+    Combines all the spells from the wizard magic books (with organization)
+
+    Args:
+        list_of_dicts (list[dict]): List of dictionaries containing spells
+        page_num (int): Page number
+        character_name (str): Character name
+
+    Return:
+        str: Title
+        str: Body Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    # Setup
+    grouping_list = [[]]
+    i = 0
+    character_limit = 100
+
+    # For each dictionary (book)
+    for mb_dictionary in list_of_dicts:
+
+        # If grouping is under character limit with book name, add book name to grouping
+        if len("".join(grouping_list[i])) < character_limit - len(mb_dictionary['Name']):
+            grouping_list[i].append(f"**{mb_dictionary['Name']}**")
+
+        # If grouping is above character limit with book name, add spacer and create new grouping (increment grouping number)
+        else:
+            grouping_list[i].append("")
+            i += 1
+            grouping_list.append([f"**{mb_dictionary['Name']}**"])
+
+        # If the content within the book is a list
+        if typeof(mb_dictionary['Content']) == "SafeList":
+
+            # For each spell in the book
+            for line in mb_dictionary['Content']:
+
+                # If grouping is under character limit, add spell to grouping
+                if len("".join(grouping_list[i])) < character_limit:
+                    grouping_list[i].append(line)
+
+                # If grouping is above character limit, add spacer and create new grouping with title (increment grouping number)
+                else:
+                    grouping_list[i].append("")
+                    i += 1
+                    grouping_list.extend([[f"**{mb_dictionary['Name']} (Cont.)**", line]])
+
+        # If the content within the book is a dictionary
+        else:
+
+            # For each spell within the dynamic and static section
+            for line in mb_dictionary['Content']['Static'] + mb_dictionary['Content']['Dynamic']:
+
+                # If grouping is under character limit, add spell to grouping
+                if len("".join(grouping_list[i])) < character_limit:
+                    grouping_list[i].append(line)
+
+                # If grouping is above character limit, add spacer and create new grouping with title (increment grouping number)
+                else:
+                    grouping_list[i].append("")
+                    i += 1
+                    grouping_list.extend([[f"**{mb_dictionary['Name']} (Cont.)**", line]])
+        
+        grouping_list[i].append("")
+
+    # Grab number of groupings
+    grouping_size = len(grouping_list)
+    match page_num:
+
+        # If input is greater than max
+        case c if page_num > grouping_size:
+            page_num = grouping_size
+
+        # If input is less than 1
+        case c if page_num < 1:
+            page_num = 1
+
+        # If input is within range
+        case _:
+            pass
+
+    # Construct final string
+    final_string = f"Page {page_num}/{grouping_size}\n\n" + "\n".join(grouping_list[page_num - 1])
+
+    # Short-code mapping table
+    shorthand_items = {
+        "Alchemical Compendium": "alch",
+        "Astromancy Archive": "astr",
+        "Atlas of Endless Horizons": "atla",
+        "Crystalline Chronicle": "crys",
+        "Duplicitous Manuscript": "dupl",
+        "Fulminating Treatise": "fulm",
+        "Heart Weaver's Primer": "hear",
+        "Libram of Souls and Flesh": "libr",
+        "Planecaller's Codex": "plan",
+        "Protective Verses": "prot"
+    }
+
+    # Shortcode holder
+    shortcode_list = []
+
+    # Grab the shortcodes of books used in final string
+    for book in shorthand_items.keys():
+        if book in final_string:
+            shortcode_list.append(book)
+
+        else:
+            pass
+
+    # If there was at least one shortcode obtained
+    if len(shortcode_list) > 0:
+        return f"{character_name} checks their spells within their Magic Wizard Books", final_string, f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[randchoice(shortcode_list)]}.png", ""
+
+    # If there were no shortcodes obtained
+    else:
+        return f"{character_name} checks their spells within their Magic Wizard Books", final_string, f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[randchoice(list(shorthand_items.values()))]}.png", ""
+
+
+def main(input_list: list[str]):
+    """
+    Main program function
+    
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Title
+        str: Body Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    # Character object
+    ch = character()
+
+    # If the cvar ibook_dict exists, load dictionary
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
+
+        # If Wizard Books in cvar_dict keys
+        if "Wizard Books" in cvar_dict.keys():
+
+            # If there is at least one book in Wizard Books
+            if len(cvar_dict['Wizard Books']) > 0:
+
+                # If there is at least one input, try to turn it into a number
+                if len(input_list) > 0:
+                    try:
+                        page_num = int(input_list[0])
+
+                    # If the first input was not a number
+                    except:
+                        page_num = 1
+
+                # If there were no inputs
+                else:
+                    page_num = 1
+
+                return combine_list_items([{"Name": wizard_book, "Content": cvar_dict['Wizard Books'][wizard_book]} for wizard_book in cvar_dict['Wizard Books'].keys()], page_num, name)
+
+            # If there are no books in Wizard Books
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        # If Wizard Books are not in cvar_dict keys
+        else:
+            return f"{ctx.author.display_name} has encountered an error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+    # If cvar ibook_dict does not exist
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+# Main program function
+title, f, thumb, color = main(&ARGS&)
+l = "<"
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!wizbook list {{l}}#> | Updated 11/30/23 | ShadowsStride"
