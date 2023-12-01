@@ -3,7 +3,7 @@
 # High-level Design
 
 ## Aliases
-- [x] <span class="level1">`!ibook`</span>
+- [x] <span class="level1">`!ibook`</span> <span class="documented">Documented</span>
     - Provides help menu
     - [x] <span class="level2">`!ibook serve`</span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/ibook/serve/serve.md)
