@@ -85,59 +85,58 @@
 
 - [ ] <span class="level1">`!wizbook`
     - Gives overview on how to use wizbook
-    - [ ] <span class="level2">`!wizbook add`
-        - Provides a help menu listing the wizard books they can add (and if they can add it)
-        - [ ] <span class="level3">`!wizbook add alch`</span><span class="required">*</span> <span class="documented">Documented</span>
+    - [x] <span class="level2">`!wizbook add`
+        - [Markdown](../Code/Aliases/wizbook/add/add.md)
+        - [x] <span class="level3">`!wizbook add alch`</span><span class="required">*</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/alch/alch.md)
 
-        - [ ] <span class="level3">`!wizbook add astr`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add astr`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/astr/astr.md)
 
-        - [ ] <span class="level3">`!wizbook add atla`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add atla`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/atla/atla.md)
 
-        - [ ] <span class="level3">`!wizbook add crys`</span><span class="required">*</span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add crys`</span><span class="required">*</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/crys/crys.md)
 
-        - [ ] <span class="level3">`!wizbook add dupl`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add dupl`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/dupl/dupl.md)
 
-        - [ ] <span class="level3">`!wizbook add fulm`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add fulm`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/fulm/ulm.md)
 
-        - [ ] <span class="level3">`!wizbook add hear`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add hear`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/hear/hear.md)
 
-        - [ ] <span class="level3">`!wizbook add libr`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add libr`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/libr/libr.md)
 
-        - [ ] <span class="level3">`!wizbook add plan`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add plan`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/plan/plan.md)
 
-        - [ ] <span class="level3">`!wizbook add prot`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3">`!wizbook add prot`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/prot/prot.md)
 
-    - [ ] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span>
+    - [x] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span>
         - Activates the books special ability
 
-    - [ ] <span class="level2"> `!wizbook cast`<span class="required">`[Spell Name]`</span>
-        - Casts a spell from the book
+    - [x] <span class="level2"> `!wizbook cast`<span class="required">`[Spell Name]`</span> <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/wizbook/cast/cast.md)
 
-    - [ ] <span class="level2"> `!wizbook remove`<span class="required">`[Book Name]`</span>
-        - Removes a book from the character's CVAR
+    - [x] <span class="level2"> `!wizbook remove`<span class="required">`[Book Name]`</span> <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/wizbook/remove/remove.md)
 
-        - [ ] <span class="level3">`!wizbook remove undo`
-            - Undo removal of book
+        - [x] <span class="level3">`!wizbook remove undo` <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/wizbook/remove/undo/undo.md)
 
-    - [ ] <span class="level2"> `!wizbook switch`<span class="required">`[Magic Book Spell] [Spellbook Spell]`</span>
-        - Switches out spell from their book from a spell in their spellbook
+    - [x] <span class="level2"> `!wizbook switch`<span class="required">`[Magic Book Spell] [Spellbook Spell]`</span> <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/wizbook/switch/switch.md)
 
-    - [ ] ~~<span class="level2"> `!wizbook cc`~~
-        - Checks Custom Counter of book specified (with # modifies the counter number)
-        - wizard book name (<span class="argument">argument</span>, <span class="required">required</span>)
+    - [x] <span class="level2"> `!wizbook cc` <span class="optional">`<wizard book name> <#>`</span> <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/wizbook/switch/switch.md)
 
-    - [ ] <span class="level2"> `!wizbook list`
-        - Provides list of wizard books (and their spells) in CVAR
+    - [x] <span class="level2"> `!wizbook list` <span class="optional">`<#>`</span> <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/wizbook/list/list.md)
 
 - [ ] <span class="level1"> `!primer`
     - Gives help menu
@@ -165,8 +164,8 @@
     - [ ] <span class="level2"> `!primer cast`
         - Casts spell using the primer
 
-    - [ ] ~~<span class="level2"> `!primer cc`~~
-        - primer book name (<span class="argument">argument</span>, <span class="required">required</span>)
+    - [ ] <span class="level2"> `!primer cc` <span class="optional">`<primer book name> <#>`</span>
+        - Checks Custom Counter of book specified (or all primer books) (with # modifies the counter number)
 
 
     - [ ] <span class="level2"> `!primer remove`<span class="required">`[Book Name]`</span>
