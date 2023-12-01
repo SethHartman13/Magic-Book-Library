@@ -1,6 +1,6 @@
 <h1><i>primer add</i> <u>quan</u><img align="right" src="../../../../Images/quan.png" width="100px"></h1>
 
-Subalias to add the Quandrix Primer with a random level one Bard or Sorcerer spell to the `ibook_dict` character variable.
+Subalias to add the Quandrix Primer with a random level one Druid or Wizard spell to the `ibook_dict` character variable.
 
 ## Help:
 `!primer add pris`: Adds the Quandrix Primer
