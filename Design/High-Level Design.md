@@ -83,10 +83,10 @@
     - [x] <span class="level2">`!ibook settings`<span class="optional">`<setting_name> <setting condition>`</span></span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/ibook/settings/settings.md)
 
-- [ ] <span class="level1">`!wizbook`
-    - Gives overview on how to use wizbook
+- [x] <span class="level1">`!wizbook` <span class="documented">Documented</span>
+    - [Markdown](../Code/Aliases/wizbook/wizbook.md)
     - [x] <span class="level2">`!wizbook add`
-        - [Markdown](../Code/Aliases/wizbook/add/add.md)
+        - [Markdown](../Code/Aliases/wizbook/add/add.md) <span class="documented">Documented</span>
         - [x] <span class="level3">`!wizbook add alch`</span><span class="required">*</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/alch/alch.md)
 
@@ -117,8 +117,8 @@
         - [x] <span class="level3">`!wizbook add prot`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/prot/prot.md)
 
-    - [x] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span>
-        - Activates the books special ability
+    - [x] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span> <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/wizbook/activate/activate.md)
 
     - [x] <span class="level2"> `!wizbook cast`<span class="required">`[Spell Name]`</span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/wizbook/cast/cast.md)
@@ -142,24 +142,24 @@
     - Gives help menu
     - [ ] <span class="level2">`!primer add`
         - Provides a help menu listing the primers they can add (and if they can add it)
-        - [ ] <span class="level3"> `!primer add lore`</span><span class="required">*
-            - Adds Lorehold Primer to player CVAR
+        - [x] <span class="level3"> `!primer add lore`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/primer/add/lore/lore.md)
 
 
-        - [ ] <span class="level3"> `!primer add pris`</span><span class="required">*
-            - Adds Prismari Primer to player CVAR
+        - [ ] <span class="level3"> `!primer add pris`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/primer/add/pris/pris.md)
 
 
-        - [ ] <span class="level3"> `!primer add quan`</span><span class="required">*
-            - Adds Quandrix Primer to player CVAR
+        - [ ] <span class="level3"> `!primer add quan`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/primer/add/quan/quan.md)
 
 
-        - [ ] <span class="level3"> `!primer add silv`</span><span class="required">*
-            - Adds Silverquill Primer to player CVAR
+        - [ ] <span class="level3"> `!primer add silv`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/primer/add/silv/silv.md)
 
 
-        - [ ] <span class="level3"> `!primer add with`</span><span class="required">*
-            - Adds Witherbloom Primer to player CVAR
+        - [ ] <span class="level3"> `!primer add with`</span><span class="required">* <span class="documented">Documented</span>
+            - [Markdown](../Code/Aliases/primer/add/with/with.md)
 
     - [ ] <span class="level2"> `!primer cast`
         - Casts spell using the primer
