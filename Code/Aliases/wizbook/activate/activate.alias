@@ -23,193 +23,391 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def subtract_counter(book_name: str, ch: character) -> str:
+def subtract_counter(book_name: str, ch: AliasCharacter):
+    """
+    Subtracts counter and outputs results
 
+    Args:
+        book_name (str): Name of book (which correlates with a custom counter)
+        ch (AliasCharacter): Character object
+    
+    Return:
+        AliasCustomCounter|None: Custom counter object, None if error
+        str: Results 
+    """
+
+    # Grab book cc
     book_cc = ch.cc(book_name)
 
+    # If the book cc is greater than min, subtract from counter
     if book_cc.value > book_cc.min:
-
         book_cc.mod(-1)
 
-        return book_cc, ""
+        return book_cc, book_cc.full_str().split('\n')[0] +  " (-1)"
 
+    # If the book cc is less than or equal to min
     else:
         return None, "No charges left"
 
 
-def activate_alchemical_compendium(ch: character, input_list: list[str], error_color: str, error_image: str) -> str:
+def activate_alchemical_compendium(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+    """
+    Activates the Alchemical Compendium
 
-    ######################### Need to allow for -i argument
+    Args:
+        ch (AliasCharacter): Character object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
 
-    book_cc, f = subtract_counter("Alchemical Compendium", ch)
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Alchemical Compendium", ch)
+        num_str = f
 
+    # If not using counter
+    else:
+        book_cc = ch.cc("Alchemical Compendium")
+        num_str = ""
+
+    # If no error, construct output
     if book_cc:
         f = [
             "As an action, you can touch a nonmagical object that isn't being worn or carried and spend a number of charges to transform the target into another object. For 1 charge, the object can be no larger than 1 foot on a side. You can spend additional charges to increase the maximum dimensions by 2 feet per charge. The new object must have a gold value equal to or less than the original.",
             "",
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
+            num_str
         ]
         
-        return f"{name} uses their Alchemical Compendium", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
+        return f"{name} uses their Alchemical Compendium", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/alch.png", "", "" 
 
-
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Alchemical Compendium has no more charges", error_image, error_color, ""
 
 
-def activate_astromancy_archive(ch: character, error_color: str, error_image: str) -> str:
+def activate_astromancy_archive(ch: character, error_color: str, error_image: str, i_arg: bool):
+    """
+    Activates the Astromancy Archive
 
-    book_cc, f = subtract_counter("Astromancy Archive", ch)
+    Args:
+        ch (AliasCharacter): Character object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Astromancy Archive", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Astromancy Archive")
+        num_str = ""
+
+    # If no error, construct output
     if book_cc:
         f = [
             vroll("1d4").full,
             "When a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to expend 1 charge and force the creature to roll a d4 and apply the number rolled as a bonus or penalty (your choice) to the original roll. You can do this after you see the roll but before its effects are applied.",
             "",
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
+            num_str
         ]
 
-        return f"{name} uses their Astromancy Archive", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
+        return f"{name} uses their Astromancy Archive", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/astr.png", "", "" 
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Astromancy Archive has no more charges", error_image, error_color, ""  
 
 
-def activate_atlas_of_endless_horizons(ch: character, input_list: list[str], error_color: str, error_image: str) -> str:
+def activate_atlas_of_endless_horizons(ch: character, error_color: str, error_image: str, amt_arg: str|int, i_arg: bool):
+    """
+    Activates the Atlas of Endless Horizons
 
-    book_cc, f = subtract_counter("Atlas of Endless Horizons", ch)
+    Args:
+        ch (AliasCharacter): Character object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        amt_arg (str|int): Amount of damage taken. If provided, string. If default, integer
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Atlas of Endless Horizons", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Atlas of Endless Horizons")
+        num_str = ""
+
+    # If no error
     if book_cc:
-        parsed_args = argparse(" ".join(input_list))
-        amt_arg = parsed_args.last("amt", default=0)
 
+        # Try to convert amt_arg to integer
         try:
             amt_arg = int(amt_arg)
 
+        # If amt_arg was not a number
         except:
             amt_arg = 0
 
+        # If amt_arg is not 0
         if amt_arg != 0:
 
+            # If character did not have thp
             if (hp_set := ch.hp + amt_arg) <= ch.max_hp:
                 add_string = f"{ch.modify_hp(amt_arg, overflow=False)} (+{amt_arg})"
 
+            # If character did have thp
             else:
                 ch.set_temp_hp(hp_set - ch.max_hp)
                 ch.set_hp(ch.max_hp)
                 add_string = f"{ch.hp_str()} (+{amt_arg})"
 
+        # If amt_arg is 0
         else:
             add_string = "`For future reference, -amt # will automatically grant you your hp/thp back`"
 
+        # Construct output
         f = [
             add_string,
             "When you are hit by an attack, you can use your reaction to expend 1 charge to teleport up to 10 feet to an unoccupied space you can see. If your new position is out of range of the attack, it misses you.",
             "",
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
+            num_str
         ]
 
-        return f"{name} uses their Atlas of Endless Horizons", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+        return f"{name} uses their Atlas of Endless Horizons", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/atla.png", "", ""
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Atlas of Endless Horizons has no more charges", error_image, error_color, ""
 
 
-def activate_crystalline_chronicle(ch: character, error_color: str, error_image: str) -> str:
+def activate_crystalline_chronicle(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+    """
+    Activates the Crystalline Chronicle
 
-    book_cc, f = subtract_counter("Crystalline Chronicle", ch)
+    Args:
+        ch (AliasCharacter): Character object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Crystalline Chronicle", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Crystalline Chronicle")
+        num_str = ""
+
+    # If no error, construct output
     if book_cc:
         f = [
             "When you cast a wizard spell, you can expend 1 charge to cast the spell without verbal, somatic, or material components of up to 100 gp value.",
             "",
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
+            num_str
         ]
 
-        return f"{name} uses their Crystalline Chronicle", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
+        return f"{name} uses their Crystalline Chronicle", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/crys.png", "", "" 
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Crystalline Chronicle has no more charges", error_image, error_color, ""
 
 
-def activate_Duplicitous_manuscript(ch: character, com: combat, input_list: list[str] error_color: str, error_image: str) -> str:
+def activate_duplicitous_manuscript(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+    """
+    Activates the Duplicitous Manuscript
 
-    book_cc, f = subtract_counter("Duplicitous Manuscript", ch)
+    Args:
+        ch (AliasCharacter): Character object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Duplicitous Manuscript", ch)
+        num_str = f
+
+    # If using counter
+    else:
+        book_cc = ch.cc("Duplicitous Manuscript")
+        num_str = ""
+
+    # If no error, construct output
     if book_cc:
         f = [
             "When a creature you can see makes an Intelligence (Investigation) check to discern the true nature of an illusion spell you cast, or makes a saving throw against an illusion spell you cast, you can use your reaction and expend 1 charge to impose disadvantage on the roll.",
             "",
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
+            num_str
         ]
 
-        return f"{name} uses their Duplicitous Manuscript", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
+        return f"{name} uses their Duplicitous Manuscript", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/dupl.png", "", "" 
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Duplicitous Manuscript has no more charges", error_image, error_color, ""
 
 
-def activate_fulminating_treatise(ch: character, com: combat, input_list: list[str] error_color: str, error_image: str) -> str:
+def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_color: str, error_image: str, crit_arg: bool, t_arg: list[str], i_arg: bool):
+    """
+    Activates the Fulminating Treatise
 
-    book_cc, f = subtract_counter("Fulminating Treatise", ch)
+    Args:
+        ch (AliasCharacter): Character object
+        com (SimpleCombat): Combat object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        crit_arg (bool): Whether or not damage is crit
+        t_arg (list[str]): List of targets
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Fulminating Treatise", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Fulminating Treatise")
+        num_str = ""
+
+    # If no error
     if book_cc:
-        parsed_args = argparse(" ".join(input_list))
-        
-        t_args = parsed_args.get("t", default=None)
-        crit_arg = parsed_args.get("crit", default=False)
 
-
+        # If channel/thread is in combat
         if com:
-            if t_args:
+
+            # If targets were given
+            if t_arg:
                 
+                # Create lists to hold combatants and targets not found
                 combatant_objs = []
                 targs_not_found = []
 
-                for pot_target in t_args:
+                # For each target, fuzzy search for target in combat
+                for pot_target in t_arg:
 
-                    if combatant_obj := com.get_combatant(pot_target):
+                    # If combatant exists, add object to combatant list
+                    if (combatant_obj := com.get_combatant(pot_target)):
                         combatant_objs.append(combatant_obj)
 
+                    # If combatant does not exist, add name to target not found list
                     else:
                         targs_not_found.append(pot_target)
 
+                # If non-crit damage
                 if not crit_arg:
-                    v_roll = vroll("2d6")
+                    v_roll = vroll("2d6[force]")
+                    dmg_str = f"**Damage**: {v_roll.full}"
 
+                # If crit-damage
                 else:
-                    v_roll = vroll("4d6")
+                    v_roll = vroll("4d6[force]")
+                    dmg_str = f"**Damage (CRIT!)**: {v_roll.full}"
                     crit_arg = True
 
-                f = []
+                # Build initial output
+                f = [
+                    "**Meta**",
+                    dmg_str,
+                    ""
+                ]
 
-                # NEED TO RESEARCH WHAT THIS RETURNS
+                # For each combatant, apply damage and provide output
                 for combatant in combatant_objs:
                     f.append(f"**{combatant.name}**")
-                    f.append(combatant.damage(f"{v_roll.total}[force]", crit=crit)['damage'])
+                    f.append(combatant.damage(f"{v_roll.total}[force]", crit=crit_arg)['damage'])
                     f.append("")
 
+                # Add effect and counter output
                 f.append("**Effect**")
                 f.append("When one creature you can see takes damage from an evocation spell you cast, you can use your reaction and expend 1 charge to deal an extra 2d6 force damage to the creature and knock the creature prone if it is Large or smaller.")
+                f.append("")
+                f.append(num_str)
 
+                # Construct footer list
                 footer_list = []
-                for combatant in combatant_obj:
+
+                # For each combatant
+                for combatant in combatant_objs:
+
+                    # If combatant has note
                     if (note := combatant.note):
                         
                         match note:
+
+                            # If 'huge' in note
                             case n if "huge" in n.lower():
                                 can_prone = False
 
+                            # If 'gargantuan' in note
                             case n if "gargantuan" in n.lower():
                                 can_prone = False
 
+                            # If 'huge' and 'gargantuan' are not in note
                             case _:
                                 can_prone = True
 
+                    # If combatant does not have note
                     else:
                         can_prone = True
 
+                    # If the combatant can be knocked prone, add initiative effect
                     if can_prone:
                         combatant.add_effect(
                             "Prone", 
@@ -225,157 +423,315 @@ def activate_fulminating_treatise(ch: character, com: combat, input_list: list[s
                             }]
                         )
 
+                    # If the combatant cannot be knocked prone
                     else:
                         pass
 
+                    # If combatant's hp is hidden
                     if combatant.is_hidden:
-                        match True:
-                            case combatant.hp + combatant.thp  >= combatant.max_hp:
-                                footer_list.append(f"{combatant.name}: <Healthy>")
-                            
-                            case combatant.hp + combatant.thp > combatant.max_hp / 2:
-                                footer_list.append(f"{combatant.name}: <Injured>")
-                            
-                            case combatant.hp + combatant.thp > combatant.max_hp / 10:
-                                footer_list.append(f"{combatant.name}: <Bloodied>")
-                            
-                            case combatant.hp > 0:
-                                footer_list.append(f"{combatant.name}: <Critical>")
-                            
-                            case _:
-                                footer_list.append(f"{combatant.name}: <Dead>")
+
+                        # Healthy threshold (>= 100%)
+                        if combatant.hp >= combatant.max_hp:
+                            footer_list.append(f"{combatant.name}: <Healthy>")
+
+                        # Injured threshold (> 50%)
+                        elif combatant.hp >= combatant.max_hp / 2:
+                            footer_list.append(f"{combatant.name}: <Injured>")
+
+                        # Bloodied threshold (> 10%)
+                        elif combatant.hp >= combatant.max_hp / 10:
+                            footer_list.append(f"{combatant.name}: <Bloodied>")
+
+                        # Critical threshold (> 0%)
+                        elif combatant.hp > 0:
+                            footer_list.append(f"{combatant.name}: <Critical>")
+
+                        # Dead Threshold (= 0%)
+                        else:
+                            footer_list.append(f"{combatant.name}: <Dead>")
                     
+                    # If combatant's hp is not hidden
                     else:
                         footer_list.append(f"{combatant.name}: {combatant.hp_str()}")
 
-
+                # If it found all targets
                 if len(targs_not_found) == 0:
                     pass
 
+                # If it did not find some target(s)
                 else:
                     f.append("")
                     f.append("**Combatant Not Found**")
                     f.append(" ".join(targs_not_found))
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "\n".join(footer_list)
+                    # If it found no targets
+                    if len(combatant_objs) == 0:
 
+                        # Try to remove counter info and increment counter back
+                        try:
+                            counter_index = f.index(book_cc.full_str().split('\n')[0] +  " (-1)")
+                            f.pop(counter_index)
+                            f.pop(counter_index)
+                            book_cc.mod(1)
+
+                            f.append("")
+                            f.append("`Counter not incremented`")
+
+                        except:
+                            pass
+
+                    # If it found at least 1 target
+                    else:
+                        pass
+
+                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", "\n".join(footer_list)
+
+            # If targets were not given
             else:
 
+                # If non-crit damage
                 if not crit_arg:
                     v_roll = vroll("2d6[force]")
+                    dmg_str = f"**Damage:** {v_roll.full}"
 
+                # If crit damage
                 else:
                     v_roll = vroll("4d6[force]")
+                    dmg_str = f"**Damage (CRIT!):** {v_roll.full}"
 
+                # Build output
                 f = [
                     "**Meta**",
-                    f"**Damage:** {v_roll.full}",
+                    dmg_str,
                     "**Effect**",
-                    "When one creature you can see takes damage from an evocation spell you cast, you can use your reaction and expend 1 charge to deal an extra 2d6 force damage to the creature and knock the creature prone if it is Large or smaller."
+                    "When one creature you can see takes damage from an evocation spell you cast, you can use your reaction and expend 1 charge to deal an extra 2d6 force damage to the creature and knock the creature prone if it is Large or smaller.",
+                    "",
+                    num_str
                 ]
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
 
+        # If channel not in combat
         else:
-            if t_args:
 
+            # If targets were given
+            if t_arg:
+
+                # If non-crit gamage
                 if not crit_arg:
                     v_roll = vroll("2d6[force]")
+                    dmg_str = f"**Damage:** {v_roll.total} [Force] = `{v_roll.total}`"
+                    dmg_str_meta = f"**Damage:** {v_roll.full}"
 
+                # If crit damage
                 else:
                     v_roll = vroll("4d6[force]")
+                    dmg_str = f"**Damage (CRIT!):** {v_roll.total} [Force] = `{v_roll.total}`"
+                    dmg_str_meta = f"**Damage (CRIT!):** {v_roll.full}"
 
-                f = []
+                # Build initial output
+                f = [
+                    "**Meta**",
+                    dmg_str_meta,
+                    ""
+                ]
 
-                for target in t_args:
+                # For each target add to output
+                for target in t_arg:
                     f.append(f"**{target}**")
-                    f.append(f"**Damage:** {v_roll.full}")
+
+                    f.append(dmg_str)
                     f.append("")
 
+                # Add effect and counter output
                 f.append("**Effect**")
                 f.append("When one creature you can see takes damage from an evocation spell you cast, you can use your reaction and expend 1 charge to deal an extra 2d6 force damage to the creature and knock the creature prone if it is Large or smaller.")
-                f.append("`HPs were not subtracted due to channel not in combat`")
+                f.append("\n`HPs and effects were not applied due to channel not in combat`")
+                f.append("")
+                f.append(num_str)
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
 
+            # If targets were not given
             else:
+
+                # If non-crit damage
                 if not crit_arg:
                     v_roll = vroll("2d6[force]")
+                    dmg_str = f"**Damage:** {v_roll.full}"
 
+                # If crit damage
                 else:
                     v_roll = vroll("4d6[force]")
+                    dmg_str = f"**Damage (CRIT!):** {v_roll.full}"
 
+                # Build initial output
                 f = [
                     "**Meta**",
-                    f"**Damage:** {v_roll.full}",
+                    dmg_str,
+                    "",
                     "**Effect**",
-                    "When one creature you can see takes damage from an evocation spell you cast, you can use your reaction and expend 1 charge to deal an extra 2d6 force damage to the creature and knock the creature prone if it is Large or smaller."
+                    "When one creature you can see takes damage from an evocation spell you cast, you can use your reaction and expend 1 charge to deal an extra 2d6 force damage to the creature and knock the creature prone if it is Large or smaller.",
+                    "",
+                    num_str
                 ]
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Fulminating Treatise has no more charges", error_image, error_color, ""
 
 
-def activate_heart_weavers_primer(ch: character, com: combat, error_color: str, error_image: str) -> str:
+def activate_heart_weavers_primer(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+    """
+    Activates the Heart Weaver's Primer
 
-    book_cc, f = subtract_counter("Heart Weaver's Primer", ch)
+    Args:
+        ch (AliasCharacter): Character object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Heart Weaver's Primer", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Heart Weaver's Primer")
+        num_str = ""
+
+    # If no error, construct output
     if book_cc:
         f = [
             "When you cast an enchantment spell, you can expend 1 charge to impose disadvantage on the first saving throw one target makes against the spell.",
             "",
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
-
+            num_str
         ]
 
-        return f"{name} uses their Heart Weaver's Primer", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
+        return f"{name} uses their Heart Weaver's Primer", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/hear.png", "", "" 
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Heart Weaver's Primer has no more charges", error_image, error_color, ""
 
-#################################################
-def activate_libram_of_souls_and_flesh(ch: character, com: combat, error_color: str, error_image: str) -> str:
 
-    book_cc, f = subtract_counter("Libram of Souls and Flesh", ch)
+# Will improve later for effect in initiative (libr)
+def activate_libram_of_souls_and_flesh(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+    """
+    Activates the Libram of Souls and Flesh
 
+    Args:
+        ch (AliasCharacter): Character object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        i_arg (bool): Ignore counter usage
+
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Libram of Souls and Flesh", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Libram of Souls and Flesh")
+        num_str = ""
+
+    # If no error, construct output
     if book_cc:
         f = [
             "As an action, you can expend 1 charge to take on a semblance of undeath for 10 minutes. For the duration, you take on a deathly appearance, and undead creatures are indifferent to you, unless you have damaged them. You also appear undead to all outward inspection and to spells used to determine the target's status. The effect ends if you deal damage or force a creature to make a saving throw.",
-            f"{book_cc.full_str().split("\n")[0]} (-1)"
+            num_str
         ]
 
-        return f"{name} uses their Libram of Souls and Flesh", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "" 
+        return f"{name} uses their Libram of Souls and Flesh", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/libr.png", "", "" 
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Libram of Souls and Flesh has no more charges", error_image, error_color, ""
 
-#################################################
-def activate_planecallers_codex(ch: character, com: combat, error_color: str, error_image: str) -> str:
 
-    book_cc, f = subtract_counter("Planecaller's Codex")
+# Need to test plan and prot
+def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool):
+    """
+    Activates the Planecaller's Codex
 
+    Args:
+        ch (AliasCharacter): Character object
+        com (SimpleCombat): Combat object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        crit_arg (bool): Whether or not damage is crit
+        t_arg (list[str]): List of targets
+        i_arg (bool): Ignore counter usage
+
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Planecaller's Codex", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Planecaller's Codex")
+        num_str = ""
+
+    # If no error
     if book_cc:
-        parsed_args = argparse(" ".join(input_list))
-        t_args = parsed_args.get("t", default=None)
 
+        # If channel/thread is in combat
         if com:
-            if t_args:
+
+            # If targets were given
+            if t_arg:
                 
+                # Create lists to hold combatants and targets not found
                 combatant_objs = []
                 targs_not_found = []
 
-                for pot_target in t_args:
+                # For each target, fuzzy search for target in combat
+                for pot_target in t_arg:
 
+                    # If combatant exists, add object to combatant list
                     if combatant_obj := com.get_combatant(pot_target):
                         combatant_objs.append(combatant_obj)
 
+                    # If combatant does not exist, add name to target not found list
                     else:
                         targs_not_found.append(pot_target)
 
-                f = []
+                f = [
+                    "**Meta**",
+                    "**Effect:** Empowered by Planecaller's Codex [Attack Advantage]",
+                    ""
+                ]
 
+                # For each combatant apply intiative effect and provide output
                 for targ in combatant_objs:
                     targ.add_effect(
                         "Empowered by Planecaller's Codex",
@@ -389,20 +745,41 @@ def activate_planecallers_codex(ch: character, com: combat, error_color: str, er
                     f.append("")
 
 
+                # Add effect and counter output
                 f.append("**Effect**")
                 f.append("When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute.")
-                f.append(f"{book_cc.full_str().split("\n")[0]} (-1)")
+                f.append("")
+                f.append(num_str)
 
+                # If it found all targets
                 if len(targs_not_found) == 0:
                     pass
 
+                # If it did not find some target(s)
                 else:
                     f.append("")
                     f.append("**Combatant Not Found**")
                     f.append(" ".join(targs_not_found))
 
-                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                    # If it found no targets
+                    if len(combatant_objs) == 0:
 
+                        # Try to remove counter info and increment counter back
+                        try:
+                            counter_index = f.index(book_cc.full_str().split('\n')[0] +  " (-1)")
+                            f.pop(counter_index)
+                            f.pop(counter_index)
+                            book_cc.mod(1)
+
+                            f.append("")
+                            f.append("`Counter not incremented`")
+
+                        except:
+                            pass
+
+                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
+
+            # If targets were not given, build output
             else:
                 f = [
                     "**Meta**",
@@ -410,176 +787,295 @@ def activate_planecallers_codex(ch: character, com: combat, error_color: str, er
                     "",
                     "**Effect**"
                     "When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute.",
-                    f"{book_cc.full_str().split("\n")[0]} (-1)"
+                    "",
+                    num_str
                 ]
 
-                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
 
+        # If channel not in combat
         else:
-            if t_args:
 
-                f = []
-                for targ in t_args:
-                    f.append(f"**{targ.name}**")
-                    f.append(f"**Effect:** Empowered by Planecaller's Codex [Attack Advantage]")
-                    f.append("")
+            # If targets were given
+            if t_arg:
 
-                f.append("**Effect**")
-                f.append("When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute.")
-                f.append("`Effects were not added due to channel not in combat`")
-                f.append(f"{book_cc.full_str().split("\n")[0]} (-1)")
-
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
-
-            else:
-
+                # Build initial output
                 f = [
                     "**Meta**",
-                    "*Effect:** Empowered by Planecaller's Codex [Attack Advantage]",
+                    "**Effect:** Empowered by Planecaller's Codex [Attack Advantage]",
+                    ""
+                ]
+
+                # For each target add to output
+                for targ in t_arg:
+                    f.append(f"**{targ.name}**")
+                    f.append("**Effect:** Empowered by Planecaller's Codex [Attack Advantage]")
+                    f.append("")
+
+                # Add effect and counter output
+                f.append("**Effect**")
+                f.append("When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute.")
+                f.append("\n`Effects were not added due to channel not in combat`")
+                f.append("")
+                f.append(num_str)
+
+                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
+
+            # If targets were not given
+            else:
+
+                # Build output
+                f = [
+                    "**Meta**",
+                    "**Effect:** Empowered by Planecaller's Codex [Attack Advantage]",
                     "",
                     "**Effect**",
                     "When you cast a conjuration spell that summons or creates one creature, you can expend 1 charge to grant that creature advantage on attack rolls for 1 minute.",
-                    f"{book_cc.full_str().split("\n")[0]} (-1)"
+                    "",
+                    num_str
                 ]
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Planecaller's Codex has no more charges", error_image, error_color, ""
 
 
-#################################################
-def activate_protective_verses(ch: character, com: combat, error_color: str, error_image: str) -> str:
+def activate_protective_verses(ch: character, com: combat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool):
+    """
+    Activates the Protective Verses
 
-    book_cc, f = subtract_counter("Protective Verses", ch)
+    Args:
+        ch (AliasCharacter): Character object
+        com (SimpleCombat): Combat object
+        error_color (str): Color hex code
+        error_image (str): Image URL
+        crit_arg (bool): Whether or not damage is crit
+        t_arg (list[str]): List of targets
+        i_arg (bool): Ignore counter usage
 
+    Return:
+        str: Title
+        str: Body paragraph
+        str: Image URL
+        str: Color hex code
+        str: Additional footer info
+    """
+
+    # If using counter
+    if not i_arg:
+        book_cc, f = subtract_counter("Protective Verses", ch)
+        num_str = f
+
+    # If not using counter
+    else:
+        book_cc = ch.cc("Protective Verses")
+        num_str = ""
+
+    # If no error
     if book_cc:
-        parsed_args = argparse(" ".join(input_list))
-        
-        t_args = parsed_args.get("t", default=None)
 
+        # If channel/thread is in combat
         if com:
-            if t_args:
+
+            # If targets were given
+            if t_arg:
                 
+                # Create lists to hold combatants and targets not found
                 combatant_objs = []
                 targs_not_found = []
 
-                for pot_target in t_args:
+                # For each target, fuzzy search for target in combat
+                for pot_target in t_arg:
 
+                    # If combatant exists, add object to combatant list
                     if combatant_obj := com.get_combatant(pot_target):
                         combatant_objs.append(combatant_obj)
 
+                    # If combatant does not exist, add name to arget not found list
                     else:
                         targs_not_found.append(pot_target)
 
+                # Roll THP
                 v_roll = vroll("2d10")
 
-                f = []
+                # Construct initial output
+                f = [
+                    "**Meta**",
+                    f"**THP:** {v_roll.full}",
+                    ""                
+                ]
 
-                # NEED TO RESEARCH WHAT THIS RETURNS
+                # For each combatant applly THP
                 for combatant in combatant_objs:
-                    combatant.set(vroll.total)
+                    combatant.set_temp_hp(v_roll.total)
                     f.append(f"**{combatant.name}**")
-                    f.append(f"**THP**: `{vroll.total}`")
+                    f.append(f"**THP**: `{v_roll.total}`")
+                    f.append("")
 
-
+                # Add effect and counter output
                 f.append("**Effect**")
                 f.append("When you cast an abjuration spell, you can expend 1 charge to grant a creature you can see within 30 feet of you 2d10 temporary hit points.")
-                f.append(f"{book_cc.full_str().split("\n")[0]} (-1)")
+                f.append("")
+                f.append(num_str)
 
+                # Construct footer list
                 footer_list = []
-                for combatant in combatant_obj:
+
+                # For each combatant
+                for combatant in combatant_objs:
+
+                    # If combatant's hp is hidden
                     if combatant.is_hidden:
-                        match True:
-                            case combatant.hp + combatant.thp >= combatant.max_hp:
-                                footer_list.append(f"{combatant.name}: <Healthy>")
-                            
-                            case combatant.hp + combatant.thp > combatant.max_hp / 2:
-                                footer_list.append(f"{combatant.name}: <Injured>")
-                            
-                            case combatant.hp + combatant.thp > combatant.max_hp / 10:
-                                footer_list.append(f"{combatant.name}: <Bloodied>")
-                            
-                            case combatant.hp > 0:
-                                footer_list.append(f"{combatant.name}: <Critical>")
-                            
-                            case _:
-                                footer_list.append(f"{combatant.name}: <Dead>")
+
+                        # Healthy threshold (>= 100%)
+                        if combatant.hp >= combatant.max_hp:
+                            footer_list.append(f"{combatant.name}: <Healthy>")
+
+                        # Injured threshold (> 50%)
+                        elif combatant.hp >= combatant.max_hp / 2:
+                            footer_list.append(f"{combatant.name}: <Injured>")
+
+                        # Bloodied threshold (> 10%)
+                        elif combatant.hp >= combatant.max_hp / 10:
+                            footer_list.append(f"{combatant.name}: <Bloodied>")
+
+                        # Critical threshold (> 0%)
+                        elif combatant.hp > 0:
+                            footer_list.append(f"{combatant.name}: <Critical>")
+
+                        # Dead Threshold (= 0%)
+                        else:
+                            footer_list.append(f"{combatant.name}: <Dead>")
                     
+                    # If combatant's hp is not hidden
                     else:
                         footer_list.append(f"{combatant.name}: {combatant.hp_str()}")
 
-
+                # If it found all targets
                 if len(targs_not_found) == 0:
                     pass
 
+                # If it did not find some target(s)
                 else:
                     f.append("")
                     f.append("**Combatant Not Found**")
                     f.append(" ".join(targs_not_found))
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", "\n".join(footer_list)
+                    # If it found no targets
+                    if len(combatant_objs) == 0:
 
+                        # Try to remove counter info and increment counter back
+                        try:
+                            counter_index = f.index(book_cc.full_str().split('\n')[0] +  " (-1)")
+                            f.pop(counter_index)
+                            f.pop(counter_index)
+                            book_cc.mod(1)
+
+                            f.append("")
+                            f.append("`Counter not incremented`")
+
+                        except:
+                            pass
+
+                    else:
+                        pass
+
+                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", "\n".join(footer_list)
+
+            # If targets were not given
             else:
+
+                # Roll THP
                 v_roll = vroll("2d10")
+
+                # Construct output
                 f = [
                     "**Meta**",
-                    f"**THP:** `{v_roll.total}`",
+                    f"**THP:** {v_roll.full}",
+                    "",
                     "**Effect**",
                     "When you cast an abjuration spell, you can expend 1 charge to grant a creature you can see within 30 feet of you 2d10 temporary hit points.",
-                    f"{book_cc.full_str().split("\n")[0]} (-1)"
+                    "",
+                    num_str
                 ]
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
 
+        # If channel not in combat
         else:
-            if t_args:
-                v_roll = vroll("2d10")
-                f = []
 
-                for target in t_args:
+            # If targets were given
+            if t_arg:
+
+                # Roll THP
+                v_roll = vroll("2d10")
+
+                # Construct initial output
+                f = [
+                    "**Meta**",
+                    f"**THP:** {v_roll.full}",
+                    ""
+                ]
+
+                # Add output for each target
+                for target in t_arg:
                     f.append(f"**{target}**")
-                    f.append(f"**THP:** {v_roll.total}")
+                    f.append(f"**THP:** `{v_roll.total}`")
                     f.append("")
 
+                # Add effect and counter output
                 f.append("**Effect**")
                 f.append("When you cast an abjuration spell, you can expend 1 charge to grant a creature you can see within 30 feet of you 2d10 temporary hit points.")
-                f.append("`THPs were not added due to channel not in combat`")
-                f.append(f"{book_cc.full_str().split("\n")[0]} (-1)")
+                f.append("\n`THPs were not added due to channel not in combat`")
+                f.append("")
+                f.append(num_str)
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
 
+            # If targets were not given
             else:
+
+                # Roll THP
                 v_roll = vroll("2d10")
+
+                # Construct output
                 f = [
                     "**Meta**",
-                    f"**THP:** {v_roll.total}",
+                    f"**THP:** {v_roll.full}",
+                    "",
                     "**Effect**",
                     "When you cast an abjuration spell, you can expend 1 charge to grant a creature you can see within 30 feet of you 2d10 temporary hit points.",
-                    f"{book_cc.full_str().split("\n")[0]} (-1)"
+                    "",
+                    num_str
                 ]
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "", ""
+                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
 
+    # If error
     else:
         return f"{ctx.author.display_name} has encountered an error", "Protective Verses has no more charges", error_image, error_color, ""
 
-def main(input_list: list[str]) -> str:
+
+def main(input_list: list[str], ch: AliasCharacter):
     """
     Main program function
 
     Args:
-        input_list (list[str]): List of inputs
+        input_list (list[str]): List of user inputs
+        ch (AliasCharacter): Character object 
 
     Return:
         str: Title
-        str: Content
+        str: Body paragraph
         str: Image URL
         str: Color hex code
+        str: Additional footer info
+        str: Magic book name
     """
     
-    # Character object, error color, and error image url
-    ch = character()
+    # Combat object, error color, and error image url
     com = combat()
     color = "#CF142B"
     img_url = "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
@@ -587,88 +1083,135 @@ def main(input_list: list[str]) -> str:
     # If there is at least one input
     if len(input_list) > 0:
 
-        # If cvar exists, load dictionary
+        # If CVAR exists, load dictionary
         if (cvar_test := ch.get_cvar('ibook_dict')):
             cvar_dict = load_json(cvar_test)
 
+            # If there is a "Wizard Books" key
             if "Wizard Books" in (cvar_keys := cvar_dict.keys()):
 
+                # If there is at least one wizard book
                 if len(cvar_dict['Wizard Books']) > 0:
                     pass
 
+                # If there are no books
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your library", img_url, thumb, ""
+                    return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your library", img_url, color, ""
 
+            # If there is not a "Wizard Books" key
             else:
-                return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your library", img_url, thumb, ""
+                return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your library", img_url, color, ""
 
+        # If the CVAR does not exist
         else:
-            return f"{ctx.author.display_name} has encountered an error", "`ibook_dict` cvar does not exist", img_url, thumb, ""
+            return f"{ctx.author.display_name} has encountered an error", "`ibook_dict` CVAR does not exist", img_url, color, ""
 
+    # If there were no inputs
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", img_url, thumb, ""
+        return f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", img_url, color, ""
 
-    
+    # If there is at least one magic book match
     if (result_key := search_list(input_list[0], cvar_dict['Wizard Books'].keys())):
 
+        # If there is exactly one match
         if len(result_key) == 1:
             result_key = result_key[0]
 
+        # If there are more than one match, search every match
         else:
             for key in result_key:
-                if key.lower() != input_list[0].lower()
+
+                # If it is not an exact match
+                if key.lower() != input_list[0].lower():
                     pass
 
+                # If it is an exact match
                 else:
                     result_key = key
+                    break
 
+            # If there was not an exact match
             if typeof(result_key) != "str":
                 result_key.insert(0, "**Multiple Fatches Found:**")
 
                 return f"{ctx.author.display_name} has encountered an error", "\n".join(result_key), img_url, thumb, ""
 
+            # If there was an exact match
             else:
                 pass
 
+    # If there were no matches
     else:
         return f"{ctx.author.display_name} has encountered an error", "Book not found", img_url, thumb, ""
 
+    # Parse inputs
+    arg_parsed = argparse(" ".join(input_list))
+    i_arg = arg_parsed.last("i", default=False)
+    amt_arg = arg_parsed.last("amt", default=0)
+    crit_arg = arg_parsed.get("crit", default=False)
+    t_arg = arg_parsed.get("t", default=list())
 
     match result_key:
 
+        # Alchemical Compendium
         case "Alchemical Compendium":
-            return activate_alchemical_compendium(ch, color, img_url)  
+            return activate_alchemical_compendium(ch, color, img_url, i_arg) + (result_key, )
 
+        # Astromancy Archive
         case "Astromancy Archive":
-            return activate_astromancy_archive(ch, color, img_url)
+            return activate_astromancy_archive(ch, color, img_url, i_arg) + (result_key, )
 
+        # Atlas of Endless Horizons
         case "Atlas of Endless Horizons":
-            return activate_atlas_of_endless_horizons(ch, input_list, color, img_url)
+            return activate_atlas_of_endless_horizons(ch, color, img_url, amt_arg, i_arg) + (result_key, )
 
+        # Crystalline Chronicle
         case "Crystalline Chronicle":
-            return activate_crystalline_chronicle(ch, color, img_url)
+            return activate_crystalline_chronicle(ch, color, img_url, i_arg) + (result_key, )
 
+        # Duplicitous Manuscript
         case "Duplicitous Manuscript":
-            return activate_Duplicitous_manuscript(ch, com, input_list, color, img_url)
+            return activate_duplicitous_manuscript(ch, color, img_url, i_arg) + (result_key, )
 
+        # Fulminating Treatise
         case "Fulminating Treatise":
-            return activate_fulminating_treatise(ch, com, color, img_url)
+            return activate_fulminating_treatise(ch, com, color, img_url, crit_arg, t_arg, i_arg) + (result_key, )
 
+        # Heart Weaver's Primer
         case "Heart Weaver's Primer":
-            return activate_heart_weavers_primer(ch, com, color, img_url)
+            return activate_heart_weavers_primer(ch, color, img_url, i_arg) + (result_key, )
 
+        # Libram of Souls and Flesh
         case "Libram of Souls and Flesh":
-            return activate_libram_of_souls_and_flesh(ch, com, color, img_url)
+            return activate_libram_of_souls_and_flesh(ch, color, img_url, i_arg) + (result_key, )
 
+        # Planecaller's Codex
         case "Planecaller's Codex":
-            return activate_planecallers_codex(ch, com, color, img_url)
+            return activate_planecallers_codex(ch, com, color, img_url, t_arg, i_arg) + (result_key, )
 
-        case "Protectve Verses":
-            return activate_protective_verses(ch, com, color, img_url)
+        # Protective Verses
+        case "Protective Verses":
+            return activate_protective_verses(ch, com, color, img_url, t_arg, i_arg) + (result_key, )
 
+        # All other sources
+        case _:
+            return f"{ctx.author.display_name} has encountered an error", "Shadow has not put in support for HB activation content", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B", "", ""
+
+
+# Main character object
+ch = character()
+
+input_list = &ARGS&
 
 # Main program function
-title, f, thumb, color, footer = main(&ARGS&)
+title, f, thumb, color, footer, source = main(input_list, ch)
+l = "<"
+
+if "error" in title and source != "" and not "-i" in " ".join(input_list):
+    ch.mod_cc(source, 1)
+
+else:
+    pass
 
 
 </drac2>
@@ -676,4 +1219,4 @@ title, f, thumb, color, footer = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{footer}}\n!activate [magic_book] <-t> <crit> | Updated 11/9/23 | ShadowsStride"
+-footer "{{footer}}{{"\n"}}!wizbook activate [magic book name] | Updated 11/29/23 | ShadowsStride"
