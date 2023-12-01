@@ -47,7 +47,258 @@ def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
     return dictionary
 
 
-def main() -> str:
+def spell_match_logic(spell_name: str, spell_value: dict, svar_dict: dict, primer_name: str) -> bool:
+    """
+    Checks to see if the spell is valid to add
+
+    Args:
+        spell_name (str): Name of spell
+        spell_value (dict): Dictionary containing spell information
+        svar_dict (dict): Settings dictionary
+
+    Return:
+        bool: Whether or not it is a valid spell
+    """
+
+    # Mapping table for the class spells
+    primer_class_mapping = {
+        "Lorehold Primer": [
+            "Cleric",
+            "Wizard"
+        ],
+        "Prismari Primer": [
+            "Bard",
+            "Sorcerer"
+        ],
+        "Quandrix Primer": [
+            "Druid",
+            "Wizard"
+        ],
+        "Silverquill Primer": [
+            "Bard",
+            "Cleric"
+        ],
+        "Witherbloom Primer": [
+            "Druid",
+            "Wizard"
+        ]
+    }
+
+    # If spell level is not 1
+    if "1" not in str(spell_value['Level']):
+        return False
+
+    # If spell level is 1
+    else:
+        match (svar_dict['Settings']['Expanded Class'], "Expanded Class" in spell_value.keys(), "Class" in spell_value.keys()):
+
+            # If optional classes are allowed, "Expanded Class" is a key, and "Class" is a key
+            case (True, True, True):
+
+                # If the spell is in the class spelllists specified
+                if len(set(spell_value["Class"] + spell_value['Expanded Class']).intersection(set(primer_class_mapping[primer_name]))) > 0:
+                    return True
+
+                # If the spell is not in the class spelllists specified
+                else:
+                    return False
+
+            # If optional classes are allowed
+            case (True, True, False):
+                
+                # If the spell is in the class spelllists specified
+                if len(set(spell_value['Expanded Class']).intersection(set(primer_class_mapping[primer_name]))) > 0:
+                    return True
+
+                # If the spell is not in the class spelllists specified
+                else:
+                    return False
+
+            # If optional classes are not allowed and "Class" is a key
+            case (False, _, True):
+        
+                # If the spell is in the class spelllists specified
+                if len(set(spell_value["Class"]).intersection(set(primer_class_mapping[primer_name]))) > 0:
+                    return True
+
+                # If the spell is not in the class spelllists specified
+                else:
+                    return False
+
+            # If optional classes are allowed, "Expanded Class" is not a key, and "Class" is a key
+            case (_, False, True):
+        
+                # If the spell is in the class spelllists specified
+                if len(set(spell_value["Class"]).intersection(set(primer_class_mapping[primer_name]))) > 0:
+                    return True
+
+                # If the spell is not in the class spelllists specified
+                else:
+                    return False
+
+            # If no success conditions were met
+            case (_, _, _):
+                return False
+
+
+def get_random_spell(svar_dict: dict, primer_name: str) -> str:
+    """
+    Gets a random spell for the specified primer book
+
+    Args:
+        svar_dict (dict): Server settings dictionary
+        primer_name (str): Name of Primer
+
+    Return:
+        str: Name of spell
+    """
+
+    # Source mapping table
+    source_mapping = {
+        "Xanathar's Guide to Everything (xgte)": "xgte",
+        "Tasha's Cauldron of Everything (tcoe)": "tcoe",
+        "Sword Coast Adventurer's Guide (scag)": "scag",
+        "Strixhaven: A Curriculum of Chaos (sais)": "sais",
+        "Spelljammer Adventures in Space (sacoc)": "sacoc",
+        "Player's Handbook (phb)": "phb",
+        "Lost Laboratory of Kwalish (llok)": "llok",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "idrotf",
+        "Guildmasters' Guide to Ravnica (ggtr)": "ggtr",
+        "Fizban's Treasury of Dragons (ftod)": "ftod",
+        "Elemental Evil Player's Companion (eepc)": "eepc",
+        "Acquisitions Incorporated (ai)": "ai",
+        "Basic Rules (br)": "br",
+        "Explorer's Guide to Wildemount (egtw)": "egtw",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
+    }
+
+    # Loads massive spell dictionary
+    massive_spell_dict = load_json(get_gvar("6011f3a8-737d-4413-9dbf-04cebe165212"))
+
+    # If UVAR exists, load list
+    if (uvar_test := get_uvar("ibook_source_list")):
+        uvar_list = load_json(uvar_test)
+
+    # If UVAR does not exist, create list
+    else:
+        uvar_list = []
+
+    # Create source set
+    source_set = set(svar_dict['Books']).union(set(uvar_list)).union(set(("Basic Rules (br)", )))
+
+    spell_list = []
+
+    # For each source
+    for source in source_set:
+
+        # If the source is non-HB
+        if source in source_mapping.keys():
+
+            # If partnered content is allowed
+            if svar_dict['Settings']['Partnered Content']:
+
+                # Load each spell and insert into full_spell_dict
+                for spell, spell_details in massive_spell_dict[source_mapping[source]].items():
+
+                    # If is not the SETTINGS entry
+                    if spell.upper() != "SETTINGS":
+
+                        # If there was a match, append spell
+                        if spell_match_logic(spell, spell_details, svar_dict, primer_name):
+                            spell_list.append(spell)
+
+                        # If there was not a match
+                        else:
+                            pass
+
+                    # If it is the SETTINGS entry
+                    else:
+                        pass
+
+            # If partnered content is not allowed
+            else:
+
+                # If the content is not partnered
+                if not massive_spell_dict[source_mapping[source]]['SETTINGS']['Partnered Content']:
+
+                    # Load each spell and insert into full_spell_dict
+                    for spell, spell_details in massive_spell_dict[source_mapping[source]].items():
+
+                        # If is not the SETTINGS entry
+                        if spell.upper() != "SETTINGS":
+
+                            # If there was a match, append spell
+                            if spell_match_logic(spell, spell_details, svar_dict, primer_name):
+                                spell_list.append(spell)
+
+                            # If there was not a match
+                            else:
+                                pass
+
+                        # If it is the SETTINGS entry
+                        else:
+                            pass
+
+                # If the content is partnered
+                else:
+                    pass
+        # If the source is HB and allowed
+        elif svar_dict['Settings']['Homebrew']:
+
+            # If it pulls a GVAR source
+            if (gvar_test := get_gvar(source)):
+
+                # Load each spell and insert into full_spell_dict
+                for spell, spell_details in load_json(gvar_test).items():
+
+                    # If is not the SETTINGS entry
+                    if spell.upper() != "SETTINGS":
+
+                        # If there was a match, append spell
+                        if spell_match_logic(spell, spell_details, svar_dict, primer_name):
+                            spell_list.append(spell)
+
+                        # If there was not a match
+                        else:
+                            pass
+
+                    # If it is the SETTINGS entry
+                    else:
+                        pass
+
+            # If it doesn't pull a GVAR source, pull a SVAR source 
+            else:
+                if (svar_test := get_svar(source)):
+
+                    # Load each spell and insert into full_spell_dict
+                    for spell, spell_details in load_json(svar_test).items():
+
+                        # If is not the SETTINGS entry
+                        if spell.upper() != "SETTINGS":
+
+                            # If there was a match, append spell
+                            if spell_match_logic(spell, spell_details, svar_dict, primer_name):
+                                spell_list.append(spell)
+
+                            # If there was not a match
+                            else:
+                                pass
+
+                        # If it is the SETTINGS entry
+                        else:
+                            pass
+                # If it doesn't pull a SVAR source
+                else:
+                    pass
+
+        # If source is HB and not allowed
+        else:
+            pass
+
+    return randchoice(spell_list)  
+
+
+def main() -> tuple(str, str, str, str):
     """
     Main program function
     
@@ -91,14 +342,14 @@ def main() -> str:
 
             # If within book limit and if the character is not already attuned to one
             if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                if "Prismari Primer" not in cvar_dict[' Books'].keys():
+                if "Prismari Primer" not in cvar_dict['Primer Books'].keys():
 
                     # Set unused name key to empty string
-                    cvar_dict['Primer Books']["Prismari Primer"] = "Burning Hands"
+                    cvar_dict['Primer Books']["Prismari Primer"] = get_random_spell(svar_dict, "Prismari Primer")
 
                 # If the character is already attuned to a specific book
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "\"...a creature can't attune to more than one copy of an item.\" ((Dungeon Master's Guide)[https://www.dndbeyond.com/sources/dmg/treasure#Attunement])", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             # If not within book limit
             else:
@@ -109,7 +360,7 @@ def main() -> str:
 
             # If within book limit
             if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                cvar_dict['Primer Books'] = {"Prismari Primer": "Burning Hands"}
+                cvar_dict['Primer Books'] = {"Prismari Primer": get_random_spell(svar_dict, "Prismari Primer")}
 
             # If not within book limit
             else:
@@ -120,7 +371,7 @@ def main() -> str:
         cvar_dict = {
             "Wizard Books": {}, 
             "Primer Books": {
-                "Prismari Primer": "Burning Hands"
+                "Prismari Primer": get_random_spell(svar_dict, "Prismari Primer")
             }
         }
 
@@ -163,7 +414,7 @@ def main() -> str:
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added a Prismari Primer to their Magic Book Library", "Your starting spell is Burning Hands", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", "#BB6F87"
+    return f"{name} has added a Prismari Primer to their Magic Book Library", f"Your starting spell is {cvar_dict['Primer Books']['Prismari Primer']}\n\n(You can change it once per day)", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/pris.png", "#BB6F87"
 
 
 # Main program function
@@ -175,4 +426,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer add pris | Updated 11/10/23 | ShadowsStride"
+-footer "!primer add pris | Updated 12/1/23 | ShadowsStride"
