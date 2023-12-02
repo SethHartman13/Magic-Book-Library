@@ -311,20 +311,20 @@ def main() -> str:
 
     # Main character object
     ch = character()
+
+    # If SVAR settings exists
+    if (svar_test := get_svar("ibook_settings")):
+
+        # Load dictionary, checking default values
+        svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
+
+    # If SVAR settings does not exist 
+    else:
+        svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
     
     # If the CVAR exists, load dictionary
     if (cvar_test := ch.get_cvar('ibook_dict')):
         cvar_dict = load_json(cvar_test)
-
-        # If SVAR settings exists
-        if (svar_test := get_svar("ibook_settings")):
-
-            # Load dictionary, checking default values
-            svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
-
-        # If SVAR settings does not exist 
-        else:
-            svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
         # If CVAR has "Wizard Books"
         if "Wizard Books" in (cvar_dict_keys := cvar_dict.keys()):
