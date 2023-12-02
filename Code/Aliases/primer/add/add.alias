@@ -1,0 +1,261 @@
+embed
+<drac2>
+
+
+def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
+    """
+    Loops through dictionary checking for missing entries and adding default ones where necessary
+
+    Args:
+        dictionary (dict): Dictionary to be checked
+        default_dictionary (dict): Default dictionary
+
+    Return:
+        dict: Corrected dictionary
+    """
+
+    # For each key in the default dictionary
+    for default_key in default_dictionary.keys():
+
+        # If the value is not a dictionary
+        if typeof(default_dictionary[default_key]) != "SafeDict":
+
+            if default_key in dictionary.keys():
+                pass
+
+            else:
+                dictionary[default_key] = default_dictionary[default_key]
+
+        # If the value is a dictionary
+        else:
+
+            # Check to see if it is a threshold dictionary
+            try:
+                for test_key in default_dictionary[default_key].keys():
+                    float(test_key)
+
+                if default_key in dictionary.keys():
+                    pass
+
+                else:
+                    dictionary[default_key] = default_dictionary[default_key]
+
+            # If it is not a threshold dictionary, run recursive call to check values of inner dictionary
+            except:
+                dictionary[default_key] = set_default_settings(dictionary[default_key], default_dictionary[default_key]) 
+
+    return dictionary
+
+
+def output_add_list(page_num: int, cvar_dict: dict) -> str:
+    """
+    Outputs available primer books
+    
+    Args:
+        page_num (int): Page number
+        cvar_dict (dict): Dictionary with current added dictionaries
+    """
+
+    # Book dictionary with values of messages sent to user
+    items = {
+        "Lorehold Primer": "`!primer add lore`: Adds the Lorehold Primer",
+        "Prismari Primer": "`!primer add pris`: Adds the Prismari Primer",
+        "Quandrix Primer": "`!primer add quan`: Adds the Quandrix Primer",
+        "Silverquill Primer": "`!primer add silv`: Adds the Silverquill Primer",
+        "Witherbloom Primer": "`!primer add with`: Adds the Witherbloom Primer",
+    }
+
+    # Short-code mapping table
+    shorthand_items = {
+        "Lorehold Primer": "lore",
+        "Prismari Primer": "pris",
+        "Quandrix Primer": "quan",
+        "Silverquill Primer": "silv",
+        "Witherbloom Primer": "with",
+    }
+
+    # Load Server settings if SVAR exists
+    if (svar_test := get_svar('ibook_settings')):
+        svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []})
+
+    # Create SVAR dict with settings
+    else:
+        svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6, "Expanded Class": True}, "Books": []}
+
+    if "Primer Books" in cvar_dict.keys():
+        book_num = len(cvar_dict['Primer Books'])
+
+    else:
+        cvar_dict['Primer Books'] = {}
+        book_num = 0
+
+    if "Wizard Books" in cvar_dict.keys():
+        book_num += len(cvar_dict['Wizard Books'])
+
+    else:
+        pass
+
+    # If the user can add books
+    if book_num < svar_dict['Settings']['Book Limit']:
+        pass
+
+    # If the user cannot add books
+    else:
+        return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "**Available Primer Books:**\n\nNone", 
+            f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["lore", "pris", "quan", "silv", "with"])}.png', 
+            ""
+            ) 
+
+    # Creates a list within a list of item_outputs with their short-code
+    output_list = [[items[key], shorthand_items[key]] for key in items.keys() if key not in cvar_dict['Primer Books'].keys()]
+
+    # Seperates the lists into groupings of 4 (if possible)
+    result_list = [output_list[i:i+5] for i in range(0,len(output_list), 5)]
+
+    # Grabs length of result_list
+    res_length = len(result_list)
+
+    match res_length:
+
+        # If there is just one page
+        case 1:
+            return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "\n\n".join(["**Available Primer Books:**"] + [item_list[0] for item_list in result_list[0]]), 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[0]])}.png", 
+            ""
+            )
+
+        # If there are more than one page
+        case _ if res_length > 1:
+
+            match page_num:
+
+                # If page number is less than 1
+                case _ if page_num < 1:
+                    page_num = 1
+
+                # If page number is greater than length
+                case _ if page_num > res_length:
+                    page_num = res_length
+                
+                # If page number is within bounds
+                case _:
+                    pass
+
+            return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "\n\n".join([f"**Available Primer Books ({page_num}/{res_length}):**"] + [item_list[0] for item_list in result_list[page_num - 1]]), 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[page_num - 1]])}.png", 
+            ""
+            )
+
+        # If there are no pages
+        case _:
+            return (
+            f"{ctx.author.display_name} checks what books they can add", 
+            "**Available Magic Books:**\n\nNone", 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(shorthand_items.values())}.png", 
+            ""
+            )
+
+
+def add_to_cvar(ch: character, add_string: str, cvar_dict: dict) -> str:
+    """
+    Adds sources to CVAR from svar/gvar
+
+    Args:
+        add_string (str): Name/GUID of source
+        cvar_dict (dict): Current CVAR dictionary
+
+    Return:
+        str: Results
+    """
+
+    if "Primer Books" in cvar_dict.keys():
+        pass
+
+    else:
+        cvar_dict['Primer Books'] = {}
+    
+    # If SVAR exists, add SVAR contents to CVAR dictionary
+    if (svar_test := get_svar(add_string)):
+        try:
+            cvar_dict['Primer Books'][add_string] = svar_test
+
+        # If there was an error
+        except:
+            return f"{ctx.author.display_name} has encountered an error", "Error loading SVAR into CVAR dictionary", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CC0202"
+
+    # If SVAR does not exist, if GVAR exists, add GVAR contents to CVAR dictionary
+    else:
+        if (gvar_test := get_gvar(add_string)):
+            try:
+                cvar_dict['Primer Books'][add_string] = gvar_test
+
+            # If there was an error
+            except:
+                return f"{ctx.author.display_name} has encountered an error", "Error loading GVAR into CVAR dictionary", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CC0202"
+
+        # If SVAR/GVAR does not exist
+        else:
+            title, f, thumb, _ = output_add_list(1, cvar_dict)
+            f = f"`SVAR\GVAR not found ({add_string})`\n\n{f}"
+            return title, f, thumb, "#CC0202"
+
+    # Save CVAR
+    ch.set_cvar('ibook_dict', dump_json(cvar_dict))
+
+    return f"{ctx.author.display_name} has added a SVAR/GVAR to their magic book library", "", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["lore", "pris", "quan", "silv", "with"])}.png', ""
+
+
+def main(input_list: list[str]) -> str:
+    """
+    Main program function
+    
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Results
+    """
+
+    # Load character variable
+    ch = character()
+
+    # If CVAR exists, load list
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
+
+    # If CVAR doesn't exist, create dict
+    else:
+        cvar_dict = {}
+
+    # If there is at least one input
+    if len(input_list) > 0:
+
+        # Tries to convert input to integer to output list
+        try:
+            return output_add_list(int(input_list[0]), cvar_dict)
+
+        # If failed, looks to add SVAR/GVAR to CVAR
+        except:
+            return add_to_cvar(ch, input_list[0], cvar_dict)
+
+    # If there are no inputs
+    else:
+        return output_add_list(1, cvar_dict) 
+
+
+# Main program function
+title, f, thumb, color = main(&ARGS&)
+l = "<"
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!primer add {{l}}#/GVAR/SVAR> | Updated 12/1/23 | ShadowsStride"

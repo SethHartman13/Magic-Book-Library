@@ -23,88 +23,251 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def main(input_list: list[str], ch: character) -> str:
+def construct_spell_str(ch: AliasCharacter, spell_name: str, dc_arg: str|int, t_arg: list[str], d_arg: list[str], b_arg: list[str], cvar_dict: dict):
+    """
+    Constructs spell string to be used to cast spell
 
-    # NEED TO CHECK TO SEE IF SOURCES WITHIN UVAR AND SVAR EXIST
+    Args:
+        ch (AliasCharacter): Character object
+        spell_name (str): Name of spell
+        dc_arg (str|int): User specified DC, default character spell DC
+        t_arg (list[str]): List of targets
+        d_arg (list[str]): List of additional damage modifiers
+        b_arg (list[str]): List of additional to hit modifiers
+        cvar_dict (dict): Character dictionary containing magicbooks
+
+    Return:
+        str|None: Spell casting string, None if error
+        str: Source name, "" if error
+    """
+
+    # Verify that DC is a number
+    try:
+        dc_arg = f"-dc {int(dc_arg)}"
+
+    # If DC is not a number, set to default
+    except:
+        dc_arg = f"-dc {ch.spellbook.dc}"
+
+    # Construct dbt_list (-d1 # -d2 #d# -b1 # -b2 #d# -t "target" -t "target")
+    dbt_result = []
+
+    # For each value in d_arg
+    for i in range(1, len(d_arg) + 1):
+
+        # If dice roll was passed (or with damage type), add string
+        if "d" in d_arg[i-1] or "[" in d_arg[i-1]:
+            dbt_result.append(f"-d{i} {d_arg[i-1]}")
+
+        # If a number, verify, then add string
+        else:
+            try:
+                dbt_result.append(f"-d{i} {int(d_arg[i-1])}")
+
+            # If a number was not passed
+            except:
+                pass
+
+    # For each value in b_arg
+    for i in range (1, len(b_arg) + 1):
+
+        # If dice roll was passed, add string
+        if "d" in b_arg[i-1]:
+            dbt_result.append(f"-b{i} {b_arg[i-1]}")
+
+        # If a number, verify, then add string
+        else:
+            try:
+                dbt_result.append(f"-b{i} {int(b_arg[i-1])}")
+
+            # If a number was not pass
+            except:
+                pass
+    
+    # For each value in t_arg, add target string
+    for target in t_arg:
+        dbt_result.append(f"-t {target}")
 
 
-    if len(input_list) > 0:
+    # Search for primer book name
+    for primer_book, primer_value in cvar_dict['Primer Books'].items():
+        source = "None"
 
-        ch = character()
-
-        if (cvar_test != ch.get_cvar("ibook_dict")):
-            cvar_dict = load_json(cvar_test)
-
-
-            if "Primer Books" in (cvar_dict_keys := cvar_dict.keys()):
-
-                if len(cvar_dict['Primer Books']) > 0:
-
-                    spell_dict = {cvar_dict['Primer Books'][primer_book]: primer_book for primer_book in cvar_dict['Primer Books'].keys()}
-
-                    if (key_result := search_list(input_list[0], spell_dict.keys())):
-                        
-                        if len(key_result) == 1:
-
-                            input_list.pop(0)
-                            return key_result[0], " ".join(input_list), spell_dict[key_result[0]]
-
-                        else:
-                            for key in key_result:
-                                if key.lower() != input_list.lower():
-                                    pass
-
-                                else:
-                                    input_list.pop(0)
-                                    return key, " ".join(input_list), spell_dict[key]
-
-                            key_result.insert(0, "**Multiple Matches Found:**")
-
-                            return None, "\n".join(key_result)
-
-                    else:
-                        return None, "Spell not found", None
-
-                else:
-                    return None, "No Primer Books have been found", None
-
-            else:
-                return None, "No Primer Books have been found", None
+        if primer_value == spell_name:
+            source = primer_book
+            break
 
         else:
-            return None, "No Primer Books have been found", None
+            pass
 
+    # Checks for source
+    if source in [
+        "Lorehold Primer",
+        "Prismari Primer",
+        "Quandrix Primer",
+        "Silverquill Primer",
+        "Witherbloom Primer"
+        ]:
+        pass
+
+    # If source is HB, change source name
     else:
-        return None, "Expected at least one input", None
+        source = "HB Primer Magic Book"
 
+    return f"!cast \"{spell_name}\" {dc_arg} " + " ".join(dbt_result) + "-i", source
+   
 
+def main(input_list: list[str], ch: character):
+    """
+    Main program function
+
+    Args:
+        input_list (list[str]): List of user inputs
+        ch (character): Character object
+
+    Return:
+        str|None: Spell string, None if error
+        str: Title
+        str: Body message
+        str: Thumbnail URL
+        str: Source name, hex color code if error    
+    """
+
+    # If there is at least 1 input, parse arguments
+    if len(input_list) > 0:
+        arg_parsed = argparse(" ".join(input_list))
+
+        # Check for -i, dc value, targets, additional damage, and bonus to hit.
+        i_arg = arg_parsed.last("i", default=False)
+        dc_arg = arg_parsed.last("dc", default=ch.spellbook.dc)
+        t_arg = arg_parsed.get("t", default=list(), ephem=True)
+        d_arg = arg_parsed.get("d", default=list(), ephem=True)
+        b_arg = arg_parsed.get("b", default=list(), ephem=True)
+
+    # If there were no inputs
+    else:
+        return None, "", f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+    # If ibook_dict exists, load dictionary
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
+
+    # If ibook_dict does not exist
+    else:
+        return None, "", f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+    # If Primer Books entry exists
+    if "Primer Books" in cvar_dict.keys():
+
+        # If there is at least one book
+        if len(cvar_dict['Primer Books']) > 0:
+
+            # If there was at least one spell match
+            if (key_result := search_list(input_list[0], [primer_spell for primer_book, primer_spell in cvar_dict['Primer Books'].items()])):
+
+                # ch: AliasCharacter, spell_name: str, dc_arg: str|int, t_arg: list[str], d_arg: list[str], b_arg: list[str], cvar_dict: dict
+
+                # If there was exactly one spell match, construct spell string
+                if len(key_result) == 1:
+                    spell_str, source = construct_spell_str(ch, key_result[0], dc_arg, t_arg, d_arg, b_arg, cvar_dict)
+
+                    # If there was no error
+                    if spell_str:
+
+                        return spell_str, i_arg, f"{name} uses their {source} to cast {key_result[0]}", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", source
+
+                    # If there was an error
+                    else:
+                        return None, "", f"{ctx.author.display_name} has encountered an error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+                # If there were multiple matches, search for an exact match
+                else:
+                    for key in key_result:
+
+                        # If entry was not an exact match
+                        if key.lower() != input_list[0].lower():
+                            pass
+
+                        # If it was an exact match, construct spell string
+                        else:
+                            spell_str, output, source = construct_spell_str(ch, key, dc_arg, t_arg, d_arg, b_arg, cvar_dict)
+
+                            # If there was no error
+                            if spell_str:
+
+                                # If -i was not used
+                                if not i_arg:
+                                    pass
+
+                                # If -i was used, set spell level to 0
+                                else:
+                                    output = 0
+
+                                return spell_str, output, f"{name} uses their {source} to cast {key}", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", source
+
+                            # If there was an error
+                            else:
+                                return None, "", f"{ctx.author.display_name} has encountered an error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+                    # If it could not find an exact match, return error with match list
+                    key_result.insert(0, "**Multiple Matches Found:**")
+
+                    return None, "", f"{ctx.author.display_name} has encountered an error", "\n".join(key_result), 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+            # If there were no spell matches
+            else:
+                return None, "", f"{ctx.author.display_name} has encountered an error", "Spell not found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+        # If there are no wizard books
+        else:
+            return None, "",f"{ctx.author.display_name} has encountered an error", "No Primer Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+    # If wizard Books entry does not exist
+    else:
+        return None, "", f"{ctx.author.display_name} has encountered an error", "No Primer Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+
+# Character object
 ch = character()
 
+# Main program function
+spell_str, counter_usage, title, f, thumb, color_source = main(&ARGS&, ch)
 
-spell, args, source = main(&ARGS&, ch)
+# If there were no errors
+if spell_str:
 
-if source:
+    # Short-code mapping table
+    shorthand_items = {
+        "Lorehold Primer": "lore",
+        "Prismari Primer": "pris",
+        "Quandrix Primer": "quan",
+        "Silverquill Primer": "silv",
+        "Witherbloom Primer": "with",
+    }
 
-    book_cc = ch.cc(f"{source} (Spell)")
+    if not counter_usage and color_source in shorthand_items.keys():
+        book_cc = ch.cc(f"{color_source} (Spell)")
+        book_cc.mod(-1, strict=True)
 
-    if book_cc.value > 0:
-        book_cc.mod(-1)
+        f += book_cc.full_str().split("\n")[0] + " (-1)"
 
     else:
-        spell, args = None, f"You have already casted a spell from your {source}, wait until you complete a long rest"
+        pass
 
+    # If the source exists, give it a special image
+    if color_source in shorthand_items.keys():
+        thumb = f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[color_source]}.png'
+
+        # Reset color
+        color_source = ""
+
+    # If the source does not exist, keep generic image and reset the image.
+    else:
+        color_source = ""
+
+# If there were errors
 else:
-    pass
-
-if spell:
-    spell_cast_str = f"!cast '{spell}' {args} -i"
-    result_str = ""
-
-else:
-    spell_cast_str = ""
-    result_str = f"!embed -title '{ctx.author.display_name}' -f '{args}' -thumb 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png' -color '#cf142b'"
-
+    spell_str = color_source
 
 </drac2>
-{{spell_cast_str}}
-{{result_str}}
+!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "!wizbook cast [spell name] | Updated 12/1/23 | ShadowsStride"
+{{spell_str}}
