@@ -23,98 +23,117 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def main(input_list: list[str], ch: character) -> str:
+def main(input_list: list[str]) -> tuple(str, str, str, str):
+    """
+    Main program function
 
+    Args:
+        input_list (list[str]): List of user inputs
 
+    Return:
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
+    """
 
-    if len(input_list) == 0:
+    # Character object
+    ch = character()
 
+    # If there is at least 1 input
+    if len(input_list) > 0:
+
+        # If CVAR exists, load dictionary
         if (cvar_test := ch.get_cvar('ibook_dict')):
             cvar_dict = load_json(cvar_test)
 
+            # If Primer Books is a key
+            if "Primer Books" in cvar_dict.keys():
 
-            if "Primer Books" in ibook_dict.keys():
+                # Short-code mapping table
+                shorthand_items = {
+                    "Lorehold Primer": "lore",
+                    "Prismari Primer": "pris",
+                    "Quandrix Primer": "quan",
+                    "Silverquill Primer": "silv",
+                    "Witherbloom Primer": "with",
+                }
 
-                if (key_result := search_list(input_list[0], ibook_dict['Primer Books'].keys())):
+                # If book is found
+                if (key_result := search_list(input_list[0], cvar_dict['Primer Books'].keys())):
 
+                    # If there is exactly 1 input
                     if len(key_result) == 1:
+
+                        # Store backup and update CVAR
                         ch.set_cvar('ibook_dict_backup', dump_json(cvar_dict))
-
-                        book_removed_data = ibook_dict['Primer Books'].pop(key_result[0])
-
+                        book_removed_data = cvar_dict['Primer Books'].pop(key_result[0])
                         ch.set_cvar('ibook_dict', dump_json(cvar_dict))
 
-                        return key_result[0], book_removed_data
+                        # If book is not HB
+                        if key_result[0] in shorthand_items.keys():
+                            short_thumb = shorthand_items[key_result[0]]
 
+                        # If book is HB
+                        else:
+                            short_thumb = randchoice(list(shorthand_items.values()))
+
+                        return f"{name} has removed {key_result[0]} from their Magic Book Library", f"**Spell Removed:**\n{book_removed_data}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{short_thumb}.png", ""
+
+                    # If there is more than one input, look for an exact match
                     else:
                         for key in key_result:
+
+                            # If it is not an exact match
                             if key.lower() != input_list[0].lower():
                                 pass
 
+                            # If it is an exact match
                             else:
+
+                                # Store backup and update CVAR
                                 ch.set_cvar('ibook_dict_backup', dump_json(cvar_dict))
-
-                                book_removed_data = ibook_dict['Primer Books'].pop(key)
-
+                                book_removed_data = cvar_dict['Primer Books'].pop(key)
                                 ch.set_cvar('ibook_dict', dump_json(cvar_dict))
 
-                                return key, book_removed_data
+                                # If book is not HB
+                                if key in shorthand_items.keys():
+                                    short_thumb = shorthand_items[key]
 
+                                # If book is HB
+                                else:
+                                    short_thumb = randchoice(list(shorthand_items.values()))
+
+                                return f"{name} has removed {key} from their Magic Book Library", f"**Spell Removed:**\n{book_removed_data}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{short_thumb}.png", ""
+
+                        # If no exact match was found
                         key_result.insert(0, "**Multiple Matches Found:**")
 
-                        return, None, "\n".join(key_result)
-                        
+                        return f"{ctx.author.display_name} has encountered an error", "\n".join(key_result), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+                # If book is not found      
                 else:
-                    return None, "Spell not found"
+                    return f"{ctx.author.display_name} has encountered an error", "Spell not Found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+            # If Primer Books is not a key
             else:
-                return None, "Primer Books not found"
+                return f"{ctx.author.display_name} has encountered an error", "Primer Books not found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+        # CVAR does not exist
         else:
-            return None, "Primer Books not found"
+            return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+    # There were no inputs
     else:
-        return None, "Expected at least one argument"
+        return f"{ctx.author.display_name} has encountered an error", "Expected at least one input", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
-ch = character()
-
-book_name, book_info = main(&ARGS&, ch)
-
-
-if book_name:
-
-    title = f"{name} has removed {book_name} from their magic book library"
-    f = f"**Spells Removed:**\n{book_info}"
-    color = ""
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png"
-
-else:
-    title = f"{ctx.author.display_name} has encountered an error"
-    f = book_info
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
-    color = "#cf142b"
-
+# Main program function
+title, f, thumb, color = main(&ARGS&)
 
 </drac2>
 -title "{{title}}"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer remove [book_name] | Updated 11/4/23 | ShadowsStride"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-footer "!primer remove [source name] | Updated 12/2/23 | ShadowsStride"
