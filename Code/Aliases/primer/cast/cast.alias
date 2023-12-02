@@ -165,8 +165,6 @@ def main(input_list: list[str], ch: character):
             # If there was at least one spell match
             if (key_result := search_list(input_list[0], [primer_spell for primer_book, primer_spell in cvar_dict['Primer Books'].items()])):
 
-                # ch: AliasCharacter, spell_name: str, dc_arg: str|int, t_arg: list[str], d_arg: list[str], b_arg: list[str], cvar_dict: dict
-
                 # If there was exactly one spell match, construct spell string
                 if len(key_result) == 1:
                     spell_str, source = construct_spell_str(ch, key_result[0], dc_arg, t_arg, d_arg, b_arg, cvar_dict)
@@ -190,20 +188,12 @@ def main(input_list: list[str], ch: character):
 
                         # If it was an exact match, construct spell string
                         else:
-                            spell_str, output, source = construct_spell_str(ch, key, dc_arg, t_arg, d_arg, b_arg, cvar_dict)
+                            spell_str, source = construct_spell_str(ch, key, dc_arg, t_arg, d_arg, b_arg, cvar_dict)
 
                             # If there was no error
                             if spell_str:
 
-                                # If -i was not used
-                                if not i_arg:
-                                    pass
-
-                                # If -i was used, set spell level to 0
-                                else:
-                                    output = 0
-
-                                return spell_str, output, f"{name} uses their {source} to cast {key}", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", source
+                                return spell_str, i_arg, f"{name} uses their {source} to cast {key}", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png", source
 
                             # If there was an error
                             else:
@@ -244,12 +234,68 @@ if spell_str:
         "Witherbloom Primer": "with",
     }
 
+    # If using counter and it is a non-HB source
     if not counter_usage and color_source in shorthand_items.keys():
-        book_cc = ch.cc(f"{color_source} (Spell)")
-        book_cc.mod(-1, strict=True)
 
+        # Load Spell counter
+        book_cc = ch.cc(f"{color_source} (Spell)")
+
+        # If value is greater than 0, increment
+        if book_cc.value > 0:
+            book_cc.mod(-1, strict=True)
+
+        # If value is not greater than 0
+        else:
+
+            # Store primer book and load CVAR dictionary
+            original_source_list = [color_source]
+            cvar_dict = load_json(ch.get_cvar("ibook_dict"))
+            i = 0
+
+            run = True
+
+            # While true
+            while run:
+
+                # Remove previous primer book from CVAR dictionary, reset color_source
+                cvar_dict['Primer Books'].pop(original_source_list[i])
+                color_source = "None"
+
+                # For each primer book: spell in CVAR
+                for primer_book, primer_value in cvar_dict['Primer Books'].items():
+                    
+                    # If the spell value matches current spell, set color_source to new primer book
+                    if primer_value == title.split(" to cast ")[1]:
+                        color_source = primer_book
+                        break
+
+                    # If the spell value does not match current spell
+                    else:
+                        pass
+
+                # If we did not find another instance of the spell, throw error
+                if color_source == "None":
+                    err(f"You do not have enough remaining uses of {original_source_list[0]} (Spell)")
+
+                # If we did find another instance of the spell, load new CC
+                else:
+                    book_cc = ch.cc(f"{color_source} (Spell)")
+
+                    # If value is greater than 0, increment, end while loop, and update title
+                    if book_cc.value > 0:
+                        book_cc.mod(-1, strict=True)
+                        run = False
+                        title = title.replace(original_source_list[0], color_source)
+
+                    # Add store primer book and increment i (continue while loop, trying this again)
+                    else:
+                        original_source_list.append(color_source)
+                        i += 1                    
+
+        # Construct final f output
         f += book_cc.full_str().split("\n")[0] + " (-1)"
 
+    # If we are not using the counter or it is a HB source
     else:
         pass
 
@@ -269,5 +315,5 @@ else:
     spell_str = color_source
 
 </drac2>
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "!wizbook cast [spell name] | Updated 12/1/23 | ShadowsStride"
+!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "!wizbook cast [spell name] | Updated 12/2/23 | ShadowsStride"
 {{spell_str}}

@@ -140,41 +140,36 @@
 
 - [ ] <span class="level1"> `!primer`
     - Gives help menu
-    - [ ] <span class="level2">`!primer add`
-        - Provides a help menu listing the primers they can add (and if they can add it)
+    - [x] <span class="level2">`!primer add` <span class="documented">Documented</span>
+        - [Markdown](../Code/Aliases/primer/add/add.md)
         - [x] <span class="level3"> `!primer add lore`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/lore/lore.md)
 
-
-        - [ ] <span class="level3"> `!primer add pris`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3"> `!primer add pris`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/pris/pris.md)
 
-
-        - [ ] <span class="level3"> `!primer add quan`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3"> `!primer add quan`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/quan/quan.md)
 
-
-        - [ ] <span class="level3"> `!primer add silv`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3"> `!primer add silv`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/silv/silv.md)
 
-
-        - [ ] <span class="level3"> `!primer add with`</span><span class="required">* <span class="documented">Documented</span>
+        - [x] <span class="level3"> `!primer add with`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/with/with.md)
 
-    - [ ] <span class="level2"> `!primer cast`
-        - Casts spell using the primer
+    - [x] <span class="level2"> `!primer cast`
+        - [Markdown](../Code/Aliases/primer/cast/cast.md)
 
-    - [ ] <span class="level2"> `!primer cc` <span class="optional">`<primer book name> <#>`</span>
-        - Checks Custom Counter of book specified (or all primer books) (with # modifies the counter number)
-
+    - [x] <span class="level2"> `!primer cc` <span class="optional">`<primer book name> <switch/spell/check> <#>`</span>
+        - [Markdown](../Code/Aliases/primer/cc/cc.md)
 
     - [ ] <span class="level2"> `!primer remove`<span class="required">`[Book Name]`</span>
 
         - [ ] <span class="level3">`!primer remove undo`</span>
             - Undo removal of book
 
-    - [ ] <span class="level2"> `!primer switch`<span class="required">`[Primer Book Spell] [Spellbook Spell]`</span>
-        - Switches spell that the primer has and switches it to the spell specified
+    - [ ] <span class="level2"> `!primer switch`<span class="required">`[Primer Book Spell] [Replacement Spell]`</span>
+        - Switches spell that the primer has and switches it to the spell specified (Need to add note that it could potentially cause problems with avrae)
 
     - [ ] <span class="level2"> `!primer list`
         - Provides list of primers (and their spell) in CVAR
