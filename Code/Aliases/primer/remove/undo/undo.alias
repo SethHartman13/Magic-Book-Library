@@ -2,37 +2,41 @@ embed
 <drac2>
 
 
-def main(ch: character) -> str:
+def main() -> str:
+    """
+    Main program function
 
+    Return:
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    # Character object
+    ch = character()
+
+    # If main CVAR exists
     if (cvar_test := ch.get_cvar('ibook_dict')):
 
+        # If back up exists
         if (backup_test := ch.get_cvar('ibook_dict_backup')):
 
+            # Swap values
             ch.set_cvar('ibook_dict', backup_test)
             ch.set_cvar('ibook_dict_backup', cvar_test)
 
-            return 'Success', ''
+            return f"{name}'s Magic Book Library has been restored from backup", "If this was by mistake simply run this command again", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['lore', "pris", "quan", "silv", "with"])}.png", ""
 
         else:
-            return None, 'No backup found'
+            return f"{ctx.author.display_name} has encountered an error", "No backup found", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     else:
-        return None, 'No CVAR found'
-
-ch = character()
-
-status, f = main(ch)
+        return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
-if status:
-    title = f"{name}'s Magic Book Library Backup restored"
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 1, 2, 3, 4, 5])}.png"
-    color = ""
-
-else:
-    title = f"{ctx.author.display_name} has encountered an error"
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
-    color = "#cf142b"
+# Main program function
+title, f, thumb, color = main(ch)
 
 
 </drac2>
@@ -40,4 +44,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook remove undo | Updated 11/14/23 | ShadowsStride"
+-footer "!primer remove undo | Updated 12/2/23 | ShadowsStride"
