@@ -1,0 +1,95 @@
+<drac2>
+
+
+def search_list(query: str, item_list: list[str]) -> list[str]|None:
+    """
+    Searches for item in list.
+
+    Args:
+        query (str): The query being made
+        item_list (list): List of items
+
+    Return:
+        list[str]|None: If it finds at least one match, it returns the item(s) in a list, otherwise it returns None
+    """
+
+    # Finds at least 1 match
+    if len(item_results := [item for item in item_list if query.lower() in item.lower()]) > 0:
+        return item_results
+
+    # If it finds no matches
+    else:
+        return None
+
+
+def main(input_list:list[str]) -> str:
+    """
+    Main program function
+
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: -f argument to add to check
+    """
+
+    # Main character object
+    ch = character()
+
+    # If CVAR exists, load dictionary
+    if (cvar_test := ch.get_cvar('ibook_dict')):
+        cvar_dict = load_json(cvar_test)
+
+        # If Primer Books exists
+        if "Primer Books" in cvar_dict.keys():
+
+            # If Lorehold Primer exists
+            if "Lorehold Primer" in cvar_dict['Primer Books'].keys():
+                for input_item in input_list:
+
+                    # If proper skill is being used (casing does not matter, search every input)
+                    if (result_list := search_list(input_item, ['history', 'religion'])):
+
+                        # If the ability has not changed (casing does matter)
+                        if len({"str", "dex", "wis", "con", "cha"}.intersection(set(input_list))) == 0:
+                            pass
+
+                        # If the ability has changed
+                        else:
+                            return "-f \"You Have Been Sneak Attacked by an Error|You can only use the Lorehold Primer on Intelligence ([History](https://www.dndbeyond.com/compendium/rules/basic-rules/using-ability-scores#History)) and Intelligence ([Religion](https://www.dndbeyond.com/compendium/rules/basic-rules/using-ability-scores#Religion)) checks\""
+
+                        # Load counter
+                        book_cc = ch.cc('Lorehold Primer (Check)')
+
+                        # If the counter is not 0, decrement and collect counter string
+                        if book_cc.value > 0:
+                            book_cc.mod(-1)
+                            book_str = book_cc.full_str().split("\n")[0]
+
+                            return f'-b 1d4 -f \"Lorehold Primer|If you make an Intelligence ([History](https://www.dndbeyond.com/compendium/rules/basic-rules/using-ability-scores#History)) or Intelligence ([Religion](https://www.dndbeyond.com/compendium/rules/basic-rules/using-ability-scores#Religion)) check while holding the primer, you can expend 1 charge to give yourself 1d4 bonus to the check, immediately after you roll the d20.\n{book_str} (-1)\"'
+
+                        # If the counter is 0
+                        else:
+                            return "-f \"You Have Been Sneak Attacked by an Error|You do not have enough charges of your Lorehold Primer\""
+
+                    # If input does not match
+                    else:
+                        pass
+
+                return "-f \"You Have Been Sneak Attacked by an Error|You can only use the Lorehold Primer on Intelligence ([History](https://www.dndbeyond.com/compendium/rules/basic-rules/using-ability-scores#History)) and Intelligence ([Religion](https://www.dndbeyond.com/compendium/rules/basic-rules/using-ability-scores#Religion)) checks\""
+
+            # If Lorehold Primer does not exist
+            else:
+                return "-f \"You Have Been Sneak Attacked by an Error|You do not have a Lorehold Primer in your Magic Book Dictionary\""
+
+        # If Primer Books does not exist
+        else:
+            return "-f \"You Have Been Sneak Attacked by an Error You have no Primer Books in your Magic Book Library\"" 
+
+    # If CVAR does not exist
+    else:
+        return "-f \"You Have Been Sneak Attacked by an Error|CVAR `ibook_dict` does not exist\""
+
+
+</drac2>
+{{main(&ARGS&)}}

@@ -330,8 +330,6 @@ def main() -> tuple(str, str, str, str):
     if (cvar_test := ch.get_cvar('ibook_dict')):
         cvar_dict = load_json(cvar_test)
 
-        err(svar_dict)
-
         # If CVAR has "Wizard Books"
         if "Wizard Books" in (cvar_dict_keys := cvar_dict.keys()):
             cvar_book_num = len(cvar_dict['Wizard Books'].keys())

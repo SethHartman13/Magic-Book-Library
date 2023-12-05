@@ -206,18 +206,18 @@ def construct_spell_str(ch: character, spell_name: str, l_arg: str|None, dc_arg:
                 pass
 
     # For each value in b_arg
-    for i in range (1, len(b_arg) + 1):
+    for bonus in b_arg:
 
         # If dice roll was passed, add string
-        if "d" in b_arg[i-1]:
-            dbt_result.append(f"-b{i} {b_arg[i-1]}")
+        if "d" in bonus:
+            dbt_result.append(f"-b {bonus}")
 
         # If a number, verify, then add string
         else:
             try:
-                dbt_result.append(f"-b{i} {int(b_arg[i-1])}")
+                dbt_result.append(f"-b {int(bonus)}")
 
-            # If a number was not pass
+            # If not a number
             except:
                 pass
     
@@ -294,9 +294,9 @@ def main(input_list: list[str], ch: character):
         l_arg = arg_parsed.last("l", default=None)
         i_arg = arg_parsed.last("i", default=False)
         dc_arg = arg_parsed.last("dc", default=ch.spellbook.dc)
-        t_arg = arg_parsed.get("t", default=list(), ephem=True)
-        d_arg = arg_parsed.get("d", default=list(), ephem=True)
-        b_arg = arg_parsed.get("b", default=list(), ephem=True)
+        t_arg = arg_parsed.get("t", default=list())
+        d_arg = arg_parsed.get("d", default=list())
+        b_arg = arg_parsed.get("b", default=list())
 
     # If there were no inputs
     else:
