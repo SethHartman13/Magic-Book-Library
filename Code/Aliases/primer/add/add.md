@@ -1,6 +1,6 @@
 <h1><i>primer</i> <u>add</u><img align="right" src="../../../Images/image.png" width="100px"></h1>
 
-Subalias to view available magic books to add from custom sources within SVARs and GVARs
+Subalias to view available magic books to add from custom sources within SVARs and GVARs.
 
 ## Help:
 `!primer add <#/SVAR/GVAR>`: Lists/adds sources in UVAR

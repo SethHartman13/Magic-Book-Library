@@ -9,12 +9,14 @@ f = [
     "`!wizbook activate`: Subalias to activate wizard magic books from the `ibook_dict` character variable.",
     "`!wizbook switch`: Subalias to remove wizard magic books from the `ibook_dict` character variable.",
     "",
-    "`!wizbook list`: Subalias that lists all spells contained in the CVAR `ibook_dict` (organized)",
+    "`!wizbook list`: Subalias that lists all wizard spells contained in the CVAR `ibook_dict` (organized)",
     "`!wizbook cc`: Subalias to edit/view wizard magic book custom counters."
 ]
+
+
 
 </drac2>
 -title "Someone needs the help action"
 -f "{{"\n".join(f)}}"
--thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['', 1, 2, 3, 4, 5])}}.png"
--footer "!wizbook | Updated 12/1/23 | ShadowsStride"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{{randchoice(['alch', 'astr', 'atla', 'crys', 'dupl', 'fulm', 'hear', 'libr', 'plan', 'prot'])}}.png"
+-footer "!wizbook | Updated 12/2/23 | ShadowsStride"

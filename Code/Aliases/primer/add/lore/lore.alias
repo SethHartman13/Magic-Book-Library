@@ -308,6 +308,10 @@ def main() -> tuple(str, str, str, str):
         str: Thumbnail URL 
         str: Color (hex)
     """
+    # NEED TO VERIFY THAT THEY HAVE THE ABILITY TO CAST A SPELL (check Spellbook)
+
+
+
 
     # Main character object
     ch = character()

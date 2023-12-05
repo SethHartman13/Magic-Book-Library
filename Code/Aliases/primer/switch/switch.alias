@@ -428,7 +428,7 @@ def main(input_list: list[str]) -> str:
     # Search for the second spell within the sources that the user has access to
     spell_2, spell_2_dict = search_sourcebook(ch, input_list[1], all_source_dict, source_set, svar_dict, spell_1_source)
 
-    # Mapping table for the class spells
+    # Mapping table for the class details
     primer_class_mapping = {
         "Lorehold Primer": [
             "Cleric",

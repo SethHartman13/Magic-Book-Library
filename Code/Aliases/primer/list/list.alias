@@ -1,0 +1,89 @@
+embed
+<drac2>
+
+
+def main() -> tuple(str, str, str, str):
+    """
+    Main program function
+    
+    Return:
+        str: Title
+        str: Body Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    # Character object
+    ch = character()
+
+    # If the cvar ibook_dict exists, load dictionary
+    if (cvar_test := ch.get_cvar("ibook_dict")):
+        cvar_dict = load_json(cvar_test)
+
+        # If Primer Books in cvar_dict keys
+        if "Primer Books" in cvar_dict.keys():
+
+            # If there is at least one book in Primer Books
+            if len(cvar_dict['Primer Books']) > 0:
+
+
+                # Short-code mapping table
+                shorthand_items = {
+                    "Lorehold Primer": "lore",
+                    "Prismari Primer": "pris",
+                    "Quandrix Primer": "quan",
+                    "Silverquill Primer": "silv",
+                    "Witherbloom Primer": "with",
+                }
+
+                # Create empty list
+                result_list = []
+                short_hand_list = []
+
+                # For each primer book, add name and spell
+                for primer_book, spell in cvar_dict['Primer Books'].items():
+                    result_list.append(f"**{primer_book}**\n{spell}")
+
+                    # If book is not HB
+                    if primer_book in shorthand_items.keys():
+                        short_hand_list.append(shorthand_items[primer_book])
+
+                    # If book is HB
+                    else:
+                        pass
+
+                # If at least 1 shortcode was used
+                if len(short_hand_list) > 0:
+                    pass
+
+                # If no shortcodes were used
+                else:
+                    short_hand_list = ['lore', 'pris', 'quan', 'silv', 'with']
+
+
+                return f"{name}'s Primer Magic Book Library", "\n\n".join(result_list), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_hand_list)}.png", ""               
+
+            # If there are no books in Primer Books
+            else:
+                return f"{ctx.author.display_name} has encountered an error", "You have no Primer Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+        # If Primer Books are not in cvar_dict keys
+        else:
+            return f"{ctx.author.display_name} has encountered an error", "You have no Primer Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+    # If CVAR ibook_dict does not exist
+    else:
+        return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+# Main program function
+title, f, thumb, color = main(&ARGS&)
+l = "<"
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "{{thumb}}"
+-color "{{color}}"
+-footer "!primer list {{l}}#> | Updated 12/2/23 | ShadowsStride"
