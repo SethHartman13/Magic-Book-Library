@@ -23,7 +23,7 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def subtract_counter(book_name: str, ch: AliasCharacter):
+def subtract_counter(book_name: str, ch: AliasCharacter) -> tuple(None|str, str):
     """
     Subtracts counter and outputs results
 
@@ -50,7 +50,7 @@ def subtract_counter(book_name: str, ch: AliasCharacter):
         return None, "No charges left"
 
 
-def activate_alchemical_compendium(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+def activate_alchemical_compendium(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Alchemical Compendium
 
@@ -90,10 +90,10 @@ def activate_alchemical_compendium(ch: AliasCharacter, error_color: str, error_i
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Alchemical Compendium has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Alchemical Compendium has no more charges", error_image, error_color, ""
 
 
-def activate_astromancy_archive(ch: character, error_color: str, error_image: str, i_arg: bool):
+def activate_astromancy_archive(ch: character, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Astromancy Archive
 
@@ -134,10 +134,10 @@ def activate_astromancy_archive(ch: character, error_color: str, error_image: st
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Astromancy Archive has no more charges", error_image, error_color, ""  
+        return "You Have Been Sneak Attacked by an Error", "Astromancy Archive has no more charges", error_image, error_color, ""  
 
 
-def activate_atlas_of_endless_horizons(ch: character, error_color: str, error_image: str, amt_arg: str|int, i_arg: bool):
+def activate_atlas_of_endless_horizons(ch: character, error_color: str, error_image: str, amt_arg: str|int, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Atlas of Endless Horizons
 
@@ -206,10 +206,10 @@ def activate_atlas_of_endless_horizons(ch: character, error_color: str, error_im
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Atlas of Endless Horizons has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Atlas of Endless Horizons has no more charges", error_image, error_color, ""
 
 
-def activate_crystalline_chronicle(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+def activate_crystalline_chronicle(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Crystalline Chronicle
 
@@ -249,10 +249,10 @@ def activate_crystalline_chronicle(ch: AliasCharacter, error_color: str, error_i
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Crystalline Chronicle has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Crystalline Chronicle has no more charges", error_image, error_color, ""
 
 
-def activate_duplicitous_manuscript(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+def activate_duplicitous_manuscript(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Duplicitous Manuscript
 
@@ -292,10 +292,10 @@ def activate_duplicitous_manuscript(ch: AliasCharacter, error_color: str, error_
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Duplicitous Manuscript has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Duplicitous Manuscript has no more charges", error_image, error_color, ""
 
 
-def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_color: str, error_image: str, crit_arg: bool, t_arg: list[str], i_arg: bool):
+def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_color: str, error_image: str, crit_arg: bool, t_arg: list[str], i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Fulminating Treatise
 
@@ -580,10 +580,10 @@ def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_c
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Fulminating Treatise has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Fulminating Treatise has no more charges", error_image, error_color, ""
 
 
-def activate_heart_weavers_primer(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+def activate_heart_weavers_primer(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Heart Weaver's Primer
 
@@ -623,11 +623,11 @@ def activate_heart_weavers_primer(ch: AliasCharacter, error_color: str, error_im
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Heart Weaver's Primer has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Heart Weaver's Primer has no more charges", error_image, error_color, ""
 
 
 # Will improve later for effect in initiative (libr)
-def activate_libram_of_souls_and_flesh(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool):
+def activate_libram_of_souls_and_flesh(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Libram of Souls and Flesh
 
@@ -666,11 +666,11 @@ def activate_libram_of_souls_and_flesh(ch: AliasCharacter, error_color: str, err
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Libram of Souls and Flesh has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Libram of Souls and Flesh has no more charges", error_image, error_color, ""
 
 
 # Need to test plan and prot
-def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool):
+def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Planecaller's Codex
 
@@ -839,10 +839,10 @@ def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_col
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Planecaller's Codex has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Planecaller's Codex has no more charges", error_image, error_color, ""
 
 
-def activate_protective_verses(ch: character, com: combat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool):
+def activate_protective_verses(ch: character, com: combat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Protective Verses
 
@@ -1055,10 +1055,10 @@ def activate_protective_verses(ch: character, com: combat, error_color: str, err
 
     # If error
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Protective Verses has no more charges", error_image, error_color, ""
+        return "You Have Been Sneak Attacked by an Error", "Protective Verses has no more charges", error_image, error_color, ""
 
 
-def main(input_list: list[str], ch: AliasCharacter):
+def main(input_list: list[str], ch: AliasCharacter) -> tuple(str, str, str, str, str, str):
     """
     Main program function
 
@@ -1096,19 +1096,19 @@ def main(input_list: list[str], ch: AliasCharacter):
 
                 # If there are no books
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your library", img_url, color, ""
+                    return "You Have Been Sneak Attacked by an Error", "There are no wizard books in your library", img_url, color, ""
 
             # If there is not a "Wizard Books" key
             else:
-                return f"{ctx.author.display_name} has encountered an error", "There are no wizard books in your library", img_url, color, ""
+                return "You Have Been Sneak Attacked by an Error", "There are no wizard books in your library", img_url, color, ""
 
         # If the CVAR does not exist
         else:
-            return f"{ctx.author.display_name} has encountered an error", "`ibook_dict` CVAR does not exist", img_url, color, ""
+            return "You Have Been Sneak Attacked by an Error", "`ibook_dict` CVAR does not exist", img_url, color, ""
 
     # If there were no inputs
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", img_url, color, ""
+        return "You Have Been Sneak Attacked by an Error", "Expected at least one argument", img_url, color, ""
 
     # If there is at least one magic book match
     if (result_key := search_list(input_list[0], cvar_dict['Wizard Books'].keys())):
@@ -1132,9 +1132,9 @@ def main(input_list: list[str], ch: AliasCharacter):
 
             # If there was not an exact match
             if typeof(result_key) != "str":
-                result_key.insert(0, "**Multiple Fatches Found:**")
+                result_key.insert(0, "**Multiple Matches Found:**")
 
-                return f"{ctx.author.display_name} has encountered an error", "\n".join(result_key), img_url, thumb, ""
+                return "You Have Been Sneak Attacked by an Error", "\n".join(result_key), img_url, thumb, ""
 
             # If there was an exact match
             else:
@@ -1142,7 +1142,7 @@ def main(input_list: list[str], ch: AliasCharacter):
 
     # If there were no matches
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Book not found", img_url, thumb, ""
+        return "You Have Been Sneak Attacked by an Error", "Book not found", img_url, thumb, ""
 
     # Parse inputs
     arg_parsed = argparse(" ".join(input_list))
@@ -1195,7 +1195,7 @@ def main(input_list: list[str], ch: AliasCharacter):
 
         # All other sources
         case _:
-            return f"{ctx.author.display_name} has encountered an error", "Shadow has not put in support for HB activation content", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B", "", ""
+            return "You Have Been Sneak Attacked by an Error", "Shadow has not put in support for HB activation content", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B", "", ""
 
 
 # Main character object
@@ -1207,9 +1207,11 @@ input_list = &ARGS&
 title, f, thumb, color, footer, source = main(input_list, ch)
 l = "<"
 
+# If there is an error and -i is not used, add back a counter
 if "error" in title and source != "" and not "-i" in " ".join(input_list):
     ch.mod_cc(source, 1)
 
+# If there is not an error or -i is used
 else:
     pass
 
@@ -1219,4 +1221,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{footer}}{{"\n"}}!wizbook activate [magic book name] | Updated 11/29/23 | ShadowsStride"
+-footer "{{footer}}{{"\n"}}!wizbook activate [magic book name] | Updated 12/4/23 | ShadowsStride"
