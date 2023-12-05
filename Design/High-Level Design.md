@@ -4,7 +4,7 @@
 
 ## Aliases
 - [x] <span class="level1">`!ibook`</span> <span class="documented">Documented</span>
-    - Provides help menu
+    - [Markdown](../Code/Aliases/ibook/ibook.md)
     - [x] <span class="level2">`!ibook serve`</span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/ibook/serve/serve.md)
 
@@ -119,6 +119,7 @@
 
     - [x] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/wizbook/activate/activate.md)
+        - Code Polished
 
     - [x] <span class="level2"> `!wizbook cast`<span class="required">`[Spell Name]`</span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/wizbook/cast/cast.md)
@@ -173,6 +174,9 @@
 
     - [ ] <span class="level2"> `!primer list`
         - Provides list of primers (and their spell) in CVAR
+
+    - [ ] <span class="level2"> `!primer activate`
+        - Code Polished
 
 ## Snippets
 
