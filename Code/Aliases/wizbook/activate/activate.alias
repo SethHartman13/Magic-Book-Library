@@ -23,7 +23,7 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def subtract_counter(book_name: str, ch: AliasCharacter) -> tuple(None|str, str):
+def subtract_counter(book_name: str, ch: AliasCharacter) -> tuple(None|AliasCustomCounter, str):
     """
     Subtracts counter and outputs results
 
@@ -86,14 +86,14 @@ def activate_alchemical_compendium(ch: AliasCharacter, error_color: str, error_i
             num_str
         ]
         
-        return f"{name} uses their Alchemical Compendium", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/alch.png", "", "" 
+        return f"{name} Uses Their Alchemical Compendium", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/alch.png", "", "" 
 
     # If error
     else:
         return "You Have Been Sneak Attacked by an Error", "Alchemical Compendium has no more charges", error_image, error_color, ""
 
 
-def activate_astromancy_archive(ch: character, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
+def activate_astromancy_archive(ch: AliasCharacter, error_color: str, error_image: str, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Astromancy Archive
 
@@ -130,14 +130,14 @@ def activate_astromancy_archive(ch: character, error_color: str, error_image: st
             num_str
         ]
 
-        return f"{name} uses their Astromancy Archive", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/astr.png", "", "" 
+        return f"{name} Uses Their Astromancy Archive", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/astr.png", "", "" 
 
     # If error
     else:
         return "You Have Been Sneak Attacked by an Error", "Astromancy Archive has no more charges", error_image, error_color, ""  
 
 
-def activate_atlas_of_endless_horizons(ch: character, error_color: str, error_image: str, amt_arg: str|int, i_arg: bool) -> tuple(str, str, str, str, str):
+def activate_atlas_of_endless_horizons(ch: AliasCharacter, error_color: str, error_image: str, amt_arg: str|int, i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Atlas of Endless Horizons
 
@@ -202,7 +202,7 @@ def activate_atlas_of_endless_horizons(ch: character, error_color: str, error_im
             num_str
         ]
 
-        return f"{name} uses their Atlas of Endless Horizons", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/atla.png", "", ""
+        return f"{name} Uses Their Atlas of Endless Horizons", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/atla.png", "", ""
 
     # If error
     else:
@@ -245,7 +245,7 @@ def activate_crystalline_chronicle(ch: AliasCharacter, error_color: str, error_i
             num_str
         ]
 
-        return f"{name} uses their Crystalline Chronicle", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/crys.png", "", "" 
+        return f"{name} Uses Their Crystalline Chronicle", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/crys.png", "", "" 
 
     # If error
     else:
@@ -288,7 +288,7 @@ def activate_duplicitous_manuscript(ch: AliasCharacter, error_color: str, error_
             num_str
         ]
 
-        return f"{name} uses their Duplicitous Manuscript", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/dupl.png", "", "" 
+        return f"{name} Uses Their Duplicitous Manuscript", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/dupl.png", "", "" 
 
     # If error
     else:
@@ -484,7 +484,7 @@ def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_c
                     else:
                         pass
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", "\n".join(footer_list)
+                return f"{name} Uses Their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", "\n".join(footer_list)
 
             # If targets were not given
             else:
@@ -509,7 +509,7 @@ def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_c
                     num_str
                 ]
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
+                return f"{name} Uses Their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
 
         # If channel not in combat
         else:
@@ -550,7 +550,7 @@ def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_c
                 f.append("")
                 f.append(num_str)
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
+                return f"{name} Uses Their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
 
             # If targets were not given
             else:
@@ -576,7 +576,7 @@ def activate_fulminating_treatise(ch: AliasCharacter, com: SimpleCombat, error_c
                     num_str
                 ]
 
-                return f"{name} uses their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
+                return f"{name} Uses Their Fulminating Treatise", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/fulm.png", "", ""
 
     # If error
     else:
@@ -619,7 +619,7 @@ def activate_heart_weavers_primer(ch: AliasCharacter, error_color: str, error_im
             num_str
         ]
 
-        return f"{name} uses their Heart Weaver's Primer", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/hear.png", "", "" 
+        return f"{name} Uses Their Heart Weaver's Primer", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/hear.png", "", "" 
 
     # If error
     else:
@@ -662,7 +662,7 @@ def activate_libram_of_souls_and_flesh(ch: AliasCharacter, error_color: str, err
             num_str
         ]
 
-        return f"{name} uses their Libram of Souls and Flesh", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/libr.png", "", "" 
+        return f"{name} Uses Their Libram of Souls and Flesh", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/libr.png", "", "" 
 
     # If error
     else:
@@ -777,7 +777,7 @@ def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_col
                         except:
                             pass
 
-                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
+                return f"{name} Uses Their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
 
             # If targets were not given, build output
             else:
@@ -791,7 +791,7 @@ def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_col
                     num_str
                 ]
 
-                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
+                return f"{name} Uses Their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
 
         # If channel not in combat
         else:
@@ -819,7 +819,7 @@ def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_col
                 f.append("")
                 f.append(num_str)
 
-                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
+                return f"{name} Uses Their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
 
             # If targets were not given
             else:
@@ -835,14 +835,14 @@ def activate_planecallers_codex(ch: AliasCharacter, com: SimpleCombat, error_col
                     num_str
                 ]
 
-                return f"{name} uses their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
+                return f"{name} Uses Their Planecaller's Codex", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/plan.png", "", ""
 
     # If error
     else:
         return "You Have Been Sneak Attacked by an Error", "Planecaller's Codex has no more charges", error_image, error_color, ""
 
 
-def activate_protective_verses(ch: character, com: combat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool) -> tuple(str, str, str, str, str):
+def activate_protective_verses(ch: AliasCharacter, com: combat, error_color: str, error_image: str, t_arg: list[str], i_arg: bool) -> tuple(str, str, str, str, str):
     """
     Activates the Protective Verses
 
@@ -982,7 +982,7 @@ def activate_protective_verses(ch: character, com: combat, error_color: str, err
                     else:
                         pass
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", "\n".join(footer_list)
+                return f"{name} Uses Their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", "\n".join(footer_list)
 
             # If targets were not given
             else:
@@ -1001,7 +1001,7 @@ def activate_protective_verses(ch: character, com: combat, error_color: str, err
                     num_str
                 ]
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
+                return f"{name} Uses Their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
 
         # If channel not in combat
         else:
@@ -1032,7 +1032,7 @@ def activate_protective_verses(ch: character, com: combat, error_color: str, err
                 f.append("")
                 f.append(num_str)
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
+                return f"{name} Uses Their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
 
             # If targets were not given
             else:
@@ -1051,7 +1051,7 @@ def activate_protective_verses(ch: character, com: combat, error_color: str, err
                     num_str
                 ]
 
-                return f"{name} uses their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
+                return f"{name} Uses Their Protective Verses", "\n".join(f), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "", ""
 
     # If error
     else:
