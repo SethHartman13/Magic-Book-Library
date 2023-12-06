@@ -85,18 +85,18 @@ def spell_match_logic(spell_name: str, spell_value: dict, svar_dict: dict, prime
     }
 
     # If spell level is not 1
-    if "1" not in str(spell_value['Level']):
+    if "1" not in str(spell_value["Level"]):
         return False
 
     # If spell level is 1
     else:
-        match (svar_dict['Settings']['Expanded Class'], "Expanded Class" in spell_value.keys(), "Class" in spell_value.keys()):
+        match (svar_dict["Settings"]["Expanded Class"], "Expanded Class" in spell_value.keys(), "Class" in spell_value.keys()):
 
             # If optional classes are allowed, "Expanded Class" is a key, and "Class" is a key
             case (True, True, True):
 
                 # If the spell is in the class spelllists specified
-                if len(set(spell_value["Class"] + spell_value['Expanded Class']).intersection(set(primer_class_mapping[primer_name]))) > 0:
+                if len(set(spell_value["Class"] + spell_value["Expanded Class"]).intersection(set(primer_class_mapping[primer_name]))) > 0:
                     return True
 
                 # If the spell is not in the class spelllists specified
@@ -107,7 +107,7 @@ def spell_match_logic(spell_name: str, spell_value: dict, svar_dict: dict, prime
             case (True, True, False):
                 
                 # If the spell is in the class spelllists specified
-                if len(set(spell_value['Expanded Class']).intersection(set(primer_class_mapping[primer_name]))) > 0:
+                if len(set(spell_value["Expanded Class"]).intersection(set(primer_class_mapping[primer_name]))) > 0:
                     return True
 
                 # If the spell is not in the class spelllists specified
@@ -184,7 +184,7 @@ def get_random_spell(svar_dict: dict, primer_name: str) -> str:
         uvar_list = []
 
     # Create source set
-    source_set = set(svar_dict['Books']).union(set(uvar_list)).union(set(("Basic Rules (br)", )))
+    source_set = set(svar_dict["Books"]).union(set(uvar_list)).union(set(("Basic Rules (br)", )))
 
     spell_list = []
 
@@ -195,7 +195,7 @@ def get_random_spell(svar_dict: dict, primer_name: str) -> str:
         if source in source_mapping.keys():
 
             # If partnered content is allowed
-            if svar_dict['Settings']['Partnered Content']:
+            if svar_dict["Settings"]["Partnered Content"]:
 
                 # Load each spell and insert into full_spell_dict
                 for spell, spell_details in massive_spell_dict[source_mapping[source]].items():
@@ -219,7 +219,7 @@ def get_random_spell(svar_dict: dict, primer_name: str) -> str:
             else:
 
                 # If the content is not partnered
-                if not massive_spell_dict[source_mapping[source]]['SETTINGS']['Partnered Content']:
+                if not massive_spell_dict[source_mapping[source]]["SETTINGS"]["Partnered Content"]:
 
                     # Load each spell and insert into full_spell_dict
                     for spell, spell_details in massive_spell_dict[source_mapping[source]].items():
@@ -243,7 +243,7 @@ def get_random_spell(svar_dict: dict, primer_name: str) -> str:
                 else:
                     pass
         # If the source is HB and allowed
-        elif svar_dict['Settings']['Homebrew']:
+        elif svar_dict["Settings"]["Homebrew"]:
 
             # If it pulls a GVAR source
             if (gvar_test := get_gvar(source)):
@@ -308,13 +308,17 @@ def main() -> tuple(str, str, str, str):
         str: Thumbnail URL 
         str: Color (hex)
     """
-    # NEED TO VERIFY THAT THEY HAVE THE ABILITY TO CAST A SPELL (check Spellbook)
-
-
-
 
     # Main character object
     ch = character()
+
+    # If they can at least cast one spell
+    if len(ch.spellbook.spells) > 0:
+        pass
+
+    # If they cannot cast a spell
+    else:
+        return "You Have Been Sneak Attacked by an Error", "You must have the ability to cast at least one spell (through racial or class features) to attune to a primer book", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CC0202"
 
     # If SVAR settings exists
     if (svar_test := get_svar("ibook_settings")):
@@ -327,48 +331,48 @@ def main() -> tuple(str, str, str, str):
         svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
     
     # If the CVAR exists, load dictionary
-    if (cvar_test := ch.get_cvar('ibook_dict')):
+    if (cvar_test := ch.get_cvar("ibook_dict")):
         cvar_dict = load_json(cvar_test)
 
         # If CVAR has "Wizard Books"
         if "Wizard Books" in (cvar_dict_keys := cvar_dict.keys()):
-            cvar_book_num = len(cvar_dict['Wizard Books'].keys())
+            cvar_book_num = len(cvar_dict["Wizard Books"].keys())
 
         # If CVAR does not have "Wizard Books"
         else:
-            cvar_dict['Wizard Books'] = {}
+            cvar_dict["Wizard Books"] = {}
             cvar_book_num = 0
 
         # If CVAR has "Primer Books"
         if "Primer Books" in cvar_dict_keys:
 
-            cvar_book_num += len(cvar_dict['Primer Books'].keys())
+            cvar_book_num += len(cvar_dict["Primer Books"].keys())
 
             # If within book limit and if the character is not already attuned to one
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                if "Lorehold Primer" not in cvar_dict['Primer Books'].keys():
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                if "Lorehold Primer" not in cvar_dict["Primer Books"].keys():
 
                     # Set unused name key to spell
-                    cvar_dict['Primer Books']["Lorehold Primer"] = get_random_spell(svar_dict, "Lorehold Primer")
+                    cvar_dict["Primer Books"]["Lorehold Primer"] = get_random_spell(svar_dict, "Lorehold Primer")
 
                 # If the character is already attuned to a specific book
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return "You Have Been Sneak Attacked by an Error", "\"...a creature can't attune to more than one copy of an item.\" ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             # If not within book limit
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
         
         # If CVAR does not have Primer Books, check book limit
         else:
 
             # If within book limit
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                cvar_dict['Primer Books'] = {"Lorehold Primer": get_random_spell(svar_dict, "Lorehold Primer")}
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                cvar_dict["Primer Books"] = {"Lorehold Primer": get_random_spell(svar_dict, "Lorehold Primer")}
 
             # If not within book limit
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If CVAR does not exist, create dictionary
     else:
@@ -418,7 +422,7 @@ def main() -> tuple(str, str, str, str):
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} has added a Lorehold Primer to their Magic Book Library", f"Your starting spell is {cvar_dict['Primer Books']['Lorehold Primer']}\n\n(You can change it once per day)", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/lore.png", "#647FA7"
+    return f"{name} Has Added a Lorehold Primer to Their Primer Book Library", f"Your starting spell is {cvar_dict['Primer Books']['Lorehold Primer']}\n\n(You can change it once per day)", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/lore.png", "#647FA7"
 
 
 # Main program function
@@ -430,4 +434,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer add lore | Updated 12/1/23 | ShadowsStride"
+-footer "!primer add lore | Updated 12/6/23 | ShadowsStride"
