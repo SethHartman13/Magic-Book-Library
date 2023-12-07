@@ -87,35 +87,47 @@
     - [Markdown](../Code/Aliases/wizbook/wizbook.md)
     - [x] <span class="level2">`!wizbook add`
         - [Markdown](../Code/Aliases/wizbook/add/add.md) <span class="documented">Documented</span>
+        - Code Polished
+        
         - [x] <span class="level3">`!wizbook add alch`</span><span class="required">*</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/alch/alch.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add astr`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/astr/astr.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add atla`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/atla/atla.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add crys`</span><span class="required">*</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/crys/crys.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add dupl`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/dupl/dupl.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add fulm`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/fulm/ulm.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add hear`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/hear/hear.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add libr`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/libr/libr.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add plan`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/plan/plan.md)
+            - Code Polished
 
         - [x] <span class="level3">`!wizbook add prot`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/wizbook/add/prot/prot.md)
+            - Code Polished
 
     - [x] <span class="level2"> `!wizbook activate`<span class="required">`[Book Name]`</span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/wizbook/activate/activate.md)
@@ -143,20 +155,27 @@
     - Gives help menu
     - [x] <span class="level2">`!primer add` <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/primer/add/add.md)
+        - Code Polished
+
         - [x] <span class="level3"> `!primer add lore`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/lore/lore.md)
+            - Code Polished
 
         - [x] <span class="level3"> `!primer add pris`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/pris/pris.md)
+            - Code Polished
 
         - [x] <span class="level3"> `!primer add quan`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/quan/quan.md)
+            - Code Polished
 
         - [x] <span class="level3"> `!primer add silv`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/silv/silv.md)
+            - Code Polished
 
         - [x] <span class="level3"> `!primer add with`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/primer/add/with/with.md)
+            - Code Polished
 
     - [x] <span class="level2"> `!primer cast`
         - [Markdown](../Code/Aliases/primer/cast/cast.md)
@@ -200,5 +219,3 @@
     - Adds a d4 to <span class="skill">`nature`</span> and <span class="skill">`survival`</span> checks
 
 <span class="required">*Requires licensing
-
-<span class="rft"><strong>R</strong>eady <strong>F</strong>or <strong>T</strong>esting
