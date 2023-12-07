@@ -79,13 +79,13 @@ def main() -> tuple(str, str, str, str):
             # Load dictionary, checking default values
             svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
 
-        # If SVAR settings does not exist 
+        # If SVAR settings do not exist 
         else:
             svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
         # If CVAR has "Primer Books"
         if "Primer Books" in (cvar_dict_keys := cvar_dict.keys()):
-            cvar_book_num = len(cvar_dict["Primer Books"].keys())
+            cvar_book_num = len(cvar_dict["Primer Books"])
 
         # If CVAR does not have "Primer Books"
         else:
@@ -93,15 +93,13 @@ def main() -> tuple(str, str, str, str):
             cvar_book_num = 0
 
         # If CVAR has "Wizard Books"
-        if "Wizard Books" in cvar_dict.keys():
-
-            cvar_book_num += len(cvar_dict["Wizard Books"].keys())
+        if "Wizard Books" in cvar_dict_keys:
+            cvar_book_num += len(cvar_dict["Wizard Books"])
 
             # If within book limit and if the character is not already attuned to one
             if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
                 if "Alchemical Compendium" not in cvar_dict["Wizard Books"].keys():
 
-                    # Set unused name key to spell list
                     cvar_dict["Wizard Books"]["Alchemical Compendium"] = [
                         "Enlarge/Reduce", 
                         "Feather Fall", 
@@ -173,7 +171,7 @@ def main() -> tuple(str, str, str, str):
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} Has Added an Alchemical Compendium to Their Wizard Book Library", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/alch.png", "#B47F47"
+    return f"{name} Has Added an Alchemical Compendium to Their Wizard Book Library", f"**You start with the following spells:**\n{join_list}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/alch.png", "#B47F47"
 
 
 # Main program function

@@ -47,7 +47,7 @@ def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
     return dictionary
 
 
-def main() -> str:
+def main() -> tuple(str, str, str, str):
     """
     Main program function
     
@@ -55,7 +55,7 @@ def main() -> str:
         str: Title
         str: Content
         str: Thumbnail URL 
-        str: Color (hex)
+        str: Color Hex Code
     """
 
     # Main character object
@@ -67,7 +67,7 @@ def main() -> str:
         
     # If they do not have at least 14 levels in artificer
     else:
-        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If the CVAR exists, load dictionary
     if (cvar_test := ch.get_cvar("ibook_dict")):
@@ -85,24 +85,24 @@ def main() -> str:
 
         # If CVAR has "Primer Books"
         if "Primer Books" in (cvar_dict_keys := cvar_dict.keys()):
-            cvar_book_num = len(cvar_dict['Primer Books'].keys())
+            cvar_book_num = len(cvar_dict["Primer Books"])
 
         # If CVAR does not have "Primer Books"
         else:
-            cvar_dict['Primer Books'] = {}
+            cvar_dict["Primer Books"] = {}
             cvar_book_num = 0
 
         # If CVAR has "Wizard Books"
         if "Wizard Books" in cvar_dict_keys:
 
-            cvar_book_num += len(cvar_dict['Wizard Books'].keys())
+            cvar_book_num += len(cvar_dict["Wizard Books"])
 
             # If within book limit and if the charater is not already attuned to one
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                if "Astromancy Archive" not in cvar_dict['Wizard Books'].keys():
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                if "Astromancy Archive" not in cvar_dict["Wizard Books"].keys():
 
                     # Set unused name key to spell list
-                    cvar_dict['Wizard Books']["Astromancy Archive"] = [
+                    cvar_dict["Wizard Books"]["Astromancy Archive"] = [
                         "Augury", 
                         "Divination", 
                         "Find the Path", 
@@ -113,16 +113,16 @@ def main() -> str:
 
                 # If the character is already attuned to a specific book
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return "You Have Been Sneak Attacked by an Error", "\"...a creature can't attune to more than one copy of an item.\" ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             # If not within book limit
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If CVAR does not have Wizard Books, check book limit
         else:
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                cvar_dict['Wizard Books'] = {
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                cvar_dict["Wizard Books"] = {
                     "Astromancy Archive": [
                             "Augury", 
                             "Divination", 
@@ -134,7 +134,7 @@ def main() -> str:
                     }
 
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
         
     # If CVAR does not exist, create dictionary
     else:
@@ -157,23 +157,23 @@ def main() -> str:
         
     # Creates Custom Counter
     ch.create_cc(
-        name=f"Astromancy Archive",
+        name="Astromancy Archive",
         minVal="0",
         maxVal="3",
         reset="long",
         dispType="star",
         reset_by="1d3",
-        title=f"Astromancy Archive",
+        title="Astromancy Archive",
         desc="The archive has 3 charges, and it regains 1d3 expended charges daily at dawn. You can use the charges in the following ways while holding it:\n- If you spend 1 minute studying the archive, you can expend 1 charge to replace one of your prepared wizard spells with a different spell in the archive. The new spell must be of the divination school.\n- When a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to expend 1 charge and force the creature to roll a d4 and apply the number rolled as a bonus or penalty (your choice) to the original roll. You can do this after you see the roll but before its effects are applied."
     )
 
-    # Set cvar with new book
+    # Set CVAR with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added an Astromancy Archive to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/astr.png", "#8CA5B7"
+    return f"{name} has added an Astromancy Archive to their Wizard Book Library", f"**You start with the following spells:**\n{join_list}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/astr.png", "#8CA5B7"
 
 
-# Main function
+# Main program function
 title, f, thumb, color = main()
 
 
@@ -182,4 +182,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add astr | Updated 11/22/23 | ShadowsStride"
+-footer "!wizbook add astr | Updated 12/6/23 | ShadowsStride"

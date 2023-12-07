@@ -47,7 +47,7 @@ def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
     return dictionary
 
 
-def main() -> str:
+def main() -> tuple(str, str, str, str):
     """
     Main program function
     
@@ -55,9 +55,9 @@ def main() -> str:
         (str): Title
         (str): Content
         (str): Thumbnail URL 
-        (str): Color (hex)
+        (str): Color Hex Code
     """
-    # Protective Verses
+
     # Main character object
     ch = character()
     
@@ -67,34 +67,40 @@ def main() -> str:
 
     # If the character does not have at least 1 level in wizard, return error.
     else:
-        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If the cvar exists, load dictionary
     if (cvar_test := ch.get_cvar("ibook_dict")):
         cvar_dict = load_json(cvar_test)
 
+        # If SVAR settings exists
         if (svar_test := get_svar("ibook_settings")):
 
+            # Load dictionry, checking default values
             svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
 
+        # If SVAR settings exists
         else:
             svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
+        # If CVAR has Primer Books
         if "Primer Books" in cvar_dict.keys():
-            cvar_book_num = len(cvar_dict['Primer Books'].keys())
+            cvar_book_num = len(cvar_dict["Primer Books"])
 
+        # If CVAR does not have Primer Books
         else:
-            svar_dict['Primer Books'] = {}
+            svar_dict["Primer Books"] = {}
             cvar_book_num = 0
 
+        # If CVAR has Wizard books
         if "Wizard Books" in cvar_dict.keys():
+            cvar_book_num += len(cvar_dict["Wizard Books"])
 
-            cvar_book_num += len(cvar_dict['Wizard Books'].keys())
+            # If within book limit and if the character is not already attuned to one
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                if "Protective Verses" not in cvar_dict["Wizard Books"].keys():
 
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                if "Protective Verses" not in cvar_dict['Wizard Books'].keys():
-
-                    cvar_dict['Wizard Books']["Protective Verses"] = [
+                    cvar_dict["Wizard Books"]["Protective Verses"] = [
                         "Arcane Lock", 
                         "Dispel Magic", 
                         "Globe of Invulnerability", 
@@ -104,15 +110,20 @@ def main() -> str:
                         "Symbol"
                         ]
 
+                # If the character is already attuned to a specific book
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return "You Have Been Sneak Attacked by an Error", "\"...a creature can't attune to more than one copy of an item.\" ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+            # If not within book limit
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+        # If CVAR does not have Wizard Books
         else:
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                cvar_dict['Wizard Books'] = {
+
+            # If within book limit
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                cvar_dict["Wizard Books"] = {
                     "Protective Verses": [
                         "Arcane Lock", 
                         "Dispel Magic", 
@@ -124,9 +135,11 @@ def main() -> str:
                     ]
                 }
 
+            # If not within book limit
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+    # If CVAR does not exist, create dictionary
     else:
         cvar_dict = {
             "Wizard Books": {
@@ -161,10 +174,7 @@ def main() -> str:
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    # Selects random image to display
-    img_url = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png"
-
-    return f"{name} ({ctx.author.display_name}) has added a Protective Verses to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", img_url, "#69AFEC"
+    return f"{name} has added a Protective Verses to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/prot.png", "#69AFEC"
 
 
 # Gets outputs
@@ -176,4 +186,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add prot | Updated 11/22/23 | ShadowsStride"
+-footer "!wizbook add prot | Updated 12/7/23 | ShadowsStride"

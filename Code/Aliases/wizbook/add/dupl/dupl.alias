@@ -55,7 +55,7 @@ def main() -> str:
         str: Title
         str: Content
         str: Thumbnail URL 
-        str: Color (hex)
+        str: Color Hex Code
     """
 
     # Main character object
@@ -67,7 +67,7 @@ def main() -> str:
         
     # If they do not have at least 14 levels in artificer
     else:
-        return f"{ctx.author.display_name} has encountered an error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "You do not have any levels in Wizard (or 14 levels in Artificer) and cannot attune to this item", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If the cvar exists, load dictionary
     if (cvar_test := ch.get_cvar("ibook_dict")):
@@ -79,28 +79,29 @@ def main() -> str:
             # Load dictionary, checking default values
             svar_dict = set_default_settings(load_json(svar_test), {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []})
 
+        # If the SVAR does not exist
         else:
             svar_dict = {"Settings": {"Homebrew": False, "Partnered Content": True, "Book Limit": 6},"Books": []}
 
         # If CVAR has "Primer Books"
         if "Primer Books" in (cvar_dict_keys := cvar_dict.keys()):
-            cvar_book_num = len(cvar_dict['Primer Books'].keys())
+            cvar_book_num = len(cvar_dict["Primer Books"].keys())
 
         # If CVAR does not have "Primer Books"
         else:
-            cvar_dict['Primer Books'] = {}
+            cvar_dict["Primer Books"] = {}
             cvar_book_num = 0
 
         # If CVAR has "Wizard Books"
         if "Wizard Books" in cvar_dict_keys:
 
-            cvar_book_num += len(cvar_dict['Wizard Books'].keys())
+            cvar_book_num += len(cvar_dict["Wizard Books"].keys())
 
             # If within book limit and if the character is not already attuned to one
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                if "Duplicitous Manuscript" not in cvar_dict['Wizard Books'].keys():
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                if "Duplicitous Manuscript" not in cvar_dict["Wizard Books"].keys():
 
-                    cvar_dict['Wizard Books']['Duplicitous Manuscript'] = [
+                    cvar_dict["Wizard Books"]["Duplicitous Manuscript"] = [
                         "Arcane Gate", 
                         "Dimension Door", 
                         "Gate", 
@@ -110,16 +111,18 @@ def main() -> str:
                         "Word of Recall"
                         ]
 
+                # If the character is already attuned to a specific book
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "'...a creature can't attune to more than one copy of an item.' ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return "You Have Been Sneak Attacked by an Error", "\"...a creature can't attune to more than one copy of an item.\" ([Dungeon Master's Guide](https://www.dndbeyond.com/sources/dmg/treasure#Attunement))", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+            # If not within book limit
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+        # If CVAR does not have Wizard Books, check book limit
         else:
-
-            if cvar_book_num < svar_dict['Settings']['Book Limit']:
-                cvar_dict['Wizard Books'] = {
+            if cvar_book_num < svar_dict["Settings"]["Book Limit"]:
+                cvar_dict["Wizard Books"] = {
                     "Duplicitous Manuscript": [
                         "Arcane Gate", 
                         "Dimension Door", 
@@ -131,9 +134,11 @@ def main() -> str:
                     ]
                 }
 
+            # If not within book limit
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You cannot add another book due to reaching the limit. Please remove one before adding another.", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
+    # If CVAR does not exist, create dictionary
     else:
         cvar_dict = {
             "Wizard Books": {
@@ -168,10 +173,10 @@ def main() -> str:
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added a Duplicitous Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/dupl.png", "#C69FFB"
+    return f"{name} has added a Duplicitous Manuscript to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/dupl.png", "#C69FFB"
 
 
-# Gets outputs
+# Main program function
 title, f, thumb, color = main()
 
 
@@ -180,4 +185,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add dupl | Updated 11/23/23 | ShadowsStride"
+-footer "!wizbook add dupl | Updated 12/6/23 | ShadowsStride"
