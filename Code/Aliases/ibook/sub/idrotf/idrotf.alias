@@ -11,7 +11,7 @@ if (uvar_test := get_uvar("ibook_source_list")):
         uvar.append("Icewind Dale Rime of the Frostmaiden (idrotf)")
 
         # Set UVAR
-        set_uvar('ibook_source_list', dump_json(uvar))
+        set_uvar("ibook_source_list", dump_json(uvar))
 
     # If idrotf is already in the list
     else:
@@ -19,10 +19,10 @@ if (uvar_test := get_uvar("ibook_source_list")):
 
 # If UVAR does not exist, create list and set UVAR
 else:
-    set_uvar('ibook_source_list', dump_json(["Icewind Dale Rime of the Frostmaiden (idrotf)"]))
+    set_uvar("ibook_source_list", dump_json(["Icewind Dale Rime of the Frostmaiden (idrotf)"]))
 
 
 </drac2>
--title "{{ctx.author.display_name}} has added Icewind Dale Rime of the Frostmaiden (idrotf) to their sourcebook list"
+-title "You have added Icewind Dale Rime of the Frostmaiden (idrotf) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/idrotf.png"
--footer "!ibook sub idrotf | Updated 11/14/23 | ShadowsStride"
+-footer "!ibook sub idrotf | Updated 12/7/23 | ShadowsStride"

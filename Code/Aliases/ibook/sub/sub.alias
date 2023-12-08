@@ -2,9 +2,19 @@ embed
 <drac2>
 
 
-def output_sub_list(page_num: int, uvar_list: list[str]) -> str:
+def output_sub_list(page_num: int, uvar_list: list[str]) -> tuple(str, str, str, str):
     """
     Outputs available subscription items
+
+    Args:
+        page_num (int): Page Number
+        uvar_list: (list[str]): List of source names
+
+    Return:
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
     """
 
     # Source dictionary with values of messages sent to user
@@ -56,12 +66,8 @@ def output_sub_list(page_num: int, uvar_list: list[str]) -> str:
 
         # If there is just one page
         case 1:
-            return (
-            f"{ctx.author.display_name} checks what they can subscribe to", 
-            "\n\n".join(["**Available Sourcebooks:**"] + [item_list[0] for item_list in result_list[0]]), 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[0]])}.png", 
-            ""
-            )
+            return f"{ctx.author.display_name} checks what they can subscribe to", "\n\n".join(["**Available Sourcebooks:**"] + [item_list[0] for item_list in result_list[0]]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[0]])}.png", ""
+            
 
         # If there are more than one page
         case _ if res_length > 1:
@@ -80,24 +86,16 @@ def output_sub_list(page_num: int, uvar_list: list[str]) -> str:
                 case _:
                     pass
 
-            return (
-            f"{ctx.author.display_name} checks what they can subscribe to", 
-            "\n\n".join([f"**Available Sourcebooks ({page_num}/{res_length}):**"] + [item_list[0] for item_list in result_list[page_num - 1]]), 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[page_num - 1]])}.png", 
-            ""
-            )
+            return f"{ctx.author.display_name} checks what they can subscribe to", "\n\n".join([f"**Available Sourcebooks ({page_num}/{res_length}):**"] + [item_list[0] for item_list in result_list[page_num - 1]]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[page_num - 1]])}.png", ""
+
 
         # If there are no pages
         case _:
-            return (
-            f"{ctx.author.display_name} checks what they can subscribe to", 
-            "**Available Sourcebooks:**\n\nNone", 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", 
-            ""
-            )
+            return f"{ctx.author.display_name} checks what they can subscribe to", "**Available Sourcebooks:**\n\nNone", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+            
 
 
-def add_to_uvar(add_string: str, uvar_list: list[str]) -> str:
+def add_to_uvar(add_string: str, uvar_list: list[str]) -> tuple(str, str, str, str):
     """
     Adds sources to UVAR from svar/gvar
 
@@ -106,7 +104,10 @@ def add_to_uvar(add_string: str, uvar_list: list[str]) -> str:
         uvar_list (list[str]): Current UVAR source list
 
     Return:
-        str: Results
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
     """
     
     # If SVAR exists, add SVAR name to UVAR list
@@ -125,9 +126,9 @@ def add_to_uvar(add_string: str, uvar_list: list[str]) -> str:
             return title, f, thumb, "#CC0202"
 
     # Save UVAR
-    set_uvar('ibook_source_list', dump_json(uvar_list))
+    set_uvar("ibook_source_list", dump_json(uvar_list))
 
-    return f"{ctx.author.display_name} has added a SVAR/GVAR to their sourcebook list", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+    return "You have added a SVAR/GVAR to their sourcebook list", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
 
 def main(input_list: list[str]) -> str:
@@ -138,7 +139,10 @@ def main(input_list: list[str]) -> str:
         input_list (list[str]): List of user inputs
 
     Return:
-        str: Results
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
     """
 
     # If UVAR exists, load list
@@ -174,4 +178,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!ibook sub {{l}}#/GVAR/SVAR> | Updated 11/21/23 | ShadowsStride"
+-footer "!ibook sub {{l}}#/GVAR/SVAR> | Updated 12/7/23 | ShadowsStride"

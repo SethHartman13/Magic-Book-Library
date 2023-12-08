@@ -11,7 +11,7 @@ if (uvar_test := get_uvar("ibook_source_list")):
         uvar.append("Spelljammer Adventures in Space (sacoc)")
 
         # Set UVAR
-        set_uvar('ibook_source_list', dump_json(uvar))
+        set_uvar("ibook_source_list", dump_json(uvar))
 
     # If sacoc is already in the list
     else:
@@ -19,10 +19,10 @@ if (uvar_test := get_uvar("ibook_source_list")):
 
 # If UVAR does not exist, create list
 else:
-    set_uvar('ibook_source_list', dump_json(["Spelljammer Adventures in Space (sacoc)"]))
+    set_uvar("ibook_source_list", dump_json(["Spelljammer Adventures in Space (sacoc)"]))
 
 
 </drac2>
--title "{{ctx.author.display_name}} has added Spelljammer Adventures in Space (sacoc) to their sourcebook list"
+-title "You have added Spelljammer Adventures in Space (sacoc) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/sacoc.png"
 -footer "!ibook sub sacoc | Updated 11/21/23 | ShadowsStride"

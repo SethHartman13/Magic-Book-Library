@@ -11,7 +11,7 @@ if (uvar_test := get_uvar("ibook_source_list")):
         uvar.append("Lost Laboratory of Kwalish (llok)")
 
         # Set UVAR
-        set_uvar('ibook_source_list', dump_json(uvar))
+        set_uvar("ibook_source_list", dump_json(uvar))
 
     # If llok is already in the list
     else:
@@ -19,10 +19,10 @@ if (uvar_test := get_uvar("ibook_source_list")):
 
 # If UVAR does not exist, create list and set UVAR
 else:
-    set_uvar('ibook_source_list', dump_json(["Lost Laboratory of Kwalish (llok)"]))
+    set_uvar("ibook_source_list", dump_json(["Lost Laboratory of Kwalish (llok)"]))
     
 
 </drac2>
--title "{{ctx.author.display_name}} has added Lost Laboratory of Kwalish (llok) to their sourcebook list"
+-title "You have added Lost Laboratory of Kwalish (llok) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/llok.png"
--footer "!ibook sub llok | Updated 11/21/23 | ShadowsStride"
+-footer "!ibook sub llok | Updated 12/7/23 | ShadowsStride"

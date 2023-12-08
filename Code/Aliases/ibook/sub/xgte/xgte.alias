@@ -11,7 +11,7 @@ if (uvar_test := get_uvar("ibook_source_list")):
         uvar.append("Xanathar's Guide to Everything (xgte)")
 
         # Set UVAR
-        set_uvar('ibook_source_list', dump_json(uvar))
+        set_uvar("ibook_source_list", dump_json(uvar))
 
     # If xgte is already in the list
     else:
@@ -19,10 +19,10 @@ if (uvar_test := get_uvar("ibook_source_list")):
 
 # If UVAR does not exist, create list and set UVAR
 else:
-    set_uvar('ibook_source_list', dump_json(["Xanathar's Guide to Everything (xgte)"]))
+    set_uvar("ibook_source_list", dump_json(["Xanathar's Guide to Everything (xgte)"]))
 
 
 </drac2>
--title "{{ctx.author.display_name}} has added Xanathar's Guide to Everything (xgte) to their sourcebook list"
+-title "You have added Xanathar's Guide to Everything (xgte) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/xgte.png"
--footer "!ibook sub xgte | Updated 11/21/23 | ShadowsStride"
+-footer "!ibook sub xgte | Updated 12/7/23 | ShadowsStride"

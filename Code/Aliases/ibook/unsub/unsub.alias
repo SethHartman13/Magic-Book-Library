@@ -23,29 +23,6 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def image_grab(title_str: str) -> str:
-    """
-    Grabs the image code requested (or a random one)
-
-    Args:
-        title_str (str): Name of sourcebook
-
-    Return:
-        str: Image code
-    """
-
-    # Checks to see if it finds a match by checking this set (for randomness to try to obtain average time complexity)
-    for code in {'(ai)', '(eepc)', '(egtw)', '(ftod)', '(ggtr)', '(idrotf)', '(llok)', '(phb)', '(sacoc)', '(sais)', '(scag)', '(tcoe)', '(tcsr)', '(xgte)'}:
-        if code.lower() in title_str.lower():
-            return code.split("(")[1].split(")")[0]
-
-        else:
-            pass
-
-    # If it found no match, return random code
-    return randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sacoc', 'sais', 'scag', 'tcoe', 'tcsr', 'xgte'])
-
-
 def main(input_list: list[str]) -> str:
     """
     Main program function
@@ -67,23 +44,48 @@ def main(input_list: list[str]) -> str:
     
     # If UVAR exists, load list
     if (uvar_test := get_uvar("ibook_source_list")):
-        uvar = load_json(uvar_test)
+        uvar_list = load_json(uvar_test)
 
     # If UVAR does not exist
     else:
         return None, "UVAR does not exist"
 
+    # Source mapping table
+    source_mapping = {
+        "Xanathar's Guide to Everything (xgte)": "xgte",
+        "Tasha's Cauldron of Everything (tcoe)": "tcoe",
+        "Sword Coast Adventurer's Guide (scag)": "scag",
+        "Strixhaven: A Curriculum of Chaos (sais)": "sais",
+        "Spelljammer Adventures in Space (sacoc)": "sacoc",
+        "Player's Handbook (phb)": "phb",
+        "Lost Laboratory of Kwalish (llok)": "llok",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": "idrotf",
+        "Guildmasters' Guide to Ravnica (ggtr)": "ggtr",
+        "Fizban's Treasury of Dragons (ftod)": "ftod",
+        "Elemental Evil Player's Companion (eepc)": "eepc",
+        "Acquisitions Incorporated (ai)": "ai",
+        "Basic Rules (br)": "br",
+        "Explorer's Guide to Wildemount (egtw)": "egtw",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
+    }
+
     # If it finds at least one match
-    if (result_list := search_list(input_list[0], uvar)):
+    if (result_list := search_list(input_list[0], uvar_list)):
 
         # If it finds exactly one match
         if len(result_list) == 1:
 
             # Remove item and update UVAR
-            removed_item = uvar.pop(uvar.index(result_list[0]))
-            set_uvar("ibook_source_list", dump_json(uvar))
+            uvar_list.remove(result_list[0])
+            set_uvar("ibook_source_list", dump_json(uvar_list))
 
-            return f"{ctx.author.display_name} has removed {removed_item} from their ibook list", ""
+            # If source is official/partnered
+            if result_list[0] in source_mapping.keys():
+                return f"You have removed {result_list[0]} from your sourcebook list", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{source_mapping[result_list[0]]}.png", ""
+
+            # If source is HB
+            else:
+                return f"You have removed {result_list[0]} from your sourcebook list", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['xgte', 'tcoe', 'scag', 'sais', 'sacoc', 'phb', 'llok', 'idrotf', 'ggtr', 'ftod', 'eepc', 'ai', 'br', 'egtw', 'tcsr'])}.png", ""
 
         # If it finds more than one match
         else:
@@ -95,12 +97,20 @@ def main(input_list: list[str]) -> str:
                 if item.lower() != input_list[0].lower():
                     pass
 
-                # If an exact match, remove item and update UVAR
+                # If an exact match
                 else:
-                    removed_item = uvar.pop(uvar.index(item))
-                    set_uvar("ibook_source_list", dump_json(uvar))
 
-                    return f"{ctx.author.display_name} has removed {removed_item} from their ibook list", ""
+                    # Remove item and update UVAR
+                    uvar_list.remove(item)
+                    set_uvar("ibook_source_list", dump_json(uvar_list))
+
+                    # If source is official/partnered
+                    if item in source_mapping.keys():
+                        return f"You have removed {item} from your sourcebook list", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{source_mapping[item]}.png", ""
+
+                    # If source is HB
+                    else:
+                        return f"You have removed {item} from your sourcebook list", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['xgte', 'tcoe', 'scag', 'sais', 'sacoc', 'phb', 'llok', 'idrotf', 'ggtr', 'ftod', 'eepc', 'ai', 'br', 'egtw', 'tcsr'])}.png", ""
             
             result_list.insert(0, "**Multiple Matches Found:**")
 
@@ -108,28 +118,16 @@ def main(input_list: list[str]) -> str:
 
     # If it finds no matches
     else:
-        return None, "Sourcebook not found"
+        return "You Have Been Sneak Attacked by an Error", "Spell not found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
 # Main program function
-title, f = main(&ARGS&)
-
-# If there was no error
-if title:
-
-    thumb = f"{image_grab(title)}"
-    color = ""
-
-# If there was an error
-else:
-    title = f"{ctx.author.display_name} has encountered an error"
-    thumb = f"no_wizard"
-    color = "#cc0202"
+title, f, thumb, color = main(&ARGS&)
 
 
 </drac2>
 -title "{{title}}"
 -f "{{f}}"
--thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{{thumb}}.png"
+-thumb "{{thumb}}"
 -color "{{color}}"
--footer "!ibook unsub [source name] | Updated 11/21/23 | ShadowsStride"
+-footer "!ibook unsub [source name] | Updated 12/7/23 | ShadowsStride"
