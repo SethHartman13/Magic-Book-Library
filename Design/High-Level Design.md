@@ -10,10 +10,14 @@
         - [Markdown](../Code/Aliases/ibook/serve/serve.md)
         - Code Polished
 
-        - [x] <span class="level3">`!ibook serve clear`<span class="required">`[confirm/undo]`</span> <span class="documented">Documented</span>
+        - [x] <span class="level3">`!ibook serve clear`<span class="required">`[confirm]`</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/clear/clear.md)
             - Code Polished
-            
+
+            - [x] <span class="level3">`!ibook serve clear undo` <span class="documented">Documented</span>
+                - [Markdown](../Code/Aliases/ibook/serve/clear/undo/undo.md)
+                - Code Polished
+
         - [x] <span class="level3">`!ibook serve remove`<span class="required">`[source/gvar/svar]`</span></span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/remove/remove.md)
             - Code Polished
