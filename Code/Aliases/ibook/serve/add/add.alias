@@ -23,7 +23,7 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> str:
+def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> tuple(str, str, str, str, str):
     """
     Handles adding to svar list from the uvar list
 
@@ -32,7 +32,11 @@ def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> str:
         uvar_list (list[str]): Subbed sources
 
     Return:
-        str: Result  
+        str: SVAR update string
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
     """
 
     # Mapping table for codes
@@ -90,13 +94,13 @@ def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> str:
         
     # If there were no unique sources being served
     else:
-        return "", f"{ctx.author.display_name} adds to the server's sources", "**Served Sources:**\nNone", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(image_codes)}.png", ""
+        return "", "You Have Added to the Server's Sources", "**Served Sources:**\nNone", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(image_codes)}.png", ""
 
     # Adds sources to SVAR dict
     for source in input_list:
         svar_dict['Books'].append(source)
 
-    return f"!svar ibook_settings {dump_json(svar_dict)}", f"{ctx.author.display_name} adds to the server's sources", "**Served Sources:**\n" + "\n".join(input_list), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([shorthand_items[source] for source in svar_dict['Books'] if source in shorthand_items])}.png", ""
+    return f"!svar ibook_settings {dump_json(svar_dict)}", "You Have Added to the Server's Sources", "**Served Sources:**\n" + "\n".join(input_list), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([shorthand_items[source] for source in svar_dict['Books'] if source in shorthand_items])}.png", ""
 
 
 def main(input_list: list[str]) -> str:
@@ -119,11 +123,11 @@ def main(input_list: list[str]) -> str:
 
         # If UVER does not exist
         else:
-            return "", f"{ctx.author.display_name} has encountered an error", "You are not subscribed to any content", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+            return "", "You Have Been Sneak Attacked by an Error", "You are not subscribed to any content", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
     # If there were no inputs
     else:
-        return "", f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b" 
+        return "", "You Have Been Sneak Attacked by an Error", "Expected at least one argument", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b" 
 
     # If 'all' parameter is passed
     if "all" in input_list[0].lower():
@@ -153,11 +157,11 @@ def main(input_list: list[str]) -> str:
 
                 key_result.insert(0, "**Multiple Sources Found:**")
 
-                return "", f"{ctx.author.display_name} has encountered an error", "\n".join(key_result), f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+                return "", "You Have Been Sneak Attacked by an Error", "\n".join(key_result), f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
         # If the source does not exist
         else:
-            return "", f"{ctx.author.display_name} has encountered an error", "Source not found", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+            return "", "You Have Been Sneak Attacked by an Error", "Source not found", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
 
 # Main program function
@@ -166,4 +170,4 @@ l = "<"
 
 </drac2>
 {{svar_str}}
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve add [source/all] | Updated 11/17/23 | ShadowsStride"
+!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve add [source/all] | Updated 12/7/23 | ShadowsStride"

@@ -68,7 +68,7 @@ def set_default_settings(dictionary: dict, default_dictionary: dict) -> dict:
     return dictionary
 
 
-def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, setting_change: str = None) -> str:
+def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, setting_change: str = None) -> tuple(str, str, str, str, str):
     """
     Changes/views a specific setting
 
@@ -79,17 +79,16 @@ def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, se
         setting_change (str): New value (default: None)
     
     Return:
-        str: Results
+        str: SVAR change string
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
     """
 
     # If it is not changing a setting
     if not setting_change:
-        return (
-            "", 
-            f"{ctx.author.display_name} checks ibook settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", 
-            ""
-            )
+        return "", "You Check the Magic Item Library Settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
     # If it is changing a setting
     else:
@@ -108,20 +107,11 @@ def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, se
                 else:
                     svar_dict['Settings'][setting_request] = False
 
-                return (
-                    f"!svar ibook_settings {dump_json(svar_dict)}", f"{ctx.author.display_name} updates ibook settings",
-                    f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", 
-                    ""
-                    )
+                return f"!svar ibook_settings {dump_json(svar_dict)}", f"You Attempt to Change the Magic Book Library Settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
             # If it does not have a valid value
             else:
-                return (
-                    "", 
-                    f"{ctx.author.display_name} attempts to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
-                    "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png",
-                    "#cf142b"
-                    )
+                return "", f"You Have Been Sneak Attacked by an Error", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If the type of setting that is being changed is an integer
         elif typeof(svar_dict['Settings'][setting_request]) == "int":
@@ -130,29 +120,19 @@ def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, se
             try:
                 svar_dict['Settings'][setting_request] = int(setting_change)
 
-                return (
-                    f"!svar ibook_settings {dump_json(svar_dict)}", 
-                    f"{ctx.author.display_name} updates ibook settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
-                    f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png",
-                    ""
-                    )
+                return f"!svar ibook_settings {dump_json(svar_dict)}", f"You Attempt to Change the Magic Book Library Settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png",""
 
             # If it couldn't convert to an integer
             except:
-                return "", f"{ctx.author.display_name} attempts to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#cf142b"
+                return "", f"{ctx.author.display_name} attempts to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If it is a datatype that doesn't currently exist in settings
         else:
-            return (
-                "", 
-                f"{ctx.author.display_name} attempts to update ibook settings", 
-                f"`Shadow has not programmed this to handle this datatype, message him to fix this`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})",
-                "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
-                "#cf142b"
-                )
+            return 
+                "", "You Have Been Sneak Attacked by an Error", f"`Shadow has not programmed this to handle this datatype, message him to fix this`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
-def main(input_list: list[str]) -> str:
+def main(input_list: list[str]) -> tuple(str, str, str, str, str):
     """
     Main program function
 
@@ -160,7 +140,11 @@ def main(input_list: list[str]) -> str:
         input_list (listp[str]): List of user inputs
 
     Return:
-        str: Results    
+        str: SVAR change string
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
     """
 
     # Default settings dictionary
@@ -176,13 +160,7 @@ def main(input_list: list[str]) -> str:
 
     # If there are no inputs, list all settings and their values
     if len(input_list) == 0:
-        return (
-            "", 
-            f"{ctx.author.display_name} checks ibook settings", 
-            "\n".join([f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]), 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png", 
-            ""
-            )
+        return "", "You Check the Magic Item Library Settings", "\n".join([f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
     # If number of inputs is 1
     elif len(input_list) == 1:
@@ -208,23 +186,11 @@ def main(input_list: list[str]) -> str:
 
                 result_key.insert(0, "**Multiple Settings Found:**")
 
-                return (
-                    "", 
-                    f"{ctx.author.display_name} checks ibook settings", 
-                    "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]),
-                    "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
-                    "#cf142b"
-                    ) 
+                return "", "You Check the Magic Item Library Settings", "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If no matches were found
         else:
-            return (
-                "", 
-                f"{ctx.author.display_name} checks ibook settings", 
-                "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]),
-                "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
-                "#cf142b"
-                )
+            return "", "You Check the Magic Item Library Settings", "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]),"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If there were more than one input
     else:
@@ -250,23 +216,12 @@ def main(input_list: list[str]) -> str:
 
                 result_key.insert(0, "**Multiple Settings Found:**")
 
-                return (
-                    "", 
-                    f"{ctx.author.display_name} checks ibook settings", 
-                    "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]),
-                    "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png",
-                    "#cf142b"
-                    )
+                return "", "You Check the Magic Item Library Settings", "\n".join(result_key + [""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in svar_dict['Settings'].items()]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png","#CF142B"
 
         # If no matches were found
         else:
-            return (
-                "", 
-                f"{ctx.author.display_name} checks ibook settings", "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]),
-                "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", 
-                "#cf142b"
-                )
-
+            return "", "You Check the Magic Item Library Settings", "\n".join([f"`Setting {input_list[0]} Not Found`", ""] + [f"**{setting}:** {value} (default: {default_dict['Settings'][setting]})" for setting, value in default_dict['Settings'].items()]), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                
 
 # Main program function
 svar_str, title, f, thumb, color = main(&ARGS&)
@@ -275,4 +230,4 @@ l = "<"
 
 </drac2>
 {{svar_str}}
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 11/21/23 | ShadowsStride"
+!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 12/7/23 | ShadowsStride"

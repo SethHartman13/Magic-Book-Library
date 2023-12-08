@@ -22,7 +22,7 @@ def search_list(query: str, item_list: list[str]) -> list[str]|None:
         return None
 
 
-def main(input_list: list[str]) -> str:
+def main(input_list: list[str]) -> tuple(str, str, str, str, str, str):
     """
     Main program function
 
@@ -30,7 +30,12 @@ def main(input_list: list[str]) -> str:
         input_list (list[str]): List of inputs from user
 
     Return:
-        str: Results    
+        str: Title
+        str: Content
+        str: SVAR String 1
+        str: SVAR String 2
+        str: Image URL
+        str: Color Hex Code
     """
 
     # If we get at least one input
@@ -38,67 +43,40 @@ def main(input_list: list[str]) -> str:
 
         # If the SVAR exists, load it
         if (svar_test := get_svar("ibook_settings")):
-            svar = load_json(svar_test)
+            svar_dict = load_json(svar_test)
 
         # If the SVAR does not exist
         else:
-            return None, f"{ctx.author.display_name} has encountered an error", "SVAR has not been created"
+            return "You Have Been Sneak Attacked by an Error", "SVAR has not been created", "", "", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If we get no inputs
     else:
-        return None, f"{ctx.author.display_name} has encountered a warning", "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
+        return "You Have Been Sneak Attacked by an Error", "Because this command clears the SVAR list of sources, please input \"confirm\" to proceed", "", "", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If there is at least one sourcebook to clear
-    if len(svar['Books']) != 0:
+    if len(svar_dict["Books"]) != 0:
         pass
 
     # If there are no sourcebooks to clear
     else:
-        return None, f"{ctx.author.display_name} has encountered a error", "The server sourcebooks have already been cleared"
+        return "You Have Been Sneak Attacked by an Error", "The server sourcebooks have already been cleared", "", "", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If confirm was given, clear sourcebooks
     if "confirm" in (join_str := "".join(input_list).lower()):
-        svar['Books'] = []
+        svar_dict["Books"] = []
 
-        return f"{ctx.author.display_name} clears the served SVAR sourcebooks", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {dump_json(svar)}"
-
-    # If undo was given
-    elif "undo" in join_str:
-        
-        # If a backup exists, return svar strings
-        if (svar_backup_test := get_svar('ibook_settings_backup')):
-            return f"{ctx.author.display_name} has attempted to restore the SVAR sourcebooks from backup", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {svar_backup_test}"
-
-        # If a backup goes exist, return error
-        else:
-            return None, f"{ctx.author.display_name} has encountered an error", "There are no backups to restore"
+        return f"You Have Attempted to Clear the Server Sourcebooks", "", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {dump_json(svar_dict)}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
     # If neither undo, nor confirm was given, return error
     else:
-        return None, f"{ctx.author.display_name} has encountered a warning", "Because this command clears the SVAR list of sources, please input 'confirm' to proceed"
+        return "You Have Been Sneak Attacked by an Error", "Because this command clears the SVAR list of sources, please input \"confirm\" to proceed", "", "", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
 # Main Program Function
-title, svar_str1, svar_str2 = main(&ARGS&)
-
-# If there was no error
-if title:
-    f = ""
-    color = ""
-    thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"
-
-# If there was an error
-else:
-    title = svar_str1
-    f = svar_str2
-    color = "#cc0202"
-    thumb = "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
-
-    svar_str1 = ""
-    svar_str2 = ""
+title, f, svar_str1, svar_str2, thumb, color = main(&ARGS&)
 
 
 </drac2>
+!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve clear [confirm] | Updated 12/7/23 | ShadowsStride"
 {{svar_str1}}
 {{svar_str2}}
-!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve [clear/confirm] | Updated 11/17/23 | ShadowsStride"

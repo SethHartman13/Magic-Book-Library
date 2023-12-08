@@ -5,83 +5,105 @@
 ## Aliases
 - [x] <span class="level1">`!ibook`</span> <span class="documented">Documented</span>
     - [Markdown](../Code/Aliases/ibook/ibook.md)
+    - Code Polished
     - [x] <span class="level2">`!ibook serve`</span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/ibook/serve/serve.md)
+        - Code Polished
 
         - [x] <span class="level3">`!ibook serve clear`<span class="required">`[confirm/undo]`</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/clear/clear.md)
+            - Code Polished
             
         - [x] <span class="level3">`!ibook serve remove`<span class="required">`[source/gvar/svar]`</span></span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/remove/remove.md)
+            - Code Polished
 
         - [x] <span class="level3">`!ibook serve add`<span class="required">`[source/gvar/svar/all]`</span></span> <span class="documented">Documented</span>
-
             - [Markdown](../Code/Aliases/ibook/serve/add/add.md)
+            - Code Polished
 
         - [x] <span class="level3">`!ibook serve help`</span> <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/serve/help/help.md)
+            - Code Polished
 
     - [x] <span class="level2">`!ibook sub` <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/ibook/sub/sub.md)
+        - Code Polished
         - [x] <span class="level3">`!ibook sub ai`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/ai/ai.md)
+            - Code Polished
 
         - [x] <span class="level3">`!ibook sub eepc`</span><span class="required">* <span class="documented">Documented</span> 
             - [Markdown](../Code/Aliases/ibook/sub/eepc/eepc.md)
+            - Code Polished
 
         - [x] <span class="level3">`!ibook sub egtw`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/egtw/egtw.md)
+            - Code Polished
 
         - [x] <span class="level3">`!ibook sub ftod`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/egtw/egtw.md)
+            - Code Polished
 
         - [x] <span class="level3">`!ibook sub ggtr`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/ggtr/ggtr.md)
-
+            - Code Polished
 
         - [x] <span class="level3">`!ibook sub idrotf`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/idrotf/idrotf.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub llok`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/llok/llok.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub phb`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/phb/phb.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub sais`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/sais/sais.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub sacoc`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/sacoc/sacoc.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub scag`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/scag/scag.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub tcsr`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/tcsr/tcsr.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub tcoe`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/tcoe/tcoe.md)
+            - Code Polished
 
 
         - [x] <span class="level3">`!ibook sub xgte`</span><span class="required">* <span class="documented">Documented</span>
             - [Markdown](../Code/Aliases/ibook/sub/xgte/xgte.md)
+            - Code Polished
 
     -  [x] <span class="level2">`!ibook unsub`<span class="required">`[source/gvar/svar]`</span></span> <span class="documented">Documented</span>
-        -  [Markdown](../Code/Aliases/ibook/unsub/unsub.md)
+        - [Markdown](../Code/Aliases/ibook/unsub/unsub.md)
+        - Code Polished
     
     - [x] <span class="level2">`!ibook list` <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/ibook/list/list.md)
+        - Code Polished
 
     - [x] <span class="level2">`!ibook settings`<span class="optional">`<setting_name> <setting condition>`</span></span> <span class="documented">Documented</span>
         - [Markdown](../Code/Aliases/ibook/settings/settings.md)
+        - Code Polished
 
 - [x] <span class="level1">`!wizbook` <span class="documented">Documented</span>
     - [Markdown](../Code/Aliases/wizbook/wizbook.md)

@@ -22,7 +22,7 @@ f = [
 
 
 </drac2>
--title "{{ctx.author.display_name}} needs someone to give them the help action"
+-title "You need someone to give you the help action"
 -f "{{'\n'.join(f)}}"
--thumb "{{f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"}}"
--footer "<>'s are optional | []'s are required{{"\n"}}!ibook serve help | Updated 11/20/23 | ShadowsStride"
+-thumb "{{f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png"}}"
+-footer "<>'s are optional | []'s are required{{"\n"}}!ibook serve help | Updated 12/7/23 | ShadowsStride"

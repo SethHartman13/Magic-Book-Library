@@ -2,7 +2,7 @@ embed
 <drac2>
 
 
-def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -> str:
+def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -> tuple(str, str, str, str):
     """
     Compiles output based upon page number, UVAR, and SVAR.
 
@@ -12,7 +12,10 @@ def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -
         svar_list (list[str]): Sourcebooks within SVAR
     
     Return:
-        str: Results
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
     """
 
     # Removes items that are already in the svar
@@ -52,12 +55,7 @@ def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -
 
         # If there is just one page
         case 1:
-            return (
-            f"{ctx.author.display_name} checks their subscribed sourcebooks", 
-            "\n\n".join(["**Available Sourcebooks:**"] + result_list[0]), 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[0])}.png", 
-            ""
-            )
+            return "You Check Your Subscribed Sourcebooks", "\n\n".join(["**Available Sourcebooks:**"] + result_list[0]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[0])}.png", ""
 
         # if there are more than one page
         case _ if res_length > 1:
@@ -76,24 +74,14 @@ def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -
                 case _:
                     pass
 
-            return (
-            f"{ctx.author.display_name} checks their subscribed sourcebooks", 
-            "\n\n".join([f"**Available Sourcebooks ({page_num}/{res_length}):**"] + result_list[page_num - 1]), 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num - 1])}.png", 
-            ""
-            )
+            return "You Check Your Subscribed Sourcebooks", "\n\n".join([f"**Available Sourcebooks ({page_num}/{res_length}):**"] + result_list[page_num - 1]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num - 1])}.png", ""
 
         # If there are no pages
         case _:
-            return (
-            f"{ctx.author.display_name} checks their subscribed sourcebooks", 
-            "**Available Sourcebooks:**\n\nNone", 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", 
-            ""
-            )
+            return "You Check Your Subscribed Sourcebooks", "**Available Sourcebooks:**\n\nNone", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
 
-def main(input_list: list[str]) -> str:
+def main(input_list: list[str]) -> tuple(str, str, str, str):
     """
     Main program function
 
@@ -101,7 +89,10 @@ def main(input_list: list[str]) -> str:
         input_list (list[str]): List of user inputs
 
     Return:
-        str: Results    
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code  
     """
 
     # If UVAR exists, load list
@@ -126,7 +117,7 @@ def main(input_list: list[str]) -> str:
 
     # If there is no content
     else:
-        return f"{ctx.author.display_name} checks their subscribed sourcebooks", "None", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["phb", "ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "sacoc", "sais", "scag", "tcoe", "tcsr", "xgte"])}.png', ""
+        return "You Check Your Subscribed Sourcebooks", "None", f'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["phb", "ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "sacoc", "sais", "scag", "tcoe", "tcsr", "xgte"])}.png', ""
 
     # If there was at least one input, try to make it an integer
     if len(input_list) > 0:
@@ -151,4 +142,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!ibook list {{l}}#> | Updated 11/21/23 | ShadowsStride"
+-footer "!ibook list {{l}}#> | Updated 12/7/23 | ShadowsStride"

@@ -2,11 +2,27 @@ embed
 <drac2>
 
 
-def output_serve_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -> str:
+def output_serve_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -> tuple(str, str, str, str):
+    """
+    Grabs the content to list of items to serve
 
+    Args:
+        page_num (int): Page number
+        uvar_list (list[str]): List of sources (UVAR)
+        svar_list (list[str]): List of sources (SVAR)
+    
+    Return:
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    # Remove all sources that are within SVAR
     for item in set(uvar_list).intersection(svar_list):
         uvar_list.remove(item)
 
+    # Output mapping
     items = {
         "Acquisition's Incorporated (ai)": "`!ibook serve add (ai)`: Serves Acquisition's Incorporated content",
         "Elemental Evil Player's Companion (eepc)": "`!ibook serve add (eepc)`: Serves Elemental Evil Player's Companion content",
@@ -24,6 +40,7 @@ def output_serve_list(page_num: int, uvar_list: list[str], svar_list: list[str])
         "Xanathar's Guide to Everything (xgte)": "`!ibook serve add (xgte)`: Serves Xanathar's Guide to Everything content" 
     }
 
+    # Shorthand code mapping
     shorthand_items = {
         "Acquisition's Incorporated (ai)": "ai",
         "Elemental Evil Player's Companion (eepc)": "eepc",
@@ -41,85 +58,125 @@ def output_serve_list(page_num: int, uvar_list: list[str], svar_list: list[str])
         "Xanathar's Guide to Everything (xgte)": "xgte" 
     }
 
-    q = "'"
+    # Custom content number iterator
     i = 1
+
+    # For each source
     for item in uvar_list:
+
+        # If official content
         if item in items.keys():
             pass
 
+        # Create output in mapping table
         else:
             if " " in item:
-                items[item] = f"`ibook serve {q}{item}{q})`: Serves custom content #{i}"
+                items[item] = f"`ibook serve \"{item}\"`: Serves custom content #{i}"
 
             else:
-                items[item] = f"`ibook serve {item})`: Serves custom content #{i}"
+                items[item] = f"`ibook serve \"{item}\"`: Serves custom content #{i}"
 
             shorthand_items[item] = ""
             i += 1
 
+    # Sorts items that are being displayed and shortcodes
     display_list = [items[key] for key in items.keys() if key in uvar_list]
     shorthand_list = [shorthand_items[key] for key in items.keys() if key in uvar_list]
 
+    # Seperate display and shortcodes in seperate lists
     result_list = [display_list[i:i+3] for i in range(0,len(display_list), 3)]
     short_list = [shorthand_list[i:i+3] for i in range(0,len(shorthand_list), 3)]
 
-    if page_num > 1 and (res_length := len(result_list)):
-
-        if page_num < res_length:
-            pass
-
-        else:
-            page_num = res_length
-
-    else:
-        page_num = 1
-
+    # If there is at least 1 item to display
     if len(result_list) > 0:
         res_length = len(result_list)
 
+    # If there are no items to display
     else:
-        result_list.append(['None'])
-        short_list.append(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])
+        result_list.append(["None"])
+        short_list.append(["ai", "eepc", "egtw", "ftod", "ggtr", "idrotf", "llok", "phb", "sais", "sacoc", "scag", "tcsr", "tcoe", "xgte"])
         page_num = 1
         res_length = 1
 
+    # Checks to verify page number is within bounds
+    match (page_num, res_length)
+
+        # If greater than bounds
+        case _ if page_num > res_length:
+            page_num = res_length
+
+        # If less than bounds
+        case _ if page_num < 1:
+            page_num = 1
+
+        # If within bounds
+        case _:
+            pass
+    
+    # Add header
     result_list[page_num-1].insert(0, f"**Available Sourcebooks: ({page_num}/{res_length})**")
 
+    # Removes any empty strings
     while "" in short_list[page_num-1]:
         short_list[page_num-1].remove("")
 
-    return f"{ctx.author.display_name} checks what content they can serve", "\n\n".join(result_list[page_num-1]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num-1])}.png", ""
+    return "You Can Serve the Following Content", "\n\n".join(result_list[page_num-1]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(short_list[page_num-1])}.png", ""
 
 
-def main(input_list: list[str]) -> str:
+def main(input_list: list[str]) -> tuple(str, str, str, str):
+    """
+    Main program function
 
+    Args:
+        input_list (list[str]): List of user inputs
+
+    Return:
+        str: Title
+        str: Content
+        str: Image URL
+        str: Color Hex Code
+    """
+
+    # If UVAR exists, load dictionary
     if (uvar_test := get_uvar("ibook_source_list")):
+
+        # If there is at least one source subbed to
         if len((uvar_list := load_json(uvar_test))) != 0:
             pass
 
+        # If there are not sources subbed
         else:
-            return f"{ctx.author.display_name} checks what content they can serve", "None", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+            return "You Can Serve the Following Content", "None", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
+    # If UVAR doesn't exist
     else:
-        return f"{ctx.author.display_name} checks what content they can serve", "None", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+        return "You Can Serve the Following Content", "None", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
+    # If SVAR exists
     if (svar_test := get_svar("ibook_settings")):
-        svar_list = load_json(svar_test)['Books']
+        svar_list = load_json(svar_test)["Books"]
 
+    # If SVAR doesn't exist
     else:
         svar_list = []
     
+    # If there is at least one input
     if len(input_list) > 0:
+
+        # Try to convert to number
         try:
             return output_serve_list(int(input_list[0]), uvar_list, svar_list)
 
+        # If input was not a number
         except:
             return output_serve_list(1, uvar_list, svar_list)
 
+    # If there were no inputs
     else:
         return output_serve_list(1, uvar_list, svar_list) 
 
 
+# Main program function
 title, f, thumb, color = main(&ARGS&)
 l = "<"
 
@@ -128,4 +185,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!ibook serve {{l}}#> | Updated 11/16/23 | ShadowsStride"
+-footer "!ibook serve {{l}}#> | Updated 12/7/23 | ShadowsStride"

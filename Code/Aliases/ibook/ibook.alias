@@ -17,5 +17,5 @@ result_list = [
 </drac2>
 -title "{{ctx.author.display_name}} needs the help action"
 -f "{{'\n'.join(result_list)}}"
--thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['', 1, 2, 3, 4, 5])}}.png"
--footer "!ibook | Updated 11/16/23 | ShadowsStride"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}}.png"
+-footer "!ibook | Updated 12/7/23 | ShadowsStride"
