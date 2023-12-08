@@ -1,0 +1,16 @@
+multiline
+<drac2>
+ch = character()
+
+
+title1, f1, thumb1, color1 = f"{ctx.author.display_name} has encountered an error", "SVAR `ibook_settings` has not been setup", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+
+
+output_str = "\n".join(["Enlarge/Reduce", "Feather Fall", "Flesh to Stone", "Gaseous Form", "Magic Weapon", "Polymorph"])
+rand_item = randchoice(['', 1, 2, 3, 4, 5])
+
+
+title2, f2, thumb2, color2 = f"{name} ({ctx.author.display_name}) has added an Alchemical Compendium to their Magic Book Inventory", f"**You start with the following spells:**\n{output_str}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{rand_item}.png", "#B47F47"
+</drac2>
+!embed -title "{{title1}}" -f "{{f1}}" -thumb "{{thumb1}}" -color "{{color1}}"
+!embed -title "{{title2}}" -f "{{f2}}" -thumb "{{thumb2}}" -color "{{color2}}"
