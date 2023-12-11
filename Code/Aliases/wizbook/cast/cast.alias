@@ -434,5 +434,5 @@ else:
     spell_str = color_source
 
 </drac2>
-{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "{{ctx.prefix}}wizbook cast [spell name] | Updated 11/28/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "{{ctx.prefix}}wizbook cast [spell name] | Updated 12/11/23 | ShadowsStride"
 {{spell_str}}
