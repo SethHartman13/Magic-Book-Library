@@ -18,4 +18,4 @@ result_list = [
 -title "{{ctx.author.display_name}} needs the help action"
 -f "{{'\n'.join(result_list)}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}}.png"
--footer "{{ctx.prefix}}ibook | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook | Updated 12/11/23 | ShadowsStride"
