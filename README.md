@@ -1,6 +1,6 @@
 <h1>Shadow's Comprehensive Magic Book Library<img align="right" src="./Code/Images/image.png" width="100px"></h1>
 
-Shadow's Comprehensive Magic Book Libary is an extensive content library that focusses on automation for magic books. These books are primarily from Strixhaven: A Curriculum of Chaos and Tasha's Cauldron of Everything and cover two categories: Wizard Books and Primer Books.
+Shadow's Comprehensive Magic Book Libary is an extensive content library that focusses on automation for magic books. These books are primarily from Strixhaven: A Curriculum of Chaos and Tasha's Cauldron of Everything and cover two categories: Wizard Books and Primer Books. It allows the casting of spells from these books and included activation automation.
 
 [Table of Contents](https://github.com/SethHartman13/Magic-Book-Library/blob/main/ToC.md)
 
