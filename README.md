@@ -5,7 +5,7 @@ Shadow's Comprehensive Magic Book Libary is an extensive content library that fo
 [Table of Contents](https://github.com/SethHartman13/Magic-Book-Library/blob/main/ToC.md)
 
 ## Sourcebooks/Adventure Books
-In order to help manage spell usage, the `ibook` alias helps content control. By default you have access to spells contained within the Basic Rules, however, you will need to own the following books (or the spells therein) in order to subscribe to them:
+In order to help manage spell usage, the `ibook` alias helps content control. By default you have access to spells contained within the Basic Rules, however, you will need to have access to the following books (or the spells therein) in order to subscribe to them:
 - [Acquisition's Incorporated](https://www.dndbeyond.com/sources/ai)
 - Elemental Evil Player's Companion
 - [Explorer's Guide to Wildemount](https://www.dndbeyond.com/sources/egtw)
