@@ -256,4 +256,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer activate [magic book name] | Updated 12/4/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer activate [magic book name] | Updated 12/11/23 | ShadowsStride"
