@@ -504,4 +504,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook switch [Magic Book Spell] [Spellbook Spell] | Updated 11/25/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook switch [Magic Book Spell] [Spellbook Spell] | Updated 12/11/23 | ShadowsStride"

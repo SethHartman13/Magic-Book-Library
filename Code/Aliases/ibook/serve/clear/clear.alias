@@ -65,7 +65,7 @@ def main(input_list: list[str]) -> tuple(str, str, str, str, str, str):
     if "confirm" in (join_str := "".join(input_list).lower()):
         svar_dict["Books"] = []
 
-        return f"You Have Attempted to Clear the Server Sourcebooks", "", f"!svar ibook_settings_backup {svar_test}", f"!svar ibook_settings {dump_json(svar_dict)}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+        return f"You Have Attempted to Clear the Server Sourcebooks", "", f"{ctx.prefix}svar ibook_settings_backup {svar_test}", f"{ctx.prefix}svar ibook_settings {dump_json(svar_dict)}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
     # If neither undo, nor confirm was given, return error
     else:
@@ -77,6 +77,6 @@ title, f, svar_str1, svar_str2, thumb, color = main(&ARGS&)
 
 
 </drac2>
-!embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "!ibook serve clear [confirm] | Updated 12/7/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "{{ctx.prefix}}ibook serve clear [confirm] | Updated 12/11/23 | ShadowsStride"
 {{svar_str1}}
 {{svar_str2}}

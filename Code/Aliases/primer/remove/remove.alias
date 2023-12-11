@@ -136,4 +136,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer remove [source name] | Updated 12/2/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer remove [source name] | Updated 12/11/23 | ShadowsStride"

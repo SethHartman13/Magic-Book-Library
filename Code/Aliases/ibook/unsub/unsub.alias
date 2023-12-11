@@ -130,4 +130,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!ibook unsub [source name] | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook unsub [source name] | Updated 12/11/23 | ShadowsStride"

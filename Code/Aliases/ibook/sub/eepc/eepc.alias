@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Elemental Evil Player's Companion (eepc) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/eepc.png"
--footer "!ibook sub eepc | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub eepc | Updated 12/11/23 | ShadowsStride"

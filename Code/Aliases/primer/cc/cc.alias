@@ -139,7 +139,7 @@ def edit_ind_cc(ch: AliasCharacter, cc_name: str, mod_num: str):
     else:
         title, f, thumb, _ = list_all_cc(ch, [])
 
-        return title, "`!wizbook cc does not support HB at this time`\n\n" + f, thumb, "#CF142B"
+        return title, f"`{ctx.prefix}wizbook cc does not support HB at this time`\n\n" + f, thumb, "#CF142B"
 
 
 def edit_view_cc(ch: AliasCharacter, cvar_list: list[str], search_str: str = "None", type_str: str = "None", mod_num: str = 0) -> str:
@@ -331,4 +331,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer cc {{l}}primer book name> {{l}}switch/spell/check> {{l}}#> | Updated 12/1/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer cc {{l}}primer book name> {{l}}switch/spell/check> {{l}}#> | Updated 12/11/23 | ShadowsStride"

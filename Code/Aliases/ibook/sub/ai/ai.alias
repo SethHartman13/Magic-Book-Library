@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Acquisition's Incorporated (ai) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/ai.png"
--footer "!ibook sub ai | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub ai | Updated 12/11/23 | ShadowsStride"

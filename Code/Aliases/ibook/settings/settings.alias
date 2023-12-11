@@ -107,7 +107,7 @@ def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, se
                 else:
                     svar_dict['Settings'][setting_request] = False
 
-                return f"!svar ibook_settings {dump_json(svar_dict)}", f"You Attempt to Change the Magic Book Library Settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+                return f"{ctx.prefix}svar ibook_settings {dump_json(svar_dict)}", f"You Attempt to Change the Magic Book Library Settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
             # If it does not have a valid value
             else:
@@ -120,7 +120,7 @@ def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, se
             try:
                 svar_dict['Settings'][setting_request] = int(setting_change)
 
-                return f"!svar ibook_settings {dump_json(svar_dict)}", f"You Attempt to Change the Magic Book Library Settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png",""
+                return f"{ctx.prefix}svar ibook_settings {dump_json(svar_dict)}", f"You Attempt to Change the Magic Book Library Settings", f"**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png",""
 
             # If it couldn't convert to an integer
             except:
@@ -230,4 +230,4 @@ l = "<"
 
 </drac2>
 {{svar_str}}
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 12/7/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "{{ctx.prefix}}ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 12/11/23 | ShadowsStride"

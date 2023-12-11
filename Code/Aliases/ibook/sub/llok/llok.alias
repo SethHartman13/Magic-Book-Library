@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Lost Laboratory of Kwalish (llok) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/llok.png"
--footer "!ibook sub llok | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub llok | Updated 12/11/23 | ShadowsStride"

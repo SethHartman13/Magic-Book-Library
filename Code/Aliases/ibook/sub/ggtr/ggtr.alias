@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Guildmasters' Guide to Ravnica (ggtr) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/ggtr.png"
--footer "!ibook sub ggtr | Updated 11/21/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub ggtr | Updated 12/11/23 | ShadowsStride"

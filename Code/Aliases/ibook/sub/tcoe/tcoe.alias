@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Tasha's Cauldron of Everything (tcoe) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/tcoe.png"
--footer "!ibook sub tcoe | Updated 11/21/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub tcoe | Updated 12/11/23 | ShadowsStride"

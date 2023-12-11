@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Player's Handbook (phb) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/phb.png"
--footer "!ibook sub phb | Updated 11/14/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub phb | Updated 12/11/23 | ShadowsStride"

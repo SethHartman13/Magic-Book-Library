@@ -3,14 +3,14 @@ embed
 
 
 result_list = [
-    "`!ibook serve`: Subalias that lists all subscribed content (user variable) and all served content (server variable). **Note:** You MUST have permissions to edit SVARs for this to work.",
+    f"`{ctx.prefix}ibook serve`: Subalias that lists all subscribed content (user variable) and all served content (server variable). **Note:** You MUST have permissions to edit SVARs for this to work.",
     "",
-    "`!ibook sub`: Subalias to view available sourcebooks to subscribe and to subscribe to custom sources within SVARs and GVARs",
-    "`!ibook unsub` Subalias to unsubscribe from sourcebooks, SVARs, and GVARs.",
+    f"`{ctx.prefix}ibook sub`: Subalias to view available sourcebooks to subscribe and to subscribe to custom sources within SVARs and GVARs",
+    f"`{ctx.prefix}ibook unsub` Subalias to unsubscribe from sourcebooks, SVARs, and GVARs.",
     "",
-    "`!ibook list`: Subalias that lists all subscribed content (user variable) and all served content (server variable)",
+    f"`{ctx.prefix}ibook list`: Subalias that lists all subscribed content (user variable) and all served content (server variable)",
     "",
-    "`!ibook settings`: Subalias that changes/views the settings with in the `ibook_settings` server variable. **Note:** You MUST have permissions to edit SVARs to edit settings",
+    f"`{ctx.prefix}ibook settings`: Subalias that changes/views the settings with in the `ibook_settings` server variable. **Note:** You MUST have permissions to edit SVARs to edit settings",
 ]
 
 
@@ -18,4 +18,4 @@ result_list = [
 -title "{{ctx.author.display_name}} needs the help action"
 -f "{{'\n'.join(result_list)}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}}.png"
--footer "!ibook | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook | Updated 12/7/23 | ShadowsStride"

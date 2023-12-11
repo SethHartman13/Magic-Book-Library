@@ -123,4 +123,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook remove [source name] | Updated 11/23/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook remove [source name] | Updated 12/11/23 | ShadowsStride"

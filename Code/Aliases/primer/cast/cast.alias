@@ -114,7 +114,7 @@ def construct_spell_str(ch: AliasCharacter, spell_name: str, dc_arg: str|int, t_
     else:
         source = "HB Primer Magic Book"
 
-    return f"!cast \"{spell_name}\" {dc_arg} " + " ".join(dbt_result) + "-i", source
+    return f"{ctx.prefix}cast \"{spell_name}\" {dc_arg} " + " ".join(dbt_result) + "-i", source
    
 
 def main(input_list: list[str], ch: character):
@@ -315,5 +315,5 @@ else:
     spell_str = color_source
 
 </drac2>
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "!wizbook cast [spell name] | Updated 12/2/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "{{ctx.prefix}}wizbook cast [spell name] | Updated 12/11/23 | ShadowsStride"
 {{spell_str}}

@@ -40,4 +40,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook remove undo | Updated 11/24/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook remove undo | Updated 12/11/23 | ShadowsStride"

@@ -64,11 +64,11 @@ def output_add_list(page_num: int, cvar_dict: dict) -> tuple(str, str, str, str)
 
     # Book dictionary with values of messages sent to user
     items = {
-        "Lorehold Primer": "`!primer add lore`: Adds the Lorehold Primer",
-        "Prismari Primer": "`!primer add pris`: Adds the Prismari Primer",
-        "Quandrix Primer": "`!primer add quan`: Adds the Quandrix Primer",
-        "Silverquill Primer": "`!primer add silv`: Adds the Silverquill Primer",
-        "Witherbloom Primer": "`!primer add with`: Adds the Witherbloom Primer",
+        "Lorehold Primer": f"`{ctx.prefix}primer add lore`: Adds the Lorehold Primer",
+        "Prismari Primer": f"`{ctx.prefix}primer add pris`: Adds the Prismari Primer",
+        "Quandrix Primer": f"`{ctx.prefix}primer add quan`: Adds the Quandrix Primer",
+        "Silverquill Primer": f"`{ctx.prefix}primer add silv`: Adds the Silverquill Primer",
+        "Witherbloom Primer": f"`{ctx.prefix}primer add with`: Adds the Witherbloom Primer",
     }
 
     # Short-code mapping table
@@ -282,4 +282,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer add {{l}}#/GVAR/SVAR> | Updated 12/6/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer add {{l}}#/GVAR/SVAR> | Updated 12/11/23 | ShadowsStride"

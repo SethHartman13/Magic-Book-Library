@@ -100,7 +100,7 @@ def add_to_svar_list(input_list: list[str], uvar_list: list[str]) -> tuple(str, 
     for source in input_list:
         svar_dict['Books'].append(source)
 
-    return f"!svar ibook_settings {dump_json(svar_dict)}", "You Have Added to the Server's Sources", "**Served Sources:**\n" + "\n".join(input_list), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([shorthand_items[source] for source in svar_dict['Books'] if source in shorthand_items])}.png", ""
+    return f"{ctx.prefix}svar ibook_settings {dump_json(svar_dict)}", "You Have Added to the Server's Sources", "**Served Sources:**\n" + "\n".join(input_list), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([shorthand_items[source] for source in svar_dict['Books'] if source in shorthand_items])}.png", ""
 
 
 def main(input_list: list[str]) -> str:
@@ -170,4 +170,4 @@ l = "<"
 
 </drac2>
 {{svar_str}}
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve add [source/all] | Updated 12/7/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "{{ctx.prefix}}ibook serve add [source/all] | Updated 12/11/23 | ShadowsStride"

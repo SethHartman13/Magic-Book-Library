@@ -2,15 +2,15 @@ embed
 <drac2>
 
 f = [
-    "`!wizbook add`: Subalias to view available magic books to add from custom sources within SVARs and GVARs.",
-    "`!wizbook remove`: Subalias to remove wizard magic books from the `ibook_dict` character variable.",
+    f"`{ctx.prefix}wizbook add`: Subalias to view available magic books to add from custom sources within SVARs and GVARs.",
+    f"`{ctx.prefix}wizbook remove`: Subalias to remove wizard magic books from the `ibook_dict` character variable.",
     "",
-    "`!wizbook cast`: Subalias to cast spells from wizard magic books in the `ibook_dict` character variable.",
-    "`!wizbook activate`: Subalias to activate wizard magic books from the `ibook_dict` character variable.",
-    "`!wizbook switch`: Subalias to remove wizard magic books from the `ibook_dict` character variable.",
+    f"`{ctx.prefix}wizbook cast`: Subalias to cast spells from wizard magic books in the `ibook_dict` character variable.",
+    f"`{ctx.prefix}wizbook activate`: Subalias to activate wizard magic books from the `ibook_dict` character variable.",
+    f"`{ctx.prefix}wizbook switch`: Subalias to remove wizard magic books from the `ibook_dict` character variable.",
     "",
-    "`!wizbook list`: Subalias that lists all wizard spells contained in the CVAR `ibook_dict` (organized)",
-    "`!wizbook cc`: Subalias to edit/view wizard magic book custom counters."
+    f"`{ctx.prefix}wizbook list`: Subalias that lists all wizard spells contained in the CVAR `ibook_dict` (organized)",
+    f"`{ctx.prefix}wizbook cc`: Subalias to edit/view wizard magic book custom counters."
 ]
 
 
@@ -19,4 +19,4 @@ f = [
 -title "Someone needs the help action"
 -f "{{"\n".join(f)}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{{randchoice(['alch', 'astr', 'atla', 'crys', 'dupl', 'fulm', 'hear', 'libr', 'plan', 'prot'])}}.png"
--footer "!wizbook | Updated 12/2/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook | Updated 12/11/23 | ShadowsStride"

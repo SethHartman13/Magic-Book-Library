@@ -44,4 +44,4 @@ title, f, thumb, color = main(ch)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer remove undo | Updated 12/2/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer remove undo | Updated 12/11/23 | ShadowsStride"

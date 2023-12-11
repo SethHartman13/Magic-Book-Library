@@ -434,4 +434,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer add quan | Updated 12/6/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer add quan | Updated 12/11/23 | ShadowsStride"

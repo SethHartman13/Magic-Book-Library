@@ -561,4 +561,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!primer switch [Magic Book Spell] [New Spell] | Updated 12/2/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer switch [Magic Book Spell] [New Spell] | Updated 12/2/23 | ShadowsStride"

@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Xanathar's Guide to Everything (xgte) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/xgte.png"
--footer "!ibook sub xgte | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub xgte | Updated 12/11/23 | ShadowsStride"

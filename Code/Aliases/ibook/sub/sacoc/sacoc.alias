@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Spelljammer Adventures in Space (sacoc) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/sacoc.png"
--footer "!ibook sub sacoc | Updated 11/21/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub sacoc | Updated 12/11/23 | ShadowsStride"

@@ -24,7 +24,7 @@ def main() -> tuple(str, str, str, str):
         # If back up exists
         if (backup_test := ch.get_cvar("ibook_settings_backup")):
 
-            return f"You Attempt to Undo the Clearing of Server Sourcebooks", "If this was by mistake simply run this command again", f"!svar ibook_settings {backup_test}", f"!svar ibook_settings_backup {cvar_test}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+            return f"You Attempt to Undo the Clearing of Server Sourcebooks", "If this was by mistake simply run this command again", f"{ctx.prefix}svar ibook_settings {backup_test}", f"{ctx.prefix}svar ibook_settings_backup {cvar_test}", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
 
         else:
             return "You Have Been Sneak Attacked by an Error", "No backup found", "", "", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
@@ -38,6 +38,6 @@ title, f, svar_str1, svar_str2, thumb, color = main(ch)
 
 
 </drac2>
-!embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "!ibook serve clear undo | Updated 12/7/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "{{ctx.prefix}}ibook serve clear undo | Updated 12/11/23 | ShadowsStride"
 {{svar_str1}}
 {{svar_str2}}

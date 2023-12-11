@@ -19,20 +19,20 @@ def output_sub_list(page_num: int, uvar_list: list[str]) -> tuple(str, str, str,
 
     # Source dictionary with values of messages sent to user
     items = {
-        "Acquisition's Incorporated (ai)": "`!ibook sub ai`: Subscribes to Acquisition's Incorporated",
-        "Elemental Evil Player's Companion (eepc)": "`!ibook sub eepc`: Subscribes to Elemental Evil Player's Companion",
-        "Explorer's Guide to Wildemount (egtw)": "`!ibook sub egtw`: Subscribes to Explorers Guide to Wildemount",
-        "Fizban's Treasury of Dragons (ftod)": "`!ibook sub ftod`: Subscribes to Fizban's Treasury of Dragons",
-        "Guildmasters' Guide to Ravnica (ggtr)": "`!ibook sub ggtr`: Subscribes to Guildmaster's Guide to Ravnica",
-        "Icewind Dale Rime of the Frostmaiden (idrotf)": "`!ibook sub idrotf`: Subscribes to Icewind Dale: Rime of the Frostmaiden",
-        "Lost Laboratory of Kwalish (llok)": "`!ibook sub llok`: Subscribes to Lost Laboratory of Kwalish",
-        "Player's Handbook (phb)": "`!ibook sub phb`: Subscribes to the Player's Handbook",
-        "Spelljammer Adventures in Space (sacoc)": "`!ibook sub sacoc`: Subscribes to Spelljammer Adventures in Space",
-        "Strixhaven: A Curriculum of Chaos (sais)": "`!ibook sub sais`: Subscribes to Strixhaven: A Curriculum of Chaos",
-        "Sword Coast Adventurer's Guide (scag)": "`!ibook sub scag`: Subscribes to Sword Coast Adventurer's Guide",
-        "Tasha's Cauldron of Everything (tcoe)": "`!ibook sub tcoe`: Subscribes to Tasha's Cauldron of Everything",
-        "Tal'Dorei Campaign Setting Reborn (tcsr)": "`!ibook sub tcsr`: Subscribes to Tal'Dorei Campaign Setting Reborn",
-        "Xanathar's Guide to Everything (xgte)": "`!ibook sub xgte`: Subscribes to Xanathar's Guide to Everything" 
+        "Acquisition's Incorporated (ai)": f"`{ctx.prefix}ibook sub ai`: Subscribes to Acquisition's Incorporated",
+        "Elemental Evil Player's Companion (eepc)": f"`{ctx.prefix}ibook sub eepc`: Subscribes to Elemental Evil Player's Companion",
+        "Explorer's Guide to Wildemount (egtw)": f"`{ctx.prefix}ibook sub egtw`: Subscribes to Explorers Guide to Wildemount",
+        "Fizban's Treasury of Dragons (ftod)": f"`{ctx.prefix}ibook sub ftod`: Subscribes to Fizban's Treasury of Dragons",
+        "Guildmasters' Guide to Ravnica (ggtr)": f"`{ctx.prefix}ibook sub ggtr`: Subscribes to Guildmaster's Guide to Ravnica",
+        "Icewind Dale Rime of the Frostmaiden (idrotf)": f"`{ctx.prefix}ibook sub idrotf`: Subscribes to Icewind Dale: Rime of the Frostmaiden",
+        "Lost Laboratory of Kwalish (llok)": f"`{ctx.prefix}ibook sub llok`: Subscribes to Lost Laboratory of Kwalish",
+        "Player's Handbook (phb)": f"`{ctx.prefix}ibook sub phb`: Subscribes to the Player's Handbook",
+        "Spelljammer Adventures in Space (sacoc)": f"`{ctx.prefix}ibook sub sacoc`: Subscribes to Spelljammer Adventures in Space",
+        "Strixhaven: A Curriculum of Chaos (sais)": f"`{ctx.prefix}ibook sub sais`: Subscribes to Strixhaven: A Curriculum of Chaos",
+        "Sword Coast Adventurer's Guide (scag)": f"`{ctx.prefix}ibook sub scag`: Subscribes to Sword Coast Adventurer's Guide",
+        "Tasha's Cauldron of Everything (tcoe)": f"`{ctx.prefix}ibook sub tcoe`: Subscribes to Tasha's Cauldron of Everything",
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": f"`{ctx.prefix}ibook sub tcsr`: Subscribes to Tal'Dorei Campaign Setting Reborn",
+        "Xanathar's Guide to Everything (xgte)": f"`{ctx.prefix}ibook sub xgte`: Subscribes to Xanathar's Guide to Everything" 
     }
 
     # Short-code mapping table
@@ -178,4 +178,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!ibook sub {{l}}#/GVAR/SVAR> | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub {{l}}#/GVAR/SVAR> | Updated 12/11/23 | ShadowsStride"

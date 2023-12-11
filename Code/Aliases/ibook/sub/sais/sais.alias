@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Strixhaven: A Curriculum of Chaos (sais) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/sais.png"
--footer "!ibook sub sais | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub sais | Updated 12/11/23 | ShadowsStride"

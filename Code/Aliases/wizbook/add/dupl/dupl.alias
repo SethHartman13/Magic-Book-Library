@@ -185,4 +185,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add dupl | Updated 12/6/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook add dupl | Updated 12/11/23 | ShadowsStride"

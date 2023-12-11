@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Sword Coast Adventurer's Guide (scag) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/scag.png"
--footer "!ibook sub scag | Updated 12/7/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub scag | Updated 12/11/23 | ShadowsStride"

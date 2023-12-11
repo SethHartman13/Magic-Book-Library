@@ -64,16 +64,16 @@ def output_add_list(page_num: int, cvar_dict: dict) -> tuple(str, str, str, str)
 
     # Book dictionary with values of messages sent to user
     items = {
-        "Alchemical Compendium": "`!wizbook add alch`: Adds the Alchemical Compendium",
-        "Astromancy Archive": "`!wizbook add astr`: Adds the Astromancy Archive",
-        "Atlas of Endless Horizons": "`!wizbook add atla`: Adds the Atlas of Endless Horizons",
-        "Crystalline Chronicle": "`!wizbook add crys`: Adds the Crystalline Chronicle",
-        "Duplicitous Manuscript": "`!wizbook add dupl`: Adds the Duplicitous Manuscript",
-        "Fulminating Treatise": "`!wizbook add fulm`: Adds the Fulminating Treatise",
-        "Heart Weaver's Primer": "`!wizbook add hear`: Adds the Heart Weaver's Primer",
-        "Libram of Souls and Flesh": "`!wizbook add libr`: Adds the Libram of Souls and Flesh",
-        "Planecaller's Codex": "`!wizbook add plan`: Adds the Planecaller's Codex",
-        "Protective Verses": "`!wizbook add prot`: Adds the Protective Verses"
+        "Alchemical Compendium": f"`{ctx.prefix}wizbook add alch`: Adds the Alchemical Compendium",
+        "Astromancy Archive": f"`{ctx.prefix}wizbook add astr`: Adds the Astromancy Archive",
+        "Atlas of Endless Horizons": f"`{ctx.prefix}wizbook add atla`: Adds the Atlas of Endless Horizons",
+        "Crystalline Chronicle": f"`{ctx.prefix}wizbook add crys`: Adds the Crystalline Chronicle",
+        "Duplicitous Manuscript": f"`{ctx.prefix}wizbook add dupl`: Adds the Duplicitous Manuscript",
+        "Fulminating Treatise": f"`{ctx.prefix}wizbook add fulm`: Adds the Fulminating Treatise",
+        "Heart Weaver's Primer": f"`{ctx.prefix}wizbook add hear`: Adds the Heart Weaver's Primer",
+        "Libram of Souls and Flesh": f"`{ctx.prefix}wizbook add libr`: Adds the Libram of Souls and Flesh",
+        "Planecaller's Codex": f"`{ctx.prefix}wizbook add plan`: Adds the Planecaller's Codex",
+        "Protective Verses": f"`{ctx.prefix}wizbook add prot`: Adds the Protective Verses"
     }
 
     # Short-code mapping table
@@ -293,4 +293,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "!wizbook add {{l}}#/GVAR/SVAR> | Updated 11/23/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook add {{l}}#/GVAR/SVAR> | Updated 12/11/23 | ShadowsStride"
