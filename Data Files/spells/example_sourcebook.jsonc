@@ -3,11 +3,13 @@
         "Homebrew": false
     },
 
+    
     "Spell Name": { // Licensing will have to be done on a spell to spell basis
         "School": "",
         "Level": 0,
         "Class": []
     },
+
 
     "Spell Name 2": {
         "School": "",

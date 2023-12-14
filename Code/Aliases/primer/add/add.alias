@@ -167,7 +167,7 @@ def output_add_list(page_num: int, cvar_dict: dict) -> tuple(str, str, str, str)
             return (
             "Checking Available Primer Books", 
             "**Available Magic Books:**\n\nNone", 
-            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(["lore", "pris", "quan", "silv", "with"])}.png", 
+            f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['lore', 'pris', 'quan', 'silv', 'with'])}.png", 
             ""
             )
 
@@ -282,4 +282,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer add {{l}}#/GVAR/SVAR> | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer add {{l}}#/GVAR/SVAR> | Updated 12/13/23 | ShadowsStride"

@@ -70,12 +70,12 @@ def activate_primer(ch: AliasCharacter, primer_name: str, error_color: str, erro
 
     # If using counter
     if not i_arg:
-        book_cc, f = subtract_counter(f"{primer_name} (check)", ch)
+        book_cc, f = subtract_counter(f"{primer_name} (Check)", ch)
         num_str = f
 
     # If not using counter
     else:
-        book_cc = ch.cc(f"{primer_name} (check)")
+        book_cc = ch.cc(f"{primer_name} (Check)")
         num_str = ""
 
     # If no error, construct output
@@ -119,7 +119,7 @@ def activate_primer(ch: AliasCharacter, primer_name: str, error_color: str, erro
 
         # Construct output
         f = [
-            f"**Results:** {v_roll.full_str}",
+            f"**Results:** {v_roll.full}",
             "",
             f"The primer has 3 charges, and it regains 1d3 expended charges daily at dawn. If you make an {primer_skill_mapping[primer_name][0]} or {primer_skill_mapping[primer_name][1]} check while holding the primer, you can expend 1 charge to give yourself a 1d4 bonus to the check, immediately after you roll the d20.",
             "",
@@ -256,4 +256,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer activate [magic book name] | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer activate [magic book name] | Updated 12/13/23 | ShadowsStride"

@@ -128,7 +128,6 @@
 ```
 
 ## GVAR
-
 ```json
 {
     "SETTINGS": {

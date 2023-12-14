@@ -23,6 +23,6 @@ else:
 
 
 </drac2>
--title You have added Fizban's Treasury of Dragons (ftod) to your sourcebook list"
+-title "You have added Fizban's Treasury of Dragons (ftod) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/ftod.png"
 -footer "{{ctx.prefix}}ibook sub ftod | Updated 12/11/23 | ShadowsStride"
