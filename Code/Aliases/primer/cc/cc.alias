@@ -117,7 +117,7 @@ def edit_ind_cc(ch: AliasCharacter, cc_name: str, mod_num: str):
 
         # If the number is non-zero positive
         if mod_num > 0:
-            adj = f"adds {mod_num} to"
+            adj = f"add {mod_num} to"
             num_str = f" (+{mod_num})"
 
         # If the number is zero
@@ -126,14 +126,14 @@ def edit_ind_cc(ch: AliasCharacter, cc_name: str, mod_num: str):
 
         # If the number is non-zero negative
         else:
-            adj = f"removes {mod_num * -1} from"
+            adj = f"remove {mod_num * -1} from"
             num_str = f" ({mod_num})"
         
         # Store CC object and edit CC
         book_cc = ch.cc(cc_name)
         book_cc.mod(mod_num)
 
-        return f"{ctx.author.display_name} {adj} their {cc_name} custom counter", book_cc.full_str().split("\n")[0] + num_str, f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[split_name]}.png", ""
+        return f"{name} {adj} their {cc_name} custom counter", book_cc.full_str().split("\n")[0] + num_str, f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[split_name]}.png", ""
 
     # If the source is HB, this alias does not support HB at this time
     else:
@@ -291,15 +291,15 @@ def main(input_list: list[str]):
 
             # If there are no books in Primer Books
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You have no Primer Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You have no Primer Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If Primer Books are not in cvar_dict keys
         else:
-            return f"{ctx.author.display_name} has encountered an error", "You have no Primer Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            return "You Have Been Sneak Attacked by an Error", "You have no Primer Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If cvar ibook_dict does not exist
     else:
-        return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
     match len(input_list):
@@ -331,4 +331,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer cc {{l}}primer book name> {{l}}switch/spell/check> {{l}}#> | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer cc {{l}}primer book name> {{l}}switch/spell/check> {{l}}#> | Updated 12/13/23 | ShadowsStride"

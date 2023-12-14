@@ -29,10 +29,10 @@ def main() -> str:
             return f"{name}'s Magic Book Library has been restored from backup", "If this was by mistake simply run this command again", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['lore', "pris", "quan", "silv", "with"])}.png", ""
 
         else:
-            return f"{ctx.author.display_name} has encountered an error", "No backup found", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            return "You Have Been Sneak Attacked by an Error", "No backup found", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     else:
-        return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "CVAR `ibook_dict` does not exist", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
 # Main program function
@@ -44,4 +44,4 @@ title, f, thumb, color = main(ch)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer remove undo | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer remove undo | Updated 12/13/23 | ShadowsStride"

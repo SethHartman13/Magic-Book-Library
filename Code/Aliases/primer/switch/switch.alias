@@ -398,19 +398,19 @@ def main(input_list: list[str]) -> str:
 
                 # If there are no charges
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", f"{spell_1_source} does not have enough charges", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return "You Have Been Sneak Attacked by an Error", f"{spell_1_source} does not have enough charges", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             # If there is an error
             else:
-                return f"{ctx.author.display_name} has encountered an error", spell_1_source, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", spell_1_source, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If the CVAR does not exist
         else:
-            return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            return "You Have Been Sneak Attacked by an Error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If there were less than 2 inputs          
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Expected at least two arguments", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "Expected at least two arguments", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If UVAR source list exists, create a set of it with the SVAR book list
     if (uvar_test := get_uvar("ibook_source_list")):
@@ -505,7 +505,7 @@ def main(input_list: list[str]) -> str:
 
                     # If the spell does not exist in another book
                     else:
-                        return f"{ctx.author.display_name} has encountered an error", f"You may only switch spells in {spell_1_source_old[0]} with spells from the following classes:\n\n" + "\n".join(primer_class_mapping[spell_1_source_old[0]]) + "\n\n(Also verify you have not switched spells out already since last long rest)", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                        return "You Have Been Sneak Attacked by an Error", f"You may only switch spells in {spell_1_source_old[0]} with spells from the following classes:\n\n" + "\n".join(primer_class_mapping[spell_1_source_old[0]]) + "\n\n(Also verify you have not switched spells out already since last long rest)", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # if the source is not in the mapping table
         else:
@@ -549,7 +549,7 @@ def main(input_list: list[str]) -> str:
 
     # If it did not find the second spell
     else:
-        return f"{ctx.author.display_name} has encountered an error", spell_2_dict, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", spell_2_dict, "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
 # Main program function
@@ -561,4 +561,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer switch [Magic Book Spell] [New Spell] | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer switch [Magic Book Spell] [New Spell] | Updated 12/13/23 | ShadowsStride"

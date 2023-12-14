@@ -112,7 +112,7 @@ if book_name:
         f = f"**Spells Removed:**\n" + "\n".join([spell for spell_list in book_info.values() for spell in spell_list])
 
 else:
-    title = f"{ctx.author.display_name} has encountered an error"
+    title = "You Have Been Sneak Attacked by an Error"
     f = book_info
     thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
     color = "#cf142b"
@@ -123,4 +123,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}wizbook remove [source name] | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook remove [source name] | Updated 12/13/23 | ShadowsStride"

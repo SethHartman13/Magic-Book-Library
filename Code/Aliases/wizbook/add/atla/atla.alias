@@ -172,7 +172,7 @@ def main() -> tuple(str, str, str, str):
     # Set cvar with new book
     ch.set_cvar("ibook_dict", dump_json(cvar_dict))
   
-    return f"{name} ({ctx.author.display_name}) has added an Atlas of Endless Horizons to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/atla.png", "#F5DA67"
+    return f"{name} has added an Atlas of Endless Horizons to their Magic Book Inventory", f"**You start with the following spells:**\n{join_list}", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/atla.png", "#F5DA67"
 
 
 # Main program function
@@ -184,4 +184,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}wizbook add atla | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook add atla | Updated 12/13/23 | ShadowsStride"

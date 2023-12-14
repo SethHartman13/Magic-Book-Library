@@ -66,7 +66,7 @@ def output_sub_list(page_num: int, uvar_list: list[str]) -> tuple(str, str, str,
 
         # If there is just one page
         case 1:
-            return f"{ctx.author.display_name} checks what they can subscribe to", "\n\n".join(["**Available Sourcebooks:**"] + [item_list[0] for item_list in result_list[0]]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[0]])}.png", ""
+            return "You check what you can subscribe to", "\n\n".join(["**Available Sourcebooks:**"] + [item_list[0] for item_list in result_list[0]]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[0]])}.png", ""
             
 
         # If there are more than one page
@@ -86,12 +86,12 @@ def output_sub_list(page_num: int, uvar_list: list[str]) -> tuple(str, str, str,
                 case _:
                     pass
 
-            return f"{ctx.author.display_name} checks what they can subscribe to", "\n\n".join([f"**Available Sourcebooks ({page_num}/{res_length}):**"] + [item_list[0] for item_list in result_list[page_num - 1]]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[page_num - 1]])}.png", ""
+            return "You check what you can subscribe to", "\n\n".join([f"**Available Sourcebooks ({page_num}/{res_length}):**"] + [item_list[0] for item_list in result_list[page_num - 1]]), f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice([item_list[1] for item_list in result_list[page_num - 1]])}.png", ""
 
 
         # If there are no pages
         case _:
-            return f"{ctx.author.display_name} checks what they can subscribe to", "**Available Sourcebooks:**\n\nNone", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
+            return "You check what you can subscribe to", "**Available Sourcebooks:**\n\nNone", f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{randchoice(['ai', 'eepc', 'egtw', 'ftod', 'ggtr', 'idrotf', 'llok', 'phb', 'sais', 'sacoc', 'scag', 'tcsr', 'tcoe', 'xgte'])}.png", ""
             
 
 
@@ -178,4 +178,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}ibook sub {{l}}#/GVAR/SVAR> | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub {{l}}#/GVAR/SVAR> | Updated 12/13/23 | ShadowsStride"

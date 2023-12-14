@@ -141,7 +141,7 @@ def edit_ind_cc(ch: AliasCharacter, cc_name: str, mod_num: str):
         book_cc = ch.cc(cc_name)
         book_cc.mod(mod_num)
 
-        return f"{ctx.author.display_name} {adj} their {cc_name} custom counter", book_cc.full_str().split("\n")[0], f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[cc_name]}.png", ""
+        return f"{name} {adj} their {cc_name} custom counter", book_cc.full_str().split("\n")[0], f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/{shorthand_items[cc_name]}.png", ""
 
     # If the source is HB, this alias does not support HB at this time
     else:
@@ -250,15 +250,15 @@ def main(input_list: list[str]):
 
             # If there are no books in Wizard Books
             else:
-                return f"{ctx.author.display_name} has encountered an error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If Wizard Books are not in cvar_dict keys
         else:
-            return f"{ctx.author.display_name} has encountered an error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            return "You Have Been Sneak Attacked by an Error", "You have no Wizard Magic Books in your library", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # If cvar ibook_dict does not exist
     else:
-        return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
     match len(input_list):
@@ -286,4 +286,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}wizbook cc {{l}}wizard book name> {{l}}#> | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook cc {{l}}wizard book name> {{l}}#> | Updated 12/13/23 | ShadowsStride"

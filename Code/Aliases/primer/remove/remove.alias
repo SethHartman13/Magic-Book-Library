@@ -109,23 +109,23 @@ def main(input_list: list[str]) -> tuple(str, str, str, str):
                         # If no exact match was found
                         key_result.insert(0, "**Multiple Matches Found:**")
 
-                        return f"{ctx.author.display_name} has encountered an error", "\n".join(key_result), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                        return "You Have Been Sneak Attacked by an Error", "\n".join(key_result), "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
                 # If book is not found      
                 else:
-                    return f"{ctx.author.display_name} has encountered an error", "Spell not Found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                    return "You Have Been Sneak Attacked by an Error", "Spell not Found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
             # If Primer Books is not a key
             else:
-                return f"{ctx.author.display_name} has encountered an error", "Primer Books not found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "You Have Been Sneak Attacked by an Error", "Primer Books not found", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # CVAR does not exist
         else:
-            return f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+            return "You Have Been Sneak Attacked by an Error", "CVAR `ibook_dict` does not exist", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
     # There were no inputs
     else:
-        return f"{ctx.author.display_name} has encountered an error", "Expected at least one input", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+        return "You Have Been Sneak Attacked by an Error", "Expected at least one input", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
 
 # Main program function
@@ -136,4 +136,5 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer remove [source name] | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer remove [source name] | Updated 12/13/23 | ShadowsStride"
+

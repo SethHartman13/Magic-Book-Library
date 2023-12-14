@@ -88,7 +88,7 @@ outcome, content = main(&ARGS&)
 
 # If there were no errors
 if outcome:
-    title = f"{ctx.author.display_name} has (attempted) to remove {content} from `ibook_settings`"
+    title = f"You have (attempted) to remove {content} from `ibook_settings`"
     f = ""
     color = ""
     thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/wizard_read_book{randchoice(['', 2, 3, 4, 5])}.png"
@@ -96,7 +96,7 @@ if outcome:
 
 # If there were errors
 else:
-    title = f"{ctx.author.display_name} has encountered an error"
+    title = f"You Have Been Sneak Attacked by an Error"
     f = content
     color = "#cc0202"
     thumb = "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
@@ -105,4 +105,4 @@ else:
 
 </drac2>
 {{svar_str}}
-{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "{{ctx.prefix}}ibook serve remove [source] | Updated 12/11/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -color "{{color}}" -thumb "{{thumb}}" -footer "{{ctx.prefix}}ibook serve remove [source] | Updated 12/13/23 | ShadowsStride"

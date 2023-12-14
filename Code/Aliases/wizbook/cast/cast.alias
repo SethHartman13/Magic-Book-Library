@@ -300,7 +300,7 @@ def main(input_list: list[str], ch: character):
 
     # If there were no inputs
     else:
-        return None, "", f"{ctx.author.display_name} has encountered an error", "Expected at least one argument", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+        return None, "", "You Have Been Sneak Attacked by an Error", "Expected at least one argument", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
     # If ibook_dict exists, load dictionary
     if (cvar_test := ch.get_cvar("ibook_dict")):
@@ -308,7 +308,7 @@ def main(input_list: list[str], ch: character):
 
     # If ibook_dict does not exist
     else:
-        return None, "", f"{ctx.author.display_name} has encountered an error", "CVAR `ibook_dict` does not exist", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+        return None, "", "You Have Been Sneak Attacked by an Error", "CVAR `ibook_dict` does not exist", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
     # If Wizard Books entry exists
     if "Wizard Books" in cvar_dict.keys():
@@ -338,7 +338,7 @@ def main(input_list: list[str], ch: character):
 
                     # If there was an error
                     else:
-                        return None, "", f"{ctx.author.display_name} has encountered an error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+                        return None, "", "You Have Been Sneak Attacked by an Error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
                 # If there were multiple matches, search for an exact match
                 else:
@@ -367,24 +367,24 @@ def main(input_list: list[str], ch: character):
 
                             # If there was an error
                             else:
-                                return None, "", f"{ctx.author.display_name} has encountered an error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+                                return None, "", "You Have Been Sneak Attacked by an Error", output, 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
                     # If it could not find an exact match, return error with match list
                     key_result.insert(0, "**Multiple Matches Found:**")
 
-                    return None, "", f"{ctx.author.display_name} has encountered an error", "\n".join(key_result), 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+                    return None, "", "You Have Been Sneak Attacked by an Error", "\n".join(key_result), 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
             # If there were no spell matches
             else:
-                return None, "", f"{ctx.author.display_name} has encountered an error", "Spell not found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+                return None, "", "You Have Been Sneak Attacked by an Error", "Spell not found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
         # If there are no wizard books
         else:
-            return None, "",f"{ctx.author.display_name} has encountered an error", "No Wizard Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+            return None, "","You Have Been Sneak Attacked by an Error", "No Wizard Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
     # If wizard Books entry does not exist
     else:
-        return None, "", f"{ctx.author.display_name} has encountered an error", "No Wizard Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
+        return None, "", "You Have Been Sneak Attacked by an Error", "No Wizard Books were found", 'https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png', "#cf142b"
 
 # Character object
 ch = character()
@@ -434,5 +434,5 @@ else:
     spell_str = color_source
 
 </drac2>
-{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "{{ctx.prefix}}wizbook cast [spell name] | Updated 12/11/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color_source}}" -footer "{{ctx.prefix}}wizbook cast [spell name] | Updated 12/13/23 | ShadowsStride"
 {{spell_str}}

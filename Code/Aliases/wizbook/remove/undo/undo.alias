@@ -30,7 +30,7 @@ if status:
     color = ""
 
 else:
-    title = f"{ctx.author.display_name} has encountered an error"
+    title = "You Have Been Sneak Attacked by an Error"
     thumb = f"https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png"
     color = "#cf142b"
 
@@ -40,4 +40,4 @@ else:
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}wizbook remove undo | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook remove undo | Updated 12/13/23 | ShadowsStride"

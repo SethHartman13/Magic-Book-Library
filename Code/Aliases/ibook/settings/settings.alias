@@ -124,7 +124,7 @@ def change_setting(setting_request: str, svar_dict: dict, default_dict: dict, se
 
             # If it couldn't convert to an integer
             except:
-                return "", f"{ctx.author.display_name} attempts to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
+                return "", f"You have attempted to update ibook settings", f"`Invalid Datatype`\n**{setting_request}:** {svar_dict['Settings'][setting_request]} (default: {default_dict['Settings'][setting_request]})", "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/no_wizard.png", "#CF142B"
 
         # If it is a datatype that doesn't currently exist in settings
         else:
@@ -230,4 +230,4 @@ l = "<"
 
 </drac2>
 {{svar_str}}
-{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "{{ctx.prefix}}ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 12/11/23 | ShadowsStride"
+{{ctx.prefix}}embed -title "{{title}}" -f "{{f}}" -thumb "{{thumb}}" -color "{{color}}" -footer "{{ctx.prefix}}ibook serve settings {{l}}setting_name> {{l}}new setting value> | Updated 12/13/23 | ShadowsStride"
