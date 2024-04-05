@@ -90,7 +90,15 @@ def spell_match_logic(spell_name: str, spell_value: dict, svar_dict: dict, prime
 
     # If spell level is 1
     else:
-        match (svar_dict["Settings"]["Expanded Class"], "Expanded Class" in spell_value.keys(), "Class" in spell_value.keys()):
+
+        # Verify settings exists
+        if "Settings" not in svar_dict.keys():
+            svar_dict["Settings"] = {}
+
+        else:
+            pass
+
+        match ("Expanded Class" in svar_dict["Settings"].keys(), "Expanded Class" in spell_value.keys(), "Class" in spell_value.keys()):
 
             # If optional classes are allowed, "Expanded Class" is a key, and "Class" is a key
             case (True, True, True):
@@ -434,4 +442,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer add with | Updated 12/13/23 | ShadowsStride"
+-footer "{{ctx.prefix}}primer add with | Updated 4/4/24 | ShadowsStride"
