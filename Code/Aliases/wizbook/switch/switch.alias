@@ -154,7 +154,8 @@ def search_sourcebook(ch: character, sourcebook_search: str, massive_source_spel
     # Partnered content source list
     partnered_source_list = [
         "Explorer's Guide to Wildemount (egtw)",
-        "Tal'Dorei Campaign Setting Reborn (tcsr)"
+        "Tal'Dorei Campaign Setting Reborn (tcsr)",
+        "Book of Ebon Tides (boet)"
     ]
 
     # Official content source list
@@ -240,7 +241,8 @@ def search_sourcebook(ch: character, sourcebook_search: str, massive_source_spel
         "Acquisitions Incorporated (ai)": "ai",
         "Basic Rules (br)": "br",
         "Explorer's Guide to Wildemount (egtw)": "egtw",
-        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr",
+        "Book of Ebon Tides (boet)": "boet"
     }
 
     # Create empty dictionary
@@ -504,4 +506,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}wizbook switch [Magic Book Spell] [Spellbook Spell] | Updated 12/13/23 | ShadowsStride"
+-footer "{{ctx.prefix}}wizbook switch [Magic Book Spell] [Spellbook Spell] | Updated 9/9/24 | ShadowsStride"

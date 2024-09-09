@@ -177,7 +177,8 @@ def get_random_spell(svar_dict: dict, primer_name: str) -> str:
         "Acquisitions Incorporated (ai)": "ai",
         "Basic Rules (br)": "br",
         "Explorer's Guide to Wildemount (egtw)": "egtw",
-        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr",
+        "Book of Ebon Tides (boet)": "boet"
     }
 
     # Loads massive spell dictionary
@@ -442,4 +443,4 @@ title, f, thumb, color = main()
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}primer add lore | Updated 4/4/24 | ShadowsStride"
+-footer "{{ctx.prefix}}primer add lore | Updated 9/9/24 | ShadowsStride"

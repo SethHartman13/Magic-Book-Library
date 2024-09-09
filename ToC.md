@@ -20,6 +20,8 @@ Table of contents that this Magic Book Library offers.
     - `ibook sub`: [Markdown](./Code/Aliases/ibook/sub/sub.md)
         - `ibook sub ai`*: [Markdown](./Code/Aliases/ibook/sub/ai/ai.md)
 
+        - `ibook sub boet`*: [Markdown](./Code/Aliases/ibook/sub/boet/boet.md)
+
         - `ibook sub eepc`*: [Markdown](./Code/Aliases/ibook/sub/eepc/eepc.md)
 
         - `ibook sub egtw`*: [Markdown](./Code/Aliases/ibook/sub/egtw/egtw.md)

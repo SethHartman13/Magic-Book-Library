@@ -13,12 +13,13 @@ In order to help manage spell usage, the `ibook` alias helps content control. By
 - [Guildmasters' Guide to Ravnica](https://www.dndbeyond.com/sources/ggtr)
 - [Icewind Dale: Rime of the Frostmaiden](https://www.dndbeyond.com/sources/idrotf)
 - [Lost Laboratory of Kwalish](https://www.dndbeyond.com/sources/llok)
-- [Player's Handbook](https://www.dndbeyond.com/sources/phb)
+- [Player's Handbook (2014)](https://www.dndbeyond.com/sources/phb-2014)
 - [Strixhaven: A Curriculum of Chaos](https://www.dndbeyond.com/sources/sacoc)
 - [Spelljammer: Adventures in Space](https://www.dndbeyond.com/sources/sais)
 - [Sword Coast Adventurer's Guide](https://www.dndbeyond.com/sources/scag)
 - [Tasha's Cauldron of Everything](https://www.dndbeyond.com/sources/tcoe)
 - [Xanathar's Guide to Everything](https://www.dndbeyond.com/sources/xgte)
+- [Book of Ebon Tides](https://www.dndbeyond.com/sources/boet)
 
 *Sourcebook with spells missing? [Send a ticket]((https://forms.gle/YYkyPcBb1WHXWMYE6)) for Shadow to update this alias*
 

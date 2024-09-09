@@ -3,7 +3,7 @@
 Subalias to subscribe to the spells within Spelljammer Adventures in Space
 
 ## Help:
-`!ibook sub phb`: Subscribes to Spelljammer Adventures in Space
+`!ibook sub sacoc`: Subscribes to Spelljammer Adventures in Space
 
 ## Licensing:
 This subalias requires owning the spells from the [Spelljammer Adventures in Space](https://www.dndbeyond.com/sources/sacoc):

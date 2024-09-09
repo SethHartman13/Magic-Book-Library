@@ -37,7 +37,8 @@ def output_sub_list(page_num: int, uvar_list: list[str], svar_list: list[str]) -
         "Sword Coast Adventurer's Guide (scag)": "scag",
         "Tasha's Cauldron of Everything (tcoe)": "tcoe",
         "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr",
-        "Xanathar's Guide to Everything (xgte)": "xgte" 
+        "Xanathar's Guide to Everything (xgte)": "xgte",
+        "Book of Ebon Tides (boet)": "boet"
     }
 
     # Creates lists of sources and and a list of their sources
@@ -142,4 +143,4 @@ l = "<"
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}ibook list {{l}}#> | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook list {{l}}#> | Updated 9/9/24 | ShadowsStride"

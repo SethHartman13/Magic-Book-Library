@@ -1,0 +1,28 @@
+embed
+<drac2>
+
+
+# If UVAR exists, load list
+if (uvar_test := get_uvar("ibook_source_list")):
+    uvar = load_json(uvar_test)
+
+    # If phb is not already in the list
+    if "Book of Ebon Tides (boet)" not in uvar:
+        uvar.append("Book of Ebon Tides (boet)")
+
+        # Set UVAR
+        set_uvar("ibook_source_list", dump_json(uvar))
+
+    # If phb is already in the list
+    else:
+        pass
+
+# If UVAR does not exist, create list and set UVAR
+else:
+    set_uvar("ibook_source_list", dump_json(["Book of Ebon Tides (boet)"]))
+
+
+</drac2>
+-title "You have added Book of Ebon Tides (boet) to your sourcebook list"
+-thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/boet.png"
+-footer "{{ctx.prefix}}ibook sub boet | Updated 9/9/23 | ShadowsStride"

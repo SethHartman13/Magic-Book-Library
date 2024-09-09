@@ -66,7 +66,8 @@ def main(input_list: list[str]) -> str:
         "Acquisitions Incorporated (ai)": "ai",
         "Basic Rules (br)": "br",
         "Explorer's Guide to Wildemount (egtw)": "egtw",
-        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr"
+        "Tal'Dorei Campaign Setting Reborn (tcsr)": "tcsr",
+        "Book of Ebon Tides (boet)": "boet"
     }
 
     # If it finds at least one match
@@ -130,4 +131,4 @@ title, f, thumb, color = main(&ARGS&)
 -f "{{f}}"
 -thumb "{{thumb}}"
 -color "{{color}}"
--footer "{{ctx.prefix}}ibook unsub [source name] | Updated 12/11/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook unsub [source name] | Updated 9/9/23 | ShadowsStride"
