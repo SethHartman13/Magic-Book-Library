@@ -25,4 +25,4 @@ else:
 </drac2>
 -title "You have added Book of Ebon Tides (boet) to your sourcebook list"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Magic-Book-Library/main/Code/Images/boet.png"
--footer "{{ctx.prefix}}ibook sub boet | Updated 9/9/23 | ShadowsStride"
+-footer "{{ctx.prefix}}ibook sub boet | Updated 9/9/24 | ShadowsStride"
